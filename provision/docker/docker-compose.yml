@@ -1,0 +1,34 @@
+version: "3"
+services:
+
+  db:
+    image: wnameless/oracle-xe-11g
+    ports:
+      - "49160:22"
+      - "1521:1521"
+    restart: always
+
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+  
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    restart: always
+
+  icecoder:
+    build: ./icecoder
+    links:
+      - mongodb
+    ports:
+      - "80:80"
+
+volumes:
+  portainer_data:

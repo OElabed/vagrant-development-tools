@@ -46,7 +46,7 @@ say "Installing Docker compose."
     chmod +x /usr/local/bin/docker-compose
 
 # Install mysql
-say "Installing MySQL."
+say "Pull Docker containers."
 export DEBIAN_FRONTEND=noninteractive
     apt-get update
     apt-get install -y mysql-server >/dev/null 2>&1

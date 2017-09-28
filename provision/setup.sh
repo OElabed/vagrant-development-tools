@@ -28,12 +28,12 @@ say "Installing multiple tools."
     apt-get update >/dev/null 2>&1
     # Install tools
     apt-get install python-software-properties -yq >/dev/null 2>&1
-    apt-get install apt-transport-https ca-certificates curl software-properties-common -yq >/dev/null 2>&1
+    apt-get install apt-transport-https ca-certificates curl software-properties-common jq -yq >/dev/null 2>&1
 
 # Install Desktop
 say "Installing Desktop."
     apt-get update >/dev/null 2>&1
-    apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 xinit colordiff
+    apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 xinit
     apt-get install -y --no-install-recommends ubuntu-desktop gnome-terminal
 
 # Install Git

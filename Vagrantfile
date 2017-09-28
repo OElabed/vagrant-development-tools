@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   
   # Provision script - run once
-  # config.vm.provision "shell", path: "provision/setup.sh"
+  config.vm.provision "shell", path: "provision/setup.sh"
   
   # Init script - run every vagrant up
   # config.vm.provision "shell", path: "provision/run.sh"

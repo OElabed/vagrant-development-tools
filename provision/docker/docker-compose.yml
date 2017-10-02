@@ -29,6 +29,16 @@ services:
       - mongodb
     ports:
       - "80:80"
+  
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+    restart: always
 
 volumes:
   portainer_data:
+  jenkins_data:

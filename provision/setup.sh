@@ -15,7 +15,7 @@ function say {
 
 db='databasename'
 
-source ./config.cfg
+source config.cfg
 
 # Install Basic tools
 say "Change Time."
@@ -31,16 +31,31 @@ say "Installing multiple tools."
     apt-get install apt-transport-https ca-certificates curl software-properties-common jq -yq >/dev/null 2>&1
 
 # Install Desktop
-say "Installing Desktop."
+# say "Installing Desktop."
+#     apt-get update >/dev/null 2>&1
+#     apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 xinit >/dev/null 2>&1
+#     apt-get install -y --no-install-recommends ubuntu-desktop gnome-terminal >/dev/null 2>&1
+
+# Install Nginx
+say "Installing Nginx."
     apt-get update >/dev/null 2>&1
-    apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 xinit
-    apt-get install -y --no-install-recommends ubuntu-desktop gnome-terminal
+    apt-get -y install nginx -yq >/dev/null 2>&1
+    service nginx start
 
 # Install Git
 say "Installing Git."
     add-apt-repository ppa:git-core/ppa -yq >/dev/null 2>&1
     apt-get update >/dev/null 2>&1
     apt-get install git -yq >/dev/null 2>&1
+
+# Install java
+say "Installing java."
+    add-apt-repository ppa:webupd8team/java -yq >/dev/null 2>&1
+    apt-get update >/dev/null 2>&1
+    echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+	echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
+	apt-get install --yes oracle-java8-installer
+    yes "" | apt-get -f install
 
 # Install Docker
 say "Installing Docker."
@@ -55,6 +70,12 @@ say "Installing Docker."
 say "Installing Docker compose."
     curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
+
+# Pull and Build Docker containers
+say "Pull and Build Docker containers."
+    cd /vagrant/provision/docker
+    docker-compose up -d portainer
+    cd --
 
 # Let this script know not to run again
 touch /var/vagrant_provision

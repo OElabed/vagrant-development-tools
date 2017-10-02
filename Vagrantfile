@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/xenial64"
 
+  config.vm.hostname = "dev.ubuntu"
+
   config.ssh.forward_agent = true
 
   # Disable automatic box update checking. If you disable this, then
@@ -53,10 +55,10 @@ Vagrant.configure("2") do |config|
   #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
-    vb.gui = true
+    # vb.gui = true
     
     # Customize the amount of memory on the VM:
-    vb.memory = "4048"
+    vb.memory = "4096"
   end
   #
   # View the documentation for the provider you are using for more

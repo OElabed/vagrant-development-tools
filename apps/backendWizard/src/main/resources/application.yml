@@ -1,0 +1,8 @@
+spring:
+  redis:
+    host: localhost
+    password: secret
+    port: 6379
+
+workspace:
+  path: /tmp/backendAgent

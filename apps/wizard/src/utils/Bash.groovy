@@ -5,8 +5,12 @@ package utils
  */
 class Bash {
 
-    static void launch(String cmd){
-        launch(cmd, null)
+    static int launch(String cmd){
+
+        Process process = cmd.execute()
+        process.waitFor()
+
+        return process.exitValue()
     }
 
     static void launch(String cmd, String condition){

@@ -1,0 +1,27 @@
+# package config File
+---
+packageDefinition:
+  name: "Sample"
+  basePath: "/tmp/package/"
+
+coreEngine:
+  packageUrl: "/home/ubuntu/upload-files/CEngine.zip"
+
+filterEngine:
+  packageUrl: "/home/ubuntu/upload-files/FilterEngine.zip"
+  licenceUrl: "https://stackoverflow.com/questions/25796637/licence-file"
+  kzFileUrl: "https://stackoverflow.com/questions/25796637/kz-file"
+  fmlFileUrl: "https://stackoverflow.com/questions/25796637/fml-file"
+  scoreFileUrl: "https://stackoverflow.com/questions/25796637/score-file"
+
+modules:
+  - name: Toto
+    version: 0.0.0.0
+    packageUrl: "/home/ubuntu/upload-files/Toto.zip"
+    configFileUrl: "https://stackoverflow.com/questions/25796637/config-file"
+  
+  - name: Titi
+    version: 0.0.0.0
+    packageUrl: "/home/ubuntu/upload-files/Titi.zip"
+    configFileUrl: "https://stackoverflow.com/questions/25796637/config-file"
+

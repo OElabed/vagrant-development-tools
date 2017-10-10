@@ -33,10 +33,7 @@ public class InstallPackageService {
     }
 
     public void installAllPackage(FileConfig configFile){
-
-
         try {
-
             // prepare
             String baseUrl = preparePackageFolder(configFile);
             // install FilterEngine
@@ -46,17 +43,15 @@ public class InstallPackageService {
             // install Modules
             installModules(configFile, baseUrl);
 
-
         } catch (CommandEndedAbnormallyException  | IOException exp) {
             exp.printStackTrace();
         }
-
-
     }
 
     private String preparePackageFolder(FileConfig config) throws IOException, CommandEndedAbnormallyException {
         String folderId = IdentifierGeneratorUtils.generateUUID();
         String basePath = workspacePath + File.separator + folderId;
+        config.getPackageDefinition().setBasePath(basePath);
         Command<FileConfig> packageConfigCommand = new PreparePackageFolderCommand(config, basePath);
         packageConfigCommand.execute();
         return basePath;

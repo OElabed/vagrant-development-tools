@@ -1,5 +1,7 @@
 package com.wizard.domain;
 
+import java.util.Map;
+
 /**
  * Created by OELABED on 08/10/2017.
  */
@@ -12,6 +14,16 @@ public class ModuleConfig extends Config {
     private String packageUrl;
 
     private String configFileUrl;
+
+    private Map<String,String> scripts;
+
+    public Map<String, String> getScripts() {
+        return scripts;
+    }
+
+    public void setScripts(Map<String, String> scripts) {
+        this.scripts = scripts;
+    }
 
     public String getName() {
         return name;

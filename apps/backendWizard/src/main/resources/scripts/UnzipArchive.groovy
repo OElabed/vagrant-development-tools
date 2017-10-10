@@ -1,6 +1,11 @@
 package scripts
 
 /**
+ * Script Groovy that unzip archive
+ * args:
+ *  - 'source' zip file
+ *  - 'target' folder to be unzip
+ *
  * Created by OELABED on 08/10/2017.
  */
 

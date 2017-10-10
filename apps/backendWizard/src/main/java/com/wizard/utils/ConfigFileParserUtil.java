@@ -38,4 +38,15 @@ public class ConfigFileParserUtil {
         return yamlString;
 
     }
+
+    public static FileConfig parseFileConfigFromContentString(String content) {
+        FileConfig fileConfig = null;
+        try {
+            fileConfig = mapper.readValue(content, FileConfig.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return fileConfig;
+    }
 }

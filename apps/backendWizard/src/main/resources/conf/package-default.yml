@@ -19,9 +19,13 @@ modules:
     version: 0.0.0.0
     packageUrl: "/home/ubuntu/upload-files/Toto.zip"
     configFileUrl: "https://stackoverflow.com/questions/25796637/config-file"
+    scripts:
+      start: "Start_Toto.sh"
+      stop: "Stop_Toto.sh"
   
   - name: Titi
     version: 0.0.0.0
     packageUrl: "/home/ubuntu/upload-files/Titi.zip"
     configFileUrl: "https://stackoverflow.com/questions/25796637/config-file"
-
+    scripts:
+      start: "Start_Titi.sh"

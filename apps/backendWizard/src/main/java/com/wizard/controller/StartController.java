@@ -1,6 +1,6 @@
 package com.wizard.controller;
 
-import com.wizard.domain.FileConfig;
+import com.wizard.domain.PackageConfig;
 import com.wizard.services.PackageService;
 import com.wizard.services.StartPackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +26,15 @@ public class StartController {
     @Autowired
     private PackageService packageService;
 
-    @RequestMapping(value = "/all/{folderId}", method = RequestMethod.GET)
-    public ResponseEntity<?> all(@PathVariable("folderId") String folderId) throws IOException {
+    @RequestMapping(value = "/all/{packageId}", method = RequestMethod.GET)
+    public ResponseEntity<?> startAllModules(@PathVariable("packageId") String packageId) throws IOException {
 
-        FileConfig fileConfig =  packageService.findByFolderId(folderId);
+        PackageConfig packageConfig =  packageService.findByPackageId(packageId);
 
-        if(fileConfig == null){
+        if(packageConfig == null){
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        startPackageService.startAll(folderId);
+        startPackageService.startAllModules(packageConfig);
 
         return new ResponseEntity<String>(HttpStatus.OK);
     }

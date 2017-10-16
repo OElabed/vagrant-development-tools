@@ -1,8 +1,9 @@
 package com.wizard.repositories;
 
 import com.wizard.commands.CommonTasks;
-import com.wizard.domain.FileConfig;
-import com.wizard.utils.ConfigFileParserUtil;
+import com.wizard.commands.common.PackageConstant;
+import com.wizard.domain.PackageConfig;
+import com.wizard.utils.PackageConfigParserUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -18,18 +19,18 @@ public class PackageRepository {
     @Value("${workspace.path}")
     private String workspacePath;
 
-    public FileConfig findByFolderId(String folderId) {
-        FileConfig fileConfig = null;
+    public PackageConfig findByPackageId(String folderId) {
+        PackageConfig packageConfig = null;
         try {
             if (CommonTasks.checkFileExistIntoFolder(workspacePath, folderId)) {
-                String fileConfigContent = CommonTasks.readFileIntoFolder(workspacePath + File.separator + folderId);
-                fileConfig = ConfigFileParserUtil.parseFileConfigFromContentString(fileConfigContent);
+                String fileConfigContent = CommonTasks.readFileIntoFolder(workspacePath + File.separator + folderId + File.separator + PackageConstant.FILE_CONFIG_NAME);
+                packageConfig = PackageConfigParserUtil.parsePackageConfigFromContentString(fileConfigContent);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return fileConfig;
+        return packageConfig;
     }
 
 }

@@ -22,7 +22,7 @@ modules:
     scripts:
       start: "Start_Toto.sh"
       stop: "Stop_Toto.sh"
-  
+
   - name: Titi
     version: 0.0.0.0
     packageUrl: "/home/ubuntu/upload-files/Titi.zip"

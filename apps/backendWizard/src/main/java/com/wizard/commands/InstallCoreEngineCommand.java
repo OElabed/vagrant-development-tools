@@ -1,15 +1,10 @@
 package com.wizard.commands;
 
+import com.wizard.commands.common.Command;
 import com.wizard.domain.CoreEngineConfig;
 import com.wizard.exceptions.CommandEndedAbnormallyException;
-import com.wizard.utils.FileUtils;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-import groovy.lang.Script;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by OELABED on 08/10/2017.

@@ -1,27 +1,49 @@
 package com.wizard.domain;
 
+import java.util.List;
+
 /**
  * Created by OELABED on 08/10/2017.
  */
-public class PackageConfig extends Config {
+public class PackageConfig extends Config{
 
-    private String name;
+    private PackageDefinitionConfig packageDefinition;
 
-    private String basePath;
+    private CoreEngineConfig coreEngine;
 
-    public String getName() {
-        return name;
+    private FilterEngineConfig filterEngine;
+
+    private List<ModuleConfig> modules;
+
+    public CoreEngineConfig getCoreEngine() {
+        return coreEngine;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCoreEngine(CoreEngineConfig coreEngine) {
+        this.coreEngine = coreEngine;
     }
 
-    public String getBasePath() {
-        return basePath;
+    public FilterEngineConfig getFilterEngine() {
+        return filterEngine;
     }
 
-    public void setBasePath(String basePath) {
-        this.basePath = basePath;
+    public void setFilterEngine(FilterEngineConfig filterEngine) {
+        this.filterEngine = filterEngine;
+    }
+
+    public List<ModuleConfig> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<ModuleConfig> modules) {
+        this.modules = modules;
+    }
+
+    public PackageDefinitionConfig getPackageDefinition() {
+        return packageDefinition;
+    }
+
+    public void setPackageDefinition(PackageDefinitionConfig packageDefinition) {
+        this.packageDefinition = packageDefinition;
     }
 }

@@ -1,0 +1,9 @@
+<div id="page-wrapper" class="open" [ngClass]="{'open': toggle}">
+    <fix-sidebar (change)="toggleChange($event)"></fix-sidebar>
+    <div id="content-wrapper">
+        <div class="page-content">
+            <fix-headerbar></fix-headerbar>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

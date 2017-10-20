@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <fix-widget>
+            <fix-widget-header icon="fa-bolt" title="Actions">
+                <button class="btn btn-sm btn-primary" style="float: right">
+                    <i class="fa fa-plus space-right" aria-hidden="true"></i>Add Package</button>
+            </fix-widget-header>
+            <fix-widget-body classes="padding">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button class="btn btn-sm" (click)="start()" [disabled]="isRuning" [ngClass]="{'btn-success': !isRuning}">
+                        <i class="fa fa-play space-right" aria-hidden="true"></i>Start</button>
+                    <button class="btn btn-sm" (click)="stop()" [disabled]="!isRuning" [ngClass]="{'btn-danger': isRuning}">
+                        <i class="fa fa-stop space-right" aria-hidden="true"></i>Stop</button>
+                    <button class="btn  btn-sm" (click)="restart()" [disabled]="!isRuning" [ngClass]="{'btn-primary': isRuning}">
+                        <i class="fa fa-refresh space-right" aria-hidden="true"></i>Restart</button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-danger btn-sm" (click)="confirmRemove()">
+                        <i class="fa fa-trash space-right" aria-hidden="true"></i>Remove</button>
+                    <button class="btn btn-sm" (click)="recreate()">
+                        <i class="fa fa-refresh space-right" aria-hidden="true"></i>Recreate</button>
+                    <button class="btn btn-sm" (click)="duplicate()">
+                        <i class="fa fa-files-o space-right" aria-hidden="true"></i>Duplicate</button>
+                </div>
+            </fix-widget-body>
+        </fix-widget>
+    </div>
+</div>

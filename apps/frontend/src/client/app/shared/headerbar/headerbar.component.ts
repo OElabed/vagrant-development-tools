@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
 @Component({
   moduleId: module.id,
   selector: 'fix-headerbar',
-  templateUrl: 'headerbar.component.html'
+  templateUrl: 'headerbar.component.html',
+  styleUrls: ['headerbar.component.css']
 })
 export class HeaderbarComponent { }
 

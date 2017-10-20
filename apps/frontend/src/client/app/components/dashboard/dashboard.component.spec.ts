@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { DashboardComponent } from './dashboard.component';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { NameListService } from '../../shared/name-list/name-list.service';
 
 export function main() {
   describe('Dashboard component', () => {

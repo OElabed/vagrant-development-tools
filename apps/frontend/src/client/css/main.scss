@@ -1,0 +1,52 @@
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.widget-header {
+  height: 45px;
+  .row div{
+    margin-bottom: 0px;
+  }
+}
+
+.white-space-normal {
+    white-space: normal !important;
+}
+  
+.space-right {
+  margin-right: 5px;
+}
+
+.fa.green-icon {
+  color: #23ae89;
+}
+
+.fa.red-icon {
+  color: #ae2323;
+}
+
+.fa.orange-icon {
+  color: #f0ad4e;
+}
+
+.fa.white-icon {
+  color: white;
+}
+.fa.black-icon {
+  color: black;
+}
+
+.table {
+  &.hierarchical {
+    tbody {
+      tr {
+        &.hiera-1{
+          td {
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+  }
+}

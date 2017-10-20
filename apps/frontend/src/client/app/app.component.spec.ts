@@ -13,7 +13,7 @@ import {
   RouterTestingModule
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HeaderbarComponent } from './shared/headerbar/headerbar.component';
 

@@ -6,7 +6,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   moduleId: module.id,
   selector: 'fix-sidebar',
-  templateUrl: 'sidebar.component.html'
+  templateUrl: 'sidebar.component.html',
+  styleUrls: ['sidebar.component.css']
 })
 export class SidebarComponent {
 

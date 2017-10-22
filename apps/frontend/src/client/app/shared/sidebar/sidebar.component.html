@@ -18,13 +18,19 @@
             <span>PACKAGE ACTIONS</span>
         </li>
         <li class="sidebar-list">
-            <a href="#" class="active">Dashboard
+            
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard
                 <span class="menu-icon fa fa-tachometer"></span>
             </a>
         </li>
         <li class="sidebar-list">
-            <a href="#/tables">Tables
-                <span class="menu-icon fa fa-table"></span>
+            <a routerLink="/settings"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Settings
+                <span class="menu-icon fa fa-cog"></span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a routerLink="/creation"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New package
+                <span class="menu-icon fa fa-plus"></span>
             </a>
         </li>
     </ul>

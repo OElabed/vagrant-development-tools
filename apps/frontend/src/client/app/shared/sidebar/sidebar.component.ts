@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
 /**
  * This class represents the sidebar component.
  */

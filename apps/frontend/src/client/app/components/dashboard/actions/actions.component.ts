@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Package } from '../../../models/package';
+import { IPackage, Package } from '../../../models/package';
 import { State } from '../../../models/state';
 
 /**
@@ -14,11 +14,12 @@ import { State } from '../../../models/state';
 })
 export class ActionsComponent {
 
-    package: Package;
+    package: IPackage;
     isRuning: boolean = false;
 
     constructor() {
-        this.package = new Package('GER5451848181818811', 'Package Test', State.RUNNING);
+        this.package = new Package();
+        this.package.state = State.RUNNING;
         this.isRuning = this.setIsRuning(this.package.state);
     }
 

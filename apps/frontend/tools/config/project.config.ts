@@ -34,10 +34,14 @@ export class ProjectConfig extends SeedConfig {
       { src: 'moment/moment.js', inject: 'libs' },
       { src: 'jquery/dist/jquery.min.js', inject: 'libs' },
       { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
+      { src: 'codemirror/lib/codemirror.js', inject: 'libs' },
+      { src: 'bootstrap-select/dist/js/bootstrap-select.min.js', inject: 'libs' },
 
       { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true },
       { src: 'font-awesome/css/font-awesome.min.css', inject: true },
       { src: 'rdash-ui/dist/css/rdash.min.css', inject: true },
+      { src: 'codemirror/lib/codemirror.css', inject: true },
+      { src: 'bootstrap-select/dist/css/bootstrap-select.min.css', inject: true },
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
@@ -62,6 +66,24 @@ export class ProjectConfig extends SeedConfig {
       name: 'moment',
       packageMeta: {
         main: './moment.js',
+        defaultExtension: 'js'
+      }
+    });
+
+    this.addPackageBundles({
+      name: 'codemirror',
+      path:'node_modules/codemirror',
+      packageMeta: {
+        main: 'lib/codemirror',
+        defaultExtension: 'js'
+      }
+    });
+
+    this.addPackageBundles({
+      name: 'ng2-codemirror',
+      path:'node_modules/ng2-codemirror',
+      packageMeta: {
+        main: 'lib/index',
         defaultExtension: 'js'
       }
     });

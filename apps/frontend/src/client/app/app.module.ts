@@ -7,10 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { PackageSettingsModule } from './components/package-settings/package-settings.module';
+import { PackageCreationModule } from './components/package-creation/package-creation.module';
 
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, DashboardModule, SharedModule.forRoot()],
+  imports: [BrowserModule,
+    HttpModule,
+    AppRoutingModule,
+    DashboardModule,
+    PackageSettingsModule,
+    PackageCreationModule,
+    SharedModule.forRoot()
+  ],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

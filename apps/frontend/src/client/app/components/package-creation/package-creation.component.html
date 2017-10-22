@@ -1,0 +1,210 @@
+<div class="row form-group">
+  <div class="col-xs-12 nomargin">
+    <ul class="nav nav-pills nav-justified thumbnail setup-panel nomargin">
+      <li [ngClass]="{'active': this.currentStep.id === 'STEP-1', 'disabled':  isDisableStep('STEP-1')}">
+        <a (click)="changeStepWizard('STEP-1')">
+          <h4 class="list-group-item-heading">Step 1</h4>
+          <p class="list-group-item-text">Package configuration</p>
+        </a>
+      </li>
+      <li [ngClass]="{'active': this.currentStep.id === 'STEP-2', 'disabled':  isDisableStep('STEP-2')}">
+        <a (click)="changeStepWizard('STEP-2')">
+          <h4 class="list-group-item-heading">Step 2</h4>
+          <p class="list-group-item-text">Core Engine configuration</p>
+        </a>
+      </li>
+      <li [ngClass]="{'active': this.currentStep.id === 'STEP-3', 'disabled':  isDisableStep('STEP-3')}">
+        <a (click)="changeStepWizard('STEP-3')">
+          <h4 class="list-group-item-heading">Step 3</h4>
+          <p class="list-group-item-text">Filter Engine configuration</p>
+        </a>
+      </li>
+      <li [ngClass]="{'active': this.currentStep.id === 'STEP-4', 'disabled':  isDisableStep('STEP-4')}">
+        <a (click)="changeStepWizard('STEP-4')">
+          <h4 class="list-group-item-heading">Step 4</h4>
+          <p class="list-group-item-text">Modules configuration</p>
+        </a>
+      </li>
+      <li [ngClass]="{'active': this.currentStep.id === 'STEP-5', 'disabled':  isDisableStep('STEP-5')}">
+        <a (click)="changeStepWizard('STEP-5')">
+          <h4 class="list-group-item-heading">Step 5</h4>
+          <p class="list-group-item-text">Validation</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" *ngIf="this.currentStep.id === 'STEP-1'">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <fix-widget>
+      <fix-widget-body>
+        <div class="form-horizontal configuration-container">
+          <div class="col-sm-12 form-section-title">
+            Package configuration
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Name</label>
+            <div class="col-sm-3">
+              <input class="form-control" id="container_name" placeholder="e.g. myPackage" type="text">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
+            <div class="col-sm-3">
+              <select class="form-control selectpicker-platform">
+                <option label="DockerHub" value="object:266" selected="selected"> Linux-Docker01</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Common Env</label>
+            <div class="col-sm-10">
+              <label class="radio-inline" (click)="setCommonEnv(true)">
+                <input type="radio" name="optradio" [checked]="packageConfig.commonEnv.enable">Yes</label>
+              <label class="radio-inline" (click)="setCommonEnv(false)">
+                <input type="radio" name="optradio" [checked]="!packageConfig.commonEnv.enable">No</label>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="packageConfig.commonEnv.enable">
+            <div class="col-sm-10 col-sm-offset-2">
+              <div class="pull-left">
+                <i class="fa fa-file-code-o" aria-hidden="true"></i>
+                Common_env.cfg
+              </div>
+            </div>
+            <div class="col-sm-10 col-sm-offset-2">
+              <div class="editor" style="height:300px;">
+                <codemirror [(ngModel)]="packageConfig.commonEnv.content" [config]="configEditor"></codemirror>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fix-widget-body>
+      <fix-widget-footer>
+        <div class="row form-group nomargin">
+          <div class="col-sm-12 nomargin">
+            <button class="btn btn-sm btn-primary pull-left disabled">
+              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </fix-widget-footer>
+    </fix-widget>
+  </div>
+</div>
+
+<div class="rowr" *ngIf="this.currentStep.id === 'STEP-2'">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <fix-widget>
+      <fix-widget-body>
+        <div class="form-horizontal configuration-container">
+          <div class="col-sm-12 form-section-title">
+            Core Engine configuration
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
+            <div class="col-sm-3">
+              <label for="container_name" class="control-label text-left">
+                <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Version</label>
+            <div class="col-sm-3">
+              <select class="form-control selectpicker-version-coreengine">
+                <option label="DockerHub" selected="selected"> 5.7.0.0</option>
+                <option label="DockerHub"> 5.6.4.0</option>
+                <option label="DockerHub"> 5.6.4.1</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </fix-widget-body>
+      <fix-widget-footer>
+        <div class="row form-group nomargin">
+          <div class="col-sm-12 nomargin">
+            <button class="btn btn-sm btn-primary pull-left disabled">
+              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </fix-widget-footer>
+    </fix-widget>
+  </div>
+</div>
+
+<div class="rowr" *ngIf="this.currentStep.id === 'STEP-3'">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <fix-widget>
+      <fix-widget-body>
+        <div class="form-horizontal configuration-container">
+          <div class="col-sm-12 form-section-title">
+            Filter Engine configuration
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
+            <div class="col-sm-3">
+              <label for="container_name" class="control-label text-left">
+                <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">Version</label>
+            <div class="col-sm-3">
+              <select class="form-control selectpicker-version-coreengine">
+                <option label="DockerHub" selected="selected"> 5.7.0.0</option>
+                <option label="DockerHub"> 5.7.1.0</option>
+                <option label="DockerHub"> 5.7.6.0</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="container_name" class="col-sm-2 control-label text-left">kz</label>
+            <div class="col-sm-3">
+              <select class="form-control selectpicker-version-coreengine">
+                <option label="DockerHub" selected="selected"> 5.7.0.0</option>
+                <option label="DockerHub"> 5.7.1.0</option>
+                <option label="DockerHub"> 5.7.6.0</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </fix-widget-body>
+      <fix-widget-footer>
+        <div class="row form-group nomargin">
+          <div class="col-sm-12 nomargin">
+            <button class="btn btn-sm btn-primary pull-left disabled">
+              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </fix-widget-footer>
+    </fix-widget>
+  </div>
+</div>
+
+<div class="row" *ngIf="this.currentStep.id === 'STEP-4'">
+  <div class="col-lg-12 col-md-12 col-xs-12">STEP 4</div>
+</div>
+
+<div class="row" *ngIf="this.currentStep.id === 'STEP-5'">
+  <div class="col-lg-12 col-md-12 col-xs-12">STEP 5</div>
+</div>

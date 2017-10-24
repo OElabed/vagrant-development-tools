@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { IPackage, Package, CommonEnv } from '../../models/package';
 import { Wizard, WizardStep } from '../../models/wizard';
+import { FileUploader } from 'ng2-file-upload';
+
+const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 declare let jQuery: any;
 
@@ -23,6 +26,9 @@ export class PackageCreationComponent implements AfterViewInit {
   content: string;
   packageConfig: IPackage;
 
+  uploader: FileUploader = new FileUploader({ url: URL });
+  dropZoneOver: boolean = false;
+
   constructor() {
     this.initializeWizard();
     this.initializePackage();
@@ -30,8 +36,8 @@ export class PackageCreationComponent implements AfterViewInit {
 
   // intialization
   ngAfterViewInit(): void {
-    jQuery('.selectpicker-platform').selectpicker();
-    jQuery('.selectpicker-version-coreengine').selectpicker();
+    // jQuery('.selectpicker-platform').selectpicker();
+    // jQuery('.selectpicker-version-coreengine').selectpicker();
   }
 
   initializeWizard() {
@@ -86,6 +92,8 @@ export class PackageCreationComponent implements AfterViewInit {
 
     return true;
   }
+
+  public fileOver(e: any): void {
+    this.dropZoneOver = e;
+  }
 }
-
-

@@ -1,6 +1,5 @@
 .nopadding {
     padding: 0 !important;
-    margin: 0 !important;
 }
 
 .nomargin {
@@ -23,6 +22,10 @@
 }
 .space-left {
   margin-left: 5px;
+}
+
+.space-top {
+  margin-top: 5px;
 }
 
 .force-to-bottom {
@@ -78,6 +81,21 @@
   margin-bottom: 15px;
   color: #777;
 }
+
+
+.fix-form-label {
+  font-size: small;
+}
+
+.fix-sub-form{
+  padding-left: 20px;
+  .fix-label {
+    font-size: smaller;
+    padding-top: 5px !important;
+  }
+}
+
+
 
 // spinner loading page
 .spinner {

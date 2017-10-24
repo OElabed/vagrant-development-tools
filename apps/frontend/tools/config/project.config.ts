@@ -88,6 +88,15 @@ export class ProjectConfig extends SeedConfig {
       }
     });
 
+    this.addPackageBundles({
+      name: 'ng2-file-upload',
+      path:'node_modules/ng2-file-upload',
+      packageMeta: {
+        main: './index',
+        defaultExtension: 'js'
+      }
+    });
+
     // Add packages (e.g. ng2-translate)
     // let additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',

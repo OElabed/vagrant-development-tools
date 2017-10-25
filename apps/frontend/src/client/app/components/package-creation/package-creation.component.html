@@ -63,12 +63,31 @@
           <div class="form-group">
             <label for="container_name" class="col-sm-2 control-label text-left">Common Env</label>
             <div class="col-sm-10">
-              <label class="radio-inline fix-form-label" (click)="setCommonEnv(true)">
-                <input type="radio" name="optradio" [checked]="packageConfig.commonEnv.enable">Yes</label>
-              <label class="radio-inline fix-form-label" (click)="setCommonEnv(false)">
-                <input type="radio" name="optradio" [checked]="!packageConfig.commonEnv.enable">No</label>
+              <div class="radio">
+                <label class="fix-form-label" (click)="setCommonEnv(false)">
+                  <input type="radio" name="optradio" [checked]="!packageConfig.commonEnv.enable">No</label>
+              </div>
+              <div class="radio">
+                <label class="fix-form-label" (click)="setCommonEnv(true)">
+                  <input type="radio" name="optradio" [checked]="packageConfig.commonEnv.enable">Yes</label>
+              </div>
+              <div class="row fix-sub-form">
+                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right" style="text-align:left;">(none)</div>
+              </div>
+              <div class="row fix-sub-form">
+                <div class="col-sm-12 nopadding">
+                  <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
+                  </button>
+                  <button class="btn btn-default btn-sm nomargin">
+                    <i class="fa fa-pencil space-right" aria-hidden="true"></i>Edit File
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+
+
 
           <div class="form-group" *ngIf="packageConfig.commonEnv.enable">
             <div class="col-sm-10 col-sm-offset-2">
@@ -111,9 +130,9 @@
 
           <div class="form-group">
             <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
-            <div class="col-sm-3">
-              <label for="container_name" class="control-label text-left">
-                <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</label>
+            <div class="col-sm-3 space-top">
+              <div class="control-label nomargin nopadding fix-label space-right pull-left">
+                <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</div>
             </div>
           </div>
 
@@ -202,10 +221,7 @@
               <div class="row fix-sub-form">
                 <div class="col-sm-1 control-label nomargin nopadding fix-label space-right">URL</div>
                 <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-                    <span class="input-group-addon" id="basic-addon3">https://</span>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                  </div>
+                  <input type="text" class="form-control input-sm" id="container_name" placeholder="e.g. https://com.packa.fr/sample.zip">
                 </div>
               </div>
               <div class="row">
@@ -220,8 +236,7 @@
                 <div class="col-sm-2 control-label nomargin nopadding fix-label space-right" style="text-align:left;">(none)</div>
               </div>
               <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right">Package file (.zip, .tar.gz)</div>
-                <div class="col-sm-9">
+                <div class="col-sm-12 nopadding">
                   <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
                   </button>
@@ -241,11 +256,10 @@
 
                 </div>
               </div>
-              <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right">Kz file (.kz, .t)</div>
-                <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-12 nopadding">
                   <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
-                    <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add Files
+                    <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
                   </button>
                 </div>
               </div>
@@ -263,11 +277,13 @@
 
                 </div>
               </div>
-              <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right">Fml file (fml.rul, fml1.rul)</div>
-                <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-12 nopadding">
                   <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add Files
+                  </button>
+                  <button class="btn btn-default btn-sm nomargin">
+                    <i class="fa fa-pencil space-right" aria-hidden="true"></i>Edit Files
                   </button>
                 </div>
               </div>
@@ -285,11 +301,13 @@
 
                 </div>
               </div>
-              <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right">Fml file (score.scd)</div>
-                <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-12 nopadding">
                   <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
+                  </button>
+                  <button class="btn btn-default btn-sm nomargin">
+                    <i class="fa fa-pencil space-right" aria-hidden="true"></i>Edit File
                   </button>
                 </div>
               </div>
@@ -307,9 +325,8 @@
 
                 </div>
               </div>
-              <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right">Licence file</div>
-                <div class="col-sm-9">
+              <div class="row">
+                <div class="col-sm-12 nopadding">
                   <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
                     <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
                   </button>

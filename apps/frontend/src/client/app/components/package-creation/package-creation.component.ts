@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { IPackage, Package, CommonEnv } from '../../models/package';
-import { Wizard, WizardStep } from '../../models/wizard';
+import { IPackage, Package, CommonEnv } from '../../models/package.model';
+import { Wizard, WizardStep } from '../../models/wizard.model';
+import { FileWrapper } from '../../models/file.model';
 import { FileUploader } from 'ng2-file-upload';
 
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -50,7 +51,8 @@ export class PackageCreationComponent implements AfterViewInit {
     this.packageConfig = new Package();
     this.packageConfig.commonEnv = new CommonEnv();
     this.packageConfig.commonEnv.enable = false;
-    this.packageConfig.commonEnv.content = `// ... some code !
+    this.packageConfig.commonEnv.file = new FileWrapper();
+    this.packageConfig.commonEnv.file.content_text = `// ... some code !
     package main
 
     import "fmt"

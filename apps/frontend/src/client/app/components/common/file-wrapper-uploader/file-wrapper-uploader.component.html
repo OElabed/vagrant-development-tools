@@ -1,0 +1,52 @@
+<button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
+</button>
+
+<!-- Modals -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-files-o space-right" aria-hidden="true"></i>Files upload</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div ng2FileDrop [ngClass]="{'nv-file-over': dropZoneOver}" (fileOver)="fileOver($event)" [uploader]="uploader" class="well fix-drop-zone">
+                            Drop files here
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <ul class="col-sm-6 list-unstyled">
+                        <li *ngFor="let item of uploader.queue">
+                            <i class="fa fa-times space-right" aria-hidden="true" (click)="item.remove()"></i>
+                            <i class="fa fa-file space-right" aria-hidden="true"></i>
+                            {{ item?.file?.name }}</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <i class="fa fa-ban space-right" aria-hidden="true"></i>
+                    Cancel</button>
+                <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <i class="fa fa-cloud-upload space-right" aria-hidden="true"></i>
+                    Upload All</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Package } from '../../../models/package';
-import { State } from '../../../models/state';
+import { Package } from '../../../models/package.model';
+import { State } from '../../../models/state.model';
 
 /**
  * This class represents the lazy loaded DashboardComponent.

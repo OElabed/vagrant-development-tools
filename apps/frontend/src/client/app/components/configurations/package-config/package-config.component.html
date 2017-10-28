@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
         <div class="col-sm-3">
-            <select class="form-control input-sm">
+            <select class="form-control selectpicker input-sm">
                 <option data-icon="fa fa-linux" label="DockerHub" value="object:266" selected="selected"> Linux-Docker01</option>
             </select>
         </div>
@@ -22,42 +22,17 @@
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Common Env</label>
         <div class="col-sm-10">
-            <div class="radio">
-                <label class="fix-form-label" (click)="setCommonEnv(false)">
-                    <input type="radio" name="optradio" [checked]="!packageConfig.commonEnv.enable">No</label>
-            </div>
-            <div class="radio">
-                <label class="fix-form-label" (click)="setCommonEnv(true)">
-                    <input type="radio" name="optradio" [checked]="packageConfig.commonEnv.enable">Yes</label>
-            </div>
-            <div class="row fix-sub-form">
-                <div class="col-sm-2 control-label nomargin nopadding fix-label space-right" style="text-align:left;">(none)</div>
-            </div>
-            <div class="row fix-sub-form">
-                <div class="col-sm-12 nopadding">
-                    <button class="btn btn-default btn-sm nomargin" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-files-o space-right" aria-hidden="true"></i>Add File
-                    </button>
-                    <button class="btn btn-default btn-sm nomargin">
-                        <i class="fa fa-pencil space-right" aria-hidden="true"></i>Edit File
-                    </button>
+
+            <label class="radio-inline" (click)="setCommonEnv(false)">
+                <input [checked]="!commonEnv.enable" data-val="true" name="optradio" value="False" type="radio"> No
+            </label>
+            <label class="radio-inline" (click)="setCommonEnv(true)">
+                <input [checked]="!commonEnv.enable" name="optradio" value="True" type="radio"> Yes
+            </label>
+            <div class="row">
+                <div class="col-sm-6 nopadding">
+                    <fix-file-wrapper-uploader [config]="commonEnvUploadConfig"></fix-file-wrapper-uploader>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="form-group" *ngIf="packageConfig.commonEnv.enable">
-        <div class="col-sm-10 col-sm-offset-2">
-            <div class="pull-left">
-                <i class="fa fa-file-code-o" aria-hidden="true"></i>
-                common_env.cfg
-            </div>
-        </div>
-        <div class="col-sm-10 col-sm-offset-2">
-            <div class="editor" style="height:300px;">
-                <codemirror [(ngModel)]="packageConfig.commonEnv.content" [config]="configEditor"></codemirror>
             </div>
         </div>
     </div>

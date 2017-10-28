@@ -2,9 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { IPackage, Package, CommonEnv } from '../../models/package.model';
 import { Wizard, WizardStep } from '../../models/wizard.model';
 import { FileWrapper } from '../../models/file.model';
-import { FileUploader } from 'ng2-file-upload';
-
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
 declare let jQuery: any;
 
@@ -27,9 +24,6 @@ export class PackageCreationComponent implements AfterViewInit {
   content: string;
   packageConfig: IPackage;
 
-  uploader: FileUploader = new FileUploader({ url: URL });
-  dropZoneOver: boolean = false;
-
   constructor() {
     this.initializeWizard();
     this.initializePackage();
@@ -37,8 +31,7 @@ export class PackageCreationComponent implements AfterViewInit {
 
   // intialization
   ngAfterViewInit(): void {
-    // jQuery('.selectpicker-platform').selectpicker();
-    // jQuery('.selectpicker-version-coreengine').selectpicker();
+    jQuery('.selectpicker-platform').selectpicker();
   }
 
   initializeWizard() {
@@ -49,27 +42,10 @@ export class PackageCreationComponent implements AfterViewInit {
 
   initializePackage() {
     this.packageConfig = new Package();
-    this.packageConfig.commonEnv = new CommonEnv();
-    this.packageConfig.commonEnv.enable = false;
-    this.packageConfig.commonEnv.file = new FileWrapper();
-    this.packageConfig.commonEnv.file.content_text = `// ... some code !
-    package main
 
-    import "fmt"
-
-    // Send the sequence 2, 3, 4, ... to channel 'ch'.
-    func generate(ch chan<- int) {
-      for i := 2; ; i++ {
-        ch <- i  // Send 'i' to channel 'ch'
-      }
-    }`;
   }
 
   // Actions
-
-  setCommonEnv(state: boolean) {
-    this.packageConfig.commonEnv.enable = state;
-  }
 
   changeStepWizard(stepId: string) {
     this.currentStep = this.wizard.getStepById(stepId);
@@ -93,9 +69,5 @@ export class PackageCreationComponent implements AfterViewInit {
     }
 
     return true;
-  }
-
-  public fileOver(e: any): void {
-    this.dropZoneOver = e;
   }
 }

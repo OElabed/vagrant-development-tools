@@ -1,0 +1,60 @@
+.file-edit-sidebar{
+    width: 680px;
+    height: 100%;
+    position: fixed;
+    right: -700px;
+    background: #fdfdfd;
+    z-index: 11 !important;
+    -webkit-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s; 
+    &.open {
+        right: 0; 
+    }
+
+
+    .wrapper {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+
+
+
+        .header {
+            color: #555;
+            padding: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.35);
+    
+            h2 {
+                margin: 0;
+                font-size: 18px;
+                font-weight: normal;
+                color: #111;
+            }
+        }
+
+        .body {
+            
+        }
+    }
+    .footer {
+        height: 50px; /* .push must be the same height as .footer */
+        border-top: 1px solid #e9e9e9;
+        padding: 10px;
+    }
+
+    .editor {
+        //border: 1px solid #ccc;
+        //border-radius: 4px;
+        padding: 4px;
+        height: 500px;    
+    }
+}

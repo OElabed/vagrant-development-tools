@@ -6,6 +6,10 @@
   margin: 0 !important;
 }
 
+.inherit-position {
+  position: inherit;
+}
+
 .widget-header {
   height: 45px;
   .row div{
@@ -95,8 +99,18 @@
   }
 }
 
-
-
+// Overlay
+.overlay {
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  //display: none;
+  z-index: 10;
+}
 // spinner loading page
 .spinner {
   margin: 100px auto;
@@ -150,6 +164,8 @@
     -webkit-transform: scaleY(1.0);
   }
 }
+
+// Plugins
 
 .CodeMirror {
   height: 100%;

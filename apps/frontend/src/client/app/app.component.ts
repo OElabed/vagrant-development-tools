@@ -37,7 +37,6 @@ export class AppComponent {
   }
 
   getWidth() {
-    console.log( window.innerWidth);
     return window.innerWidth;
   }
 

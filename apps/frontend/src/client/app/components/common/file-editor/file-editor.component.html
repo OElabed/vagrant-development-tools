@@ -1,0 +1,31 @@
+<aside id="fileeditsidebar" class="file-edit-sidebar">
+    <div class="wrapper">
+        <div class="header">
+            <h2>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {{fileName}}</h2>
+        </div>
+        <div class="body">
+            <div class="row" style="height:100%;">
+                <div class="col-sm-12 nopadding" style="height:100%;">
+                    <div class="editor" style="height:100%;">
+                        <codemirror [(ngModel)]="fileEditorService.contentFile" [config]="configEditor"></codemirror>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+                <button class="btn btn-sm btn-primary" (click)="save()">
+                    <i class="fa fa-floppy-o space-right" aria-hidden="true"></i>
+                    Save</button>
+                <button class="btn btn-default btn-sm" (click)="cancel()">
+                    <i class="fa fa-ban space-right" aria-hidden="true"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </footer>
+</aside>

@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { PackageSettingsModule } from './components/package-settings/package-settings.module';
 import { PackageCreationModule } from './components/package-creation/package-creation.module';
+import { FileEditorModule } from './components/common/file-editor/file-editor.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PackageCreationModule } from './components/package-creation/package-cre
     HttpModule,
     AppRoutingModule,
     DashboardModule,
+    FileEditorModule,
     PackageSettingsModule,
     PackageCreationModule,
     SharedModule.forRoot()

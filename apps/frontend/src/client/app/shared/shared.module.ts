@@ -15,6 +15,7 @@ import { FixAlertsComponent } from './widgets/fix-alerts-bar/fix-alerts-bar.comp
 
 
 import { RoutingGlobalService } from './services/routing-global.service';
+import { FileEditorGlobalService } from './services/file-editor-service.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -51,7 +52,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [RoutingGlobalService]
+      providers: [RoutingGlobalService, FileEditorGlobalService]
     };
   }
 }

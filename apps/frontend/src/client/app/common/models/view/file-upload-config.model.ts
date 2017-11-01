@@ -1,5 +1,5 @@
-export interface IFileUploadConfig {
-    url?: string;
+export interface IFileUploaderFormConfig {
+    urlToUpload?: string;
     maximumSize?: number;
     maximumSizeByteType?: string;
     extensions?: string[];
@@ -7,8 +7,8 @@ export interface IFileUploadConfig {
     templateCreation?: string;
 }
 
-export class FileUploadConfig implements IFileUploadConfig {
-    url?: string;
+export class FileUploaderFormConfig implements IFileUploaderFormConfig {
+    urlToUpload?: string;
     maximumSize?: number;
     maximumSizeByteType?: string;
     extensions?: string[];

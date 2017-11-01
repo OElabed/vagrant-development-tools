@@ -13,59 +13,10 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Module package</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 space-top">
+
             <div class="row">
-                <div class="col-sm-2 nopadding">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Find in Nexus</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row fix-sub-form">
-                <div class="col-sm-1 control-label nomargin nopadding fix-label space-right">Version</div>
-                <div class="col-sm-3">
-                    <select class="form-control input-sm">
-                        <option label="DockerHub" data-icon="fa fa-linux" selected="selected"> 5.7.0.0</option>
-                        <option label="DockerHub"> 5.7.1.0</option>
-                        <option label="DockerHub"> 5.7.6.0</option>
-                    </select>
-                </div>
-                <div class="col-sm-1 control-label nomargin nopadding fix-label space-right">Push</div>
-                <div class="col-sm-3">
-                    <select class="form-control input-sm">
-                        <option label="DockerHub" data-icon="fa fa-linux" selected="selected"> 300</option>
-                        <option label="DockerHub"> 500</option>
-                        <option label="DockerHub"> 100</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 nopadding">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Find with URL</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row fix-sub-form">
-                <div class="col-sm-1 control-label nomargin nopadding fix-label space-right">URL</div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control input-sm" id="container_name" placeholder="e.g. https://com.packa.fr/sample.zip">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 nopadding">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="optradio">Add Package file</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 nopadding">
-                    <fix-file-wrapper-uploader [config]="coreEngineArchiveUploadConfig"></fix-file-wrapper-uploader>
-                </div>
+                <fix-add-file-form [config]="config.archiveConfig"></fix-add-file-form>
             </div>
         </div>
     </div>

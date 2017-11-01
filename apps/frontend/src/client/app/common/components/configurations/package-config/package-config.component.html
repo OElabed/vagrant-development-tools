@@ -24,14 +24,12 @@
         <div class="col-sm-10 space-top">
 
             <div class="fix-switch nomargin space-bottom">
-                <input id="commonEnvActive" name="commonEnvActiveOption1" type="checkbox" (click)="setCommonEnv()" [checked]="commonEnv.enable"
+                <input id="commonEnvActive" name="commonEnvActiveOption1" type="checkbox" (click)="setCommonEnv()" [checked]="commonEnvConfig.enable"
                 />
                 <label for="commonEnvActive" class="label-primary"></label>
             </div>
             <div class="row">
-                <div class="col-sm-6 nopadding">
-                    <fix-file-wrapper-uploader [config]="commonEnvUploadConfig" [active]="commonEnv.enable" [url]="uploadUrlCommonEnv"></fix-file-wrapper-uploader>
-                </div>
+                <fix-add-file-form [config]="commonEnvConfig.fileConfig" [active]="commonEnvConfig.enable"></fix-add-file-form>
             </div>
         </div>
     </div>
@@ -41,9 +39,7 @@
         <div class="col-sm-10 space-top">
 
             <div class="row">
-                <div class="col-sm-6 nopadding">
-                    <fix-file-wrapper-uploader [config]="licenceUploadConfig" [url]="uploadUrLicence"></fix-file-wrapper-uploader>
-                </div>
+                <fix-add-file-form [config]="licenceConfig"></fix-add-file-form>
             </div>
         </div>
     </div>

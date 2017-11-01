@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
-import { FileUploadConfig } from '../../../models/file-upload-config.model';
-import { Package, CommonEnv } from '../../../models/package.model';
-import { FileWrapper } from '../../../models/file.model';
-import { State } from '../../../models/state.model';
+import { ICommonEnvConfig, IPackageFormConfig, CommonEnvConfig, PackageFormConfig } from '../../../models/view/package-config.model';
+import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
+import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
 declare let jQuery: any;
 
@@ -18,22 +17,17 @@ declare let jQuery: any;
 })
 export class PackageConfigComponent implements AfterViewInit {
 
-    commonEnv: CommonEnv;
-    commonEnvUploadConfig: FileUploadConfig;
-    licenceUploadConfig: FileUploadConfig;
+    commonEnvConfig: ICommonEnvConfig;
+    licenceConfig: AddFileFormConfig;
 
-    uploadUrlCommonEnv: string;
-    uploadUrLicence: string;
-
-    @Input() package: Package;
-    @Output() packageChange: EventEmitter<Package>;
+    @Input() package: PackageFormConfig;
+    @Output() packageChange: EventEmitter<PackageFormConfig>;
 
     constructor() {
-        this.packageChange = new EventEmitter<Package>();
+        this.packageChange = new EventEmitter<PackageFormConfig>();
 
-        this.commonEnv = this.intializeCommonEnv();
-        this.commonEnvUploadConfig = this.initializeCommonEnvUploadConfig();
-        this.licenceUploadConfig = this.initializeLicenceUploadConfig();
+        this.commonEnvConfig = this.intializeCommonEnvConfig();
+        this.licenceConfig = this.initializeLicenceConfig();
     }
 
     ngAfterViewInit(): void {
@@ -41,11 +35,22 @@ export class PackageConfigComponent implements AfterViewInit {
     }
 
 
-    intializeCommonEnv() {
-        var commonEnv = new CommonEnv();
-        commonEnv.enable = false;
-        commonEnv.file = new FileWrapper();
-        commonEnv.file.content_text = `// ... some code !
+    intializeCommonEnvConfig() {
+        var config = new CommonEnvConfig();
+
+        config.enable = false;
+        config.fileConfig = new AddFileFormConfig();
+
+        config.fileConfig.type = AddFileFormType.URL;
+        config.fileConfig.urlFile = '';
+        config.fileConfig.fileUploaderConfig = new FileUploaderFormConfig();
+
+        config.fileConfig.fileUploaderConfig.canCreate = true;
+        config.fileConfig.fileUploaderConfig.extensions = ['*.cfg'];
+        config.fileConfig.fileUploaderConfig.maximumSize = 45;
+        config.fileConfig.fileUploaderConfig.maximumSizeByteType = 'Kb';
+        config.fileConfig.fileUploaderConfig.urlToUpload = 'http://google';
+        config.fileConfig.fileUploaderConfig.templateCreation = `// ... some code !
         package main
 
         import "fmt"
@@ -57,46 +62,25 @@ export class PackageConfigComponent implements AfterViewInit {
           }
         }`;
 
-        return commonEnv;
+        return config;
     }
 
     setCommonEnv() {
-        this.commonEnv.enable = !this.commonEnv.enable;
+        this.commonEnvConfig.enable = !this.commonEnvConfig.enable;
     }
 
-    initializeCommonEnvUploadConfig(): FileUploadConfig {
-        var config = new FileUploadConfig();
+    initializeLicenceConfig(): IAddFileFormConfig {
+        var config = new AddFileFormConfig();
+        config.type = AddFileFormType.URL;
+        config.urlFile = '';
+        config.fileUploaderConfig = new FileUploaderFormConfig();
 
-        config.url = 'http://sdfsfsdfsdfsdf';
-        config.maximumSize = 32.6;
-        config.maximumSizeByteType = 'Mb';
-        config.extensions = ['*.fml', '*.cfg'];
-        config.canCreate = true;
-        config.templateCreation = `// ... some code !
-        package main
-
-        import "fmt"
-
-        // Send the sequence 2, 3, 4, ... to channel 'ch'.
-        func generate(ch chan<- int) {
-          for i := 2; ; i++ {
-            ch <- i  // Send 'i' to channel 'ch'
-          }
-        }`;
-
+        config.fileUploaderConfig.urlToUpload = 'http://sdfsfsdfsdfsdf';
+        config.fileUploaderConfig.maximumSize = 16.0;
+        config.fileUploaderConfig.maximumSizeByteType = 'Kb';
+        config.fileUploaderConfig.extensions = ['*.cf'];
+        config.fileUploaderConfig.canCreate = false;
 
         return config;
     }
-
-    initializeLicenceUploadConfig(): FileUploadConfig {
-        var config = new FileUploadConfig();
-        config.url = 'http://sdfsfsdfsdfsdf';
-        config.maximumSize = 32.6;
-        config.maximumSizeByteType = 'Mb';
-        config.extensions = ['*.cf'];
-        config.canCreate = false;
-
-        return config;
-    }
-
 }

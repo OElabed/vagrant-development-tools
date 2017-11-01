@@ -1,0 +1,30 @@
+<div *ngIf="active">
+    <div class="row">
+        <div class="col-sm-6 nopadding">
+            <div class="radio">
+                <label>
+                    <input type="radio" [name]="radioId" (click)="activeType('URL')" [checked]="addFileType === 'URL' ? true: null">Find with URL</label>
+            </div>
+        </div>
+    </div>
+    <div class="row fix-sub-form">
+        <div class="col-sm-1 control-label nomargin nopadding fix-label space-right" [ngClass]="{'label-disabled': addFileType !== 'URL'}">URL</div>
+        <div class="col-sm-9">
+            <input type="text" class="form-control input-sm" [(ngModel)]="config.urlFile" placeholder="e.g. https://com.packa.fr/sample.zip"
+                [disabled]="addFileType !== 'URL' ? 'disabled' : null">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 nopadding">
+            <div class="radio">
+                <label>
+                    <input type="radio" [name]="radioId" (click)="activeType('FILE_UPLOAD')" [checked]="addFileType === 'FILE_UPLOAD' ? true: null">Upload file</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 nopadding">
+            <fix-file-uploader-form [config]="config.fileUploaderConfig" [active]="addFileType !== 'FILE_UPLOAD' ? false: true"></fix-file-uploader-form>
+        </div>
+    </div>
+</div>

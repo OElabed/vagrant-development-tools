@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FileUploadConfig } from '../../../models/file-upload-config.model';
-
-import { IPackage, Package } from '../../../models/package.model';
-import { IArchive, Archive, ArchiveType } from '../../../models/archive.model';
-import { State } from '../../../models/state.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CoreEngineConfig, ICoreEngineConfig } from '../../../models/view/core-engine-config.model';
+import { PackageFormConfig, IPackageFormConfig } from '../../../models/view/package-config.model';
+import { AddFileFormConfig, IAddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
+import { FileUploaderFormConfig, IFileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
 /**
  * This class represents the lazy loaded DashboardComponent.
@@ -16,30 +15,30 @@ import { State } from '../../../models/state.model';
 })
 export class CoreEngineConfigComponent {
 
-    coreEngineArchiveUploadConfig: FileUploadConfig;
+    @Input() package: PackageFormConfig;
+    @Output() packageChange: EventEmitter<PackageFormConfig>;
+
+    config: ICoreEngineConfig;
 
     constructor() {
-        this.coreEngineArchiveUploadConfig = this.initializeCoreEngineArchiveUploadConfig();
+        this.packageChange = new EventEmitter<PackageFormConfig>();
+        this.config = this.initializeCoreEngineConfig();
     }
 
-    initializeCoreEngineArchiveUploadConfig(): FileUploadConfig {
-        var config = new FileUploadConfig();
+    initializeCoreEngineConfig(): ICoreEngineConfig {
+        var config = new CoreEngineConfig();
 
-        config.url = 'http://sdfsfsdfsdfsdf';
-        config.maximumSize = 32.6;
-        config.maximumSizeByteType = 'Mb';
-        config.extensions = ['*.zip', '*.tar.gz'];
-        config.canCreate = false;
+        config.archiveConfig = new AddFileFormConfig();
+        config.archiveConfig.type = AddFileFormType.URL;
+        config.archiveConfig.urlFile = '';
+
+        config.archiveConfig.fileUploaderConfig = new FileUploaderFormConfig();
+        config.archiveConfig.fileUploaderConfig.urlToUpload = 'http://sdfsfsdfsdfsdf';
+        config.archiveConfig.fileUploaderConfig.maximumSize = 32.6;
+        config.archiveConfig.fileUploaderConfig.maximumSizeByteType = 'Mb';
+        config.archiveConfig.fileUploaderConfig.extensions = ['*.zip', '*.tar.gz'];
+        config.archiveConfig.fileUploaderConfig.canCreate = false;
+
         return config;
-    }
-
-
-    initializeArchive(): IArchive {
-        var archive = new Archive();
-
-        archive.type = ArchiveType.REPOSITORY;
-        archive.url = '';
-
-        return archive;
     }
 }

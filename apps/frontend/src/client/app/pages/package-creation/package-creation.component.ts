@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { IPackage, Package, CommonEnv } from '../../common/models/package.model';
+import { IPackageFormConfig, PackageFormConfig } from '../../common/models/view/package-config.model';
 import { Wizard, WizardStep } from '../../common/models/wizard.model';
 import { FileWrapper } from '../../common/models/file.model';
 
@@ -18,11 +18,7 @@ export class PackageCreationComponent implements AfterViewInit {
 
   wizard: Wizard;
   currentStep: WizardStep;
-
-
-  configEditor: any = { lineNumbers: true };
-  content: string;
-  packageConfig: IPackage;
+  packageConfig: IPackageFormConfig;
 
   constructor() {
     this.initializeWizard();
@@ -41,8 +37,7 @@ export class PackageCreationComponent implements AfterViewInit {
 
 
   initializePackage() {
-    this.packageConfig = new Package();
-
+    this.packageConfig = new PackageFormConfig();
   }
 
   // Actions

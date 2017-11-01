@@ -99,7 +99,9 @@
 </div>
 
 <div class="row" *ngIf="this.currentStep.id === 'STEP-4'">
-  <div class="col-lg-12 col-md-12 col-xs-12">STEP 4</div>
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <fix-module-all-config [(package)]="packageConfig"></fix-module-all-config>
+  </div>
 </div>
 
 <div class="row" *ngIf="this.currentStep.id === 'STEP-5'">

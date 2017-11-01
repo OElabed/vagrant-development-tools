@@ -13,9 +13,9 @@ import {
   RouterTestingModule
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { HeaderbarComponent } from './shared/headerbar/headerbar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SidebarComponent } from './common/components/layout/sidebar/sidebar.component';
+import { HeaderbarComponent } from './common/components/layout/headerbar/headerbar.component';
 
 export function main() {
 

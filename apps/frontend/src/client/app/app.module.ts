@@ -5,11 +5,11 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SharedModule } from './shared/shared.module';
-import { DashboardModule } from './components/dashboard/dashboard.module';
-import { PackageSettingsModule } from './components/package-settings/package-settings.module';
-import { PackageCreationModule } from './components/package-creation/package-creation.module';
-import { FileEditorModule } from './components/common/file-editor/file-editor.module';
+import { SharedModule } from './common/shared/shared.module';
+import { DashboardModule } from './pages/dashboard/dashboard.module';
+import { PackageSettingsModule } from './pages/package-settings/package-settings.module';
+import { PackageCreationModule } from './pages/package-creation/package-creation.module';
+import { FileEditorModule } from './pages/file-editor/file-editor.module';
 
 
 @NgModule({

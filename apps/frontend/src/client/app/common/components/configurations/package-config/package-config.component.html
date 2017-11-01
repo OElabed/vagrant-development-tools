@@ -1,0 +1,50 @@
+<div class="form-horizontal configuration-container">
+    <div class="col-sm-12 form-section-title">
+        Package configuration
+    </div>
+
+    <div class="form-group">
+        <label for="container_name" class="col-sm-2 control-label text-left">Name</label>
+        <div class="col-sm-3">
+            <input class="form-control" id="container_name" placeholder="e.g. myPackage" type="text">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
+        <div class="col-sm-3">
+            <select class="form-control selectpicker input-sm">
+                <option data-icon="fa fa-linux" label="DockerHub" value="object:266" selected="selected"> Linux-Docker01</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="container_name" class="col-sm-2 control-label text-left">Common Env</label>
+        <div class="col-sm-10 space-top">
+
+            <div class="fix-switch nomargin space-bottom">
+                <input id="commonEnvActive" name="commonEnvActiveOption1" type="checkbox" (click)="setCommonEnv()" [checked]="commonEnv.enable"
+                />
+                <label for="commonEnvActive" class="label-primary"></label>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 nopadding">
+                    <fix-file-wrapper-uploader [config]="commonEnvUploadConfig" [active]="commonEnv.enable" [url]="uploadUrlCommonEnv"></fix-file-wrapper-uploader>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="container_name" class="col-sm-2 control-label text-left">Licence</label>
+        <div class="col-sm-10 space-top">
+
+            <div class="row">
+                <div class="col-sm-6 nopadding">
+                    <fix-file-wrapper-uploader [config]="licenceUploadConfig" [url]="uploadUrLicence"></fix-file-wrapper-uploader>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

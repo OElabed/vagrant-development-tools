@@ -8,28 +8,73 @@
     <li role="presentation">
         <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">DBClient</a>
     </li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Module
-            <i class="fa fa-plus" aria-hidden="true"></i>
-        </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#">Aquisition</a>
-            </li>
-            <li>
-                <a href="#">DBClient</a>
-            </li>
-            <li>
-                <a href="#">Requester</a>
-            </li>
-        </ul>
+    <li class="pull-right">
 
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add Module
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">Aquisition</a>
+                </li>
+                <li>
+                    <a href="#">DBClient</a>
+                </li>
+                <li>
+                    <a href="#">Requester</a>
+                </li>
+            </ul>
+        </div>
     </li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">"Dynamic" tab is added through JS and removed after 10s</div>
+    <div role="tabpanel" class="tab-pane active" id="home">
+        <div class="col-lg-12 col-md-12 col-xs-12 nopadding">
+            <fix-widget>
+                <fix-widget-body>
+                    <div class="form-horizontal configuration-container">
+                        <div class="col-sm-12 form-section-title">
+                            Core Engine configuration
+                        </div>
+
+                        <div class="form-group">
+                            <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
+                            <div class="col-sm-3 space-top">
+                                <div class="control-label nomargin nopadding fix-label space-right pull-left">
+                                    <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="container_name" class="col-sm-2 control-label text-left">Module package</label>
+                            <div class="col-sm-10 space-top">
+
+                                <div class="row">
+                                    <!-- <fix-add-file-form [config]="config.archiveConfig"></fix-add-file-form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fix-widget-body>
+                <fix-widget-footer>
+                    <div class="row form-group nomargin">
+                        <div class="col-sm-12 nomargin">
+                            <button class="btn btn-sm btn-primary pull-left disabled">
+                                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                            <button class="btn btn-primary btn-sm pull-right">Next
+                                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </fix-widget-footer>
+            </fix-widget>
+        </div>
+    </div>
     <div role="tabpanel" class="tab-pane" id="profile">Tempore quis in deleniti nihil, pariatur mollitia sequi tempora! Amet, praesentium, labore! Perferendis ipsa debitis
         nostrum, dolor aperiam officiis porro eligendi maxime.</div>
     <div role="tabpanel" class="tab-pane" id="messages">Lrem error dolore, provident at iure! Labore ratione, veritatis iste. Nesciunt veniam vitae dicta facilis aspernatur

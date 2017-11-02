@@ -16,14 +16,8 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu">
-                <li>
-                    <a href="#">Aquisition</a>
-                </li>
-                <li>
-                    <a href="#">DBClient</a>
-                </li>
-                <li>
-                    <a href="#">Requester</a>
+                <li *ngFor="let item of moduleTypeList">
+                    <a (click)="addModule(item)">{{item}}</a>
                 </li>
             </ul>
         </div>

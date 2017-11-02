@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 import { IPackageFormConfig, PackageFormConfig } from '../../../models/view/package-config.model';
+import { ModuleType, ModuleTypeUtil } from '../../../models/domain/module.model';
 
 
 declare let jQuery: any;
@@ -20,10 +21,17 @@ export class ModulesAllConfigComponent {
     @Input() package: PackageFormConfig;
     @Output() packageChange: EventEmitter<PackageFormConfig>;
 
+    moduleTypeList: string[];
+
+    activeModule: string;
+
     constructor() {
         this.packageChange = new EventEmitter<PackageFormConfig>();
-
+        this.moduleTypeList = ModuleTypeUtil.getListNameModuleType();
     }
 
+    addModule(module: string) {
+        
+    }
 
 }

@@ -10,6 +10,17 @@ export class ModuleTypeUtil {
         return <string>ModuleType[<any>module];
     }
 
+    public static toModuleType(name: string): ModuleType {
+        var mapModulesType: Map<ModuleType, string> = ModuleTypeUtil.getMapModuleType();
+        var result: ModuleType;
+        mapModulesType.forEach((value: string, key: ModuleType) => {
+            if (value === name) {
+                result = key;
+            }
+        });
+        return result;
+    }
+
     public static getListModuleType(): ModuleType[] {
         return [ModuleType.AQUISITION, ModuleType.REQUESTER, ModuleType.DBCLIENT];
     }

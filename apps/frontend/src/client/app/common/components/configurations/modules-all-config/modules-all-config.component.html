@@ -1,22 +1,22 @@
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active">
-        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Aquisition</a>
+    <li role="presentation" *ngIf="moduleConfigList.length === 0" class="active">
+        <a aria-controls="none" role="tab" data-toggle="tab">(none)</a>
     </li>
-    <li role="presentation">
-        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Requester</a>
-    </li>
-    <li role="presentation">
-        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">DBClient</a>
+    <li role="presentation" *ngFor="let item of moduleConfigList" [ngClass]="{'active': item.name === activeModule}">
+        <a (click)="setModuleActive(item.name)" role="tab" data-toggle="tab">{{item.name}}
+            <i (click)="deleteModule(item.name)" class="fa fa-times space-left" aria-hidden="true" [ngClass]="{'red-icon': item.name === activeModule}"></i>
+        </a>
+
+
     </li>
     <li class="pull-right">
-
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Module
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu">
-                <li *ngFor="let item of moduleTypeList">
+                <li *ngFor="let item of moduleTypeList" [ngClass]="{'disabled': isExist(item)}">
                     <a (click)="addModule(item)">{{item}}</a>
                 </li>
             </ul>
@@ -26,53 +26,35 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+    <div role="tabpanel" *ngIf="moduleConfigList.length === 0" class="tab-pane active" id="none">
         <div class="col-lg-12 col-md-12 col-xs-12 nopadding">
             <fix-widget>
                 <fix-widget-body>
-                    <div class="form-horizontal configuration-container">
-                        <div class="col-sm-12 form-section-title">
-                            Core Engine configuration
-                        </div>
-
-                        <div class="form-group">
-                            <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
-                            <div class="col-sm-3 space-top">
-                                <div class="control-label nomargin nopadding fix-label space-right pull-left">
-                                    <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</div>
-                            </div>
-                        </div>
-                        <hr>
-
-                        <div class="form-group">
-                            <label for="container_name" class="col-sm-2 control-label text-left">Module package</label>
-                            <div class="col-sm-10 space-top">
-
-                                <div class="row">
-                                    <!-- <fix-add-file-form [config]="config.archiveConfig"></fix-add-file-form> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    none
                 </fix-widget-body>
-                <fix-widget-footer>
-                    <div class="row form-group nomargin">
-                        <div class="col-sm-12 nomargin">
-                            <button class="btn btn-sm btn-primary pull-left disabled">
-                                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
-                            <button class="btn btn-primary btn-sm pull-right">Next
-                                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </fix-widget-footer>
             </fix-widget>
         </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="profile">Tempore quis in deleniti nihil, pariatur mollitia sequi tempora! Amet, praesentium, labore! Perferendis ipsa debitis
-        nostrum, dolor aperiam officiis porro eligendi maxime.</div>
-    <div role="tabpanel" class="tab-pane" id="messages">Lrem error dolore, provident at iure! Labore ratione, veritatis iste. Nesciunt veniam vitae dicta facilis aspernatur
-        sapiente, quae.</div>
-    <div role="tabpanel" class="tab-pane" id="settings">Lillum facilis explicabo aspernatur, minima vitae, maxime voluptas dolore, asperiores rerum saepe dolorum expedita aut!
-        Veniam temporibus, laboru</div>
+    <ng-container *ngFor="let item of moduleConfigList">
+        <div role="tabpanel" class="tab-pane active" [id]="item.name" *ngIf="activeModule === item.name">
+            <div class="col-lg-12 col-md-12 col-xs-12 nopadding">
+                <fix-widget>
+                    <fix-widget-body>
+                        <fix-module-config [moduleConfig]="item"></fix-module-config>
+                    </fix-widget-body>
+                    <fix-widget-footer>
+                        <div class="row form-group nomargin">
+                            <div class="col-sm-12 nomargin">
+                                <button class="btn btn-sm btn-primary pull-left disabled">
+                                    <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                                <button class="btn btn-primary btn-sm pull-right">Next
+                                    <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </fix-widget-footer>
+                </fix-widget>
+            </div>
+        </div>
+    </ng-container>
 </div>

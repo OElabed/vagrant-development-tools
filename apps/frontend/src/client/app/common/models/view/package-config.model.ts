@@ -2,6 +2,7 @@ import { IContainer } from '../domain/container.model';
 import { IAddFileFormConfig } from './add-file-config.model';
 import { ICoreEngineConfig } from './core-engine-config.model';
 import { IFilterEngineConfig } from './filter-engine-config.model';
+import { IModuleConfig } from './module-config.model';
 
 
 
@@ -23,6 +24,7 @@ export interface IPackageFormConfig {
     licenceConfig?: IAddFileFormConfig;
     coreEngineConfig?: ICoreEngineConfig;
     filterEngineConfig?: IFilterEngineConfig;
+    modulesConfig?: IModuleConfig[];
 }
 
 export class PackageFormConfig implements IPackageFormConfig {
@@ -33,4 +35,6 @@ export class PackageFormConfig implements IPackageFormConfig {
     licenceConfig?: IAddFileFormConfig;
     coreEngineConfig?: ICoreEngineConfig;
     filterEngineConfig?: IFilterEngineConfig;
+    modulesConfig?: IModuleConfig[];
+
 }

@@ -45,6 +45,31 @@
     bottom: 4%;
 }
 
+.pointer-cursor {
+    cursor: pointer; 
+}
+
+a.disabled {
+    /* And disable the pointer events */
+    pointer-events: none;
+    cursor: no-drop !important;
+}
+
+.empty-container {
+    min-height: 300px;
+    padding: 20px;
+    .band{
+        height: 100%;
+        width: 100%;
+        background-color: lightgrey;
+        .fa {
+            text-align: center;
+            font-size: 30px;
+        }
+    }
+    
+}
+
 // ===========================================
 // icons
 // ===========================================

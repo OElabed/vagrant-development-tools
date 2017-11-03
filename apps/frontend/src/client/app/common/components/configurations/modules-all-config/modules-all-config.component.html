@@ -2,9 +2,9 @@
     <li role="presentation" *ngIf="moduleConfigList.length === 0" class="active">
         <a aria-controls="none" role="tab" data-toggle="tab">(none)</a>
     </li>
-    <li role="presentation" *ngFor="let item of moduleConfigList" [ngClass]="{'active': item.name === activeModule}">
+    <li role="presentation" *ngFor="let item of moduleConfigList" [ngClass]="{'active': item.name === activeModule, 'pointer-cursor': item.name !== activeModule}">
         <a (click)="setModuleActive(item.name)" role="tab" data-toggle="tab">{{item.name}}
-            <i (click)="deleteModule(item.name)" class="fa fa-times space-left" aria-hidden="true" [ngClass]="{'red-icon': item.name === activeModule}"></i>
+            <i (click)="deleteModule(item.name)" class="fa fa-times space-left pointer-cursor" aria-hidden="true" [ngClass]="{'red-icon': item.name === activeModule}"></i>
         </a>
 
 
@@ -16,7 +16,7 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu">
-                <li *ngFor="let item of moduleTypeList" [ngClass]="{'disabled': isExist(item)}">
+                <li *ngFor="let item of moduleTypeList" [ngClass]="{'disabled': isExist(item), 'pointer-cursor': !isExist(item) }">
                     <a (click)="addModule(item)">{{item}}</a>
                 </li>
             </ul>
@@ -30,7 +30,11 @@
         <div class="col-lg-12 col-md-12 col-xs-12 nopadding">
             <fix-widget>
                 <fix-widget-body>
-                    none
+                    <div class="empty-container">
+                        <div class="band">
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </fix-widget-body>
             </fix-widget>
         </div>

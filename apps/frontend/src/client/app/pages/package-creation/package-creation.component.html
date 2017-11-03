@@ -2,31 +2,31 @@
   <div class="col-xs-12 nomargin">
     <ul class="nav nav-pills nav-justified thumbnail setup-panel nomargin">
       <li [ngClass]="{'active': this.currentStep.id === 'STEP-1', 'disabled':  isDisableStep('STEP-1')}">
-        <a (click)="changeStepWizard('STEP-1')">
+        <a (click)="changeStepWizard('STEP-1')" [ngClass]="{'disabled':  isDisableStep('STEP-1')}">
           <h4 class="list-group-item-heading">Step 1</h4>
           <p class="list-group-item-text">Package configuration</p>
         </a>
       </li>
       <li [ngClass]="{'active': this.currentStep.id === 'STEP-2', 'disabled':  isDisableStep('STEP-2')}">
-        <a (click)="changeStepWizard('STEP-2')">
+        <a (click)="changeStepWizard('STEP-2')"  [ngClass]="{'disabled':  isDisableStep('STEP-2')}">
           <h4 class="list-group-item-heading">Step 2</h4>
           <p class="list-group-item-text">Core Engine configuration</p>
         </a>
       </li>
       <li [ngClass]="{'active': this.currentStep.id === 'STEP-3', 'disabled':  isDisableStep('STEP-3')}">
-        <a (click)="changeStepWizard('STEP-3')">
+        <a (click)="changeStepWizard('STEP-3')" [ngClass]="{'disabled':  isDisableStep('STEP-3')}">
           <h4 class="list-group-item-heading">Step 3</h4>
           <p class="list-group-item-text">Filter Engine configuration</p>
         </a>
       </li>
       <li [ngClass]="{'active': this.currentStep.id === 'STEP-4', 'disabled':  isDisableStep('STEP-4')}">
-        <a (click)="changeStepWizard('STEP-4')">
+        <a (click)="changeStepWizard('STEP-4')" [ngClass]="{'disabled':  isDisableStep('STEP-4')}">
           <h4 class="list-group-item-heading">Step 4</h4>
           <p class="list-group-item-text">Modules configuration</p>
         </a>
       </li>
       <li [ngClass]="{'active': this.currentStep.id === 'STEP-5', 'disabled':  isDisableStep('STEP-5')}">
-        <a (click)="changeStepWizard('STEP-5')">
+        <a (click)="changeStepWizard('STEP-5')" [ngClass]="{'disabled':  isDisableStep('STEP-5')}">
           <h4 class="list-group-item-heading">Step 5</h4>
           <p class="list-group-item-text">Validation</p>
         </a>

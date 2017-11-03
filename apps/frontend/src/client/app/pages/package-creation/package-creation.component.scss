@@ -6,7 +6,13 @@
 }
 
 .setup-panel{
-    cursor: pointer;
+    li{
+        cursor: pointer;
+    }
+    li.disabled{
+        cursor: no-drop;
+    }
+    
 }
 
 .configuration-container {

@@ -9,9 +9,10 @@
     </div>
     <div class="row fix-sub-form">
         <div class="col-sm-1 control-label nomargin nopadding fix-label space-right" [ngClass]="{'label-disabled': addFileType !== 'URL'}">URL</div>
-        <div class="col-sm-9">
+        <div class="col-sm-9 has-error">
             <input type="text" class="form-control input-sm" [(ngModel)]="config.urlFile" placeholder="e.g. https://com.packa.fr/sample.zip"
                 [disabled]="addFileType !== 'URL' ? 'disabled' : null">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
         </div>
     </div>
     <div class="row">
@@ -23,8 +24,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6 nopadding">
+        <div class="col-sm-6 nopadding has-error">
             <fix-file-uploader-form [config]="config.fileUploaderConfig" [active]="addFileType !== 'FILE_UPLOAD' ? false: true"></fix-file-uploader-form>
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
         </div>
     </div>
 </div>

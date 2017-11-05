@@ -1,11 +1,36 @@
-<div class="row">
-    <div *ngFor="let item of uploader.queue" class="col-sm-12 file-uploaded nopadding nomargin">
-        <i class="fa fa-file text-primary" aria-hidden="true"></i> {{ item?.file?.name }}
-        <i class="fa fa-times pull-right" aria-hidden="true" role="button" (click)="item.remove()"></i>
+<div class="row" *ngFor="let item of uploader.queue">
+    <div class="col-sm-12 file-information nopadding">
+        <div class="file-icon pull-left">
+            <div class="well fix-file-zone">
+                <i class="fa fa-file" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="tools-zone">
+            <div class="row">
+
+                <div class="col-sm-12 inherit-position nopadding nomargin">
+                    {{ item?.file?.name }}
+                </div>
+                <span class="col-sm-12 nopadding inherit-position description nomargin">
+                    size: {{ fomatFileSize(item?.file?.size) }} - type: {{ item?.file?.type }}
+                </span>
+
+                <div class="col-sm-12 pull-right nopadding">
+                    <button class="btn btn-default btn-xs nomargin">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+                    </button>
+                    <button class="btn btn-danger btn-xs nomargin" (click)="item.remove()">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                    </button>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-12 file-upload-tools nopadding">
+
+<div class="row" *ngIf="uploader.queue.length === 0">
+    <div class="col-sm-12 file-upload-tools nopadding nomargin">
         <div class="disable-content" *ngIf="!active"></div>
         <div class="drop-zone pull-left">
             <div ng2FileDrop [ngClass]="{'nv-file-over': dropZoneOver}" (fileOver)="fileOver($event)" [uploader]="uploader" class="well fix-drop-zone">

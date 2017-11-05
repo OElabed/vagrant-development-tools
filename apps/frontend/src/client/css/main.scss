@@ -46,7 +46,7 @@
 }
 
 .pointer-cursor {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 a.disabled {
@@ -56,18 +56,15 @@ a.disabled {
 }
 
 .empty-container {
-    min-height: 300px;
+    height: 300px;
     padding: 20px;
-    .band{
-        height: 100%;
-        width: 100%;
-        background-color: lightgrey;
-        .fa {
-            text-align: center;
-            font-size: 30px;
-        }
-    }
+    text-align: center;
+    line-height: 300px;
     
+    .fa {
+        font-size: 100px;
+        color: gray;
+    }
 }
 
 // ===========================================
@@ -110,7 +107,6 @@ a.disabled {
 // ===========================================
 // Forms
 // ===========================================
-
 .form-horizontal .control-label.text-left {
     text-align: left;
     font-size: 0.9em;
@@ -133,6 +129,10 @@ a.disabled {
         font-size: smaller;
         padding-top: 5px !important;
     }
+}
+
+.help-block {
+    font-size: 10px;
 }
 
 //switch

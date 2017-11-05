@@ -31,9 +31,8 @@
             <fix-widget>
                 <fix-widget-body>
                     <div class="empty-container">
-                        <div class="band">
-                            <i class="fa fa-ban" aria-hidden="true"></i>
-                        </div>
+                        <i class="fa fa-ban" aria-hidden="true"></i>
+
                     </div>
                 </fix-widget-body>
             </fix-widget>
@@ -44,7 +43,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12 nopadding">
                 <fix-widget>
                     <fix-widget-body>
-                        <fix-module-config [moduleConfig]="item"></fix-module-config>
+                        <fix-module-config [(moduleConfigList)]="moduleConfigList"></fix-module-config>
                     </fix-widget-body>
                     <fix-widget-footer>
                         <div class="row form-group nomargin">

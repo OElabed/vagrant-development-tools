@@ -6,6 +6,8 @@ import { FileUploader } from 'ng2-file-upload';
 
 import { FileEditorGlobalService } from '../../../services/file-editor-service.service';
 
+import { FileUtils } from '../../../utils/file.utils';
+
 declare let jQuery: any;
 
 /**
@@ -58,5 +60,9 @@ export class FileUploaderFormComponent {
 
     createFile() {
         this.fileEditorService.openFileEditor(this.config.templateCreation);
+    }
+
+    fomatFileSize(bytes: number): string {
+        return FileUtils.formatBytes(bytes);
     }
 }

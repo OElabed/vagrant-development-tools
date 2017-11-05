@@ -2,34 +2,40 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 4px;
-    height: 500px;    
+    height: 500px;
 }
 
-.setup-panel{
-    li{
+.setup-panel {
+    li {
         cursor: pointer;
     }
-    li.disabled{
+    li.disabled {
         cursor: no-drop;
     }
-    
 }
 
 .configuration-container {
-    min-height: 500px;
+    .widget-body {
+        min-height: 500px !important;
+    }
 }
 
-.fix-drop-zone { border: dotted 3px lightgray; }
-.nv-file-over  { border: dotted 3px black; }
+.fix-drop-zone {
+    border: dotted 3px lightgray;
+}
 
-.modal{
+.nv-file-over {
+    border: dotted 3px black;
+}
+
+.modal {
     .well {
         height: 150px;
-        padding: 0px;    
+        padding: 0px;
         text-align: center;
         vertical-align: middle;
         line-height: 150px;
         font-size: x-large;
-        color: gray;  
+        color: gray;
     }
 }

@@ -2,7 +2,7 @@
     <ul class="sidebar">
         <li class="sidebar-main">
             <a (click)="toggleSidebar()">
-                Dashboard
+                <img src="/assets/img/logo.svg" height="30px" width="30px"/> Fix-Back
                 <span class="menu-icon glyphicon glyphicon-transfer"></span>
             </a>
         </li>
@@ -18,18 +18,18 @@
             <span>PACKAGE ACTIONS</span>
         </li>
         <li class="sidebar-list">
-            
+
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard
                 <span class="menu-icon fa fa-tachometer"></span>
             </a>
         </li>
         <li class="sidebar-list">
-            <a routerLink="/settings"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Settings
+            <a routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Settings
                 <span class="menu-icon fa fa-cog"></span>
             </a>
         </li>
         <li class="sidebar-list">
-            <a routerLink="/creation"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New package
+            <a routerLink="/creation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New package
                 <span class="menu-icon fa fa-plus"></span>
             </a>
         </li>

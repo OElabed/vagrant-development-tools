@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="row fix-sub-form">
-        <div class="col-sm-1 control-label nomargin nopadding fix-label space-right" [ngClass]="{'label-disabled': addFileType !== 'URL'}">URL</div>
+        <div class="col-sm-1 control-label nomargin nopadding fix-label m-r-5" [ngClass]="{'label-disabled': addFileType !== 'URL'}">URL</div>
         <div class="col-sm-9 has-error">
             <input type="text" class="form-control input-sm" [(ngModel)]="config.urlFile" placeholder="e.g. https://com.packa.fr/sample.zip"
                 [disabled]="addFileType !== 'URL' ? 'disabled' : null">

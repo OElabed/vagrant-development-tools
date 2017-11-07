@@ -5,16 +5,16 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
-        <div class="col-sm-3 space-top">
-            <div class="control-label nomargin nopadding fix-label space-right pull-left">
-                <i class="fa fa-linux space-right" aria-hidden="true"></i>Linux</div>
+        <div class="col-sm-3 m-t-5">
+            <div class="control-label nomargin nopadding fix-label m-r-5 pull-left">
+                <i class="fa fa-linux m-r-5" aria-hidden="true"></i>Linux</div>
         </div>
     </div>
     <hr>
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Module package</label>
-        <div class="col-sm-10 space-top">
+        <div class="col-sm-10 m-t-5">
 
             <div class="row">
                 <fix-add-file-form [config]="filterEngineConfig.archiveConfig"></fix-add-file-form>
@@ -25,7 +25,7 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">KZ file</label>
-        <div class="col-sm-10 space-top">
+        <div class="col-sm-10 m-t-5">
 
             <div class="row">
                 <fix-add-file-form [config]="filterEngineConfig.kzFileConfig"></fix-add-file-form>
@@ -36,7 +36,7 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Fml file (1)</label>
-        <div class="col-sm-10 space-top">
+        <div class="col-sm-10 m-t-5">
 
             <div class="row">
                 <fix-add-file-form [config]="filterEngineConfig.fmlFile1Config"></fix-add-file-form>
@@ -47,8 +47,8 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Fml file (2)</label>
-        <div class="col-sm-10 space-top">
-            <div class="fix-switch nomargin space-bottom">
+        <div class="col-sm-10 m-t-5">
+            <div class="fix-switch nomargin m-b-5">
                 <input id="fml2Active" name="fml2ActiveOption1" type="checkbox" (click)="setFml2File()" [checked]="fml2FileActive" />
                 <label for="fml2Active" class="label-primary"></label>
             </div>
@@ -62,8 +62,8 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Score file</label>
-        <div class="col-sm-10 space-top">
-            <div class="fix-switch nomargin space-bottom">
+        <div class="col-sm-10 m-t-5">
+            <div class="fix-switch nomargin m-b-5">
                 <input id="scoreActive" name="scoreActiveOption1" type="checkbox" (click)="setScoreFile()" [checked]="scoreFileActive" />
                 <label for="scoreActive" class="label-primary"></label>
             </div>
@@ -76,7 +76,7 @@
 
     <div class="form-group">
         <label for="container_name" class="col-sm-2 control-label text-left">Licence file</label>
-        <div class="col-sm-10 space-top">
+        <div class="col-sm-10 m-t-5">
 
             <div class="row">
                 <fix-add-file-form [config]="filterEngineConfig.licenceFileConfig"></fix-add-file-form>

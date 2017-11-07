@@ -1,3 +1,4 @@
+<fix-template-config *ngIf="configType === 'TEMPLATE'"></fix-template-config>
 <fix-yaml-config *ngIf="configType === 'YAML'"></fix-yaml-config>
 
 <ng-container *ngIf="configType === 'WIZARD'">
@@ -48,9 +49,9 @@
           <div class="row form-group nomargin">
             <div class="col-sm-12 nomargin">
               <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
               <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -69,9 +70,9 @@
           <div class="row form-group nomargin">
             <div class="col-sm-12 nomargin">
               <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
               <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -90,9 +91,9 @@
           <div class="row form-group nomargin">
             <div class="col-sm-12 nomargin">
               <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
               <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
               </button>
             </div>
           </div>

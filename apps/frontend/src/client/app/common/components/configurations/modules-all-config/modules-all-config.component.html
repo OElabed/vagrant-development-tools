@@ -4,7 +4,7 @@
     </li>
     <li role="presentation" *ngFor="let item of moduleConfigList" [ngClass]="{'active': item.name === activeModule, 'pointer-cursor': item.name !== activeModule}">
         <a (click)="setModuleActive(item.name)" role="tab" data-toggle="tab">{{item.name}}
-            <i (click)="deleteModule(item.name)" class="fa fa-times space-left pointer-cursor" aria-hidden="true" [ngClass]="{'red-icon': item.name === activeModule}"></i>
+            <i (click)="deleteModule(item.name)" class="fa fa-times m-l-5 pointer-cursor" aria-hidden="true" [ngClass]="{'red-icon': item.name === activeModule}"></i>
         </a>
 
 
@@ -49,9 +49,9 @@
                         <div class="row form-group nomargin">
                             <div class="col-sm-12 nomargin">
                                 <button class="btn btn-sm btn-primary pull-left disabled">
-                                    <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+                                    <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
                                 <button class="btn btn-primary btn-sm pull-right">Next
-                                    <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+                                    <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

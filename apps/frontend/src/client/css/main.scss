@@ -1,16 +1,10 @@
+@import "./helpers/helpers";
+@import "./helpers/icons";
 // ===========================================
 // Global
 // ===========================================
-.nopadding {
-    padding: 0 !important;
-}
-
-.nomargin {
-    margin: 0 !important;
-}
-
-.inherit-position {
-    position: inherit;
+.with-right-separator {
+    border-right: 1px solid #e5e5e5;
 }
 
 .widget-header {
@@ -22,22 +16,6 @@
 
 .white-space-normal {
     white-space: normal !important;
-}
-
-.space-right {
-    margin-right: 5px;
-}
-
-.space-left {
-    margin-left: 5px;
-}
-
-.space-top {
-    margin-top: 5px;
-}
-
-.space-bottom {
-    margin-bottom: 5px;
 }
 
 .force-to-bottom {
@@ -60,47 +38,9 @@ a.disabled {
     padding: 20px;
     text-align: center;
     line-height: 300px;
-    
     .fa {
         font-size: 100px;
         color: gray;
-    }
-}
-
-// ===========================================
-// icons
-// ===========================================
-.fa.green-icon {
-    color: #23ae89;
-}
-
-.fa.red-icon {
-    color: #ae2323;
-}
-
-.fa.orange-icon {
-    color: #f0ad4e;
-}
-
-.fa.white-icon {
-    color: white;
-}
-
-.fa.black-icon {
-    color: black;
-}
-
-.table {
-    &.hierarchical {
-        tbody {
-            tr {
-                &.hiera-1 {
-                    td {
-                        padding-left: 30px;
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -205,8 +145,13 @@ a.disabled {
 // ===========================================
 // spinner loading page
 // ===========================================
+.loading {
+    height: 60vh;
+    padding: 25vh;
+}
+
 .spinner {
-    margin: 100px auto;
+    margin: auto;
     width: 50px;
     height: 40px;
     text-align: center;

@@ -10,6 +10,7 @@ import { FilterEngineConfigComponent } from '../../common/components/configurati
 import { ModulesAllConfigComponent } from '../../common/components/configurations/modules-all-config/modules-all-config.component';
 import { ModuleConfigComponent } from '../../common/components/configurations/module-config/module-config.component';
 import { YamlConfigComponent } from '../../common/components/configurations/yaml-config/yaml-config.component';
+import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
 
 @NgModule({
   imports: [CommonModule,
@@ -24,7 +25,8 @@ import { YamlConfigComponent } from '../../common/components/configurations/yaml
     FilterEngineConfigComponent,
     ModulesAllConfigComponent,
     ModuleConfigComponent,
-    YamlConfigComponent
+    YamlConfigComponent,
+    TemplateConfigComponent
   ],
   exports: [
     PackageCreationComponent,
@@ -33,7 +35,8 @@ import { YamlConfigComponent } from '../../common/components/configurations/yaml
     FilterEngineConfigComponent,
     ModulesAllConfigComponent,
     ModuleConfigComponent,
-    YamlConfigComponent
+    YamlConfigComponent,
+    TemplateConfigComponent
   ]
 })
 export class PackageCreationModule { }

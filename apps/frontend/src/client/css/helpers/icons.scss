@@ -1,0 +1,36 @@
+// ===========================================
+// icons
+// ===========================================
+.fa.green-icon {
+    color: #23ae89;
+}
+
+.fa.red-icon {
+    color: #ae2323;
+}
+
+.fa.orange-icon {
+    color: #f0ad4e;
+}
+
+.fa.white-icon {
+    color: white;
+}
+
+.fa.black-icon {
+    color: black;
+}
+
+.table {
+    &.hierarchical {
+        tbody {
+            tr {
+                &.hiera-1 {
+                    td {
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

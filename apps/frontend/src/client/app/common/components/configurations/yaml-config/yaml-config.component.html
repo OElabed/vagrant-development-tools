@@ -3,9 +3,9 @@
         <fix-widget>
             <fix-widget-header icon="fa fa-code" title="Package configuration file">
                 <button class="btn btn-primary btn-sm" style="float: right">
-                    <i class="fa fa-check space-right" aria-hidden="true"></i>Validate</button>
-                <button class="btn btn-default btn-sm space-right" style="float: right" data-toggle="modal" data-target="#templateModal">
-                    <i class="fa fa-clipboard space-right" aria-hidden="true"></i>Template</button>
+                    <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate</button>
+                <button class="btn btn-default btn-sm m-r-5" style="float: right" data-toggle="modal" data-target="#templateModal">
+                    <i class="fa fa-clipboard m-r-5" aria-hidden="true"></i>Template</button>
             </fix-widget-header>
             <fix-widget-body classes="no-padding">
                 <div class="row">
@@ -28,9 +28,16 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <div class="pull-right">
+                    Templates:
+                    <select class="selecttemplate" style="float:right;" title="Choose template...">
+                        <option>v5.9.0.0</option>
+                    </select>
+                </div>
+
                 <h4 class="modal-title">
-                    <i class="fa fa-clipboard space-right" aria-hidden="true"></i>Template configuration</h4>
+                    <i class="fa fa-clipboard m-r-5" aria-hidden="true"></i>Template configuration</h4>
             </div>
             <div class="modal-body">
                 <!-- Text input-->
@@ -39,19 +46,21 @@
                         <fieldset>
 
                             <legend style="margin-top: 10px;">
-                                <i class="fa fa-windows space-right" aria-hidden="true"></i>Container</legend>
+                                <i class="fa fa-windows m-r-5" aria-hidden="true"></i>Container</legend>
 
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="textinput">Platform</label>
                                 <div class="col-sm-4">
-                                    <input type="text" placeholder="State" class="form-control input-sm">
+                                    <select class="selectplateform input-sm" title="Choose container...">
+                                        <option data-icon="fa fa-linux" label="DockerHub" value="object:266"> Linux-Docker01</option>
+                                    </select>
                                 </div>
                             </div>
 
 
                             <legend>
-                                <i class="fa fa-archive space-right" aria-hidden="true"></i>Continuity Backend version</legend>
+                                <i class="fa fa-archive m-r-5" aria-hidden="true"></i>Continuity Backend version</legend>
 
                             <!-- Text input-->
                             <div class="form-group">
@@ -67,7 +76,7 @@
                             </div>
 
                             <legend>
-                                <i class="fa fa-copyright space-right" aria-hidden="true"></i>CoreEngine version</legend>
+                                <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version</legend>
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="textinput">Version</label>
@@ -77,7 +86,7 @@
                             </div>
 
                             <legend>
-                                <i class="fa fa-filter space-right" aria-hidden="true"></i>Filter version</legend>
+                                <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version</legend>
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="textinput">Version</label>
@@ -88,43 +97,22 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Fml file - 1</label>
+                                <label class="col-sm-2 control-label" for="textinput">Options</label>
                                 <div class="col-sm-10">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="fmlfile1">Yes
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="fmlfile1" checked="checked">No
-                                    </label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Fml file - 1</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Fml file - 2</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Score file</label>
+                                    </div>
                                 </div>
                             </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Fml file - 2</label>
-                                <div class="col-sm-10">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="fmlfile2">Yes
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="fmlfile2" checked="checked">No
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Score file</label>
-                                <div class="col-sm-10">
-                                    <label class="radio-inline">
-                                        <input type="radio" name="scorefile">Yes
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input type="radio" name="scorefile" checked="checked">No
-                                    </label>
-                                </div>
-                            </div>
-
 
                         </fieldset>
                     </form>
@@ -132,6 +120,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
 

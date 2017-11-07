@@ -5,8 +5,6 @@ import { ICommonEnvConfig, IPackageFormConfig, CommonEnvConfig, PackageFormConfi
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
-import 'codemirror/mode/yaml/yaml';
-
 declare let jQuery: any;
 
 /**
@@ -14,15 +12,12 @@ declare let jQuery: any;
  */
 @Component({
     moduleId: module.id,
-    selector: 'fix-yaml-config',
-    templateUrl: 'yaml-config.component.html',
-    styleUrls: ['yaml-config.component.css']
+    selector: 'fix-template-config',
+    templateUrl: 'template-config.component.html',
+    styleUrls: ['template-config.component.css']
 })
-export class YamlConfigComponent implements AfterViewInit {
+export class TemplateConfigComponent implements AfterViewInit {
 
-    configEditor: any = { lineNumbers: true, mode: 'text/x-yaml' };
-
-    contentFile: string = '';
 
     @Input() package: PackageFormConfig;
     @Output() packageChange: EventEmitter<PackageFormConfig>;

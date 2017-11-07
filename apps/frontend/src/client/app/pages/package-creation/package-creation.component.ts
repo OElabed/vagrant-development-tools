@@ -20,7 +20,7 @@ export class PackageCreationComponent implements AfterViewInit {
   currentStep: WizardStep;
   packageConfig: IPackageFormConfig;
 
-  configType:string = 'YAML';
+  configType:string = 'TEMPLATE';
 
   constructor() {
     this.initializeWizard();

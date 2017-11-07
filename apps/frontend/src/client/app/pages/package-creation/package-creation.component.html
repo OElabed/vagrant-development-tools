@@ -1,109 +1,113 @@
-<div class="row form-group">
-  <div class="col-xs-12 nomargin">
-    <ul class="nav nav-pills nav-justified thumbnail setup-panel nomargin">
-      <li [ngClass]="{'active': this.currentStep.id === 'STEP-1', 'disabled':  isDisableStep('STEP-1')}">
-        <a (click)="changeStepWizard('STEP-1')" [ngClass]="{'disabled':  isDisableStep('STEP-1')}">
-          <h4 class="list-group-item-heading">Step 1</h4>
-          <p class="list-group-item-text">Package configuration</p>
-        </a>
-      </li>
-      <li [ngClass]="{'active': this.currentStep.id === 'STEP-2', 'disabled':  isDisableStep('STEP-2')}">
-        <a (click)="changeStepWizard('STEP-2')"  [ngClass]="{'disabled':  isDisableStep('STEP-2')}">
-          <h4 class="list-group-item-heading">Step 2</h4>
-          <p class="list-group-item-text">Core Engine configuration</p>
-        </a>
-      </li>
-      <li [ngClass]="{'active': this.currentStep.id === 'STEP-3', 'disabled':  isDisableStep('STEP-3')}">
-        <a (click)="changeStepWizard('STEP-3')" [ngClass]="{'disabled':  isDisableStep('STEP-3')}">
-          <h4 class="list-group-item-heading">Step 3</h4>
-          <p class="list-group-item-text">Filter Engine configuration</p>
-        </a>
-      </li>
-      <li [ngClass]="{'active': this.currentStep.id === 'STEP-4', 'disabled':  isDisableStep('STEP-4')}">
-        <a (click)="changeStepWizard('STEP-4')" [ngClass]="{'disabled':  isDisableStep('STEP-4')}">
-          <h4 class="list-group-item-heading">Step 4</h4>
-          <p class="list-group-item-text">Modules configuration</p>
-        </a>
-      </li>
-      <li [ngClass]="{'active': this.currentStep.id === 'STEP-5', 'disabled':  isDisableStep('STEP-5')}">
-        <a (click)="changeStepWizard('STEP-5')" [ngClass]="{'disabled':  isDisableStep('STEP-5')}">
-          <h4 class="list-group-item-heading">Step 5</h4>
-          <p class="list-group-item-text">Validation</p>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+<fix-yaml-config *ngIf="configType === 'YAML'"></fix-yaml-config>
 
-<div class="row" *ngIf="this.currentStep.id === 'STEP-1'">
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <fix-widget>
-      <fix-widget-body>
-        <fix-package-config [(package)]="packageConfig"></fix-package-config>
-      </fix-widget-body>
-      <fix-widget-footer>
-        <div class="row form-group nomargin">
-          <div class="col-sm-12 nomargin">
-            <button class="btn btn-sm btn-primary pull-left disabled">
-              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
-            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
-            </button>
+<ng-container *ngIf="configType === 'WIZARD'">
+  <div class="row form-group">
+    <div class="col-xs-12 nomargin">
+      <ul class="nav nav-pills nav-justified thumbnail setup-panel nomargin">
+        <li [ngClass]="{'active': this.currentStep.id === 'STEP-1', 'disabled':  isDisableStep('STEP-1')}">
+          <a (click)="changeStepWizard('STEP-1')" [ngClass]="{'disabled':  isDisableStep('STEP-1')}">
+            <h4 class="list-group-item-heading">Step 1</h4>
+            <p class="list-group-item-text">Package configuration</p>
+          </a>
+        </li>
+        <li [ngClass]="{'active': this.currentStep.id === 'STEP-2', 'disabled':  isDisableStep('STEP-2')}">
+          <a (click)="changeStepWizard('STEP-2')" [ngClass]="{'disabled':  isDisableStep('STEP-2')}">
+            <h4 class="list-group-item-heading">Step 2</h4>
+            <p class="list-group-item-text">Core Engine configuration</p>
+          </a>
+        </li>
+        <li [ngClass]="{'active': this.currentStep.id === 'STEP-3', 'disabled':  isDisableStep('STEP-3')}">
+          <a (click)="changeStepWizard('STEP-3')" [ngClass]="{'disabled':  isDisableStep('STEP-3')}">
+            <h4 class="list-group-item-heading">Step 3</h4>
+            <p class="list-group-item-text">Filter Engine configuration</p>
+          </a>
+        </li>
+        <li [ngClass]="{'active': this.currentStep.id === 'STEP-4', 'disabled':  isDisableStep('STEP-4')}">
+          <a (click)="changeStepWizard('STEP-4')" [ngClass]="{'disabled':  isDisableStep('STEP-4')}">
+            <h4 class="list-group-item-heading">Step 4</h4>
+            <p class="list-group-item-text">Modules configuration</p>
+          </a>
+        </li>
+        <li [ngClass]="{'active': this.currentStep.id === 'STEP-5', 'disabled':  isDisableStep('STEP-5')}">
+          <a (click)="changeStepWizard('STEP-5')" [ngClass]="{'disabled':  isDisableStep('STEP-5')}">
+            <h4 class="list-group-item-heading">Step 5</h4>
+            <p class="list-group-item-text">Validation</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="this.currentStep.id === 'STEP-1'">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <fix-widget>
+        <fix-widget-body>
+          <fix-package-config [(package)]="packageConfig"></fix-package-config>
+        </fix-widget-body>
+        <fix-widget-footer>
+          <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+              <button class="btn btn-sm btn-primary pull-left disabled">
+                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </fix-widget-footer>
-    </fix-widget>
+        </fix-widget-footer>
+      </fix-widget>
+    </div>
   </div>
-</div>
 
-<div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-2'">
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <fix-widget>
-      <fix-widget-body>
-        <fix-core-engine-config [(package)]="packageConfig"></fix-core-engine-config>
-      </fix-widget-body>
-      <fix-widget-footer>
-        <div class="row form-group nomargin">
-          <div class="col-sm-12 nomargin">
-            <button class="btn btn-sm btn-primary pull-left disabled">
-              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
-            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
-            </button>
+  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-2'">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <fix-widget>
+        <fix-widget-body>
+          <fix-core-engine-config [(package)]="packageConfig"></fix-core-engine-config>
+        </fix-widget-body>
+        <fix-widget-footer>
+          <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+              <button class="btn btn-sm btn-primary pull-left disabled">
+                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </fix-widget-footer>
-    </fix-widget>
+        </fix-widget-footer>
+      </fix-widget>
+    </div>
   </div>
-</div>
 
-<div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-3'">
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <fix-widget>
-      <fix-widget-body>
-        <fix-filter-engine-config [(package)]="packageConfig"></fix-filter-engine-config>
-      </fix-widget-body>
-      <fix-widget-footer>
-        <div class="row form-group nomargin">
-          <div class="col-sm-12 nomargin">
-            <button class="btn btn-sm btn-primary pull-left disabled">
-              <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
-            <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-              <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
-            </button>
+  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-3'">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <fix-widget>
+        <fix-widget-body>
+          <fix-filter-engine-config [(package)]="packageConfig"></fix-filter-engine-config>
+        </fix-widget-body>
+        <fix-widget-footer>
+          <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+              <button class="btn btn-sm btn-primary pull-left disabled">
+                <i class="fa fa-caret-left space-right" aria-hidden="true"></i>Previous</button>
+              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
+                <i class="fa fa-caret-right space-left" aria-hidden="true"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </fix-widget-footer>
-    </fix-widget>
+        </fix-widget-footer>
+      </fix-widget>
+    </div>
   </div>
-</div>
 
-<div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-4'">
-  <div class="col-lg-12 col-md-12 col-xs-12">
-    <fix-module-all-config [(package)]="packageConfig"></fix-module-all-config>
+  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-4'">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <fix-module-all-config [(package)]="packageConfig"></fix-module-all-config>
+    </div>
   </div>
-</div>
 
-<div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-5'">
-  <div class="col-lg-12 col-md-12 col-xs-12">STEP 5</div>
-</div>
+  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-5'">
+    <div class="col-lg-12 col-md-12 col-xs-12">STEP 5</div>
+  </div>
+</ng-container>

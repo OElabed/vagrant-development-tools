@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CodemirrorModule } from 'ng2-codemirror';
 
@@ -46,6 +46,7 @@ import { FileEditorGlobalService } from '../services/file-editor-service.service
     CodemirrorModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule]
 })
 export class SharedModule {

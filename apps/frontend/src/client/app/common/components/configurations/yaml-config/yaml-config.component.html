@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <fix-widget>
+            <fix-widget-header icon="fa fa-code" title="Package configuration file">
+                <button class="btn btn-primary btn-sm" style="float: right">
+                    <i class="fa fa-check space-right" aria-hidden="true"></i>Validate</button>
+                <button class="btn btn-default btn-sm space-right" style="float: right" data-toggle="modal" data-target="#templateModal">
+                    <i class="fa fa-clipboard space-right" aria-hidden="true"></i>Template</button>
+            </fix-widget-header>
+            <fix-widget-body classes="no-padding">
+                <div class="row">
+                    <div class="col-sm-12 nopadding">
+                        <div class="editor">
+                            <codemirror [(ngModel)]="contentFile" [config]="configEditor"></codemirror>
+                        </div>
+                    </div>
+                </div>
+            </fix-widget-body>
+        </fix-widget>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="templateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">
+                    <i class="fa fa-clipboard space-right" aria-hidden="true"></i>Template configuration</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Text input-->
+                <div class="row">
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+
+                            <legend style="margin-top: 10px;">
+                                <i class="fa fa-windows space-right" aria-hidden="true"></i>Container</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Platform</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="State" class="form-control input-sm">
+                                </div>
+                            </div>
+
+
+                            <legend>
+                                <i class="fa fa-archive space-right" aria-hidden="true"></i>Continuity Backend version</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.9.0.0" class="form-control input-sm">
+                                </div>
+
+                                <label class="col-sm-2 control-label" for="textinput">Push</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="760" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <legend>
+                                <i class="fa fa-copyright space-right" aria-hidden="true"></i>CoreEngine version</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.7.0.0" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <legend>
+                                <i class="fa fa-filter space-right" aria-hidden="true"></i>Filter version</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.7.2.0" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Fml file - 1</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="fmlfile1">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="fmlfile1" checked="checked">No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Fml file - 2</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="fmlfile2">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="fmlfile2" checked="checked">No
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Score file</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="scorefile">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="scorefile" checked="checked">No
+                                    </label>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

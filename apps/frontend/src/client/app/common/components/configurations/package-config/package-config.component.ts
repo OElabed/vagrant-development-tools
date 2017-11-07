@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ICommonEnvConfig, IPackageFormConfig, CommonEnvConfig, PackageFormConfig } from '../../../models/view/package-config.model';
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
@@ -23,9 +24,12 @@ export class PackageConfigComponent implements AfterViewInit {
     @Input() package: PackageFormConfig;
     @Output() packageChange: EventEmitter<PackageFormConfig>;
 
-    constructor() {
-        this.packageChange = new EventEmitter<PackageFormConfig>();
 
+    packageConfigForm: FormGroup;
+
+    constructor() {
+
+        this.packageChange = new EventEmitter<PackageFormConfig>();
         this.commonEnvConfig = this.intializeCommonEnvConfig();
         this.licenceConfig = this.initializeLicenceConfig();
     }

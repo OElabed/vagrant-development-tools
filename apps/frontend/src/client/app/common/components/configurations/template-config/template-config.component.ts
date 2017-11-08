@@ -16,14 +16,20 @@ declare let jQuery: any;
     templateUrl: 'template-config.component.html',
     styleUrls: ['template-config.component.css']
 })
-export class TemplateConfigComponent implements AfterViewInit {
+export class TemplateConfigComponent implements AfterViewInit, OnInit {
 
+    // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
 
     @Input() package: PackageFormConfig;
     @Output() packageChange: EventEmitter<PackageFormConfig>;
 
-    constructor() {
-        console.log();
+    private templateForm: FormGroup;
+
+    ngOnInit() {
+        this.templateForm = new FormGroup({
+            'name': new FormControl('', Validators.required),
+            'birthYear': new FormControl('', [Validators.required])
+        });
     }
 
     ngAfterViewInit(): void {

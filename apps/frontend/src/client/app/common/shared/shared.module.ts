@@ -13,6 +13,8 @@ import { FixWidgetBodyComponent } from '../components/widgets/fix-widget-body/fi
 import { FixLoadingComponent } from '../components/widgets/fix-loading/fix-loading.component';
 import { FixAlertsComponent } from '../components/widgets/fix-alerts-bar/fix-alerts-bar.component';
 
+import { FieldErrorDisplayComponent } from '../components/forms/field-error-display/field-error-display.component';
+
 
 import { RoutingGlobalService } from '../services/routing-global.service';
 import { FileEditorGlobalService } from '../services/file-editor-service.service';
@@ -31,7 +33,8 @@ import { FileEditorGlobalService } from '../services/file-editor-service.service
     FixWidgetFooterComponent,
     FixWidgetBodyComponent,
     FixLoadingComponent,
-    FixAlertsComponent
+    FixAlertsComponent,
+    FieldErrorDisplayComponent
   ],
   exports: [
     HeaderbarComponent,
@@ -42,6 +45,7 @@ import { FileEditorGlobalService } from '../services/file-editor-service.service
     FixWidgetBodyComponent,
     FixLoadingComponent,
     FixAlertsComponent,
+    FieldErrorDisplayComponent,
 
     CodemirrorModule,
     CommonModule,

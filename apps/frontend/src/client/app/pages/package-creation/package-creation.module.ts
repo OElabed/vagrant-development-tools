@@ -4,11 +4,11 @@ import { PackageCreationRoutingModule } from './package-creation-routing.module'
 import { SharedModule } from '../../common/shared/shared.module';
 import { AddFileFormModule } from '../../common/components/forms/add-file-form/add-file-form.module';
 import { PackageCreationComponent } from './package-creation.component';
-import { PackageConfigComponent } from '../../common/components/configurations/package-config/package-config.component';
-import { CoreEngineConfigComponent } from '../../common/components/configurations/core-engine-config/core-engine-config.component';
-import { FilterEngineConfigComponent } from '../../common/components/configurations/filter-engine-config/filter-engine-config.component';
-import { ModulesAllConfigComponent } from '../../common/components/configurations/modules-all-config/modules-all-config.component';
-import { ModuleConfigComponent } from '../../common/components/configurations/module-config/module-config.component';
+// import { PackageConfigComponent } from '../../common/components/configurations/package-config/package-config.component';
+// import { CoreEngineConfigComponent } from '../../common/components/configurations/core-engine-config/core-engine-config.component';
+// import { FilterEngineConfigComponent } from '../../common/components/configurations/filter-engine-config/filter-engine-config.component';
+// import { ModulesAllConfigComponent } from '../../common/components/configurations/modules-all-config/modules-all-config.component';
+// import { ModuleConfigComponent } from '../../common/components/configurations/module-config/module-config.component';
 import { YamlConfigComponent } from '../../common/components/configurations/yaml-config/yaml-config.component';
 import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
 
@@ -20,21 +20,21 @@ import { TemplateConfigComponent } from '../../common/components/configurations/
   ],
   declarations: [
     PackageCreationComponent,
-    PackageConfigComponent,
-    CoreEngineConfigComponent,
-    FilterEngineConfigComponent,
-    ModulesAllConfigComponent,
-    ModuleConfigComponent,
+   // PackageConfigComponent,
+   // CoreEngineConfigComponent,
+   // FilterEngineConfigComponent,
+   // ModulesAllConfigComponent,
+   // ModuleConfigComponent,
     YamlConfigComponent,
     TemplateConfigComponent
   ],
   exports: [
     PackageCreationComponent,
-    PackageConfigComponent,
-    CoreEngineConfigComponent,
-    FilterEngineConfigComponent,
-    ModulesAllConfigComponent,
-    ModuleConfigComponent,
+   // PackageConfigComponent,
+   // CoreEngineConfigComponent,
+   // FilterEngineConfigComponent,
+   // ModulesAllConfigComponent,
+   // ModuleConfigComponent,
     YamlConfigComponent,
     TemplateConfigComponent
   ]

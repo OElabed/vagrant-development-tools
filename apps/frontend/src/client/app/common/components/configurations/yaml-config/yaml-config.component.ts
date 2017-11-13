@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { ICommonEnvConfig, IPackageFormConfig, CommonEnvConfig, PackageFormConfig } from '../../../models/view/package-config.model';
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
@@ -24,8 +23,8 @@ export class YamlConfigComponent implements AfterViewInit {
 
     contentFile: string = '';
 
-    @Input() package: PackageFormConfig;
-    @Output() packageChange: EventEmitter<PackageFormConfig>;
+    // @Input() package: PackageFormConfig;
+    // @Output() packageChange: EventEmitter<PackageFormConfig>;
 
     constructor() {
         console.log();

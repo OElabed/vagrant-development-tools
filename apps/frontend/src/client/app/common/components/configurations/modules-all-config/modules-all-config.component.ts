@@ -1,81 +1,81 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+// import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
-import { IPackageFormConfig, PackageFormConfig } from '../../../models/view/package-config.model';
-import { ModuleType, ModuleTypeUtil } from '../../../models/domain/module.model';
-import { ModuleConfig, IModuleConfig } from '../../../models/view/module-config.model';
-
-
-declare let jQuery: any;
-
-/**
- * This class represents the lazy loaded DashboardComponent.
- */
-@Component({
-    moduleId: module.id,
-    selector: 'fix-module-all-config',
-    templateUrl: 'modules-all-config.component.html',
-    styleUrls: ['modules-all-config.component.css']
-})
-export class ModulesAllConfigComponent {
+// import { IPackageFormConfig, PackageFormConfig } from '../../../models/view/package-config.model';
+// import { ModuleType, ModuleTypeUtil } from '../../../models/domain/module.model';
+// import { ModuleConfig, IModuleConfig } from '../../../models/view/module-config.model';
 
 
-    @Input() package: PackageFormConfig;
-    @Output() packageChange: EventEmitter<PackageFormConfig>;
+// declare let jQuery: any;
 
-    moduleTypeList: string[];
+// /**
+//  * This class represents the lazy loaded DashboardComponent.
+//  */
+// @Component({
+//     moduleId: module.id,
+//     selector: 'fix-module-all-config',
+//     templateUrl: 'modules-all-config.component.html',
+//     styleUrls: ['modules-all-config.component.css']
+// })
+// export class ModulesAllConfigComponent {
 
-    activeModule: string;
 
-    moduleConfigList: IModuleConfig[];
+//     @Input() package: PackageFormConfig;
+//     @Output() packageChange: EventEmitter<PackageFormConfig>;
 
-    constructor() {
-        this.packageChange = new EventEmitter<PackageFormConfig>();
-        this.moduleTypeList = ModuleTypeUtil.getListNameModuleType();
-        this.moduleConfigList = [];
-        this.activeModule = 'none';
-    }
+//     moduleTypeList: string[];
 
-    setModuleActive(module: string) {
-        this.activeModule = module;
-    }
+//     activeModule: string;
 
-    addModule(module: string) {
-        var exist: boolean = this.isExist(module);
+//     moduleConfigList: IModuleConfig[];
 
-        if (!exist) {
-            var moduleConfig = new ModuleConfig();
-            moduleConfig.name = module;
-            moduleConfig.type = ModuleTypeUtil.toModuleType(module);
-            this.moduleConfigList.push(moduleConfig);
-        }
-        this.setModuleActive(module);
-    }
+//     constructor() {
+//         this.packageChange = new EventEmitter<PackageFormConfig>();
+//         this.moduleTypeList = ModuleTypeUtil.getListNameModuleType();
+//         this.moduleConfigList = [];
+//         this.activeModule = 'none';
+//     }
 
-    isExist(module: string): boolean {
-        var exist: boolean = false;
-        this.moduleConfigList.forEach(element => {
-            if (element.name === module) {
-                exist = true;
-            }
-        });
-        return exist;
-    }
+//     setModuleActive(module: string) {
+//         this.activeModule = module;
+//     }
 
-    deleteModule(module: string) {
+//     addModule(module: string) {
+//         var exist: boolean = this.isExist(module);
 
-        var indexModule: number;
+//         if (!exist) {
+//             var moduleConfig = new ModuleConfig();
+//             moduleConfig.name = module;
+//             moduleConfig.type = ModuleTypeUtil.toModuleType(module);
+//             this.moduleConfigList.push(moduleConfig);
+//         }
+//         this.setModuleActive(module);
+//     }
 
-        this.moduleConfigList.forEach((element, index) => {
-            if (element.name === module) {
-                indexModule = index;
-            }
-        });
+//     isExist(module: string): boolean {
+//         var exist: boolean = false;
+//         this.moduleConfigList.forEach(element => {
+//             if (element.name === module) {
+//                 exist = true;
+//             }
+//         });
+//         return exist;
+//     }
 
-        this.moduleConfigList.splice(indexModule, 1);
+//     deleteModule(module: string) {
 
-        if (module === this.activeModule && this.moduleConfigList.length > 0) {
-            this.activeModule = this.moduleConfigList[this.moduleConfigList.length - 1].name;
-        }
-    }
+//         var indexModule: number;
 
-}
+//         this.moduleConfigList.forEach((element, index) => {
+//             if (element.name === module) {
+//                 indexModule = index;
+//             }
+//         });
+
+//         this.moduleConfigList.splice(indexModule, 1);
+
+//         if (module === this.activeModule && this.moduleConfigList.length > 0) {
+//             this.activeModule = this.moduleConfigList[this.moduleConfigList.length - 1].name;
+//         }
+//     }
+
+// }

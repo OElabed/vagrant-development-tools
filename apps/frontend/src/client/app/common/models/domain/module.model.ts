@@ -1,7 +1,7 @@
 export enum ModuleType {
-    AQUISITION,
-    REQUESTER,
-    DBCLIENT
+    AQUISITION = 'AQUISITION',
+    REQUESTER = 'REQUESTER',
+    DBCLIENT = 'DBCLIENT'
 }
 
 export class ModuleTypeUtil {

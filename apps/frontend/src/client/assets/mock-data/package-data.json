@@ -1,0 +1,73 @@
+{
+    "id": 1,
+    "templateName": "DOXOrubicin Hydrochloride",
+    "packageConfig": {
+        "id": 1,
+        "name": "Reglan",
+        "licenceUrl": "https://bloomberg.com/tempus/sit/amet.html?posuere=tincidunt&nonummy=ante&integer=vel&non=ipsum&velit=praesent&donec=blandit&diam=lacinia&neque=erat&vestibulum=vestibulum&eget=sed&vulputate=magna&ut=at&ultrices=nunc&vel=commodo&augue=placerat&vestibulum=praesent&ante=blandit&ipsum=nam&primis=nulla&in=integer&faucibus=pede&orci=justo&luctus=lacinia&et=eget&ultrices=tincidunt&posuere=eget&cubilia=tempus&curae=vel&donec=pede&pharetra=morbi&magna=porttitor&vestibulum=lorem&aliquet=id&ultrices=ligula&erat=suspendisse&tortor=ornare&sollicitudin=consequat&mi=lectus&sit=in&amet=est&lobortis=risus&sapien=auctor&sapien=sed&non=tristique&mi=in&integer=tempus&ac=sit&neque=amet&duis=sem&bibendum=fusce&morbi=consequat&non=nulla&quam=nisl&nec=nunc&dui=nisl&luctus=duis&rutrum=bibendum&nulla=felis&tellus=sed&in=interdum&sagittis=venenatis&dui=turpis&vel=enim&nisl=blandit&duis=mi&ac=in&nibh=porttitor&fusce=pede&lacus=justo&purus=eu&aliquet=massa&at=donec&feugiat=dapibus&non=duis&pretium=at&quis=velit&lectus=eu&suspendisse=est&potenti=congue&in=elementum&eleifend=in",
+        "plateform": {
+            "name": "Docker-centos",
+            "OS": "WINDOWS"
+        },
+        "commonEnvConfig": {
+            "enable": false,
+            "fileUrl": "https://dion.ne.jp/nulla/quisque/arcu/libero.json?orci=posuere&vehicula=cubilia&condimentum=curae&curabitur=mauris&in=viverra"
+        },
+        "coreEngineConfig": {
+            "archiveUrl": "http://jugem.jp/gravida/sem/praesent/id.json?etiam=at&justo=lorem&etiam=integer&pretium=tincidunt&iaculis=ante&justo=vel&in=ipsum&hac=praesent&habitasse=blandit&platea=lacinia&dictumst=erat&etiam=vestibulum&faucibus=sed&cursus=magna&urna=at&ut=nunc&tellus=commodo&nulla=placerat&ut=praesent&erat=blandit&id=nam&mauris=nulla&vulputate=integer&elementum=pede&nullam=justo&varius=lacinia&nulla=eget&facilisi=tincidunt&cras=eget&non=tempus&velit=vel&nec=pede&nisi=morbi&vulputate=porttitor&nonummy=lorem&maecenas=id&tincidunt=ligula&lacus=suspendisse&at=ornare&velit=consequat&vivamus=lectus&vel=in&nulla=est&eget=risus&eros=auctor&elementum=sed&pellentesque=tristique&quisque=in&porta=tempus&volutpat=sit&erat=amet&quisque=sem&erat=fusce&eros=consequat&viverra=nulla&eget=nisl&congue=nunc&eget=nisl&semper=duis&rutrum=bibendum&nulla=felis&nunc=sed&purus=interdum&phasellus=venenatis&in=turpis&felis=enim&donec=blandit&semper=mi&sapien=in&a=porttitor&libero=pede&nam=justo&dui=eu&proin=massa&leo=donec&odio=dapibus&porttitor=duis&id=at&consequat=velit&in=eu&consequat=est&ut=congue",
+            "version": {
+                "version": "5.7.1.0",
+                "push": 335
+            }
+        },
+        "filterEngineConfig": {
+            "version": {
+                "version": "5.7.0.0",
+                "push": null
+            },
+            "archiveUrl": "http://aol.com/maecenas/ut/massa.aspx?ut=integer&at=non&dolor=velit&quis=donec&odio=diam&consequat=neque&varius=vestibulum&integer=eget&ac=vulputate&leo=ut&pellentesque=ultrices&ultrices=vel&mattis=augue&odio=vestibulum&donec=ante&vitae=ipsum&nisi=primis&nam=in&ultrices=faucibus&libero=orci&non=luctus&mattis=et&pulvinar=ultrices&nulla=posuere&pede=cubilia&ullamcorper=curae&augue=donec&a=pharetra&suscipit=magna&nulla=vestibulum&elit=aliquet&ac=ultrices&nulla=erat&sed=tortor&vel=sollicitudin&enim=mi&sit=sit&amet=amet&nunc=lobortis&viverra=sapien&dapibus=sapien&nulla=non&suscipit=mi&ligula=integer&in=ac&lacus=neque&curabitur=duis&at=bibendum&ipsum=morbi&ac=non&tellus=quam&semper=nec&interdum=dui&mauris=luctus&ullamcorper=rutrum&purus=nulla&sit=tellus&amet=in&nulla=sagittis&quisque=dui&arcu=vel&libero=nisl&rutrum=duis&ac=ac&lobortis=nibh&vel=fusce&dapibus=lacus&at=purus&diam=aliquet&nam=at&tristique=feugiat",
+            "kzFileUrl": "https://statcounter.com/curae/mauris/viverra/diam/vitae.png?a=vel&ipsum=accumsan&integer=tellus&a=nisi&nibh=eu&in=orci&quis=mauris&justo=lacinia&maecenas=sapien&rhoncus=quis&aliquam=libero&lacus=nullam&morbi=sit&quis=amet&tortor=turpis&id=elementum&nulla=ligula&ultrices=vehicula&aliquet=consequat&maecenas=morbi",
+            "fmlFile1Url": "https://chicagotribune.com/faucibus/cursus/urna/ut/tellus/nulla.jsp?magna=ante&vulputate=ipsum&luctus=primis&cum=in&sociis=faucibus&natoque=orci&penatibus=luctus&et=et&magnis=ultrices&dis=posuere&parturient=cubilia&montes=curae",
+            "fmlFile2Url": "https://quantcast.com/id/mauris.js?justo=pede&maecenas=venenatis&rhoncus=non&aliquam=sodales&lacus=sed&morbi=tincidunt&quis=eu&tortor=felis&id=fusce&nulla=posuere&ultrices=felis&aliquet=sed&maecenas=lacus&leo=morbi&odio=sem&condimentum=mauris&id=laoreet&luctus=ut&nec=rhoncus&molestie=aliquet&sed=pulvinar&justo=sed&pellentesque=nisl&viverra=nunc&pede=rhoncus&ac=dui&diam=vel",
+            "scoreFileUrl": "http://nyu.edu/metus.aspx?porta=convallis&volutpat=tortor&erat=risus&quisque=dapibus&erat=augue&eros=vel&viverra=accumsan&eget=tellus&congue=nisi&eget=eu&semper=orci&rutrum=mauris&nulla=lacinia&nunc=sapien&purus=quis&phasellus=libero&in=nullam&felis=sit&donec=amet&semper=turpis&sapien=elementum&a=ligula&libero=vehicula&nam=consequat&dui=morbi&proin=a&leo=ipsum&odio=integer&porttitor=a&id=nibh&consequat=in&in=quis&consequat=justo&ut=maecenas&nulla=rhoncus&sed=aliquam&accumsan=lacus&felis=morbi&ut=quis&at=tortor&dolor=id&quis=nulla&odio=ultrices&consequat=aliquet&varius=maecenas&integer=leo&ac=odio&leo=condimentum&pellentesque=id&ultrices=luctus&mattis=nec&odio=molestie&donec=sed&vitae=justo&nisi=pellentesque",
+            "licenceFileUrl": "https://facebook.com/augue/a/suscipit/nulla/elit/ac/nulla.aspx?quam=faucibus&a=orci&odio=luctus&in=et&hac=ultrices&habitasse=posuere&platea=cubilia&dictumst=curae&maecenas=duis&ut=faucibus&massa=accumsan&quis=odio&augue=curabitur&luctus=convallis&tincidunt=duis&nulla=consequat&mollis=dui&molestie=nec&lorem=nisi&quisque=volutpat&ut=eleifend&erat=donec&curabitur=ut&gravida=dolor&nisi=morbi&at=vel&nibh=lectus&in=in&hac=quam&habitasse=fringilla&platea=rhoncus&dictumst=mauris&aliquam=enim&augue=leo&quam=rhoncus&sollicitudin=sed&vitae=vestibulum&consectetuer=sit&eget=amet&rutrum=cursus&at=id&lorem=turpis&integer=integer&tincidunt=aliquet&ante=massa&vel=id&ipsum=lobortis&praesent=convallis&blandit=tortor&lacinia=risus&erat=dapibus&vestibulum=augue&sed=vel&magna=accumsan&at=tellus&nunc=nisi&commodo=eu&placerat=orci&praesent=mauris&blandit=lacinia&nam=sapien&nulla=quis&integer=libero&pede=nullam&justo=sit&lacinia=amet&eget=turpis&tincidunt=elementum&eget=ligula&tempus=vehicula&vel=consequat&pede=morbi&morbi=a&porttitor=ipsum&lorem=integer&id=a&ligula=nibh&suspendisse=in&ornare=quis&consequat=justo&lectus=maecenas&in=rhoncus&est=aliquam&risus=lacus&auctor=morbi&sed=quis&tristique=tortor&in=id&tempus=nulla&sit=ultrices&amet=aliquet&sem=maecenas&fusce=leo&consequat=odio&nulla=condimentum&nisl=id&nunc=luctus&nisl=nec"
+        },
+        "modulesConfig": [
+            {
+                "version": {
+                    "version": "5.9.0.0",
+                    "push": 733,
+                    "name": "Requester",
+                    "archiveUrl": "https://over-blog.com/vestibulum/vestibulum/ante/ipsum/primis.png?in=tempus&libero=semper&ut=est&massa=quam&volutpat=pharetra&convallis=magna&morbi=ac&odio=consequat&odio=metus&elementum=sapien&eu=ut&interdum=nunc&eu=vestibulum&tincidunt=ante&in=ipsum&leo=primis&maecenas=in&pulvinar=faucibus&lobortis=orci&est=luctus&phasellus=et&sit=ultrices&amet=posuere&erat=cubilia&nulla=curae&tempus=mauris&vivamus=viverra&in=diam&felis=vitae&eu=quam&sapien=suspendisse&cursus=potenti&vestibulum=nullam&proin=porttitor&eu=lacus&mi=at&nulla=turpis&ac=donec&enim=posuere&in=metus&tempor=vitae&turpis=ipsum&nec=aliquam&euismod=non&scelerisque=mauris&quam=morbi&turpis=non&adipiscing=lectus&lorem=aliquam&vitae=sit&mattis=amet&nibh=diam&ligula=in&nec=magna&sem=bibendum&duis=imperdiet&aliquam=nullam&convallis=orci&nunc=pede&proin=venenatis&at=non&turpis=sodales&a=sed&pede=tincidunt&posuere=eu&nonummy=felis&integer=fusce&non=posuere&velit=felis",
+                    "type": "AQUISITION"
+                }
+            },
+            {
+                "version": {
+                    "version": "5.9.0.0",
+                    "push": 970,
+                    "name": "Aquisition",
+                    "archiveUrl": "http://imgur.com/fermentum/justo/nec/condimentum/neque/sapien/placerat.js?est=id&donec=turpis&odio=integer&justo=aliquet&sollicitudin=massa&ut=id&suscipit=lobortis&a=convallis&feugiat=tortor&et=risus&eros=dapibus&vestibulum=augue&ac=vel&est=accumsan&lacinia=tellus&nisi=nisi&venenatis=eu&tristique=orci&fusce=mauris&congue=lacinia&diam=sapien&id=quis&ornare=libero&imperdiet=nullam&sapien=sit&urna=amet&pretium=turpis&nisl=elementum&ut=ligula&volutpat=vehicula&sapien=consequat&arcu=morbi&sed=a&augue=ipsum&aliquam=integer",
+                    "type": "REQUESTER"
+                }
+            },
+            {
+                "version": {
+                    "version": "5.9.0.0",
+                    "push": 254,
+                    "name": "Aquisition",
+                    "archiveUrl": "https://npr.org/enim/in/tempor/turpis/nec/euismod.png?a=bibendum&feugiat=imperdiet&et=nullam&eros=orci",
+                    "type": "DBCLIENT"
+                }
+            }
+        ],
+        "databaseConfig": {
+            "type": "SQLSERVER",
+            "username": "jbrahams0",
+            "password": "2ZLUnBQKdKUW",
+            "hostname": "74.17.140.243",
+            "port": 4231,
+            "service": "ORCL"
+        }
+    }
+}

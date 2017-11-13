@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-xs-12">
-        <form [formGroup]="templateForm" (ngSubmit)="validation(templateForm)" novalidate>
+        <form [formGroup]="templateForm">
             <fix-widget>
                 <fix-widget-header icon="fa fa-code" title="Package configuration file">
                     <div class="pull-right">
-                        Templates:
+                        Templates
                         <select class="selectplateform" data-style="input-sm btn-default select-text-sm" title="Choose template...">
                             <option value="object:266"> v5.9.0.0</option>
                         </select>
@@ -26,21 +26,31 @@
                                                         <!-- Text input-->
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Name</label>
-                                                            <div class="col-sm-8" [ngClass]="{'has-error': templateForm.get('general').get('name').errors && templateForm.get('general').get('name').touched}">
+                                                            <div class="col-sm-8" [ngClass]="displayFieldCss('general.name')">
                                                                 <input type="text" placeholder="MyPackage" class="form-control input-sm" formControlName="name">
-                                                                <span *ngIf="templateForm.get('general').get('name').errors && templateForm.get('general').get('name').touched" class="help-block">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
                                                         <!-- Text input-->
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Platform</label>
-                                                            <div class="col-sm-10" [ngClass]="{'has-error': templateForm.get('general').get('plateform').errors && templateForm.get('general').get('plateform').touched}">
+                                                            <div class="col-sm-10" [ngClass]="displayFieldCss('general.plateform')">
                                                                 <select class="selectplateform" data-style="input-sm btn-default select-text-sm" title="Choose container..." formControlName="plateform">
-                                                                    <option data-icon="fa fa-linux" label="DockerHub" value="object:266"> Linux-Docker01</option>
+                                                                    <option data-icon="fa fa-linux" label="DockerHub"> Linux-Docker01</option>
                                                                 </select>
-                                                                <span *ngIf="templateForm.get('general').get('plateform').errors && templateForm.get('general').get('plateform').touched"
-                                                                    class="help-block">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Text input-->
+                                                        <div class="form-group" formGroupName="generalOptions">
+                                                            <label class="col-sm-2 control-label" for="textinput">Options</label>
+                                                            <div class="col-sm-10">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox" formControlName="commonEnv">common_env</label>
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -53,9 +63,15 @@
                                                         <!-- Text input-->
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('coreEngine').get('version').errors && templateForm.get('coreEngine').get('version').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('coreEngine.version')">
                                                                 <input type="text" placeholder="5.7.0.0" class="form-control input-sm" formControlName="version">
-                                                                <span class="help-block" *ngIf="templateForm.get('coreEngine').get('version').errors && templateForm.get('coreEngine').get('version').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('coreEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                                            </div>
+
+                                                            <label class="col-sm-2 control-label" for="textinput">Push</label>
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('coreEngine.push')">
+                                                                <input type="text" placeholder="760" class="form-control input-sm" formControlName="push">
+                                                                <fix-field-error-display [displayError]="isFieldValid('coreEngine.push')" errorMsg="Please inform the push version"></fix-field-error-display>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -67,9 +83,9 @@
                                                         <!-- Text input-->
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('filterEngine').get('version').errors && templateForm.get('filterEngine').get('version').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('filterEngine.version')">
                                                                 <input type="text" placeholder="5.7.2.0" class="form-control input-sm" formControlName="version">
-                                                                <span class="help-block" *ngIf="templateForm.get('filterEngine').get('version').errors && templateForm.get('filterEngine').get('version').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('filterEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -79,15 +95,15 @@
                                                             <div class="col-sm-10">
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input type="checkbox" value="" formControlName="fmlFile1">Fml file - 1</label>
+                                                                        <input type="checkbox" formControlName="fmlFile1">Fml file - 1</label>
                                                                 </div>
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input type="checkbox" value="" formControlName="fmlFile2">Fml file - 2</label>
+                                                                        <input type="checkbox" formControlName="fmlFile2">Fml file - 2</label>
                                                                 </div>
                                                                 <div class="checkbox">
                                                                     <label>
-                                                                        <input type="checkbox" value="" formControlName="scoreFile">Score file</label>
+                                                                        <input type="checkbox" formControlName="scoreFile">Score file</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -106,17 +122,35 @@
                                                         <!-- Text input-->
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('continuityBackend').get('version').errors && templateForm.get('continuityBackend').get('version').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('continuityBackend.version')">
                                                                 <input type="text" placeholder="5.9.0.0" class="form-control input-sm" formControlName="version">
-                                                                <span class="help-block" *ngIf="templateForm.get('continuityBackend').get('version').errors && templateForm.get('continuityBackend').get('version').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('continuityBackend.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Push</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('continuityBackend').get('push').errors && templateForm.get('continuityBackend').get('push').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('continuityBackend.push')">
                                                                 <input type="text" placeholder="760" class="form-control input-sm" formControlName="push">
-                                                                <span class="help-block" *ngIf="templateForm.get('continuityBackend').get('push').errors && templateForm.get('continuityBackend').get('push').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('continuityBackend.push')" errorMsg="Please inform the push version"></fix-field-error-display>
                                                             </div>
                                                         </div>
+
+                                                        <!-- Text input-->
+                                                        <div class="form-group" formGroupName="modules">
+                                                            <label class="col-sm-2 control-label" for="textinput">Modules</label>
+                                                            <div class="col-sm-10">
+                                                                <label class="checkbox-inline">
+                                                                    <input type="checkbox" formControlName="aquisition" checked="checked">Aquisition
+                                                                </label>
+                                                                <label class="checkbox-inline">
+                                                                    <input type="checkbox" formControlName="requester" checked="checked">Requester
+                                                                </label>
+                                                                <label class="checkbox-inline">
+                                                                    <input type="checkbox" formControlName="dbclient" checked="checked">DBClient
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
@@ -125,56 +159,56 @@
                                                             <i class="fa fa-database m-r-5" aria-hidden="true"></i>Database configuration</legend>
 
                                                         <!-- Text input-->
-                                                        <div class="form-group" formGroupName="type">
+                                                        <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Type</label>
                                                             <div class="col-sm-10">
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="oracle" formControlName="oracle">Oracle
+                                                                    <input type="radio" formControlName="dbtype" value="ORACLE">Oracle
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="sqlServer" formControlName="sqlServer">SQL-Server
+                                                                    <input type="radio" formControlName="dbtype" value="SQLSERVER">SQL-Server
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input type="radio" name="db2" formControlName="db2">DB2
+                                                                    <input type="radio" formControlName="dbtype" value="DB2">DB2
                                                                 </label>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Username</label>
-                                                            <div class="col-sm-10" [ngClass]="{'has-error': templateForm.get('database').get('username').errors && templateForm.get('database').get('username').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('database.username')">
                                                                 <input type="text" placeholder="USER_ONE" class="form-control input-sm" formControlName="username">
-                                                                <span class="help-block" *ngIf="templateForm.get('database').get('username').errors && templateForm.get('database').get('username').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('database.username')" errorMsg="Please inform the username of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Password</label>
-                                                            <div class="col-sm-10" [ngClass]="{'has-error': templateForm.get('database').get('password').errors && templateForm.get('database').get('password').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('database.password')">
                                                                 <input type="text" placeholder="******" class="form-control input-sm" formControlName="password">
-                                                                <span class="help-block" *ngIf="templateForm.get('database').get('password').errors && templateForm.get('database').get('password').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('database.password')" errorMsg="Please inform the password of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Hostname</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('database').get('hostname').errors && templateForm.get('database').get('hostname').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('database.hostname')">
                                                                 <input type="text" placeholder="127.0.0.1" class="form-control input-sm" formControlName="hostname">
-                                                                <span class="help-block" *ngIf="templateForm.get('database').get('hostname').errors && templateForm.get('database').get('hostname').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('database.hostname')" errorMsg="Please inform the hostname of database"></fix-field-error-display>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Service</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('database').get('service').errors && templateForm.get('database').get('service').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('database.service')">
                                                                 <input type="text" placeholder="XE" class="form-control input-sm" formControlName="service">
-                                                                <span class="help-block" *ngIf="templateForm.get('database').get('service').errors && templateForm.get('database').get('service').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('database.service')" errorMsg="Please inform the service of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Port</label>
-                                                            <div class="col-sm-4" [ngClass]="{'has-error': templateForm.get('database').get('port').errors && templateForm.get('database').get('port').touched}">
+                                                            <div class="col-sm-4" [ngClass]="displayFieldCss('database.port')">
                                                                 <input type="text" placeholder="1521" class="form-control input-sm" formControlName="port">
-                                                                <span class="help-block" *ngIf="templateForm.get('database').get('port').errors && templateForm.get('database').get('port').touched">Required.</span>
+                                                                <fix-field-error-display [displayError]="isFieldValid('database.port')" errorMsg="Please inform the connexion  port of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,8 +224,11 @@
                 <fix-widget-footer>
                     <div class="row form-group nomargin">
                         <div class="col-sm-12 nomargin">
-                            <button type="submit" class="btn btn-primary btn-sm pull-right" [disabled]="templateForm.invalid || templateForm.pending">
+                            <button class="btn btn-primary btn-sm pull-right" (click)="onSubmit()">
                                 <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
+                            </button>
+                            <button class="btn btn-default btn-sm pull-right m-r-5" (click)="reset()">
+                                <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
                             </button>
                         </div>
                     </div>

@@ -6,6 +6,8 @@ import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../..
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 import { PackageValidators } from '../../../validators/package.validaors';
 import { TemplatePackageService } from '../../../services/template-package.service';
+import { ModuleConfig } from '../../../models/domain/module-config.model';
+import { ModuleType } from '../../../models/domain/module.model';
 
 declare let jQuery: any;
 
@@ -40,39 +42,47 @@ export class TemplateConfigComponent implements AfterViewInit, OnInit {
         this.templateForm = new FormGroup({
             'general': new FormGroup({
                 'plateform': new FormControl('', Validators.required),
-                'name': new FormControl('', Validators.required),
+                'name': new FormControl(this.currentTemplatePackage.packageConfig.plateform.name, Validators.required),
                 'generalOptions': new FormGroup({
-                    'commonEnv': new FormControl('')
+                    'commonEnv': new FormControl(this.currentTemplatePackage.packageConfig.commonEnvConfig.enable)
                 })
             }),
             'coreEngine': new FormGroup({
-                'version': new FormControl('', [Validators.required, PackageValidators.version]),
-                'push': new FormControl('', [Validators.required, PackageValidators.number])
+                'version': new FormControl(this.currentTemplatePackage.packageConfig.coreEngineConfig.version.version,
+                    [Validators.required, PackageValidators.version]),
+                'push': new FormControl(this.currentTemplatePackage.packageConfig.coreEngineConfig.version.push,
+                    [Validators.required, PackageValidators.number])
             }),
             'filterEngine': new FormGroup({
-                'version': new FormControl('', [Validators.required, PackageValidators.version]),
+                'version': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.version.version,
+                    [Validators.required, PackageValidators.version]),
                 'filterEngineOptions': new FormGroup({
-                    'fmlFile1': new FormControl(''),
-                    'fmlFile2': new FormControl(''),
-                    'scoreFile': new FormControl(''),
+                    'fmlFile1': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.fmlFile1Url !== ''),
+                    'fmlFile2': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.fmlFile2Url !== ''),
+                    'scoreFile': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.scoreFileUrl !== ''),
                 })
             }),
             'continuityBackend': new FormGroup({
-                'version': new FormControl('', [Validators.required, PackageValidators.version]),
-                'push': new FormControl('', [Validators.required, PackageValidators.number]),
+                'version': new FormControl(this.currentTemplatePackage.packageConfig.modulesConfig[0].version.version,
+                    [Validators.required, PackageValidators.version]),
+                'push': new FormControl(this.currentTemplatePackage.packageConfig.modulesConfig[0].version.push,
+                    [Validators.required, PackageValidators.number]),
                 'modules': new FormGroup({
-                    'aquisition': new FormControl(''),
-                    'requester': new FormControl(''),
-                    'dbclient': new FormControl('')
+                    'aquisition': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
+                        ModuleType.AQUISITION)),
+                    'requester': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
+                        ModuleType.REQUESTER)),
+                    'dbclient': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
+                        ModuleType.DBCLIENT))
                 })
             }),
             'database': new FormGroup({
-                'dbtype': new FormControl('', Validators.required),
-                'username': new FormControl('', Validators.required),
-                'password': new FormControl('', Validators.required),
-                'hostname': new FormControl('', Validators.required),
-                'port': new FormControl('', Validators.required),
-                'service': new FormControl('', Validators.required)
+                'dbtype': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.type, Validators.required),
+                'username': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.username, Validators.required),
+                'password': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.password, Validators.required),
+                'hostname': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.hostname, Validators.required),
+                'port': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.port, Validators.required),
+                'service': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.service, Validators.required)
             })
         });
 
@@ -87,6 +97,18 @@ export class TemplateConfigComponent implements AfterViewInit, OnInit {
     ngAfterViewInit(): void {
         jQuery('.selecttemplate').selectpicker();
         jQuery('.selectplateform').selectpicker();
+    }
+
+    moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {
+        var exist: boolean = false;
+
+        list.forEach((item, index) => {
+            if (item.type === type) {
+                exist = true;
+            }
+        });
+
+        return exist;
     }
 
     isFieldValid(field: string) {

@@ -7,7 +7,7 @@
         "licenceUrl": "https://bloomberg.com/tempus/sit/amet.html?posuere=tincidunt&nonummy=ante&integer=vel&non=ipsum&velit=praesent&donec=blandit&diam=lacinia&neque=erat&vestibulum=vestibulum&eget=sed&vulputate=magna&ut=at&ultrices=nunc&vel=commodo&augue=placerat&vestibulum=praesent&ante=blandit&ipsum=nam&primis=nulla&in=integer&faucibus=pede&orci=justo&luctus=lacinia&et=eget&ultrices=tincidunt&posuere=eget&cubilia=tempus&curae=vel&donec=pede&pharetra=morbi&magna=porttitor&vestibulum=lorem&aliquet=id&ultrices=ligula&erat=suspendisse&tortor=ornare&sollicitudin=consequat&mi=lectus&sit=in&amet=est&lobortis=risus&sapien=auctor&sapien=sed&non=tristique&mi=in&integer=tempus&ac=sit&neque=amet&duis=sem&bibendum=fusce&morbi=consequat&non=nulla&quam=nisl&nec=nunc&dui=nisl&luctus=duis&rutrum=bibendum&nulla=felis&tellus=sed&in=interdum&sagittis=venenatis&dui=turpis&vel=enim&nisl=blandit&duis=mi&ac=in&nibh=porttitor&fusce=pede&lacus=justo&purus=eu&aliquet=massa&at=donec&feugiat=dapibus&non=duis&pretium=at&quis=velit&lectus=eu&suspendisse=est&potenti=congue&in=elementum&eleifend=in",
         "plateform": {
             "name": "Docker-centos",
-            "OS": "WINDOWS"
+            "os": "WINDOWS"
         },
         "commonEnvConfig": {
             "enable": false,

@@ -76,10 +76,10 @@ export class PackageConfig implements IPackageConfig {
             plateform: Container.fromResult(res.plateform),
             commonEnvConfig: CommonEnvConfig.fromResult(res.commonEnvConfig),
             licenceUrl: res.licenceUrl,
-            coreEngineConfig: CoreEngineConfig.fromResult(res.plateform),
-            filterEngineConfig: FilterEngineConfig.fromResult(res.plateform),
-            modulesConfig: ModuleConfig.fromListResult(res.plateform),
-            databaseConfig: DatabaseConfig.fromResult(res.plateform)
+            coreEngineConfig: CoreEngineConfig.fromResult(res.coreEngineConfig),
+            filterEngineConfig: FilterEngineConfig.fromResult(res.filterEngineConfig),
+            modulesConfig: ModuleConfig.fromListResult(res.modulesConfig),
+            databaseConfig: DatabaseConfig.fromResult(res.databaseConfig)
         });
         return template;
     }

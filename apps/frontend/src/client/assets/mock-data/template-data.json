@@ -8,7 +8,7 @@
             "licenceUrl": "https://bloomberg.com/tempus/sit/amet.html?posuere=tincidunt&nonummy=ante&integer=vel&non=ipsum&velit=praesent&donec=blandit&diam=lacinia&neque=erat&vestibulum=vestibulum&eget=sed&vulputate=magna&ut=at&ultrices=nunc&vel=commodo&augue=placerat&vestibulum=praesent&ante=blandit&ipsum=nam&primis=nulla&in=integer&faucibus=pede&orci=justo&luctus=lacinia&et=eget&ultrices=tincidunt&posuere=eget&cubilia=tempus&curae=vel&donec=pede&pharetra=morbi&magna=porttitor&vestibulum=lorem&aliquet=id&ultrices=ligula&erat=suspendisse&tortor=ornare&sollicitudin=consequat&mi=lectus&sit=in&amet=est&lobortis=risus&sapien=auctor&sapien=sed&non=tristique&mi=in&integer=tempus&ac=sit&neque=amet&duis=sem&bibendum=fusce&morbi=consequat&non=nulla&quam=nisl&nec=nunc&dui=nisl&luctus=duis&rutrum=bibendum&nulla=felis&tellus=sed&in=interdum&sagittis=venenatis&dui=turpis&vel=enim&nisl=blandit&duis=mi&ac=in&nibh=porttitor&fusce=pede&lacus=justo&purus=eu&aliquet=massa&at=donec&feugiat=dapibus&non=duis&pretium=at&quis=velit&lectus=eu&suspendisse=est&potenti=congue&in=elementum&eleifend=in",
             "plateform": {
                 "name": "Docker-centos",
-                "OS": "WINDOWS"
+                "os": "WINDOWS"
             },
             "commonEnvConfig": {
                 "enable": false,
@@ -81,7 +81,7 @@
             "licenceUrl": "https://t-online.de/leo/pellentesque/ultrices/mattis/odio/donec.js?dictumst=diam&maecenas=cras&ut=pellentesque&massa=volutpat&quis=dui&augue=maecenas&luctus=tristique&tincidunt=est&nulla=et&mollis=tempus&molestie=semper&lorem=est&quisque=quam&ut=pharetra&erat=magna&curabitur=ac&gravida=consequat&nisi=metus&at=sapien&nibh=ut&in=nunc&hac=vestibulum&habitasse=ante&platea=ipsum&dictumst=primis&aliquam=in&augue=faucibus&quam=orci&sollicitudin=luctus&vitae=et&consectetuer=ultrices&eget=posuere&rutrum=cubilia&at=curae&lorem=mauris&integer=viverra&tincidunt=diam&ante=vitae&vel=quam&ipsum=suspendisse&praesent=potenti&blandit=nullam&lacinia=porttitor&erat=lacus&vestibulum=at&sed=turpis&magna=donec&at=posuere&nunc=metus&commodo=vitae&placerat=ipsum&praesent=aliquam&blandit=non&nam=mauris&nulla=morbi&integer=non&pede=lectus&justo=aliquam&lacinia=sit&eget=amet&tincidunt=diam&eget=in&tempus=magna&vel=bibendum&pede=imperdiet&morbi=nullam&porttitor=orci&lorem=pede&id=venenatis&ligula=non&suspendisse=sodales",
             "plateform": {
                 "name": "Local",
-                "OS": "SOLARIS"
+                "os": "SOLARIS"
             },
             "commonEnvConfig": {
                 "enable": false,
@@ -154,7 +154,7 @@
             "licenceUrl": "https://addtoany.com/vel/lectus/in/quam/fringilla/rhoncus.jpg?erat=vivamus&quisque=metus&erat=arcu&eros=adipiscing&viverra=molestie&eget=hendrerit&congue=at&eget=vulputate&semper=vitae&rutrum=nisl&nulla=aenean&nunc=lectus&purus=pellentesque&phasellus=eget&in=nunc&felis=donec&donec=quis&semper=orci&sapien=eget&a=orci&libero=vehicula&nam=condimentum&dui=curabitur&proin=in&leo=libero&odio=ut&porttitor=massa&id=volutpat&consequat=convallis&in=morbi&consequat=odio&ut=odio&nulla=elementum&sed=eu&accumsan=interdum&felis=eu&ut=tincidunt&at=in&dolor=leo&quis=maecenas&odio=pulvinar&consequat=lobortis&varius=est&integer=phasellus&ac=sit&leo=amet&pellentesque=erat&ultrices=nulla&mattis=tempus&odio=vivamus&donec=in&vitae=felis&nisi=eu&nam=sapien&ultrices=cursus&libero=vestibulum&non=proin&mattis=eu&pulvinar=mi&nulla=nulla&pede=ac&ullamcorper=enim&augue=in&a=tempor&suscipit=turpis&nulla=nec&elit=euismod&ac=scelerisque&nulla=quam&sed=turpis&vel=adipiscing&enim=lorem&sit=vitae&amet=mattis&nunc=nibh&viverra=ligula&dapibus=nec&nulla=sem&suscipit=duis&ligula=aliquam&in=convallis&lacus=nunc&curabitur=proin&at=at&ipsum=turpis",
             "plateform": {
                 "name": "Jenkins-DEV-Box",
-                "OS": "SOLARIS"
+                "os": "SOLARIS"
             },
             "commonEnvConfig": {
                 "enable": true,

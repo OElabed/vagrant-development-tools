@@ -11,6 +11,7 @@ import { PackageCreationComponent } from './package-creation.component';
 // import { ModuleConfigComponent } from '../../common/components/configurations/module-config/module-config.component';
 import { YamlConfigComponent } from '../../common/components/configurations/yaml-config/yaml-config.component';
 import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
+import { TemplatePackageService } from '../../common/services/template-package.service';
 
 @NgModule({
   imports: [CommonModule,
@@ -20,23 +21,24 @@ import { TemplateConfigComponent } from '../../common/components/configurations/
   ],
   declarations: [
     PackageCreationComponent,
-   // PackageConfigComponent,
-   // CoreEngineConfigComponent,
-   // FilterEngineConfigComponent,
-   // ModulesAllConfigComponent,
-   // ModuleConfigComponent,
+    // PackageConfigComponent,
+    // CoreEngineConfigComponent,
+    // FilterEngineConfigComponent,
+    // ModulesAllConfigComponent,
+    // ModuleConfigComponent,
     YamlConfigComponent,
     TemplateConfigComponent
   ],
   exports: [
     PackageCreationComponent,
-   // PackageConfigComponent,
-   // CoreEngineConfigComponent,
-   // FilterEngineConfigComponent,
-   // ModulesAllConfigComponent,
-   // ModuleConfigComponent,
+    // PackageConfigComponent,
+    // CoreEngineConfigComponent,
+    // FilterEngineConfigComponent,
+    // ModulesAllConfigComponent,
+    // ModuleConfigComponent,
     YamlConfigComponent,
     TemplateConfigComponent
-  ]
+  ],
+  providers: [TemplatePackageService]
 })
 export class PackageCreationModule { }

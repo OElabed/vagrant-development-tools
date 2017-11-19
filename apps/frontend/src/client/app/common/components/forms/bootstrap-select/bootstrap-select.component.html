@@ -1,0 +1,5 @@
+<select [id]="elementId" data-style="input-sm btn-default select-text-sm" [title]="selectContainer.placeholder">
+    <option *ngFor="let item of selectContainer.options" [value]="item.value" [attr.data-icon]="item.icon" [selected]="item.selected">
+        {{ item.label }}
+    </option>
+</select>

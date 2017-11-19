@@ -12,6 +12,7 @@ import { PackageCreationComponent } from './package-creation.component';
 import { YamlConfigComponent } from '../../common/components/configurations/yaml-config/yaml-config.component';
 import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
 import { TemplatePackageService } from '../../common/services/template-package.service';
+import { ContainerService } from '../../common/services/containers.service';
 
 @NgModule({
   imports: [CommonModule,
@@ -39,6 +40,6 @@ import { TemplatePackageService } from '../../common/services/template-package.s
     YamlConfigComponent,
     TemplateConfigComponent
   ],
-  providers: [TemplatePackageService]
+  providers: [TemplatePackageService, ContainerService]
 })
 export class PackageCreationModule { }

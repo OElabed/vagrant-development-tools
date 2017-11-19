@@ -14,6 +14,7 @@ import { FixLoadingComponent } from '../components/widgets/fix-loading/fix-loadi
 import { FixAlertsComponent } from '../components/widgets/fix-alerts-bar/fix-alerts-bar.component';
 
 import { FieldErrorDisplayComponent } from '../components/forms/field-error-display/field-error-display.component';
+import { BootstrapSelectComponent } from '../components/forms/bootstrap-select/bootstrap-select.component';
 
 
 import { RoutingGlobalService } from '../services/routing-global.service';
@@ -34,7 +35,8 @@ import { FileEditorGlobalService } from '../services/file-editor-service.service
     FixWidgetBodyComponent,
     FixLoadingComponent,
     FixAlertsComponent,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
+    BootstrapSelectComponent
   ],
   exports: [
     HeaderbarComponent,
@@ -46,6 +48,7 @@ import { FileEditorGlobalService } from '../services/file-editor-service.service
     FixLoadingComponent,
     FixAlertsComponent,
     FieldErrorDisplayComponent,
+    BootstrapSelectComponent,
 
     CodemirrorModule,
     CommonModule,

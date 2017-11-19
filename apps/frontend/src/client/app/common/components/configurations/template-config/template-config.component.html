@@ -5,9 +5,7 @@
                 <fix-widget-header icon="fa fa-code" title="Package configuration file">
                     <div class="pull-right">
                         Templates
-                        <select class="selectplateform" data-style="input-sm btn-default select-text-sm" title="Choose template...">
-                            <option value="object:266"> v5.9.0.0</option>
-                        </select>
+                        <fix-bootstrap-select [selectContainer]="templateSelect" (selectOption)="onSelectedTemplateOption($event)"></fix-bootstrap-select>
                     </div>
                 </fix-widget-header>
                 <fix-widget-body classes="no-padding">
@@ -28,7 +26,7 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Name</label>
                                                             <div class="col-sm-8" [ngClass]="displayFieldCss('general.name')">
                                                                 <input type="text" placeholder="MyPackage" class="form-control input-sm" formControlName="name">
-                                                                <fix-field-error-display [displayError]="isFieldValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -36,10 +34,8 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label" for="textinput">Platform</label>
                                                             <div class="col-sm-10" [ngClass]="displayFieldCss('general.plateform')">
-                                                                <select class="selectplateform" data-style="input-sm btn-default select-text-sm" title="Choose container..." formControlName="plateform">
-                                                                    <option data-icon="fa fa-linux" label="DockerHub"> Linux-Docker01</option>
-                                                                </select>
-                                                                <fix-field-error-display [displayError]="isFieldValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
+                                                                <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -65,13 +61,13 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('coreEngine.version')">
                                                                 <input type="text" placeholder="5.7.0.0" class="form-control input-sm" formControlName="version">
-                                                                <fix-field-error-display [displayError]="isFieldValid('coreEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('coreEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Push</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('coreEngine.push')">
                                                                 <input type="text" placeholder="760" class="form-control input-sm" formControlName="push">
-                                                                <fix-field-error-display [displayError]="isFieldValid('coreEngine.push')" errorMsg="Please inform the push version"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('coreEngine.push')" errorMsg="Please inform the push version"></fix-field-error-display>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -85,7 +81,7 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('filterEngine.version')">
                                                                 <input type="text" placeholder="5.7.2.0" class="form-control input-sm" formControlName="version">
-                                                                <fix-field-error-display [displayError]="isFieldValid('filterEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('filterEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -124,13 +120,13 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Version</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('continuityBackend.version')">
                                                                 <input type="text" placeholder="5.9.0.0" class="form-control input-sm" formControlName="version">
-                                                                <fix-field-error-display [displayError]="isFieldValid('continuityBackend.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('continuityBackend.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Push</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('continuityBackend.push')">
                                                                 <input type="text" placeholder="760" class="form-control input-sm" formControlName="push">
-                                                                <fix-field-error-display [displayError]="isFieldValid('continuityBackend.push')" errorMsg="Please inform the push version"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('continuityBackend.push')" errorMsg="Please inform the push version"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -178,7 +174,7 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Username</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('database.username')">
                                                                 <input type="text" placeholder="USER_ONE" class="form-control input-sm" formControlName="username">
-                                                                <fix-field-error-display [displayError]="isFieldValid('database.username')" errorMsg="Please inform the username of database"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('database.username')" errorMsg="Please inform the username of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -186,7 +182,7 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Password</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('database.password')">
                                                                 <input type="text" placeholder="******" class="form-control input-sm" formControlName="password">
-                                                                <fix-field-error-display [displayError]="isFieldValid('database.password')" errorMsg="Please inform the password of database"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('database.password')" errorMsg="Please inform the password of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -194,13 +190,13 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Hostname</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('database.hostname')">
                                                                 <input type="text" placeholder="127.0.0.1" class="form-control input-sm" formControlName="hostname">
-                                                                <fix-field-error-display [displayError]="isFieldValid('database.hostname')" errorMsg="Please inform the hostname of database"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('database.hostname')" errorMsg="Please inform the hostname of database"></fix-field-error-display>
                                                             </div>
 
                                                             <label class="col-sm-2 control-label" for="textinput">Service</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('database.service')">
                                                                 <input type="text" placeholder="XE" class="form-control input-sm" formControlName="service">
-                                                                <fix-field-error-display [displayError]="isFieldValid('database.service')" errorMsg="Please inform the service of database"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('database.service')" errorMsg="Please inform the service of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
 
@@ -208,7 +204,7 @@
                                                             <label class="col-sm-2 control-label" for="textinput">Port</label>
                                                             <div class="col-sm-4" [ngClass]="displayFieldCss('database.port')">
                                                                 <input type="text" placeholder="1521" class="form-control input-sm" formControlName="port">
-                                                                <fix-field-error-display [displayError]="isFieldValid('database.port')" errorMsg="Please inform the connexion  port of database"></fix-field-error-display>
+                                                                <fix-field-error-display [displayError]="isFieldNotValid('database.port')" errorMsg="Please inform the connexion  port of database"></fix-field-error-display>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -1,15 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { ITemplatePackage, TemplatePackage } from '../../../models/domain/template-package.model';
+import { BootstrapSelect, Option } from '../../../models/view/bootstrap-select.model';
 
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 import { PackageValidators } from '../../../validators/package.validaors';
 import { TemplatePackageService } from '../../../services/template-package.service';
+import { ContainerService } from '../../../services/containers.service';
 import { ModuleConfig } from '../../../models/domain/module-config.model';
 import { ModuleType } from '../../../models/domain/module.model';
+import { IContainer } from '../../../models/domain/container.model';
+import { SelectValidators } from '../../../validators/select.validator';
 
-declare let jQuery: any;
+//declare let jQuery: any;
 
 /**
  * This class represents the lazy loaded DashboardComponent.
@@ -20,83 +24,144 @@ declare let jQuery: any;
     templateUrl: 'template-config.component.html',
     styleUrls: ['template-config.component.css']
 })
-export class TemplateConfigComponent implements AfterViewInit, OnInit {
+export class TemplateConfigComponent implements OnInit {
+
 
     // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
 
     private templateForm: FormGroup;
     private formSumitAttempt: boolean;
 
+    private templateSelect: BootstrapSelect;
+    private templateSelectedOption: Option;
     private currentTemplatePackage: ITemplatePackage;
     private templatePackageList: ITemplatePackage[];
+
+    private containerSelect: BootstrapSelect;
+    private containerList: IContainer[];
+    private currentContainer: IContainer;
+    private containerSelectedOption: Option;
+
+
 
     private errorMessage: string = '';
     private isLoading: boolean = true;
 
-    constructor(private templatePackageService: TemplatePackageService) {
-
+    constructor(
+        private templatePackageService: TemplatePackageService,
+        private containerService: ContainerService,
+        private formBuilder: FormBuilder) {
         this.currentTemplatePackage = TemplatePackage.initialize();
+        this.templateSelect = new BootstrapSelect();
+        this.containerSelect = new BootstrapSelect();
     }
 
     ngOnInit() {
-        this.templateForm = new FormGroup({
-            'general': new FormGroup({
-                'plateform': new FormControl('', Validators.required),
-                'name': new FormControl(this.currentTemplatePackage.packageConfig.plateform.name, Validators.required),
-                'generalOptions': new FormGroup({
-                    'commonEnv': new FormControl(this.currentTemplatePackage.packageConfig.commonEnvConfig.enable)
-                })
-            }),
-            'coreEngine': new FormGroup({
-                'version': new FormControl(this.currentTemplatePackage.packageConfig.coreEngineConfig.version.version,
-                    [Validators.required, PackageValidators.version]),
-                'push': new FormControl(this.currentTemplatePackage.packageConfig.coreEngineConfig.version.push,
-                    [Validators.required, PackageValidators.number])
-            }),
-            'filterEngine': new FormGroup({
-                'version': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.version.version,
-                    [Validators.required, PackageValidators.version]),
-                'filterEngineOptions': new FormGroup({
-                    'fmlFile1': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.fmlFile1Url !== ''),
-                    'fmlFile2': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.fmlFile2Url !== ''),
-                    'scoreFile': new FormControl(this.currentTemplatePackage.packageConfig.filterEngineConfig.scoreFileUrl !== ''),
-                })
-            }),
-            'continuityBackend': new FormGroup({
-                'version': new FormControl(this.currentTemplatePackage.packageConfig.modulesConfig[0].version.version,
-                    [Validators.required, PackageValidators.version]),
-                'push': new FormControl(this.currentTemplatePackage.packageConfig.modulesConfig[0].version.push,
-                    [Validators.required, PackageValidators.number]),
-                'modules': new FormGroup({
-                    'aquisition': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
-                        ModuleType.AQUISITION)),
-                    'requester': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
-                        ModuleType.REQUESTER)),
-                    'dbclient': new FormControl(this.moduleIsActivate(this.currentTemplatePackage.packageConfig.modulesConfig,
-                        ModuleType.DBCLIENT))
-                })
-            }),
-            'database': new FormGroup({
-                'dbtype': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.type, Validators.required),
-                'username': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.username, Validators.required),
-                'password': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.password, Validators.required),
-                'hostname': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.hostname, Validators.required),
-                'port': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.port, Validators.required),
-                'service': new FormControl(this.currentTemplatePackage.packageConfig.databaseConfig.service, Validators.required)
-            })
-        });
+
+        this.buildForm();
 
         this.templatePackageService
             .getAll()
-            .subscribe(
-         /* happy path */ p => this.templatePackageList = p,
-         /* error path */ e => this.errorMessage = e,
-         /* onComplete */() => this.isLoading = false);
+            .subscribe(templates => {
+                this.templatePackageList = templates;
+                this.initializeTemplateSelect(templates);
+            },
+            e => this.errorMessage = e,
+            () => {
+                this.isLoading = false;
+            });
+
+        this.containerService
+            .getAll()
+            .subscribe(containers => {
+                this.containerList = containers;
+                this.initializeContainerSelect(containers);
+            },
+            e => this.errorMessage = e,
+            () => {
+                this.isLoading = false;
+            });
     }
 
-    ngAfterViewInit(): void {
-        jQuery('.selecttemplate').selectpicker();
-        jQuery('.selectplateform').selectpicker();
+
+    buildForm() {
+        this.templateForm = this.formBuilder.group({
+            general: this.formBuilder.group({
+                plateform: new FormControl('', Validators.required),
+                name: new FormControl('', Validators.required),
+                generalOptions: this.formBuilder.group({
+                    commonEnv: new FormControl(false)
+                })
+            }),
+            coreEngine: this.formBuilder.group({
+                version: new FormControl('', [Validators.required, PackageValidators.version]),
+                push: new FormControl('', [Validators.required, PackageValidators.number])
+            }),
+            filterEngine: this.formBuilder.group({
+                version: new FormControl('', [Validators.required, PackageValidators.version]),
+                filterEngineOptions: this.formBuilder.group({
+                    fmlFile1: new FormControl(false),
+                    fmlFile2: new FormControl(false),
+                    scoreFile: new FormControl(false)
+                })
+            }),
+            continuityBackend: this.formBuilder.group({
+                version: new FormControl('', [Validators.required, PackageValidators.version]),
+                push: new FormControl('', [Validators.required, PackageValidators.number]),
+                modules: this.formBuilder.group({
+                    aquisition: new FormControl(false),
+                    requester: new FormControl(false),
+                    dbclient: new FormControl(false)
+                })
+            }),
+            database: this.formBuilder.group({
+                dbtype: new FormControl('', Validators.required),
+                username: new FormControl('', Validators.required),
+                password: new FormControl('', Validators.required),
+                hostname: new FormControl('', Validators.required),
+                port: new FormControl('', Validators.required),
+                service: new FormControl('', Validators.required)
+            })
+        });
+    }
+
+    initializeTemplateSelect(templates: ITemplatePackage[]): void {
+        var self = this;
+        this.templateSelect = new BootstrapSelect();
+        this.templateSelect.placeholder = 'Choose Template ...';
+        templates.forEach((item, index) => {
+            self.templateSelect.addOption('' + item.id, item.templateName, false);
+        });
+    }
+
+    initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
+        var self = this;
+        this.containerSelect = new BootstrapSelect();
+        this.containerSelect.placeholder = 'Choose Container ...';
+        containers.forEach((item, index) => {
+            var selected = false;
+            if (containerSelected !== null && containerSelected.id === item.id) {
+                selected = true;
+            }
+            self.containerSelect.addOption('' + item.id, item.name, selected, 'fa fa-linux');
+        });
+    }
+
+    onSelectedTemplateOption(option: Option) {
+        this.templateSelectedOption = option;
+        var idTemplate = Number(option.value);
+        this.currentTemplatePackage = this.templatePackageList.filter((template: ITemplatePackage) => template.id === idTemplate)[0];
+        this.initializeContainerSelect(this.containerList, this.currentTemplatePackage.packageConfig.plateform);
+        this.initializeForm(this.templateForm, this.currentTemplatePackage);
+    }
+
+    onSelectedContainerOption(option: Option) {
+        this.containerSelectedOption = option;
+        var idContainer = Number(option.value);
+        this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
+        this.setValueFormControl('general.plateform', this.currentContainer);
+        (<FormGroup>this.templateForm.controls.general)
+        .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
     }
 
     moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {
@@ -111,17 +176,18 @@ export class TemplateConfigComponent implements AfterViewInit, OnInit {
         return exist;
     }
 
-    isFieldValid(field: string) {
-        var fieldControl = this.getFieldControl(field);
-        return (
-            (!fieldControl.valid && fieldControl.touched) ||
-            (fieldControl.untouched && this.formSumitAttempt)
+    isFieldNotValid(field: string) {
+        var fieldControl = this.getFieldControl(field, this.templateForm);
+        var isValid = (
+            (fieldControl.valid) ||
+            (fieldControl.pristine && !this.formSumitAttempt)
         );
+        return !isValid;
     }
 
-    getFieldControl(field: string): AbstractControl {
+    getFieldControl(field: string, form: AbstractControl): AbstractControl {
         var splitted = field.split('.');
-        var formGroup: AbstractControl = this.templateForm;
+        var formGroup: AbstractControl = form;
         var control: AbstractControl;
         splitted.forEach((item, index) => {
             if (index === (splitted.length - 1)) {
@@ -135,8 +201,8 @@ export class TemplateConfigComponent implements AfterViewInit, OnInit {
 
     displayFieldCss(field: string) {
         return {
-            'has-error': this.isFieldValid(field),
-            'has-feedback': this.isFieldValid(field)
+            'has-error': this.isFieldNotValid(field),
+            'has-feedback': this.isFieldNotValid(field)
         };
     }
 
@@ -150,6 +216,53 @@ export class TemplateConfigComponent implements AfterViewInit, OnInit {
     reset() {
         this.templateForm.reset();
         this.formSumitAttempt = false;
+    }
+
+    setValueFormControl(field: string, value: any) {
+        var control = <FormControl>this.getFieldControl(field, this.templateForm);
+        control.setValue(value, { onlySelf: true });
+    }
+
+    initializeForm(form: FormGroup, template: ITemplatePackage) {
+        this.templateForm.setValue({
+            general: {
+                plateform: template.packageConfig.plateform,
+                name: template.packageConfig.name,
+                generalOptions: {
+                    commonEnv: template.packageConfig.commonEnvConfig.enable
+                }
+            },
+            coreEngine: {
+                version: template.packageConfig.coreEngineConfig.version.version,
+                push: template.packageConfig.coreEngineConfig.version.push
+            },
+            filterEngine: {
+                version: template.packageConfig.filterEngineConfig.version.version,
+                filterEngineOptions: {
+                    fmlFile1: template.packageConfig.filterEngineConfig.fmlFile1Url !== '',
+                    fmlFile2: template.packageConfig.filterEngineConfig.fmlFile2Url !== '',
+                    scoreFile: template.packageConfig.filterEngineConfig.scoreFileUrl !== ''
+                }
+            },
+            continuityBackend: {
+                version: template.packageConfig.modulesConfig[0].version.version,
+                push: template.packageConfig.modulesConfig[0].version.push,
+                modules: {
+                    aquisition: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.AQUISITION),
+                    requester: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.REQUESTER),
+                    dbclient: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.DBCLIENT)
+                }
+            },
+            database: {
+                dbtype: template.packageConfig.databaseConfig.type,
+                username: template.packageConfig.databaseConfig.username,
+                password: template.packageConfig.databaseConfig.password,
+                hostname: template.packageConfig.databaseConfig.hostname,
+                port: template.packageConfig.databaseConfig.port,
+                service: template.packageConfig.databaseConfig.service
+            }
+        }, { onlySelf: true });
+
     }
 
 }

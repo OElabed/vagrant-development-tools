@@ -10,7 +10,7 @@ export class Version implements IVersion {
     public static fromResult(res: any): IVersion {
         let version = <IVersion>({
             version: res.version,
-            archiveUrl: res.push
+            push: res.push
         });
         return version;
     }

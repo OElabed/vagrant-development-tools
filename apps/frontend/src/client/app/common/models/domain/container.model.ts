@@ -6,16 +6,19 @@ export enum OS {
 }
 
 export interface IContainer {
+    id?: number;
     name?: string;
     os?: OS;
 }
 
 export class Container implements IContainer {
+    id?: number;
     name?: string;
     os?: OS;
 
     public static initialize(): IContainer {
         var result = new Container();
+        result.id = 0;
         result.name = '';
         result.os = OS.LINUX;
         return result;
@@ -23,6 +26,7 @@ export class Container implements IContainer {
 
     public static fromResult(res: any): IContainer {
         let template = <IContainer>({
+            id: res.id,
             name: res.name,
             os: OS[res.os]
         });

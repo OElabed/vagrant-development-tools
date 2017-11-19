@@ -10,7 +10,7 @@ import { TemplatePackageService } from '../../../services/template-package.servi
 import { ContainerService } from '../../../services/containers.service';
 import { ModuleConfig } from '../../../models/domain/module-config.model';
 import { ModuleType } from '../../../models/domain/module.model';
-import { IContainer } from '../../../models/domain/container.model';
+import { IContainer, findIconContainer } from '../../../models/domain/container.model';
 import { SelectValidators } from '../../../validators/select.validator';
 
 //declare let jQuery: any;
@@ -143,7 +143,7 @@ export class TemplateConfigComponent implements OnInit {
             if (containerSelected !== null && containerSelected.id === item.id) {
                 selected = true;
             }
-            self.containerSelect.addOption('' + item.id, item.name, selected, 'fa fa-linux');
+            self.containerSelect.addOption('' + item.id, item.name, selected, findIconContainer(item.os));
         });
     }
 
@@ -161,7 +161,7 @@ export class TemplateConfigComponent implements OnInit {
         this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
         this.setValueFormControl('general.plateform', this.currentContainer);
         (<FormGroup>this.templateForm.controls.general)
-        .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+            .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
     }
 
     moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {

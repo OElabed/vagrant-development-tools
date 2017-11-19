@@ -1,52 +1,218 @@
-<div class="form-horizontal">
-    <div class="col-sm-12 form-section-title">
-        Package configuration
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <fix-widget>
+            <fix-widget-header icon="fa-info-circle" title="Package infos">
+            </fix-widget-header>
+            <fix-widget-body classes="no-padding">
+                <table class="table hierarchical">
+                    <tbody>
+                        <tr class="section-title">
+                            <td colspan="2">
+                                <i class="fa fa-cog m-r-5" aria-hidden="true"></i>
+                                Global</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Name</td>
+                            <td>package1
+                                <div class="dropdown pull-right">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#templateModal">
+                                                <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-trash-o m-r-5" aria-hidden="true"></i>
+                                                Clear</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Id</td>
+                            <td>addea5f2-b51e-11e7-abc4-cec278b6b50a</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>OS</td>
+                            <td>Linux Centos</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Folder</td>
+                            <td>/tmp/backend/addea5f2-b51e-11e7-abc4-cec278b6b50a/</td>
+                        </tr>
+                        <tr class="section-title">
+                            <td colspan="2">
+                                <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
+                                Core Engine</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Version</td>
+                            <td>5.7.0.0</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Push</td>
+                            <td>640</td>
+                        </tr>
+
+                        <tr class="section-title">
+                            <td colspan="2">
+                                <i class="fa fa-database m-r-5" aria-hidden="true"></i>
+                                Database</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Type</td>
+                            <td>ORACLE</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Username</td>
+                            <td>toto</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Password</td>
+                            <td>SDFZTg6864</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Hostname</td>
+                            <td>127.0.0.1</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Port</td>
+                            <td>1521</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Service</td>
+                            <td>ORCL</td>
+                        </tr>
+
+                        <tr class="section-title">
+                            <td colspan="2">
+                                <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
+                                Filter Engine</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Version</td>
+                            <td>5.7.0.0</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Push</td>
+                            <td>640</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </fix-widget-body>
+        </fix-widget>
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="container_name" class="col-sm-2 control-label text-left">Name</label>
-        <div class="col-sm-3 has-error">
-            <input class="form-control" id="container_name" placeholder="e.g. myPackage" type="text">
-            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
-        </div>
-    </div>
-    <hr>
+<!-- Modal -->
+<div id="templateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
 
-    <div class="form-group">
-        <label for="container_name" class="col-sm-2 control-label text-left">Platform</label>
-        <div class="col-sm-3 has-error">
-            <select class="form-control selectpicker input-sm">
-                <option label="DockerHub" value="object:266" selected="selected"> (none)</option>
-                <option data-icon="fa fa-linux" label="DockerHub" value="object:266"> Linux-Docker01</option>
-            </select>
-            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
-        </div>
-    </div>
-    <hr>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                <div class="pull-right">
+                    Templates:
+                    <select class="selecttemplate" style="float:right;" title="Choose template...">
+                        <option>v5.9.0.0</option>
+                    </select>
+                </div>
 
-    <div class="form-group">
-        <label for="container_name" class="col-sm-2 control-label text-left">Common Env</label>
-        <div class="col-sm-10 m-t-5">
-
-            <div class="fix-switch nomargin m-b-5">
-                <input id="commonEnvActive" name="commonEnvActiveOption1" type="checkbox" (click)="setCommonEnv()" [checked]="commonEnvConfig.enable"
-                />
-                <label for="commonEnvActive" class="label-primary"></label>
+                <h4 class="modal-title">
+                    <i class="fa fa-clipboard m-r-5" aria-hidden="true"></i>Template configuration</h4>
             </div>
-            <div class="row">
-                <fix-add-file-form [config]="commonEnvConfig.fileConfig" [active]="commonEnvConfig.enable"></fix-add-file-form>
+            <div class="modal-body">
+                <!-- Text input-->
+                <div class="row">
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+
+                            <legend style="margin-top: 10px;">
+                                <i class="fa fa-windows m-r-5" aria-hidden="true"></i>Container</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Platform</label>
+                                <div class="col-sm-4">
+                                    <select class="selectplateform input-sm" title="Choose container...">
+                                        <option data-icon="fa fa-linux" label="DockerHub" value="object:266"> Linux-Docker01</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <legend>
+                                <i class="fa fa-archive m-r-5" aria-hidden="true"></i>Continuity Backend version</legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.9.0.0" class="form-control input-sm">
+                                </div>
+
+                                <label class="col-sm-2 control-label" for="textinput">Push</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="760" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <legend>
+                                <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.7.0.0" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <legend>
+                                <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version</legend>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="5.7.2.0" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="textinput">Options</label>
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Fml file - 1</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Fml file - 2</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="">Score file</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
-    </div>
-    <hr>
 
-    <div class="form-group">
-        <label for="container_name" class="col-sm-2 control-label text-left">Licence</label>
-        <div class="col-sm-10 m-t-5">
-
-            <div class="row">
-                <fix-add-file-form [config]="licenceConfig"></fix-add-file-form>
-            </div>
-        </div>
     </div>
 </div>

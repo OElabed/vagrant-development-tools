@@ -19,7 +19,7 @@ export class PackageCreationComponent implements AfterViewInit {
   currentStep: WizardStep;
   //packageConfig: IPackageFormConfig;
 
-  configType:string = 'TEMPLATE';
+  configType:string = 'SETTINGS';
 
   constructor() {
     this.initializeWizard();

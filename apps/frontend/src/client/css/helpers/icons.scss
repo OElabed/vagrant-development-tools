@@ -20,17 +20,3 @@
 .fa.black-icon {
     color: black;
 }
-
-.table {
-    &.hierarchical {
-        tbody {
-            tr {
-                &.hiera-1 {
-                    td {
-                        padding-left: 30px;
-                    }
-                }
-            }
-        }
-    }
-}

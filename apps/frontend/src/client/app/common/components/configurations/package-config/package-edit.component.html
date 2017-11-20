@@ -6,6 +6,7 @@
             <fix-widget-body classes="no-padding">
                 <table class="table hierarchical">
                     <tbody>
+                        <!-- Global  -->
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-cog m-r-5" aria-hidden="true"></i>
@@ -32,7 +33,6 @@
                         <tr class="hiera-1">
                             <td>Name</td>
                             <td>package1</td>
-
                         </tr>
                         <tr class="hiera-1">
                             <td>Id</td>
@@ -46,6 +46,8 @@
                             <td>Folder</td>
                             <td>/tmp/backend/addea5f2-b51e-11e7-abc4-cec278b6b50a/</td>
                         </tr>
+
+                        <!-- CoreEngine  -->
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
@@ -60,6 +62,8 @@
                             <td>640</td>
                         </tr>
 
+
+                        <!-- Database  -->
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-database m-r-5" aria-hidden="true"></i>
@@ -90,6 +94,7 @@
                             <td>ORCL</td>
                         </tr>
 
+                        <!-- Filter Engine  -->
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
@@ -113,64 +118,5 @@
 
 <!-- Modal -->
 <div id="generalCofigModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title font-16">
-                    <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>Template configuration</h4>
-            </div>
-            <div class="modal-body">
-                <!-- Text input-->
-                <div class="row">
-                    <form class="form-horizontal" role="form">
-                        <fieldset>
-                            <div class="col-sm-12">
-
-                                <div class="row">
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="textinput">Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" placeholder="MyPackage" class="form-control input-sm">
-                                            <!-- <fix-field-error-display [displayError]="isFieldNotValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display> -->
-                                        </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="textinput">Platform</label>
-                                        <div class="col-sm-10">
-                                            <!-- <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
-                                                <fix-field-error-display [displayError]="isFieldNotValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display> -->
-                                        </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label" for="textinput">Options</label>
-                                        <div class="col-sm-10">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox">common_env</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-
-    </div>
+    <fix-general-edit></fix-general-edit>
 </div>

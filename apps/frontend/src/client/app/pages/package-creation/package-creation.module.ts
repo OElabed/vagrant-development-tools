@@ -6,6 +6,9 @@ import { AddFileFormModule } from '../../common/components/forms/add-file-form/a
 import { PackageCreationComponent } from './package-creation.component';
 import { PackageEditComponent } from '../../common/components/configurations/package-config/package-edit.component';
 import { CoreEngineEditComponent } from '../../common/components/configurations/package-config/core-engine-edit/core-engine-edit.component';
+import { GeneralEditComponent } from '../../common/components/configurations/package-config/general-edit/general-edit.component';
+import { BackendEditComponent } from '../../common/components/configurations/package-config/backend-edit/backend-edit.component';
+import { DatabaseEditComponent } from '../../common/components/configurations/package-config/database-edit/database-edit.component';
 import { FilterEngineEditComponent } from
   '../../common/components/configurations/package-config/filter-engine-edit/filter-engine-edit.component';
 import { ModuleEditComponent } from '../../common/components/configurations/package-config/module-edit/module-edit.component';
@@ -27,7 +30,10 @@ import { ContainerService } from '../../common/services/containers.service';
     TemplateConfigComponent,
     CoreEngineEditComponent,
     FilterEngineEditComponent,
-    ModuleEditComponent
+    ModuleEditComponent,
+    GeneralEditComponent,
+    BackendEditComponent,
+    DatabaseEditComponent
   ],
   exports: [
     PackageCreationComponent,
@@ -36,7 +42,10 @@ import { ContainerService } from '../../common/services/containers.service';
     TemplateConfigComponent,
     CoreEngineEditComponent,
     FilterEngineEditComponent,
-    ModuleEditComponent
+    ModuleEditComponent,
+    GeneralEditComponent,
+    BackendEditComponent,
+    DatabaseEditComponent
   ],
   providers: [TemplatePackageService, ContainerService]
 })

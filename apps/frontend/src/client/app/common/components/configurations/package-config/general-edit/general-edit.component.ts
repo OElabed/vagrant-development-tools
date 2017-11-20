@@ -4,6 +4,7 @@ import { BootstrapSelect, Option } from '../../../../models/view/bootstrap-selec
 import { IContainer, findIconContainer } from '../../../../models/domain/container.model';
 import { ContainerService } from '../../../../services/containers.service';
 import { PackageConfig, IPackageConfig } from '../../../../models/domain/package-config.model';
+import { BaseFormComponent } from '../../../forms/base-form.component';
 
 /**
  * This class represents the lazy loaded DashboardComponent.
@@ -14,10 +15,8 @@ import { PackageConfig, IPackageConfig } from '../../../../models/domain/package
     templateUrl: 'general-edit.component.html',
     styleUrls: ['general-edit.component.css']
 })
-export class GeneralEditComponent implements OnInit {
+export class GeneralEditComponent extends BaseFormComponent implements OnInit {
 
-    private generalForm: FormGroup;
-    private formSumitAttempt: boolean;
 
     private packageConfig: IPackageConfig;
 
@@ -35,6 +34,7 @@ export class GeneralEditComponent implements OnInit {
         private containerService: ContainerService,
         private formBuilder: FormBuilder
     ) {
+        super();
         this.packageConfig = PackageConfig.initialize();
         this.containerSelect = new BootstrapSelect();
     }
@@ -73,12 +73,12 @@ export class GeneralEditComponent implements OnInit {
         this.containerSelectedOption = option;
         var idContainer = Number(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
-        this.generalForm.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
-        this.initializeForm(this.generalForm, this.packageConfig);
+        this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+        this.initializeForm(this.form, this.packageConfig);
     }
 
     buildForm() {
-        this.generalForm = this.formBuilder.group({
+        this.form = this.formBuilder.group({
             plateform: new FormControl('', Validators.required),
             name: new FormControl('', Validators.required),
             generalOptions: this.formBuilder.group({
@@ -89,7 +89,7 @@ export class GeneralEditComponent implements OnInit {
     }
 
     initializeForm(form: FormGroup, packageConfig: IPackageConfig) {
-        this.generalForm.setValue({
+        this.form.setValue({
             plateform: packageConfig.plateform,
             name: packageConfig.name,
             generalOptions: {

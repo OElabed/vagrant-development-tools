@@ -9,10 +9,10 @@ declare let jQuery: any;
  */
 @Component({
     moduleId: module.id,
-    selector: 'fix-package-config',
-    templateUrl: 'package-config.component.html',
-    styleUrls: ['package-config.component.css']
+    selector: 'fix-package-edit',
+    templateUrl: 'package-edit.component.html',
+    styleUrls: ['package-edit.component.css']
 })
-export class PackageConfigComponent {
+export class PackageEditComponent {
 
 }

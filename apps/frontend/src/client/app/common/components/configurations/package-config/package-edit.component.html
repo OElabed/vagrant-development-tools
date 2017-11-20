@@ -9,18 +9,14 @@
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-cog m-r-5" aria-hidden="true"></i>
-                                Global</td>
-                        </tr>
-                        <tr class="hiera-1">
-                            <td>Name</td>
-                            <td>package1
+                                Global
                                 <div class="dropdown pull-right">
                                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                         <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#templateModal">
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#generalCofigModal">
                                                 <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
                                                 Edit</a>
                                         </li>
@@ -32,6 +28,10 @@
                                     </ul>
                                 </div>
                             </td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Name</td>
+                            <td>package1</td>
 
                         </tr>
                         <tr class="hiera-1">
@@ -112,96 +112,54 @@
 </div>
 
 <!-- Modal -->
-<div id="templateModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
+<div id="generalCofigModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                <div class="pull-right">
-                    Templates:
-                    <select class="selecttemplate" style="float:right;" title="Choose template...">
-                        <option>v5.9.0.0</option>
-                    </select>
-                </div>
-
-                <h4 class="modal-title">
-                    <i class="fa fa-clipboard m-r-5" aria-hidden="true"></i>Template configuration</h4>
+                <h4 class="modal-title font-16">
+                    <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>Template configuration</h4>
             </div>
             <div class="modal-body">
                 <!-- Text input-->
                 <div class="row">
                     <form class="form-horizontal" role="form">
                         <fieldset>
+                            <div class="col-sm-12">
 
-                            <legend style="margin-top: 10px;">
-                                <i class="fa fa-windows m-r-5" aria-hidden="true"></i>Container</legend>
+                                <div class="row">
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Platform</label>
-                                <div class="col-sm-4">
-                                    <select class="selectplateform input-sm" title="Choose container...">
-                                        <option data-icon="fa fa-linux" label="DockerHub" value="object:266"> Linux-Docker01</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <legend>
-                                <i class="fa fa-archive m-r-5" aria-hidden="true"></i>Continuity Backend version</legend>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="5.9.0.0" class="form-control input-sm">
-                                </div>
-
-                                <label class="col-sm-2 control-label" for="textinput">Push</label>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="760" class="form-control input-sm">
-                                </div>
-                            </div>
-
-                            <legend>
-                                <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version</legend>
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="5.7.0.0" class="form-control input-sm">
-                                </div>
-                            </div>
-
-                            <legend>
-                                <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version</legend>
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Version</label>
-                                <div class="col-sm-4">
-                                    <input type="text" placeholder="5.7.2.0" class="form-control input-sm">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="textinput">Options</label>
-                                <div class="col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="">Fml file - 1</label>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="textinput">Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="MyPackage" class="form-control input-sm">
+                                            <!-- <fix-field-error-display [displayError]="isFieldNotValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display> -->
+                                        </div>
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="">Fml file - 2</label>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="textinput">Platform</label>
+                                        <div class="col-sm-10">
+                                            <!-- <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
+                                                <fix-field-error-display [displayError]="isFieldNotValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display> -->
+                                        </div>
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="">Score file</label>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="textinput">Options</label>
+                                        <div class="col-sm-10">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox">common_env</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </fieldset>

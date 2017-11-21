@@ -51,7 +51,25 @@
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
-                                Core Engine</td>
+                                Core Engine
+                                <div class="dropdown pull-right">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#coreEngineCofigModal">
+                                                <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-trash-o m-r-5" aria-hidden="true"></i>
+                                                Clear</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="hiera-1">
                             <td>Version</td>
@@ -67,7 +85,25 @@
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-database m-r-5" aria-hidden="true"></i>
-                                Database</td>
+                                Database
+                                <div class="dropdown pull-right">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#databaseCofigModal">
+                                                <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-trash-o m-r-5" aria-hidden="true"></i>
+                                                Clear</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="hiera-1">
                             <td>Type</td>
@@ -98,7 +134,25 @@
                         <tr class="section-title">
                             <td colspan="2">
                                 <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
-                                Filter Engine</td>
+                                Filter Engine
+                                <div class="dropdown pull-right">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#filterEngineCofigModal">
+                                                <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-trash-o m-r-5" aria-hidden="true"></i>
+                                                Clear</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
                         </tr>
                         <tr class="hiera-1">
                             <td>Version</td>
@@ -119,4 +173,16 @@
 <!-- Modal -->
 <div id="generalCofigModal" class="modal fade" role="dialog">
     <fix-general-edit></fix-general-edit>
+</div>
+<!-- Modal -->
+<div id="coreEngineCofigModal" class="modal fade" role="dialog">
+    <fix-core-engine-edit></fix-core-engine-edit>
+</div>
+<!-- Modal -->
+<div id="filterEngineCofigModal" class="modal fade" role="dialog">
+    <fix-filter-engine-edit></fix-filter-engine-edit>
+</div>
+<!-- Modal -->
+<div id="databaseCofigModal" class="modal fade" role="dialog">
+    <fix-database-edit></fix-database-edit>
 </div>

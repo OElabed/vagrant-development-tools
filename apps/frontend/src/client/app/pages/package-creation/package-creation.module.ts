@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PackageCreationRoutingModule } from './package-creation-routing.module';
 import { SharedModule } from '../../common/shared/shared.module';
 import { AddFileFormModule } from '../../common/components/forms/add-file-form/add-file-form.module';
+import { FixFileTreeModule } from '../../common/modules/fix-tree-folder/fix-tree-folder.module';
+
 import { PackageCreationComponent } from './package-creation.component';
 import { PackageEditComponent } from '../../common/components/configurations/package-config/package-edit.component';
 import { CoreEngineEditComponent } from '../../common/components/configurations/package-config/core-engine-edit/core-engine-edit.component';
@@ -21,7 +23,8 @@ import { ContainerService } from '../../common/services/containers.service';
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
-    AddFileFormModule
+    AddFileFormModule,
+    FixFileTreeModule
   ],
   declarations: [
     PackageCreationComponent,

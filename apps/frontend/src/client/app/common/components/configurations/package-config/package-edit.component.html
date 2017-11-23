@@ -162,6 +162,45 @@
                             <td>Push</td>
                             <td>640</td>
                         </tr>
+                        <!-- Database  -->
+                        <tr class="section-title">
+                            <td colspan="2">
+                                <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>
+                                Modules
+                                <div class="dropdown pull-right">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                        <i class="fa fa-ellipsis-v m-r-5" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#databaseCofigModal">
+                                                <i class="fa fa-pencil m-r-5" aria-hidden="true"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">
+                                                <i class="fa fa-trash-o m-r-5" aria-hidden="true"></i>
+                                                Clear</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Version</td>
+                            <td>5.7.0.0</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Push</td>
+                            <td>640</td>
+                        </tr>
+                        <tr class="hiera-1">
+                            <td>Aquisition</td> 
+                            <td>
+                                <file-tree [tree]="dir" (onChange)="updateData($event)" [keyboardWatch]=true>
+                                </file-tree>
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>

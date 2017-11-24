@@ -18,6 +18,7 @@ export class PackageEditComponent {
 
     dir: TreeNode;
     data: string;
+    list: any[];
 
     constructor() {
 
@@ -49,6 +50,25 @@ export class PackageEditComponent {
                 { name: 'global.jpg', type: FileType.file }
             ]
         };
+
+        this.list = [
+            {
+                id: 1,
+                label: 'one'
+            },
+            {
+                id: 2,
+                label: 'two'
+            },
+            {
+                id: 3,
+                label: 'three'
+            },
+            {
+                id: 4,
+                label: 'four'
+            }
+        ];
 
         this.dir = new TreeNode(treeNodeParam);
     }

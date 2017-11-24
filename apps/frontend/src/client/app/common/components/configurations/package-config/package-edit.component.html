@@ -187,7 +187,23 @@
             </tr>
             <tr class="hiera-1">
                 <td>Push</td>
-                <td>640</td>
+                <td>
+                    <contextmenu #contextmenu>
+                        <div class="dropdown open">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">{{contextmenu.get('item.id')}} -> {{contextmenu.get('item.label')}}</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </contextmenu>
+
+                    <ul class="list-group">
+                        <li class="list-group-item" [contextmenu]="[contextmenu, {item: item}]" *ngFor="let item of list; let i = index;" class="list-group-item">
+                            {{item.label}} ({{item.id}})
+                        </li>
+                    </ul>
+                </td>
             </tr>
             <tr class="hiera-1">
                 <td>Aquisition</td>

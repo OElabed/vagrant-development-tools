@@ -18,13 +18,15 @@ import { YamlConfigComponent } from '../../common/components/configurations/yaml
 import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
 import { TemplatePackageService } from '../../common/services/template-package.service';
 import { ContainerService } from '../../common/services/containers.service';
+import { ContextmenuModule } from '../../common/modules/fix-context-menu/contextmenu.module';
 
 @NgModule({
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
     AddFileFormModule,
-    FixFileTreeModule
+    FixFileTreeModule,
+    ContextmenuModule
   ],
   declarations: [
     PackageCreationComponent,

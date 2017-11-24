@@ -32,7 +32,7 @@ public class StopController {
         PackageConfig packageConfig =  packageService.findByPackageId(packageId);
 
         if(packageConfig == null){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
         stopPackageService.stopAllModules(packageConfig);
 

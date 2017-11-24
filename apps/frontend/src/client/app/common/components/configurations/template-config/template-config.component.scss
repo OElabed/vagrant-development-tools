@@ -7,3 +7,8 @@
         font-size: 12px;
     }
 }
+
+.template-container {
+    height: calc(100vh - 14vw);
+    overflow-y: auto;
+}

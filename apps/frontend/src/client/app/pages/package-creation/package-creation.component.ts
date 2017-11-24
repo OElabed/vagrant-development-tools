@@ -1,8 +1,15 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 //import { IPackageFormConfig, PackageFormConfig } from '../../common/models/view/package-config.model';
 import { Wizard, WizardStep } from '../../common/models/view/wizard.model';
+import { IPackageConfig } from '../../common/models/domain/package-config.model';
 
 declare let jQuery: any;
+
+enum ConfigType {
+  YAML = 'YAML',
+  FORM = 'FORM',
+  TEMPLATE = 'TEMPLATE'
+}
 
 /**
  * This class represents the lazy loaded PackageCreationComponent.
@@ -13,57 +20,19 @@ declare let jQuery: any;
   templateUrl: 'package-creation.component.html',
   styleUrls: ['package-creation.component.css']
 })
-export class PackageCreationComponent implements AfterViewInit {
+export class PackageCreationComponent {
 
-  wizard: Wizard;
-  currentStep: WizardStep;
-  //packageConfig: IPackageFormConfig;
+  packageConfig: IPackageConfig;
 
-  configType:string = 'SETTINGS';
+  configType: ConfigType = ConfigType.FORM;
 
-  constructor() {
-    this.initializeWizard();
-    //this.initializePackage();
-  }
+  // constructor() {
 
-  // intialization
-  ngAfterViewInit(): void {
-    jQuery('.selectpicker-platform').selectpicker();
-  }
-
-  initializeWizard() {
-    this.wizard = new Wizard(['STEP-1', 'STEP-2', 'STEP-3', 'STEP-4', 'STEP-5']);
-    this.currentStep = this.wizard.getStepById('STEP-1');
-  }
-
-
-  // initializePackage() {
-  //   this.packageConfig = new PackageFormConfig();
   // }
 
-  // Actions
 
-  changeStepWizard(stepId: string) {
-    this.currentStep = this.wizard.getStepById(stepId);
+  onChangeConfigType(type: any) {
+    this.configType = type;
   }
 
-  goToNextStep() {
-    this.wizard.validateStep(this.currentStep.id);
-    if (this.currentStep.validate) {
-      this.currentStep = this.wizard.getTheNextStep(this.currentStep);
-    }
-  }
-
-  isDisableStep(stepId: string): boolean {
-    var step = this.wizard.getStepById(stepId);
-    if (!step.validate) {
-      if (step.id === this.currentStep.id) {
-        return false;
-      }
-    } else {
-      return false;
-    }
-
-    return true;
-  }
 }

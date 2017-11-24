@@ -50,6 +50,14 @@ const DIRECTORY_TREE_STYLE = `
   padding-left: 25px;
 }
 .focus { color: steelblue }
+ a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+ a:hover {
+  color: #337ab7;
+}
 `;
 
 @Component({

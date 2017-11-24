@@ -1,115 +1,33 @@
 <fix-template-config *ngIf="configType === 'TEMPLATE'"></fix-template-config>
-<fix-yaml-config *ngIf="configType === 'YAML'"></fix-yaml-config>
-<fix-package-edit *ngIf="configType === 'SETTINGS'"></fix-package-edit>
 
-<!-- <ng-container *ngIf="configType === 'WIZARD'">
-  <div class="row form-group">
-    <div class="col-xs-12 nomargin">
-      <ul class="nav nav-pills nav-justified thumbnail setup-panel nomargin">
-        <li [ngClass]="{'active': this.currentStep.id === 'STEP-1', 'disabled':  isDisableStep('STEP-1')}">
-          <a (click)="changeStepWizard('STEP-1')" [ngClass]="{'disabled':  isDisableStep('STEP-1')}">
-            <h4 class="list-group-item-heading">Step 1</h4>
-            <p class="list-group-item-text">Package configuration</p>
-          </a>
-        </li>
-        <li [ngClass]="{'active': this.currentStep.id === 'STEP-2', 'disabled':  isDisableStep('STEP-2')}">
-          <a (click)="changeStepWizard('STEP-2')" [ngClass]="{'disabled':  isDisableStep('STEP-2')}">
-            <h4 class="list-group-item-heading">Step 2</h4>
-            <p class="list-group-item-text">Core Engine configuration</p>
-          </a>
-        </li>
-        <li [ngClass]="{'active': this.currentStep.id === 'STEP-3', 'disabled':  isDisableStep('STEP-3')}">
-          <a (click)="changeStepWizard('STEP-3')" [ngClass]="{'disabled':  isDisableStep('STEP-3')}">
-            <h4 class="list-group-item-heading">Step 3</h4>
-            <p class="list-group-item-text">Filter Engine configuration</p>
-          </a>
-        </li>
-        <li [ngClass]="{'active': this.currentStep.id === 'STEP-4', 'disabled':  isDisableStep('STEP-4')}">
-          <a (click)="changeStepWizard('STEP-4')" [ngClass]="{'disabled':  isDisableStep('STEP-4')}">
-            <h4 class="list-group-item-heading">Step 4</h4>
-            <p class="list-group-item-text">Modules configuration</p>
-          </a>
-        </li>
-        <li [ngClass]="{'active': this.currentStep.id === 'STEP-5', 'disabled':  isDisableStep('STEP-5')}">
-          <a (click)="changeStepWizard('STEP-5')" [ngClass]="{'disabled':  isDisableStep('STEP-5')}">
-            <h4 class="list-group-item-heading">Step 5</h4>
-            <p class="list-group-item-text">Validation</p>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="row" *ngIf="this.currentStep.id === 'STEP-1'">
+<div class="row">
     <div class="col-lg-12 col-md-12 col-xs-12">
-      <fix-widget>
-        <fix-widget-body>
-          <fix-package-config [(package)]="packageConfig"></fix-package-config>
-        </fix-widget-body>
-        <fix-widget-footer>
-          <div class="row form-group nomargin">
-            <div class="col-sm-12 nomargin">
-              <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
-              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </fix-widget-footer>
-      </fix-widget>
+        <fix-widget>
+            <fix-widget-header icon="fa fa-code" title="Package configuration file">
+                <button class="btn btn-default btn-sm" style="float: right" (click)="onChangeConfigType('FORM')" [ngClass]="{'active': configType === 'FORM'}">
+                    <i class="fa fa-table" style="margin-right: 0px;" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-default btn-sm m-r-5" style="float: right" (click)="onChangeConfigType('YAML')" [ngClass]="{'active': configType === 'YAML'}">
+                    <i class="fa fa-file-code-o" style="margin-right: 0px;" aria-hidden="true"></i>
+                </button>
+            </fix-widget-header>
+            <fix-widget-body classes="no-padding">
+                <fix-yaml-config *ngIf="configType === 'YAML'"></fix-yaml-config>
+                <fix-package-edit *ngIf="configType === 'FORM'"></fix-package-edit>
+            </fix-widget-body>
+            <fix-widget-footer>
+                <div class="row form-group nomargin">
+                    <div class="col-sm-12 nomargin">
+                        <button class="btn btn-primary btn-sm pull-right">
+                            <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
+                        </button>
+                        <button class="btn btn-default btn-sm pull-right m-r-5">
+                            <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
+                        </button>
+                    </div>
+                </div>
+            </fix-widget-footer>
+        </fix-widget>
     </div>
-  </div>
-
-  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-2'">
-    <div class="col-lg-12 col-md-12 col-xs-12">
-      <fix-widget>
-        <fix-widget-body>
-          <fix-core-engine-config [(package)]="packageConfig"></fix-core-engine-config>
-        </fix-widget-body>
-        <fix-widget-footer>
-          <div class="row form-group nomargin">
-            <div class="col-sm-12 nomargin">
-              <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
-              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </fix-widget-footer>
-      </fix-widget>
-    </div>
-  </div>
-
-  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-3'">
-    <div class="col-lg-12 col-md-12 col-xs-12">
-      <fix-widget>
-        <fix-widget-body>
-          <fix-filter-engine-config [(package)]="packageConfig"></fix-filter-engine-config>
-        </fix-widget-body>
-        <fix-widget-footer>
-          <div class="row form-group nomargin">
-            <div class="col-sm-12 nomargin">
-              <button class="btn btn-sm btn-primary pull-left disabled">
-                <i class="fa fa-caret-left m-r-5" aria-hidden="true"></i>Previous</button>
-              <button class="btn btn-primary btn-sm pull-right" (click)="goToNextStep()">Next
-                <i class="fa fa-caret-right m-l-5" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </fix-widget-footer>
-      </fix-widget>
-    </div>
-  </div>
-
-  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-4'">
-    <div class="col-lg-12 col-md-12 col-xs-12">
-      <fix-module-all-config [(package)]="packageConfig"></fix-module-all-config>
-    </div>
-  </div>
-
-  <div class="row configuration-container" *ngIf="this.currentStep.id === 'STEP-5'">
-    <div class="col-lg-12 col-md-12 col-xs-12">STEP 5</div>
-  </div>
-</ng-container> -->
+</div>

@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-//import { IPackageFormConfig, PackageFormConfig } from '../../common/models/view/package-config.model';
 import { Wizard, WizardStep } from '../../common/models/view/wizard.model';
 import { IPackageConfig } from '../../common/models/domain/package-config.model';
 

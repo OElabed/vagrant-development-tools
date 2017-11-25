@@ -164,18 +164,6 @@ export class TemplateConfigComponent implements OnInit {
             .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
     }
 
-    moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {
-        var exist: boolean = false;
-
-        list.forEach((item, index) => {
-            if (item.type === type) {
-                exist = true;
-            }
-        });
-
-        return exist;
-    }
-
     isFieldNotValid(field: string) {
         var fieldControl = this.getFieldControl(field, this.templateForm);
         var isValid = (
@@ -248,9 +236,9 @@ export class TemplateConfigComponent implements OnInit {
                 version: template.packageConfig.modulesConfig[0].version.version,
                 push: template.packageConfig.modulesConfig[0].version.push,
                 modules: {
-                    aquisition: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.AQUISITION),
-                    requester: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.REQUESTER),
-                    dbclient: this.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.DBCLIENT)
+                    aquisition: ModuleConfig.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.AQUISITION),
+                    requester: ModuleConfig.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.REQUESTER),
+                    dbclient: ModuleConfig.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.DBCLIENT)
                 }
             },
             database: {

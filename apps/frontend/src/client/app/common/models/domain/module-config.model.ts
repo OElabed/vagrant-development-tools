@@ -41,4 +41,17 @@ export class ModuleConfig implements IModuleConfig {
         result.push(ModuleConfig.initialize());
         return result;
     }
+
+    public static moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {
+        var exist: boolean = false;
+
+        list.forEach((item, index) => {
+            if (item.type === type) {
+                exist = true;
+            }
+        });
+
+        return exist;
+    }
+
 }

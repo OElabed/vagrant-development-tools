@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'contextmenu',
+  selector: 'context-menu',
   template: `
     <div class="contextmenu">
       <ng-content></ng-content>
@@ -68,6 +68,16 @@ export class ContextmenuComponent {
     return this.baseGet(this.context, path) || '';
   }
 
+  @HostListener('document:click', [])
+  public onClick(): void {
+    this.hide();
+  }
+
+  @HostListener('document:scroll', [])
+  public onScroll(): void {
+    this.hide();
+  }
+
   // This function is borrowed from lodash
   // https://github.com/lodash/lodash/blob/master/lodash.js
   // Copyright JS Foundation and other contributors <https://js.foundation/>
@@ -82,14 +92,4 @@ export class ContextmenuComponent {
     }
     return (index && index === length) ? object : undefined;
   }
-
-  @HostListener('document:click', [])
-  public onClick(): void {
-    this.hide();
-  }
-
-  @HostListener('document:scroll', [])
-  public onScroll(): void {
-    this.hide();
-  };
 }

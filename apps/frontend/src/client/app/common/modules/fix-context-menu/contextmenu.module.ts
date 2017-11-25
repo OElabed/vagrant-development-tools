@@ -23,13 +23,10 @@ import { ContextmenuDirective } from './contextmenu.directive';
   ]
 })
 export class ContextmenuModule {
-  constructor() { }
 
   static forChild(): ModuleWithProviders {
     return {
       ngModule: ContextmenuModule
     };
   }
-
-
 }

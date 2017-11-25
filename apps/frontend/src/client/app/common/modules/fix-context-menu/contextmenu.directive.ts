@@ -16,9 +16,8 @@ const isTouch = !!(('ontouchstart' in window) ||
 })
 export class ContextmenuDirective {
 
-  @Input('contextmenu') in: any[];
-
-  constructor() { }
+  @Input('contextmenu')
+  in: any[];
 
   @HostListener('contextmenu', ['$event'])
   onContextmenu(ev: any) {

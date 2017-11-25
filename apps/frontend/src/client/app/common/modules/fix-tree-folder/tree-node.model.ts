@@ -8,12 +8,16 @@ export interface TreeNodeParams {
   type?: FileType;
   children?: Array<TreeNodeParams>;
   focus?: boolean;
+  delete?: boolean;
+  edit?: boolean;
 }
 
 export class TreeNode {
   public name: string;
   public type: FileType;
   public children: Array<TreeNode>;
+  public canDelete: boolean;
+  public canEdit: boolean;
 
   // Full file path from root node
   private fullFilepath: string;
@@ -24,18 +28,21 @@ export class TreeNode {
   private _isFocused: boolean;
   private _isExpanded: boolean;
 
+
   constructor(params: TreeNodeParams, parent: TreeNode = null) {
     this.name = params.name;
     this.type = params.type || FileType.file;
     this.children = [];
+    this.canDelete = params.delete || true;
+    this.canEdit = params.edit || false;
 
     // update private values
-   // this.parentNode = parent;
+    // this.parentNode = parent;
     this._isFocused = params.focus || false;
     this._isExpanded = this.type === FileType.dir || this.children.length > 0;
 
     if (parent !== null) {
-    //  let parentPath: string = this.parentNode.getFullPath();
+      //  let parentPath: string = this.parentNode.getFullPath();
       // if (parentPath.slice(-1) === '/') {
       //   this.fullFilepath = `${parentPath}${this.name}`;
       // } else {

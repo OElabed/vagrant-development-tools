@@ -12,32 +12,26 @@ import { NodeComponent } from './node.component';
 import { TreeNodeParams } from './tree-node.model';
 import { FileType } from './tree-node.model';
 
-const DIRECTORY_TREE_TEMPLATE: string = `
-<ul class="file-tree">
-  <fix-node-item [node]="root" (clicked)="fileTreeClicked($event)"></fix-node-item>
-</ul>
-`;
-
-const DIRECTORY_TREE_STYLE: string = `
-.file-tree { padding: 0; }
-`;
-
 @Component({
   moduleId: module.id,
   selector: 'file-tree',
-  template: DIRECTORY_TREE_TEMPLATE,
-  styles: [DIRECTORY_TREE_STYLE]
+  templateUrl: 'file-tree.component.html',
+  styleUrls: ['file-tree.component.css']
 })
 export class FileTreeComponent implements OnInit, OnChanges {
   @Input() tree: TreeNode;
   @Input() keyboardWatch: boolean;
   @Output() onChange: EventEmitter<TreeNode>;
+  @Output() onDelete: EventEmitter<TreeNode>;
+  @Output() onEdit: EventEmitter<TreeNode>;
 
   private root: TreeNode;
   private currFocusNode: TreeNode;
 
   constructor(private _eref: ElementRef) {
     this.onChange = new EventEmitter();
+    this.onDelete = new EventEmitter();
+    this.onEdit = new EventEmitter();
     this.keyboardWatch = false;
   }
 
@@ -59,6 +53,14 @@ export class FileTreeComponent implements OnInit, OnChanges {
   fileTreeClicked(nextNode: TreeNode) {
     this.updateFocusNode(nextNode);
     this.onChange.emit(nextNode);
+  }
+
+  fileDeleted(nextNode: TreeNode) {
+    this.onDelete.emit(nextNode);
+  }
+
+  fileEdited(nextNode: TreeNode) {
+    this.onEdit.emit(nextNode);
   }
 
   @HostListener('window:keydown', ['$event'])

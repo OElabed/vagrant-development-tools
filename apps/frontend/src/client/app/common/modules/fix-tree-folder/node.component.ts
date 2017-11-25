@@ -6,73 +6,25 @@ import { EventEmitter } from '@angular/core';
 import { TreeNode } from './tree-node.model';
 import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
-const NODE_COMPONENT_TEMPLATE = `
-<li *ngIf="isExpandable()" class="all-item">
-    <a (click)="clickItem(node)"
-       class="folder-item"
-       [ngClass]="{focus: node._focus}">
-        <div style="white-space: nowrap">
-            <span class="point" (click)="expandFolder()">
-                <i class="fa fa-fw fa-caret-right" *ngIf="!isExpanded()"></i>
-                <i class="fa fa-fw fa-caret-down" *ngIf="isExpanded()"></i>
-            </span>
 
-            <i class="fa fa-folder-o" *ngIf="!isExpanded()"></i>
-            <i class="fa fa-folder-open-o" *ngIf="isExpanded()"></i>
-            {{ node.name }}
-        </div>
-    </a>
-
-    <ul *ngIf="isExpanded()" class="children-items">
-        <fix-node-item *ngFor="let n of node.children" [node]="n" (clicked)="propagate($event)"></fix-node-item>
-    </ul>
-</li>
-
-<li *ngIf="!isExpandable()" class="all-item">
-    <a (click)="clickItem(node)"
-       class="file-item"
-       [ngClass]="{focus: node._focus}">
-       <div style="white-space: nowrap">
-           <i class="fa fa-file-o"></i> {{ node.name }}
-       </div>
-    </a>
-</li>
-`;
-
-const DIRECTORY_TREE_STYLE = `
-.all-item {
-  list-style-type: none;
-  display:inline;
-}
-.folder-item { }
-.file-item { padding-left: 0px; }
-.children-items {
-  padding-left: 25px;
-}
-.focus { color: steelblue }
- a {
-  color: black;
-  cursor: pointer;
-  text-decoration: none;
-}
- a:hover {
-  color: #337ab7;
-}
-`;
 
 @Component({
   moduleId: module.id,
   selector: 'fix-node-item',
-  template: NODE_COMPONENT_TEMPLATE,
-  styles: [DIRECTORY_TREE_STYLE]
+  templateUrl: 'node.component.html',
+  styleUrls: ['node.component.css']
 })
 export class NodeComponent {
   @Input() node: TreeNode;
   @Input() index: number;
   @Output() clicked: EventEmitter<TreeNode>;
+  @Output() deleted: EventEmitter<TreeNode>;
+  @Output() edited: EventEmitter<TreeNode>;
 
   constructor() {
     this.clicked = new EventEmitter<TreeNode>();
+    this.deleted = new EventEmitter<TreeNode>();
+    this.edited = new EventEmitter<TreeNode>();
   }
 
   isExpandable(): boolean {
@@ -96,7 +48,23 @@ export class NodeComponent {
     this.clicked.emit(node);
   }
 
-  propagate(node: TreeNode) {
+  propagateClick(node: TreeNode) {
     this.clicked.emit(node);
+  }
+
+  propagateDelete(node: TreeNode) {
+    this.deleted.emit(node);
+  }
+
+  propagateEdit(node: TreeNode) {
+    this.edited.emit(node);
+  }
+
+  deleteItem(node: TreeNode) {
+    this.deleted.emit(node);
+  }
+
+  editItem(node: TreeNode) {
+    this.edited.emit(node);
   }
 }

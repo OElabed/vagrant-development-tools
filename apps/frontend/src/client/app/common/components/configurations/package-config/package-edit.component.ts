@@ -18,7 +18,6 @@ export class PackageEditComponent {
 
     dir: TreeNode;
     data: string;
-    list: any[];
 
     constructor() {
 
@@ -41,7 +40,7 @@ export class PackageEditComponent {
                                 { name: 'abc.jpg', type: FileType.file },
                                 { name: 'def.jpg', type: FileType.file },
                                 { name: 'test.jpg', type: FileType.file },
-                                { name: 'test2.jpg', type: FileType.file },
+                                { name: 'test2.jpg', type: FileType.file, edit: true },
                                 { name: 'zzzz.jpg', type: FileType.file },
                             ]
                         }
@@ -51,29 +50,18 @@ export class PackageEditComponent {
             ]
         };
 
-        this.list = [
-            {
-                id: 1,
-                label: 'one'
-            },
-            {
-                id: 2,
-                label: 'two'
-            },
-            {
-                id: 3,
-                label: 'three'
-            },
-            {
-                id: 4,
-                label: 'four'
-            }
-        ];
-
         this.dir = new TreeNode(treeNodeParam);
     }
 
     updateData(node: TreeNode) {
+        console.log(node);
+        this.data = node.stringify();
+    }
+    editData(node: TreeNode) {
+        console.log(node);
+        this.data = node.stringify();
+    }
+    deleteData(node: TreeNode) {
         console.log(node);
         this.data = node.stringify();
     }

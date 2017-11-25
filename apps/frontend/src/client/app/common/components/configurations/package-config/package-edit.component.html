@@ -188,15 +188,21 @@
             <tr class="hiera-1">
                 <td>Push</td>
                 <td>
-                    <contextmenu #contextmenu>
+                    <context-menu #contextmenu>
                         <div class="dropdown open">
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">{{contextmenu.get('item.id')}} -> {{contextmenu.get('item.label')}}</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">{{contextmenu.get('item.id')}} -> {{contextmenu.get('item.label')}}</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action2</a>
+                                </li>
+                            </ul>
                         </div>
-                    </contextmenu>
+                    </context-menu>
 
                     <ul class="list-group">
                         <li class="list-group-item" [contextmenu]="[contextmenu, {item: item}]" *ngFor="let item of list; let i = index;" class="list-group-item">
@@ -208,7 +214,7 @@
             <tr class="hiera-1">
                 <td>Aquisition</td>
                 <td>
-                    <file-tree [tree]="dir" (onChange)="updateData($event)" [keyboardWatch]=true>
+                    <file-tree [tree]="dir" (onChange)="updateData($event)" (onEdit)="editData($event)" (onDelete)="deleteData($event)" [keyboardWatch]=true>
                     </file-tree>
                 </td>
             </tr>

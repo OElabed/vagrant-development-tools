@@ -5,6 +5,7 @@ import { IContainer, findIconContainer } from '../../../../models/domain/contain
 import { ContainerService } from '../../../../services/containers.service';
 import { PackageConfig, IPackageConfig } from '../../../../models/domain/package-config.model';
 import { BaseFormComponent } from '../../../forms/base-form.component';
+import { SimpleChanges, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 /**
  * This class represents the lazy loaded DashboardComponent.
@@ -15,10 +16,11 @@ import { BaseFormComponent } from '../../../forms/base-form.component';
     templateUrl: 'general-edit.component.html',
     styleUrls: ['general-edit.component.css']
 })
-export class GeneralEditComponent extends BaseFormComponent implements OnInit {
+export class GeneralEditComponent extends BaseFormComponent implements OnInit, OnChanges {
 
 
-    private packageConfig: IPackageConfig;
+    @Input() config: IPackageConfig;
+    @Output() configChange: EventEmitter<IPackageConfig>;
 
     private containerSelect: BootstrapSelect;
     private containerList: IContainer[];
@@ -35,7 +37,7 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit {
         private formBuilder: FormBuilder
     ) {
         super();
-        this.packageConfig = PackageConfig.initialize();
+        this.config = PackageConfig.initialize();
         this.containerSelect = new BootstrapSelect();
     }
 
@@ -74,7 +76,7 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit {
         var idContainer = Number(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
         this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
-        this.initializeForm(this.form, this.packageConfig);
+        this.initializeForm(this.form, this.config);
     }
 
     buildForm() {
@@ -96,6 +98,12 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit {
                 commonEnv: packageConfig.commonEnvConfig.enable
             }
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (typeof (changes['config'].currentValue) !== 'undefined') {
+            this.initializeForm(this.form, this.config);
+        }
     }
 
 }

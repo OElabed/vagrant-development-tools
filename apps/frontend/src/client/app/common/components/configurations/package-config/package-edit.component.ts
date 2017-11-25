@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TreeNode, FileType, TreeNodeParams } from '../../../modules/fix-tree-folder/tree-node.model';
+import { IPackageConfig, PackageConfig } from '../../../models/domain/package-config.model';
 
 
 declare let jQuery: any;
@@ -19,11 +20,15 @@ export class PackageEditComponent {
     dir: TreeNode;
     data: string;
 
+    packageConfig: IPackageConfig;
+
     constructor() {
+        this.packageConfig = PackageConfig.initialize();
+        this.intitializeFilesTree();
+    }
 
 
-
-
+    intitializeFilesTree() {
         var treeNodeParam: TreeNodeParams = {
             name: 'photos',
             type: FileType.dir,

@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Wizard, WizardStep } from '../../common/models/view/wizard.model';
-import { IPackageConfig } from '../../common/models/domain/package-config.model';
+import { IPackageConfig, PackageConfig } from '../../common/models/domain/package-config.model';
 
 declare let jQuery: any;
 
@@ -25,10 +25,9 @@ export class PackageCreationComponent {
 
   configType: ConfigType = ConfigType.FORM;
 
-  // constructor() {
-
-  // }
-
+  constructor() {
+    this.packageConfig = PackageConfig.initialize();
+  }
 
   onChangeConfigType(type: any) {
     this.configType = type;

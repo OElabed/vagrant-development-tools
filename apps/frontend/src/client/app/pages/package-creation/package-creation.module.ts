@@ -16,8 +16,8 @@ import { FilterEngineEditComponent } from
 import { ModuleEditComponent } from '../../common/components/configurations/package-config/module-edit/module-edit.component';
 import { YamlConfigComponent } from '../../common/components/configurations/yaml-config/yaml-config.component';
 import { TemplateConfigComponent } from '../../common/components/configurations/template-config/template-config.component';
-import { TemplatePackageService } from '../../common/services/template-package.service';
-import { ContainerService } from '../../common/services/containers.service';
+import { TemplatePackageService } from '../../common/services/external/template-package.api.service';
+import { ContainerService } from '../../common/services/external/containers.api.service';
 import { ContextmenuModule } from '../../common/modules/fix-context-menu/contextmenu.module';
 
 @NgModule({

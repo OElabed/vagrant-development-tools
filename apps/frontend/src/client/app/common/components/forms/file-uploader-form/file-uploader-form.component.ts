@@ -4,7 +4,7 @@ import { UUID } from 'angular2-uuid';
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 import { FileUploader } from 'ng2-file-upload';
 
-import { FileEditorGlobalService } from '../../../services/file-editor-service.service';
+import { FileEditorGlobalService } from '../../../services/data/file-editor-service.data.service';
 
 import { FileUtils } from '../../../utils/file.utils';
 

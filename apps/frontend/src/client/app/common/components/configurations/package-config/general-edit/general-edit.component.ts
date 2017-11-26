@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, AbstractControl } from '@angular/forms';
 import { BootstrapSelect, Option } from '../../../../models/view/bootstrap-select.model';
 import { IContainer, findIconContainer } from '../../../../models/domain/container.model';
-import { ContainerService } from '../../../../services/containers.service';
+import { ContainerService } from '../../../../services/external/containers.api.service';
 import { PackageConfig, IPackageConfig } from '../../../../models/domain/package-config.model';
 import { BaseFormComponent } from '../../../forms/base-form.component';
 import { SimpleChanges, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 
 import { ExternalResourceService } from './external-resource';
-import { IContainer, Container } from '../models/domain/container.model';
+import { IContainer, Container } from '../../models/domain/container.model';
 
 declare let jQuery: any;
 

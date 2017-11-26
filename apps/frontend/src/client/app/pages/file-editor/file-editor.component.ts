@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { FileEditorGlobalService } from '../../common/services/file-editor-service.service';
+import { FileEditorGlobalService } from '../../common/services/data/file-editor-service.data.service';
 
 declare let jQuery: any;
 

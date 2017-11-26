@@ -38,7 +38,7 @@
 <li *ngIf="!isExpandable()" class="all-item">
   <a (click)="clickItem(node)" class="file-item" [ngClass]="{focus: node._focus}" [contextmenu]="[contextmenu, {item: node}]">
     <div style="white-space: nowrap">
-      <i class="fa fa-file-o"></i> {{ node.name }}
+      <i class="fa" [ngClass]="node.canEdit ? 'fa-file-code-o': 'fa-file-o'"></i> {{ node.name }}
     </div>
   </a>
 </li>

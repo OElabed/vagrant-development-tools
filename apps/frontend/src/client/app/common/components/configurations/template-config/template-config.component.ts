@@ -6,8 +6,8 @@ import { BootstrapSelect, Option } from '../../../models/view/bootstrap-select.m
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 import { PackageValidators } from '../../../validators/package.validaors';
-import { TemplatePackageService } from '../../../services/template-package.service';
-import { ContainerService } from '../../../services/containers.service';
+import { TemplatePackageService } from '../../../services/external/template-package.api.service';
+import { ContainerService } from '../../../services/external/containers.api.service';
 import { ModuleConfig } from '../../../models/domain/module-config.model';
 import { ModuleType } from '../../../models/domain/module.model';
 import { IContainer, findIconContainer } from '../../../models/domain/container.model';

@@ -17,8 +17,8 @@ import { FieldErrorDisplayComponent } from '../components/forms/field-error-disp
 import { BootstrapSelectComponent } from '../components/forms/bootstrap-select/bootstrap-select.component';
 
 
-import { RoutingGlobalService } from '../services/routing-global.service';
-import { FileEditorGlobalService } from '../services/file-editor-service.service';
+import { RoutingGlobalService } from '../services/data/routing-global.data.service';
+import { FileEditorGlobalService } from '../services/data/file-editor-service.data.service';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.

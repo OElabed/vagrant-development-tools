@@ -33,7 +33,6 @@ export class BackendEditComponent extends BaseFormComponent implements OnInit, O
 
     ngOnInit() {
         this.buildForm();
-
     }
 
 

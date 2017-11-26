@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 
 import { ExternalResourceService } from './external-resource';
-import { ITemplatePackage, TemplatePackage } from '../models/domain/template-package.model';
+import { ITemplatePackage, TemplatePackage } from '../../models/domain/template-package.model';
 
 declare let jQuery: any;
 

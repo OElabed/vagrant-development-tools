@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TreeNode, FileType, TreeNodeParams } from '../../../modules/fix-tree-folder/tree-node.model';
 import { IPackageConfig, PackageConfig } from '../../../models/domain/package-config.model';
+import { Container, OS, findIconContainer } from '../../../models/domain/container.model';
 
 
 declare let jQuery: any;
@@ -20,13 +21,13 @@ export class PackageEditComponent {
     dir: TreeNode;
     data: string;
 
+    @Input()
     packageConfig: IPackageConfig;
 
     constructor() {
         this.packageConfig = PackageConfig.initialize();
         this.intitializeFilesTree();
     }
-
 
     intitializeFilesTree() {
         var treeNodeParam: TreeNodeParams = {
@@ -69,6 +70,10 @@ export class PackageEditComponent {
     deleteData(node: TreeNode) {
         console.log(node);
         this.data = node.stringify();
+    }
+
+    getContainerIcon(os: OS): string {
+        return findIconContainer(os);
     }
 
 }

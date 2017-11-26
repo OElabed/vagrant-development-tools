@@ -33,20 +33,28 @@
                     </tr>
                     <tr class="hiera-1">
                         <td>Name</td>
-                        <td>package1</td>
+                        <td>{{packageConfig.name}}</td>
                     </tr>
                     <tr class="hiera-1">
-                        <td>Id</td>
-                        <td>addea5f2-b51e-11e7-abc4-cec278b6b50a</td>
+                        <td>Container</td>
+                        <td>
+                            <i class="fa m-r-5" [ngClass]="getContainerIcon()" aria-hidden="true"></i> {{packageConfig.plateform.name}}</td>
                     </tr>
                     <tr class="hiera-1">
-                        <td>OS</td>
-                        <td>Linux Centos</td>
+                        <td>Options</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-6 nopadding">
+                                    <i class="fa fa-check-square-o m-r-5" aria-hidden="true"></i>Common_env</div>
+                                <div class="col-sm-6 nopadding">
+                                    <i class="fa fa-square-o m-r-5" aria-hidden="true"></i>option 2</div>
+                            </div>
+                        </td>
                     </tr>
-                    <tr class="hiera-1">
+                    <!-- <tr class="hiera-1">
                         <td>Folder</td>
                         <td>/tmp/backend/addea5f2-b51e-11e7-abc4-cec278b6b50a/</td>
-                    </tr>
+                    </tr> -->
 
                     <!-- CoreEngine  -->
                     <tr class="section-title">
@@ -199,9 +207,12 @@
                         <td>Active Modules</td>
                         <td>
                             <div class="row">
-                                <div class="col-sm-6 nopadding"><i class="fa fa-cube m-r-5" aria-hidden="true"></i>Aquisition</div>
-                                <div class="col-sm-6 nopadding"><i class="fa fa-cube m-r-5" aria-hidden="true"></i>DBClient</div>
-                                <div class="col-sm-6 nopadding"><i class="fa fa-cube m-r-5" aria-hidden="true"></i>Requester</div>
+                                <div class="col-sm-6 nopadding">
+                                    <i class="fa fa-cube m-r-5" aria-hidden="true"></i>Aquisition</div>
+                                <div class="col-sm-6 nopadding">
+                                    <i class="fa fa-cube m-r-5" aria-hidden="true"></i>DBClient</div>
+                                <div class="col-sm-6 nopadding">
+                                    <i class="fa fa-cube m-r-5" aria-hidden="true"></i>Requester</div>
                             </div>
                         </td>
                     </tr>

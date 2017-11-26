@@ -5,6 +5,7 @@ import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../..
 import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
 import 'codemirror/mode/yaml/yaml';
+import { IPackageConfig } from '../../../models/domain/package-config.model';
 
 declare let jQuery: any;
 
@@ -17,17 +18,21 @@ declare let jQuery: any;
     templateUrl: 'yaml-config.component.html',
     styleUrls: ['yaml-config.component.css']
 })
-export class YamlConfigComponent implements AfterViewInit {
+export class YamlConfigComponent implements AfterViewInit, OnInit {
 
     configEditor: any = { lineNumbers: true, mode: 'text/x-yaml' };
 
     contentFile: string = '';
 
-    // @Input() package: PackageFormConfig;
-    // @Output() packageChange: EventEmitter<PackageFormConfig>;
+    @Input() packageConfig: IPackageConfig;
+    @Output() packageConfigChange: EventEmitter<IPackageConfig>;
 
     constructor() {
         console.log();
+    }
+
+    ngOnInit(): void {
+        console.log('tototototototo');
     }
 
     ngAfterViewInit(): void {

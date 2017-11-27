@@ -10,7 +10,7 @@ export class CoreEngineConfig implements ICoreEngineConfig {
     archiveUrl?: string;
 
     public static fromResult(res: any): ICoreEngineConfig {
-        let result = <ICoreEngineConfig>({
+        const result = <ICoreEngineConfig>({
             version: Version.fromResult(res.version),
             archiveUrl: res.archiveUrl
         });
@@ -18,7 +18,7 @@ export class CoreEngineConfig implements ICoreEngineConfig {
     }
 
     public static initialize(): ICoreEngineConfig {
-        var result = new CoreEngineConfig();
+        const result = new CoreEngineConfig();
         result.version = Version.initialize();
         result.archiveUrl = '';
         return result;

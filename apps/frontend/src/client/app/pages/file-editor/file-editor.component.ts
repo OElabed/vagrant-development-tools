@@ -18,20 +18,20 @@ export class FileEditorComponent implements AfterViewInit {
 
     content: string;
 
-    fileName: string = 'File Name';
+    fileName = 'File Name';
 
     constructor(private fileEditorService: FileEditorGlobalService) {
         this.content = ``;
     }
 
     ngAfterViewInit(): void {
-        var sidebar = jQuery('#fileeditsidebar');
-        var overlay = jQuery('.overlay');
+        const sidebar = jQuery('#fileeditsidebar');
+        const overlay = jQuery('.overlay');
 
         jQuery(window).click(function (e: any) {
-            var target = jQuery(e.target);
+            const target = jQuery(e.target);
 
-            var isOpen = jQuery('.file-edit-sidebar').hasClass('open');
+            const isOpen = jQuery('.file-edit-sidebar').hasClass('open');
             if (isOpen && target.parents('#fileeditsidebar').length === 0 && !target.hasClass('btn-file-editor')) {
                 overlay.fadeOut();
                 sidebar.removeClass('open');
@@ -46,10 +46,10 @@ export class FileEditorComponent implements AfterViewInit {
     }
 
     resizeBody() {
-        var wrapper = jQuery('#fileeditsidebar');
-        var footer = jQuery('#fileeditsidebar .footer');
-        var header = jQuery('#fileeditsidebar .wrapper .header');
-        var body = jQuery('#fileeditsidebar .wrapper .body');
+        const wrapper = jQuery('#fileeditsidebar');
+        const footer = jQuery('#fileeditsidebar .footer');
+        const header = jQuery('#fileeditsidebar .wrapper .header');
+        const body = jQuery('#fileeditsidebar .wrapper .body');
         body.outerHeight(wrapper.height() - (header.outerHeight() + footer.outerHeight()));
     }
 

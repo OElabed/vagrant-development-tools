@@ -1,7 +1,7 @@
 export class BootstrapSelect {
     placeholder?: string;
     options?: Option[];
-    withIcon: boolean = false;
+    withIcon = false;
 
     constructor() {
         this.placeholder = 'Choose ...';
@@ -9,7 +9,7 @@ export class BootstrapSelect {
     }
 
     public addOption(value: string, label: string, selected: boolean, icon: string = '') {
-        let option = new Option(label, value, false, selected, icon);
+        const option = new Option(label, value, false, selected, icon);
         this.options.push(option);
     }
 
@@ -24,7 +24,7 @@ export class BootstrapSelect {
     }
 
     public findSelectedOption(): Option {
-        let filtered = this.options.filter((option: Option) => option.selected);
+        const filtered = this.options.filter((option: Option) => option.selected);
         return filtered[0];
     }
 }

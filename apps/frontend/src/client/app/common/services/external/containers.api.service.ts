@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
@@ -16,22 +16,13 @@ declare let jQuery: any;
 export class ContainerService extends ExternalResourceService {
 
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         super();
     }
 
     getAll(): Observable<IContainer[]> {
-        return this.http.get('/assets/mock-data/container-data.json')
-            .map(mapContainers)
+        return this.http.get<IContainer[]>('/assets/mock-data/container-data.json')
+           // .map(mapContainers)
             .catch(this.handleError);
     }
-}
-
-function mapContainers(response: Response): IContainer[] {
-    // uncomment to simulate error:
-    // throw new Error('ups! Force choke!');
-
-    // The response of the API has a results
-    // property with the actual results
-    return response.json().map(Container.fromResult);
 }

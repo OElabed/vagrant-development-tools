@@ -13,8 +13,8 @@ import './operators';
 })
 export class AppComponent {
 
-  toggle: boolean = false;
-  mobileView: number = 992;
+  toggle = false;
+  mobileView = 992;
 
   constructor() {
     console.log('Environment config', Config);

@@ -25,10 +25,10 @@ export class FileUploaderFormComponent {
     config: FileUploaderFormConfig;
 
     @Input()
-    active: boolean = true;
+    active = true;
 
     uploader: FileUploader;
-    dropZoneOver: boolean = false;
+    dropZoneOver = false;
 
     uploadFromExplorerId = UUID.UUID();
 
@@ -43,7 +43,7 @@ export class FileUploaderFormComponent {
 
     initializeConfig(): FileUploaderFormConfig {
 
-        var config = new FileUploaderFormConfig();
+        const config = new FileUploaderFormConfig();
         config.maximumSize = 0;
         config.maximumSizeByteType = 'Mb';
         config.extensions = [];

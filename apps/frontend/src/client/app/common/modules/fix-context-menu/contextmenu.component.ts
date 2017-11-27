@@ -34,7 +34,7 @@ export class ContextmenuComponent {
   @Input('id') id: string;
 
   context: any = {};
-  isVisible: boolean = false;
+  isVisible = false;
 
   constructor(private element: ElementRef, private renderer: Renderer) {
   }
@@ -44,7 +44,7 @@ export class ContextmenuComponent {
 
     // timeout required that menu is visible, otherwise offsetParent is always null
     setTimeout(() => {
-      let offsetParent = this.element.nativeElement.offsetParent;
+      const offsetParent = this.element.nativeElement.offsetParent;
       if (offsetParent && offsetParent !== document.body) {
         // compute position relative to offset parent
         let bb = offsetParent.getBoundingClientRect();
@@ -85,7 +85,7 @@ export class ContextmenuComponent {
     path = Array.isArray(path) ? path : path.split('.');
 
     let index = 0;
-    let length = path.length;
+    const length = path.length;
 
     while (object != null && index < length) {
       object = object[(path[index++])];

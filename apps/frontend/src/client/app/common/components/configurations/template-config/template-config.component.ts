@@ -44,8 +44,8 @@ export class TemplateConfigComponent implements OnInit {
 
 
 
-    private errorMessage: string = '';
-    private isLoading: boolean = true;
+    private errorMessage = '';
+    private isLoading = true;
 
     constructor(
         private templatePackageService: TemplatePackageService,
@@ -76,6 +76,8 @@ export class TemplateConfigComponent implements OnInit {
             .subscribe(containers => {
                 this.containerList = containers;
                 this.initializeContainerSelect(containers);
+
+                console.log(containers);
             },
             e => this.errorMessage = e,
             () => {
@@ -126,7 +128,7 @@ export class TemplateConfigComponent implements OnInit {
     }
 
     initializeTemplateSelect(templates: ITemplatePackage[]): void {
-        var self = this;
+        const self = this;
         this.templateSelect = new BootstrapSelect();
         this.templateSelect.placeholder = 'Choose Template ...';
         templates.forEach((item, index) => {
@@ -135,11 +137,11 @@ export class TemplateConfigComponent implements OnInit {
     }
 
     initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
-        var self = this;
+        const self = this;
         this.containerSelect = new BootstrapSelect();
         this.containerSelect.placeholder = 'Choose Container ...';
         containers.forEach((item, index) => {
-            var selected = false;
+            let selected = false;
             if (containerSelected !== null && containerSelected.id === item.id) {
                 selected = true;
             }
@@ -149,7 +151,7 @@ export class TemplateConfigComponent implements OnInit {
 
     onSelectedTemplateOption(option: Option) {
         this.templateSelectedOption = option;
-        var idTemplate = Number(option.value);
+        const idTemplate = Number(option.value);
         this.currentTemplatePackage = this.templatePackageList.filter((template: ITemplatePackage) => template.id === idTemplate)[0];
         this.initializeContainerSelect(this.containerList, this.currentTemplatePackage.packageConfig.plateform);
         this.initializeForm(this.templateForm, this.currentTemplatePackage);
@@ -157,7 +159,7 @@ export class TemplateConfigComponent implements OnInit {
 
     onSelectedContainerOption(option: Option) {
         this.containerSelectedOption = option;
-        var idContainer = Number(option.value);
+        const idContainer = Number(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
         this.setValueFormControl('general.plateform', this.currentContainer);
         (<FormGroup>this.templateForm.controls.general)
@@ -165,8 +167,8 @@ export class TemplateConfigComponent implements OnInit {
     }
 
     isFieldNotValid(field: string) {
-        var fieldControl = this.getFieldControl(field, this.templateForm);
-        var isValid = (
+        const fieldControl = this.getFieldControl(field, this.templateForm);
+        const isValid = (
             (fieldControl.valid) ||
             (fieldControl.pristine && !this.formSumitAttempt)
         );
@@ -174,9 +176,9 @@ export class TemplateConfigComponent implements OnInit {
     }
 
     getFieldControl(field: string, form: AbstractControl): AbstractControl {
-        var splitted = field.split('.');
-        var formGroup: AbstractControl = form;
-        var control: AbstractControl;
+        const splitted = field.split('.');
+        let formGroup: AbstractControl = form;
+        let control: AbstractControl;
         splitted.forEach((item, index) => {
             if (index === (splitted.length - 1)) {
                 control = formGroup.get(item);
@@ -207,7 +209,7 @@ export class TemplateConfigComponent implements OnInit {
     }
 
     setValueFormControl(field: string, value: any) {
-        var control = <FormControl>this.getFieldControl(field, this.templateForm);
+        const control = <FormControl>this.getFieldControl(field, this.templateForm);
         control.setValue(value, { onlySelf: true });
     }
 

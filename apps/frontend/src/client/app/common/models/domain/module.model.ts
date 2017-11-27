@@ -11,8 +11,8 @@ export class ModuleTypeUtil {
     }
 
     public static toModuleType(name: string): ModuleType {
-        var mapModulesType: Map<ModuleType, string> = ModuleTypeUtil.getMapModuleType();
-        var result: ModuleType;
+        const mapModulesType: Map<ModuleType, string> = ModuleTypeUtil.getMapModuleType();
+        let result: ModuleType;
         mapModulesType.forEach((value: string, key: ModuleType) => {
             if (value === name) {
                 result = key;
@@ -26,8 +26,8 @@ export class ModuleTypeUtil {
     }
 
     public static getListNameModuleType(): string[] {
-        var result: string[] = [];
-        var mapModulesType: Map<ModuleType, string> = ModuleTypeUtil.getMapModuleType();
+        const result: string[] = [];
+        const mapModulesType: Map<ModuleType, string> = ModuleTypeUtil.getMapModuleType();
         ModuleTypeUtil.getListModuleType().forEach(item => {
             result.push(mapModulesType.get(item));
         });
@@ -36,7 +36,7 @@ export class ModuleTypeUtil {
     }
 
     public static getMapModuleType(): Map<ModuleType, string> {
-        var result = new Map<ModuleType, string>();
+        const result = new Map<ModuleType, string>();
         result.set(ModuleType.AQUISITION, 'Aquisition');
         result.set(ModuleType.REQUESTER, 'Requester');
         result.set(ModuleType.DBCLIENT, 'DBClient');

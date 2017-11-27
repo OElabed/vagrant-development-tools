@@ -13,7 +13,7 @@ export class TemplatePackage implements ITemplatePackage {
     packageConfig?: IPackageConfig;
 
     public static initialize(): ITemplatePackage {
-        var result = new TemplatePackage();
+        const result = new TemplatePackage();
         result.id = 0;
         result.templateName = '';
         result.packageConfig = PackageConfig.initialize();
@@ -21,7 +21,7 @@ export class TemplatePackage implements ITemplatePackage {
     }
 
     public static fromResult(res: any): ITemplatePackage {
-        let template = <ITemplatePackage>({
+        const template = <ITemplatePackage>({
             id: res.id,
             templateName: res.templateName,
             packageConfig: PackageConfig.fromResult(res.packageConfig)

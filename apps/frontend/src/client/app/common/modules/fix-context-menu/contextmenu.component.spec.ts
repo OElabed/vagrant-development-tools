@@ -10,7 +10,7 @@ describe('ContextmenuComponent', () => {
   });
 
   it('should instantiate component', () => {
-    let fixture = TestBed.createComponent(ContextmenuComponent);
+    const fixture = TestBed.createComponent(ContextmenuComponent);
     expect(fixture.componentInstance instanceof ContextmenuComponent).toBe(true, 'should create ContextmenuComponent');
   });
 

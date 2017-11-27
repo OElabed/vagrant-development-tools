@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
@@ -16,22 +16,13 @@ declare let jQuery: any;
 export class TemplatePackageService extends ExternalResourceService {
 
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         super();
     }
 
     getAll(): Observable<ITemplatePackage[]> {
-        return this.http.get('/assets/mock-data/template-data.json')
-            .map(mapTemplates)
+        return this.http.get<ITemplatePackage[]>('/assets/mock-data/template-data.json')
+            //.map(mapTemplates)
             .catch(this.handleError);
     }
-}
-
-function mapTemplates(response: Response): ITemplatePackage[] {
-    // uncomment to simulate error:
-    // throw new Error('ups! Force choke!');
-
-    // The response of the API has a results
-    // property with the actual results
-    return response.json().map(TemplatePackage.fromResult);
 }

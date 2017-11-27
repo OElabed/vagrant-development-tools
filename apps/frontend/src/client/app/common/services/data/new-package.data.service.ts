@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { IPackageConfig, PackageConfig } from '../../models/domain/package-config.model';
@@ -10,22 +9,23 @@ import { IFilterEngineConfig } from '../../models/domain/filter-engine-config.mo
 import { ICoreEngineConfig } from '../../models/domain/core-engine-config.model';
 import { IDatabaseConfig } from '../../models/domain/database-config.model';
 import { IModuleConfig } from '../../models/domain/module-config.model';
+import { IYamlConfig, YamlConfig } from '../../models/domain/yaml-config.model';
 
 
 @Injectable()
 export class NewPackageConfigDataService {
 
     config: Observable<IPackageConfig>;
-    yamlConfig: Observable<string>;
+    yamlConfig: Observable<IYamlConfig>;
     private _config: BehaviorSubject<IPackageConfig>;
-    private _yamlConfig: BehaviorSubject<string>;
+    private _yamlConfig: BehaviorSubject<IYamlConfig>;
     private dataStore: {
         config: IPackageConfig
-        yamlConfig: string
+        yamlConfig: IYamlConfig
     };
 
-    private errorMessage: string = '';
-    private isLoading: boolean = true;
+    private errorMessage = '';
+    private isLoading = true;
 
     constructor(
         private packageConfigService: PackageConfigService,
@@ -33,7 +33,7 @@ export class NewPackageConfigDataService {
     ) {
         this.dataStore = {
             config: PackageConfig.initialize(),
-            yamlConfig: ''
+            yamlConfig: YamlConfig.initialize()
         };
         this._config = <BehaviorSubject<IPackageConfig>>new BehaviorSubject([]);
         this.config = this._config.asObservable();

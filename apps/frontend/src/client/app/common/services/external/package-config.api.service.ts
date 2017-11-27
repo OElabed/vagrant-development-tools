@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
@@ -17,22 +17,12 @@ declare let jQuery: any;
 export class PackageConfigService extends ExternalResourceService {
 
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         super();
     }
 
     create(config: IPackageConfig): Observable<IPackageConfig> {
         return this.http.post('/assets/mock-data/template-data.json', JSON.stringify(config))
-            .map(mapPackageConfig)
-            .catch(this.handleError);
+                .catch(this.handleError);
     }
-}
-
-function mapPackageConfig(response: Response): IPackageConfig {
-    // uncomment to simulate error:
-    // throw new Error('ups! Force choke!');
-
-    // The response of the API has a results
-    // property with the actual results
-    return response.json().map(PackageConfig.fromResult);
 }

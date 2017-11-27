@@ -28,8 +28,8 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
     private containerSelectedOption: Option;
 
 
-    private errorMessage: string = '';
-    private isLoading: boolean = true;
+    private errorMessage = '';
+    private isLoading = true;
 
 
     constructor(
@@ -59,11 +59,11 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
 
 
     initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
-        var self = this;
+        const self = this;
         this.containerSelect = new BootstrapSelect();
         this.containerSelect.placeholder = 'Choose Container ...';
         containers.forEach((item, index) => {
-            var selected = false;
+            let selected = false;
             if (containerSelected !== null && containerSelected.id === item.id) {
                 selected = true;
             }
@@ -73,7 +73,7 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
 
     onSelectedContainerOption(option: Option) {
         this.containerSelectedOption = option;
-        var idContainer = Number(option.value);
+        const idContainer = Number(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
         this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
         this.initializeForm(this.form, this.config);

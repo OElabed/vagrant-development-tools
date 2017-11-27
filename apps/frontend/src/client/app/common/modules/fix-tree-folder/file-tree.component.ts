@@ -46,7 +46,7 @@ export class FileTreeComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (typeof (changes['tree'].currentValue) !== 'undefined') {
       this.root = this.tree;
-      console.debug(this.root);
+      console.log(this.root);
     }
   }
 

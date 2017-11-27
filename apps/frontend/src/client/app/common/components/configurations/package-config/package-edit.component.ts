@@ -30,7 +30,7 @@ export class PackageEditComponent {
     }
 
     intitializeFilesTree() {
-        var treeNodeParam: TreeNodeParams = {
+        const treeNodeParam: TreeNodeParams = {
             name: 'photos',
             type: FileType.dir,
             children: [

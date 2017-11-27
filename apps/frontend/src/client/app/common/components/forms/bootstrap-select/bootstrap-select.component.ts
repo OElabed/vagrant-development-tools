@@ -23,18 +23,18 @@ export class BootstrapSelectComponent implements AfterViewInit, OnChanges {
     }
 
     ngAfterViewInit(): void {
-        var self = this;
+        const self = this;
         jQuery('#' + self.elementId).selectpicker();
         jQuery('#' + self.elementId).on('changed.bs.select', function (e: any) {
-            var selected = (jQuery('#' + self.elementId) as any).selectpicker('val');
+            const selected = (jQuery('#' + self.elementId) as any).selectpicker('val');
             self.selectContainer.changeSelectedOption(selected);
             self.selectOption.emit(self.selectContainer.findSelectedOption());
         });
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.debug(changes.selectContainer.currentValue);
-        var self = this;
+        console.log(changes.selectContainer.currentValue);
+        const self = this;
         setTimeout(() => {
             (jQuery('#' + self.elementId) as any).selectpicker('refresh');
         }, 1000);

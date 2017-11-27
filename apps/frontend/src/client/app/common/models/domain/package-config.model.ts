@@ -16,7 +16,7 @@ export class CommonEnvConfig implements ICommonEnvConfig {
     fileUrl?: string;
 
     public static fromResult(res: any): ICommonEnvConfig {
-        let template = <ICommonEnvConfig>({
+        const template = <ICommonEnvConfig>({
             enable: res.enable,
             fileUrl: res.fileUrl
         });
@@ -24,7 +24,7 @@ export class CommonEnvConfig implements ICommonEnvConfig {
     }
 
     public static initialize(): ICommonEnvConfig {
-        var result = new CommonEnvConfig();
+        const result = new CommonEnvConfig();
         result.enable = false;
         result.fileUrl = '';
         return result;
@@ -55,7 +55,7 @@ export class PackageConfig implements IPackageConfig {
     databaseConfig?: IDatabaseConfig;
 
     public static initialize(): IPackageConfig {
-        var result = new PackageConfig();
+        const result = new PackageConfig();
         result.id = 0;
         result.name = '';
         result.plateform = Container.initialize();
@@ -70,7 +70,7 @@ export class PackageConfig implements IPackageConfig {
 
 
     public static fromResult(res: any): IPackageConfig {
-        let template = <IPackageConfig>({
+        const template = <IPackageConfig>({
             id: res.id,
             name: res.name,
             plateform: Container.fromResult(res.plateform),

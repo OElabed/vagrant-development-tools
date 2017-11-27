@@ -8,7 +8,7 @@ export class Version implements IVersion {
     push?: string;
 
     public static fromResult(res: any): IVersion {
-        let version = <IVersion>({
+        const version = <IVersion>({
             version: res.version,
             push: res.push
         });
@@ -16,7 +16,7 @@ export class Version implements IVersion {
     }
 
     public static initialize(): IVersion {
-        var result = new Version();
+        const result = new Version();
         result.version = '';
         result.push = '';
         return result;

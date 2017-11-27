@@ -15,7 +15,7 @@ export class ModuleConfig implements IModuleConfig {
     archiveUrl?: string;
 
     public static fromResult(res: any): IModuleConfig {
-        let result = <IModuleConfig>({
+        const result = <IModuleConfig>({
             version: Version.fromResult(res.version),
             type: ModuleType[res.type],
             name: res.name,
@@ -28,7 +28,7 @@ export class ModuleConfig implements IModuleConfig {
     }
 
     public static initialize(): IModuleConfig {
-        var result = new ModuleConfig();
+        const result = new ModuleConfig();
         result.version = Version.initialize();
         result.type = ModuleType.AQUISITION;
         result.name = '';

@@ -6,7 +6,7 @@ export enum OS {
 }
 
 export function findIconContainer(os: OS): string {
-    var icon = '';
+    let icon = '';
     switch (os) {
         case OS.LINUX:
             icon = 'fa fa-linux';
@@ -39,7 +39,7 @@ export class Container implements IContainer {
     os?: OS;
 
     public static initialize(): IContainer {
-        var result = new Container();
+        const result = new Container();
         result.id = 0;
         result.name = '';
         result.os = OS.LINUX;
@@ -47,7 +47,7 @@ export class Container implements IContainer {
     }
 
     public static fromResult(res: any): IContainer {
-        let template = <IContainer>({
+        const template = <IContainer>({
             id: res.id,
             name: res.name,
             os: OS[res.os]

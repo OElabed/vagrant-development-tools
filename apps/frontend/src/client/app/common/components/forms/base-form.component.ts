@@ -6,8 +6,8 @@ export class BaseFormComponent {
     protected formSumitAttempt: boolean;
 
     isFieldNotValid(field: string) {
-        var fieldControl = this.getFieldControl(field, this.form);
-        var isValid = (
+        const fieldControl = this.getFieldControl(field, this.form);
+        const isValid = (
             (fieldControl.valid) ||
             (fieldControl.pristine && !this.formSumitAttempt)
         );
@@ -15,9 +15,9 @@ export class BaseFormComponent {
     }
 
     getFieldControl(field: string, form: AbstractControl): AbstractControl {
-        var splitted = field.split('.');
-        var formGroup: AbstractControl = form;
-        var control: AbstractControl;
+        const splitted = field.split('.');
+        let formGroup: AbstractControl = form;
+        let control: AbstractControl;
         splitted.forEach((item, index) => {
             if (index === (splitted.length - 1)) {
                 control = formGroup.get(item);

@@ -28,7 +28,7 @@ export class NodeComponent {
   }
 
   isExpandable(): boolean {
-    let isDirectory: boolean = this.node.isDir();
+    const isDirectory: boolean = this.node.isDir();
     return isDirectory;
   }
 

@@ -22,7 +22,7 @@ export class YamlConfigComponent implements AfterViewInit, OnInit {
 
     configEditor: any = { lineNumbers: true, mode: 'text/x-yaml' };
 
-    contentFile: string = '';
+    contentFile = '';
 
     @Input() packageConfig: IPackageConfig;
     @Output() packageConfigChange: EventEmitter<IPackageConfig>;

@@ -15,7 +15,7 @@ import { State } from '../../../common/models/domain/state.model';
 export class ActionsComponent {
 
     package: IPackage;
-    isRuning: boolean = false;
+    isRuning = false;
 
     constructor() {
         this.package = new Package();

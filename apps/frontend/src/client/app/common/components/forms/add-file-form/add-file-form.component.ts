@@ -28,7 +28,7 @@ export class AddFileFormComponent {
     }
 
     initializeConfig(): IAddFileFormConfig {
-        var config = new AddFileFormConfig();
+        const config = new AddFileFormConfig();
         config.type = AddFileFormType.URL;
         config.urlFile = '';
         return config;

@@ -20,7 +20,7 @@ export class FilterEngineConfig implements IFilterEngineConfig {
     licenceFileUrl?: string;
 
     public static fromResult(res: any): IFilterEngineConfig {
-        let result = <IFilterEngineConfig>({
+        const result = <IFilterEngineConfig>({
             version: Version.fromResult(res.version),
             archiveUrl: res.archiveUrl,
             kzFileUrl: res.kzFileUrl,
@@ -33,7 +33,7 @@ export class FilterEngineConfig implements IFilterEngineConfig {
     }
 
     public static initialize(): IFilterEngineConfig {
-        var result = new FilterEngineConfig();
+        const result = new FilterEngineConfig();
         result.version = Version.initialize();
         result.archiveUrl = '';
         result.kzFileUrl = '';

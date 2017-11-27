@@ -16,12 +16,12 @@ const isTouch = !!(('ontouchstart' in window) ||
 })
 export class ContextmenuDirective {
 
-  @Input('contextmenu')
-  in: any[];
+  @Input()
+  contextmenu: any[];
 
   @HostListener('contextmenu', ['$event'])
   onContextmenu(ev: any) {
-    let [menu, context] = this.in;
+    const [menu, context] = this.contextmenu;
     menu.setContext(context);
     menu.show(ev.clientX, ev.clientY);
     ev.stopPropagation();

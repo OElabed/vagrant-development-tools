@@ -13,7 +13,7 @@ export class WizardStep {
 
 
 export interface IWizard {
-
+    steps: WizardStep[];
 }
 
 export class Wizard implements IWizard {
@@ -29,9 +29,9 @@ export class Wizard implements IWizard {
     }
 
     public getTheNextStep(currentStep: WizardStep): WizardStep {
-        var nextWizard: WizardStep;
+        let nextWizard: WizardStep;
 
-        for (let item of this.steps) {
+        for (const item of this.steps) {
             if (item.order > currentStep.order) {
                 nextWizard = item;
                 break;
@@ -47,7 +47,7 @@ export class Wizard implements IWizard {
 
     public getStepById(stepId: string): WizardStep {
 
-        var step: WizardStep;
+        let step: WizardStep;
 
         this.steps.forEach((item, index) => {
             if (item.id === stepId) {

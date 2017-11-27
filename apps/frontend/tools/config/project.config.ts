@@ -72,7 +72,7 @@ export class ProjectConfig extends SeedConfig {
 
     this.addPackageBundles({
       name: 'codemirror',
-      path:'node_modules/codemirror',
+      path: 'node_modules/codemirror',
       packageMeta: {
         main: 'lib/codemirror',
         defaultExtension: 'js'
@@ -81,7 +81,7 @@ export class ProjectConfig extends SeedConfig {
 
     this.addPackageBundles({
       name: 'ng2-codemirror',
-      path:'node_modules/ng2-codemirror',
+      path: 'node_modules/ng2-codemirror',
       packageMeta: {
         main: 'lib/index',
         defaultExtension: 'js'
@@ -90,7 +90,7 @@ export class ProjectConfig extends SeedConfig {
 
     this.addPackageBundles({
       name: 'ng2-file-upload',
-      path:'node_modules/ng2-file-upload',
+      path: 'node_modules/ng2-file-upload',
       packageMeta: {
         main: './index',
         defaultExtension: 'js'
@@ -99,7 +99,7 @@ export class ProjectConfig extends SeedConfig {
 
     this.addPackageBundles({
       name: 'angular2-uuid',
-      path:'node_modules/angular2-uuid',
+      path: 'node_modules/angular2-uuid',
       packageMeta: {
         main: './index',
         defaultExtension: 'js'
@@ -107,7 +107,7 @@ export class ProjectConfig extends SeedConfig {
     });
 
     // Add packages (e.g. ng2-translate)
-    // let additionalPackages: ExtendPackages[] = [{
+    // const additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',
     //   // Path to the package's bundle
     //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'

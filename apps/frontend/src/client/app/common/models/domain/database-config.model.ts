@@ -19,7 +19,7 @@ export class DatabaseConfig implements IDatabaseConfig {
     service?: string;
 
     public static fromResult(res: any): IDatabaseConfig {
-        let template = <IDatabaseConfig>({
+        const template = <IDatabaseConfig>({
             type: DatabaseType[res.type],
             username: res.username,
             password: res.password,
@@ -31,7 +31,7 @@ export class DatabaseConfig implements IDatabaseConfig {
     }
 
     public static initialize(): IDatabaseConfig {
-        var result = new DatabaseConfig();
+        const result = new DatabaseConfig();
         result.type = DatabaseType.ORACLE;
         result.username = '';
         result.password = '';

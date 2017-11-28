@@ -25,10 +25,12 @@ import { HostBinding } from '@angular/core/src/metadata/directives';
       }
     `
   ],
+  /* tslint:disable */
   host: {
     '[class.contextmenu-container]': '1',
     '[class.show]': 'isVisible'
   }
+  /* tslint:enable */
 })
 export class ContextmenuComponent {
 

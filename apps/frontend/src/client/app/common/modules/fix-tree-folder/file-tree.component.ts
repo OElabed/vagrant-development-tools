@@ -21,17 +21,17 @@ import { FileType } from './tree-node.model';
 export class FileTreeComponent implements OnInit, OnChanges {
   @Input() tree: TreeNode;
   @Input() keyboardWatch: boolean;
-  @Output() onChange: EventEmitter<TreeNode>;
-  @Output() onDelete: EventEmitter<TreeNode>;
-  @Output() onEdit: EventEmitter<TreeNode>;
+  @Output() change: EventEmitter<TreeNode>;
+  @Output() delete: EventEmitter<TreeNode>;
+  @Output() edit: EventEmitter<TreeNode>;
 
   private root: TreeNode;
   private currFocusNode: TreeNode;
 
   constructor(private _eref: ElementRef) {
-    this.onChange = new EventEmitter();
-    this.onDelete = new EventEmitter();
-    this.onEdit = new EventEmitter();
+    this.change = new EventEmitter();
+    this.delete = new EventEmitter();
+    this.edit = new EventEmitter();
     this.keyboardWatch = false;
   }
 
@@ -52,15 +52,15 @@ export class FileTreeComponent implements OnInit, OnChanges {
 
   fileTreeClicked(nextNode: TreeNode) {
     this.updateFocusNode(nextNode);
-    this.onChange.emit(nextNode);
+    this.change.emit(nextNode);
   }
 
   fileDeleted(nextNode: TreeNode) {
-    this.onDelete.emit(nextNode);
+    this.delete.emit(nextNode);
   }
 
   fileEdited(nextNode: TreeNode) {
-    this.onEdit.emit(nextNode);
+    this.edit.emit(nextNode);
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -70,7 +70,7 @@ export class FileTreeComponent implements OnInit, OnChanges {
 
     switch (event.keyCode) {
       case 13: // Enter
-        this.onChange.emit(this.currFocusNode);
+        this.change.emit(this.currFocusNode);
         break;
       // case 37: // left
       //   if (this.currFocusNode.isDir()

@@ -8,7 +8,7 @@ import Config from '../../config';
 const plugins = <any>gulpLoadPlugins();
 const sourceElements: any[] = [];
 const args = argv;
-let langEmpty: boolean = true;
+let langEmpty = true;
 
 gulp.task('get_source_i18n', function () {
   return gulp.src(join(Config.TMP_DIR, 'messages.xlf'))

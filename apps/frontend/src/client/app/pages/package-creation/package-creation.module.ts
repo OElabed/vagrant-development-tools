@@ -11,7 +11,7 @@ import { CoreEngineEditComponent } from '../../common/components/configurations/
 import { GeneralEditComponent } from '../../common/components/configurations/package-config/general-edit/general-edit.component';
 import { BackendEditComponent } from '../../common/components/configurations/package-config/backend-edit/backend-edit.component';
 import { DatabaseEditComponent } from '../../common/components/configurations/package-config/database-edit/database-edit.component';
-import { 
+import {
   FilterEngineEditComponent
 } from '../../common/components/configurations/package-config/filter-engine-edit/filter-engine-edit.component';
 import { ModuleEditComponent } from '../../common/components/configurations/package-config/module-edit/module-edit.component';

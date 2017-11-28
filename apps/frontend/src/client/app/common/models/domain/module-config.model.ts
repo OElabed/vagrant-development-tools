@@ -37,13 +37,13 @@ export class ModuleConfig implements IModuleConfig {
     }
 
     public static initializeList(): IModuleConfig[] {
-        var result: ModuleConfig[] = [];
+        const result: ModuleConfig[] = [];
         result.push(ModuleConfig.initialize());
         return result;
     }
 
     public static moduleIsActivate(list: ModuleConfig[], type: ModuleType): boolean {
-        var exist: boolean = false;
+        let exist = false;
 
         list.forEach((item, index) => {
             if (item.type === type) {

@@ -14,8 +14,8 @@ export class FileEditorGlobalService {
 
   openFileEditor(content: string) {
     this.contentFile = content;
-    var sidebar = jQuery('#fileeditsidebar');
-    var overlay = jQuery('.overlay');
+    const sidebar = jQuery('#fileeditsidebar');
+    const overlay = jQuery('.overlay');
     sidebar.toggleClass('open');
     if (this.isOpenFileEditor()) {
       overlay.fadeIn();
@@ -25,8 +25,8 @@ export class FileEditorGlobalService {
   }
 
   closeFileEditor() {
-    var sidebar = jQuery('#fileeditsidebar');
-    var overlay = jQuery('.overlay');
+    const sidebar = jQuery('#fileeditsidebar');
+    const overlay = jQuery('.overlay');
 
     overlay.fadeOut();
     sidebar.removeClass('open');

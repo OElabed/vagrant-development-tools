@@ -5,6 +5,7 @@ import {
   Renderer,
   HostListener
 } from '@angular/core';
+import { HostBinding } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'context-menu',
@@ -33,8 +34,12 @@ export class ContextmenuComponent {
 
   @Input('id') id: string;
 
+  // @HostBinding('class.show') isVisible = false;
+  // @HostBinding('class.contextmenu-container')
+
   context: any = {};
   isVisible = false;
+
 
   constructor(private element: ElementRef, private renderer: Renderer) {
   }
@@ -47,7 +52,7 @@ export class ContextmenuComponent {
       const offsetParent = this.element.nativeElement.offsetParent;
       if (offsetParent && offsetParent !== document.body) {
         // compute position relative to offset parent
-        let bb = offsetParent.getBoundingClientRect();
+        const bb = offsetParent.getBoundingClientRect();
         x -= bb.left;
         y -= bb.top;
       }

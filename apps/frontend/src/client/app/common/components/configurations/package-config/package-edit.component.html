@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-3 m-t-15">
-        <file-tree [tree]="dir" (onChange)="updateData($event)" (onEdit)="editData($event)" (onDelete)="deleteData($event)" [keyboardWatch]=true>
+        <file-tree [tree]="dir" (change)="updateData($event)" (edit)="editData($event)" (delete)="deleteData($event)" [keyboardWatch]=true>
         </file-tree>
     </div>
     <div class="col-sm-9 nomargin">
@@ -33,12 +33,12 @@
                     </tr>
                     <tr class="hiera-1">
                         <td>Name</td>
-                        <td>{{packageConfig.name}}</td>
+                        <td>{{ packageConfig.name }}</td>
                     </tr>
                     <tr class="hiera-1">
                         <td>Container</td>
                         <td>
-                            <i class="fa m-r-5" [ngClass]="getContainerIcon()" aria-hidden="true"></i> {{packageConfig.plateform.name}}</td>
+                            <i class="fa m-r-5" [ngClass]="getContainerIcon()" aria-hidden="true"></i> {{ packageConfig.plateform.name }}</td>
                     </tr>
                     <tr class="hiera-1">
                         <td>Options</td>

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PackageSettingsComponent } from './package-settings.component';
+import { LoginComponent } from './login.component';
+
 
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'settings', component: PackageSettingsComponent }
+      { path: 'login', component: LoginComponent }
     ])
   ],
   exports: [RouterModule]
 })
-export class PackageSettingsRoutingModule { }
+export class LoginRoutingModule { }

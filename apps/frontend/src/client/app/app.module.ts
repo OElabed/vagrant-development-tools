@@ -6,20 +6,16 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SharedModule } from './common/shared/shared.module';
-import { DashboardModule } from './pages/dashboard/dashboard.module';
-import { PackageSettingsModule } from './pages/package-settings/package-settings.module';
-import { PackageCreationModule } from './pages/package-creation/package-creation.module';
-import { FileEditorModule } from './pages/file-editor/file-editor.module';
+import { LoginModule } from './pages/login/login.module';
+import { ContentModule } from './pages/content/content.module';
 
 
 @NgModule({
   imports: [BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    DashboardModule,
-    FileEditorModule,
-    PackageSettingsModule,
-    PackageCreationModule,
+    LoginModule,
+    ContentModule,
     SharedModule.forRoot()
   ],
   declarations: [AppComponent],

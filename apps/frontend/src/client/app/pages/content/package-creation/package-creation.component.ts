@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Wizard, WizardStep } from '../../common/models/view/wizard.model';
-import { IPackageConfig, PackageConfig } from '../../common/models/domain/package-config.model';
+import { Wizard, WizardStep } from '../../../common/models/view/wizard.model';
+import { IPackageConfig, PackageConfig } from '../../../common/models/domain/package-config.model';
 
 declare let jQuery: any;
 

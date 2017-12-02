@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CodemirrorModule } from 'ng2-codemirror';
 
-import { HeaderbarComponent } from '../components/layout/headerbar/headerbar.component';
-import { SidebarComponent } from '../components/layout/sidebar/sidebar.component';
 import { FixWidgetComponent } from '../components/widgets/fix-widget/fix-widget.component';
 import { FixWidgetHeaderComponent } from '../components/widgets/fix-widget-header/fix-widget-header.component';
 import { FixWidgetFooterComponent } from '../components/widgets/fix-widget-footer/fix-widget-footer.component';
@@ -27,8 +25,6 @@ import { FileEditorGlobalService } from '../services/data/file-editor-service.da
 @NgModule({
   imports: [CommonModule, RouterModule, CodemirrorModule],
   declarations: [
-    HeaderbarComponent,
-    SidebarComponent,
     FixWidgetComponent,
     FixWidgetHeaderComponent,
     FixWidgetFooterComponent,
@@ -39,8 +35,6 @@ import { FileEditorGlobalService } from '../services/data/file-editor-service.da
     BootstrapSelectComponent
   ],
   exports: [
-    HeaderbarComponent,
-    SidebarComponent,
     FixWidgetComponent,
     FixWidgetHeaderComponent,
     FixWidgetFooterComponent,
@@ -60,7 +54,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [RoutingGlobalService, FileEditorGlobalService ]
+      providers: [RoutingGlobalService, FileEditorGlobalService]
     };
   }
 }

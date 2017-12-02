@@ -1,12 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ContentModule } from './pages/content/content.module';
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      /* define app module routes here, e.g., to lazily load a module
-         (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
-       */
+      {
+        path: 'content',
+        loadChildren: () => ContentModule
+      },
+      {
+        path: 'login',
+        loadChildren: () => LoginModule
+      },
+      {
+        path: '',
+        redirectTo: 'content',
+        pathMatch: 'full'
+      }
+      // },
+      // {
+      //   path: '**',
+      //   component: PageNotFoundComponent
+      // }
     ])
   ],
   exports: [RouterModule]

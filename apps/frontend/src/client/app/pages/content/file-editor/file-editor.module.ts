@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../common/shared/shared.module';
+import { SharedModule } from '../../../common/shared/shared.module';
 import { FileEditorComponent } from './file-editor.component';
 
 @NgModule({

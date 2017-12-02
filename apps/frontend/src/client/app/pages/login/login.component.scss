@@ -1,0 +1,21 @@
+.mainbox {
+    margin-top: 150px;
+    .logo {
+        color: white;
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .panel {
+        border-color: black;
+    }
+    .panel-body {
+        padding-top:30px;
+    }
+    .input-group {
+        margin-bottom: 25px
+    }
+    .form-group {
+        margin-top: 10px
+    }
+}

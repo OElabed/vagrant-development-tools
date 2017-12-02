@@ -13,6 +13,10 @@ declare let jQuery: any;
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+
+  ngOnInit() {
+    document.querySelector('body').className = 'login-background';
+  }
 
 }

@@ -16,7 +16,7 @@ import { LoginModule } from './pages/login/login.module';
       },
       {
         path: '',
-        redirectTo: 'content',
+        redirectTo: 'login',
         pathMatch: 'full'
       }
       // },

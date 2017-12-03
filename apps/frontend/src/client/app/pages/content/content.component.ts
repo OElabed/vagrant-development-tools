@@ -13,7 +13,7 @@ declare let jQuery: any;
   templateUrl: 'content.component.html',
   styleUrls: ['content.component.css']
 })
-export class ContentComponent {
+export class ContentComponent implements OnInit {
 
   toggle = false;
   mobileView = 992;
@@ -22,6 +22,10 @@ export class ContentComponent {
     console.log('Environment config', Config);
     this.attachEvents();
     this.toggle = localStorage.getItem('toggle') === 'true' ? true : false;
+  }
+
+  ngOnInit() {
+    jQuery('body').removeClass('login-background');
   }
 
   attachEvents() {

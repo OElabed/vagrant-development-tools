@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Wizard, WizardStep } from '../../common/models/view/wizard.model';
 import { IPackageConfig, PackageConfig } from '../../common/models/domain/package-config.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare let jQuery: any;
 
@@ -15,8 +16,17 @@ declare let jQuery: any;
 })
 export class LoginComponent implements OnInit {
 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
   ngOnInit() {
-    document.querySelector('body').className = 'login-background';
+    jQuery('body').addClass('login-background');
+  }
+
+  onSubmit() {
+    this.router.navigate(['/content']);
   }
 
 }

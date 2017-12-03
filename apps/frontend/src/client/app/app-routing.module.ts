@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContentModule } from './pages/content/content.module';
 import { LoginModule } from './pages/login/login.module';
+import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
 
 @NgModule({
   imports: [
@@ -15,15 +16,18 @@ import { LoginModule } from './pages/login/login.module';
         loadChildren: () => LoginModule
       },
       {
+        path: 'notfound',
+        loadChildren: () => PageNotFoundModule
+      },
+      {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'content',
         pathMatch: 'full'
+      },
+      {
+        path: '**',
+        redirectTo: 'notfound'
       }
-      // },
-      // {
-      //   path: '**',
-      //   component: PageNotFoundComponent
-      // }
     ])
   ],
   exports: [RouterModule]

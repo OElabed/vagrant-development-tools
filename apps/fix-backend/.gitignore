@@ -6,6 +6,9 @@ target/
 logs/
 out/
 
+src/main/resources/webui/
+!src/main/resources/webui/.gitkeep
+
 *.ipr
 *.iws
 *.iml

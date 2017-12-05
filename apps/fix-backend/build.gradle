@@ -74,6 +74,13 @@ task downloadRedoc(type: Download) {
     overwrite true
 }
 
+task createGitKeep { 
+    doLast { 
+        new File("${sourceSets.main.resources.srcDirs[0]}/webui").mkdir() 
+        new File("${sourceSets.main.resources.srcDirs[0]}/webui/.gitkeep").createNewFile() 
+    }
+}
+
 task var {
     doLast {
 	    sourceSets {
@@ -94,5 +101,7 @@ task wrapper(type: Wrapper) {
 
 compileJava.dependsOn downloadRedoc
 copyWebui.dependsOn removeWebui
+createGitKeep.dependsOn removeWebui
+copyWebui.dependsOn createGitKeep
 compileJava.dependsOn copyWebui
 

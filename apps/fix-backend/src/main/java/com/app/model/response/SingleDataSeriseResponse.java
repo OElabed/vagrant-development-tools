@@ -2,10 +2,11 @@
 
 package com.app.model.response;
 
-import lombok.*;
-import java.util.*;
-import io.swagger.annotations.*;
-import com.app.model.data.*;
+import com.app.model.data.SingleSerise;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper=false)

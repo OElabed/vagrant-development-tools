@@ -1,23 +1,31 @@
 package com.app.config;
 
-import org.springframework.security.core.*;
+import com.app.identity.TokenUser;
+import com.app.identity.TokenUtil;
+import com.app.model.session.SessionItem;
+import com.app.model.session.SessionResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.authentication.*;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import org.apache.commons.io.IOUtils;
-import org.json.*;
-import lombok.extern.slf4j.Slf4j;
 
-import com.app.identity.*;
-import com.app.model.user.User;
-import com.app.model.session.*;
-import static com.app.model.response.OperationResponse.*;
-import com.fasterxml.jackson.databind.*;
+import static com.app.model.response.OperationResponse.ResponseStatusEnum;
 
 
 /* This filter maps to /session and tries to validate the username and password */

@@ -1,8 +1,8 @@
 package com.app.model.session;
 
-import lombok.*;
-import java.util.*;
-import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class SessionItem {

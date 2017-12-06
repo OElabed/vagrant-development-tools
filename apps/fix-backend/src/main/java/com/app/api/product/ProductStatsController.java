@@ -1,23 +1,25 @@
 package com.app.api.product;
 
-import io.swagger.annotations.*;
-//import springfox.documentation.annotations.*;
-import org.springframework.http.*;
+import com.app.model.data.SingleSerise;
+import com.app.model.response.SingleDataSeriseResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
-//import static org.springframework.http.MediaType.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
 import java.math.BigDecimal;
-import com.app.api.*;
-import com.app.repo.*;
-import com.app.model.order.*;
-import com.app.model.response.*;
-import com.app.model.data.*;
-import static com.app.model.response.OperationResponse.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static com.app.model.response.OperationResponse.ResponseStatusEnum;
+
+//import springfox.documentation.annotations.*;
+//import static org.springframework.http.MediaType.*;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)

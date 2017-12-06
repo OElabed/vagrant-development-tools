@@ -1,10 +1,11 @@
 package com.app.model.response;
 
-import io.swagger.annotations.*;
-import org.springframework.data.domain.*;
-import lombok.*;
-import java.util.*;
-import static com.app.model.response.OperationResponse.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 //@Data //for getters and setters
 public class PageResponse extends OperationResponse {

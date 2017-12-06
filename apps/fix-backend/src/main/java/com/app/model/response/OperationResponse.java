@@ -7,8 +7,8 @@
 
 package com.app.model.response;
 
-import io.swagger.annotations.*;
-import lombok.*;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @Data //for getters and setters
 public class OperationResponse {

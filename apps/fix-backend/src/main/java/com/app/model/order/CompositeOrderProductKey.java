@@ -1,8 +1,9 @@
 package com.app.model.order;
 
+import lombok.Data;
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
-import javax.persistence.*;
-import lombok.*;
 
 @Data
 @Embeddable

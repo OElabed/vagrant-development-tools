@@ -1,23 +1,26 @@
 package com.app.api.customer;
 
-import io.swagger.annotations.*;
-//import springfox.documentation.annotations.*;
-import javax.servlet.http.*;
-import org.springframework.http.*;
+import com.app.model.customer.Customer;
+import com.app.model.customer.CustomerResponse;
+import com.app.model.response.OperationResponse;
+import com.app.repo.CustomerRepo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
-//import static org.springframework.http.MediaType.*;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-import com.app.api.*;
-import com.app.model.customer.*;
-import com.app.repo.*;
-import com.app.model.response.*;
-import static com.app.model.response.OperationResponse.*;
+import javax.servlet.http.HttpServletRequest;
+
+import static com.app.model.response.OperationResponse.ResponseStatusEnum;
+
+//import springfox.documentation.annotations.*;
+//import static org.springframework.http.MediaType.*;
 
 @RestController
 @Transactional

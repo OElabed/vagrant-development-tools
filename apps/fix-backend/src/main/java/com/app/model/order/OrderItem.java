@@ -1,11 +1,11 @@
 package com.app.model.order;
 
-import lombok.*;
-import java.io.Serializable;
-import java.util.*;
-import java.math.*;
-import javax.persistence.*;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @Entity

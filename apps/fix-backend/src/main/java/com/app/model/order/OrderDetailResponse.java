@@ -1,9 +1,11 @@
 package com.app.model.order;
 
-import io.swagger.annotations.*;
-import lombok.*;
-import java.util.*;
-import com.app.model.response.*;
+import com.app.model.response.PageResponse;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper=false)

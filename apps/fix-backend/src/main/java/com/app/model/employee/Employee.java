@@ -1,9 +1,10 @@
 package com.app.model.employee;
 
-import lombok.*;
-import java.util.*;
-import javax.persistence.*;
-import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @Entity

@@ -4,11 +4,15 @@
  */
 package com.app.model.order;
 
-import lombok.*;
-import java.util.*;
-import java.math.*;
-import javax.persistence.*;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @Entity

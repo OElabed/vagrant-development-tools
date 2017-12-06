@@ -1,9 +1,9 @@
 package com.app.config;
 
-import java.io.IOException;
 import javax.servlet.*;
-import javax.servlet.http.*;
-import org.springframework.stereotype.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class CorsFilter implements javax.servlet.Filter {
 	@Override

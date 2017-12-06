@@ -1,9 +1,8 @@
 package com.app.model.user;
 
-import io.swagger.annotations.*;
-import lombok.*;
-import java.util.*;
-import com.app.model.response.*;
+import com.app.model.response.OperationResponse;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)

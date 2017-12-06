@@ -1,7 +1,7 @@
 package com.app.model.user;
 
-import io.swagger.annotations.*;
-import lombok.*;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @Data
 public class Login  {

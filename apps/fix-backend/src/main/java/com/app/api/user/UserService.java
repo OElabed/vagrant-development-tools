@@ -1,17 +1,10 @@
 package com.app.api.user;
-import java.util.List;
-import com.app.model.*;
-import com.google.common.base.Strings;
-
-import org.springframework.stereotype.Service;
+import com.app.model.user.User;
+import com.app.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import com.app.repo.UserRepo;
-import com.app.model.user.*;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {

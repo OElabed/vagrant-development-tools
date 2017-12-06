@@ -1,10 +1,11 @@
 package com.app.repo;
 
-import org.springframework.data.domain.*;
+import com.app.model.order.OrderInfo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.Optional;
-import java.util.*;
-import com.app.model.order.*;
+
+import java.util.List;
 
 
 public interface OrderInfoRepo extends JpaRepository<OrderInfo, Long> {

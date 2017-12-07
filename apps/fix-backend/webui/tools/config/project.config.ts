@@ -42,6 +42,7 @@ export class ProjectConfig extends SeedConfig {
       { src: 'rdash-ui/dist/css/rdash.min.css', inject: true },
       { src: 'codemirror/lib/codemirror.css', inject: true },
       { src: 'bootstrap-select/dist/css/bootstrap-select.min.css', inject: true },
+      { src: 'animate.css/animate.min.css', inject: true },
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];

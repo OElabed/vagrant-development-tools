@@ -1,0 +1,57 @@
+<div id="sidebar-wrapper">
+    <ul class="sidebar">
+        <li class="sidebar-main">
+            <a (click)="toggleSidebar()">
+                <img src="/assets/img/logo-white.svg" height="30px" width="30px"/> Fix-Back
+                <span class="menu-icon glyphicon glyphicon-transfer"></span>
+            </a>
+        </li>
+        <li class="sidebar-title">
+            <span>ACTIVE PACKAGE</span>
+        </li>
+        <li class="sidebar-title">
+            <select class="select-endpoint form-control">
+                <option label="local" value="object:83" selected="selected">local</option>
+            </select>
+        </li>
+        <li class="sidebar-title">
+            <span>PACKAGE ACTIONS</span>
+        </li>
+        <li class="sidebar-list">
+            <a routerLink="dashborad" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard
+                <span class="menu-icon fa fa-tachometer"></span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a routerLink="settings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Settings
+                <span class="menu-icon fa fa-cog"></span>
+            </a>
+        </li>
+        <li class="sidebar-list">
+            <a routerLink="creation" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New package
+                <span class="menu-icon fa fa-plus"></span>
+            </a>
+            <div class="sidebar-sublist">
+                <a href="#/teams/" class="">Yaml</a>
+                <a href="#/teams/" class="">Wizard</a>
+            </div>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <div class="col-xs-4">
+            <a href="https://github.com/rdash/rdash-angular" target="_blank">
+                Github
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
+                About
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a href="#">
+                Support
+            </a>
+        </div>
+    </div>
+</div>

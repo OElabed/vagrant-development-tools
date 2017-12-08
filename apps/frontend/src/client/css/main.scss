@@ -1,0 +1,235 @@
+@import "./helpers/helpers";
+@import "./helpers/icons";
+@import "./helpers/grids";
+// ===========================================
+// Global
+// ===========================================
+.with-right-separator {
+    border-right: 1px solid #e5e5e5;
+}
+
+.widget-header {
+    height: 45px;
+    .row div {
+        margin-bottom: 0px;
+    }
+}
+
+.white-space-normal {
+    white-space: normal !important;
+}
+
+.force-to-bottom {
+    position: absolute;
+    bottom: 4%;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+a.disabled {
+    /* And disable the pointer events */
+    pointer-events: none;
+    cursor: no-drop !important;
+}
+
+.empty-container {
+    height: 300px;
+    padding: 20px;
+    text-align: center;
+    line-height: 300px;
+    .fa {
+        font-size: 100px;
+        color: gray;
+    }
+}
+
+// ===========================================
+// Pages
+// ===========================================
+.login-background {
+    background-color: #2d3e63;
+}
+
+// ===========================================
+// Forms
+// ===========================================
+.form-horizontal .control-label.text-left {
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.form-section-title {
+    border-bottom: 1px solid #777;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #777;
+}
+
+.fix-form-label {
+    font-size: small;
+}
+
+.fix-sub-form {
+    padding-left: 20px;
+    .fix-label {
+        font-size: smaller;
+        padding-top: 5px !important;
+    }
+}
+
+.help-block {
+    font-size: 10px;
+    margin-bottom: 0px;
+}
+
+//select
+.select-text-sm {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+//switch
+.fix-switch {
+    padding-top: 7px;
+}
+
+.fix-switch>input[type="checkbox"] {
+    display: none;
+}
+
+.fix-switch>label {
+    cursor: pointer;
+    height: 0px;
+    position: relative;
+    width: 40px;
+}
+
+.fix-switch>label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 8px;
+    margin-top: -8px;
+    position: absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 27px;
+}
+
+.fix-switch>label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 15px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 15px;
+}
+
+.fix-switch>input[type="checkbox"]:checked+label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+
+.fix-switch>input[type="checkbox"]:checked+label::after {
+    background: inherit;
+    left: 20px;
+}
+
+// ===========================================
+// Overlay
+// ===========================================
+.overlay {
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); //display: none;
+    z-index: 10;
+}
+
+// ===========================================
+// spinner loading page
+// ===========================================
+.loading {
+    height: 60vh;
+    padding: 25vh;
+}
+
+.spinner {
+    margin: auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner>div {
+    background-color: #333;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+        -webkit-transform: scaleY(0.4)
+    }
+    20% {
+        -webkit-transform: scaleY(1.0)
+    }
+}
+
+@keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }
+    20% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
+}
+
+// ===========================================
+// Plugins
+// ===========================================
+.CodeMirror {
+    height: 100%;
+    font-weight: bold;
+}

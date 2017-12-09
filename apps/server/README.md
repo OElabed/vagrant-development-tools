@@ -25,7 +25,7 @@ mvn spring-boot:run
 angular-spring-starter/server
  ├──src/                                                        * our source files
  │   ├──main
- │   │   ├──java.com.bfwg
+ │   │   ├──java.com.fix
  │   │   │   ├──config
  │   │   │   │   └──WebSecurityConfig.java                      * security configureation file, all the important things.
  │   │   │   ├──model

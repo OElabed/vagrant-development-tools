@@ -1,4 +1,4 @@
-package com.fix.rest;
+package com.fix.api;
 
 import com.fix.model.User;
 import com.fix.service.UserService;
@@ -18,7 +18,7 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Created by fan.jin on 2016-10-15.
+ * Created by oelabed on 2016-10-15.
  */
 
 @RestController

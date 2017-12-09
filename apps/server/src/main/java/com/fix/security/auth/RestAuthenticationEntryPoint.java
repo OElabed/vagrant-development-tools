@@ -1,7 +1,7 @@
 package com.fix.security.auth;
 
 /**
- * Created by fan.jin on 2016-11-12.
+ * Created by oelabed on 2016-11-12.
  */
 
 import org.springframework.security.core.AuthenticationException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by fan.jin on 2016-11-07.
+ * Created by oelabed on 2016-11-07.
  */
 @Component
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {

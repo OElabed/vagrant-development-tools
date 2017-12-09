@@ -1,7 +1,7 @@
 package com.fix.security.auth;
 
 /**
- * Created by fan.jin on 2016-11-07.
+ * Created by oelabed on 2016-11-07.
  */
 import com.fix.model.User;
 import com.fix.model.UserTokenState;

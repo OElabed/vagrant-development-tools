@@ -1,4 +1,4 @@
-package com.fix.rest;
+package com.fix.api;
 
 import com.fix.model.UserTokenState;
 import com.fix.security.TokenHelper;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by fan.jin on 2017-05-10.
+ * Created by oelabed on 2017-05-10.
  */
 
 @RestController

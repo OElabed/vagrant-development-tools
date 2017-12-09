@@ -1,7 +1,7 @@
 package com.fix;
 
 /**
- * Created by fan.jin on 2017-01-14.
+ * Created by oelabed on 2017-01-14.
  */
 import com.fix.security.auth.TokenAuthenticationFilter;
 import io.restassured.RestAssured;

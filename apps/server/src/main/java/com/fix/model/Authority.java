@@ -6,19 +6,19 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 /**
- * Created by fan.jin on 2016-11-03.
+ * Created by oelabed on 2016-11-03.
  */
 
 @Entity
-@Table(name="Authority")
+@Table(name="AUTHORITY")
 public class Authority implements GrantedAuthority {
 
     @Id
-    @Column(name="id")
+    @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name="name")
+    @Column(name="NAME")
     String name;
 
     @Override

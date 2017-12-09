@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by fan.jin on 2016-10-15.
+ * Created by oelabed on 2016-10-15.
  */
 
 @Service
@@ -36,14 +36,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @PreAuthorize("hasRole('USER')")
     public User findByUsername( String username ) throws UsernameNotFoundException {
-        User u = userRepository.findByUsername( username );
-        return u;
+        User user = userRepository.findByUsername( username );
+        return user;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     public User findById( Long id ) throws AccessDeniedException {
-        User u = userRepository.findOne( id );
-        return u;
+        User user = userRepository.findOne( id );
+        return user;
     }
 
     @PreAuthorize("hasRole('ADMIN')")

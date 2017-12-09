@@ -23,7 +23,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * Created by fan.jin on 2016-10-19.
+ * Created by oelabed on 2016-10-19.
  */
 
 @Configuration
@@ -77,17 +77,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .ignoringAntMatchers("/api/login")
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ).and()
-                .exceptionHandling().authenticationEntryPoint( restAuthenticationEntryPoint ).and()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+
+                .and()
+                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
+
+                .and()
+                .exceptionHandling().authenticationEntryPoint( restAuthenticationEntryPoint )
+
+                .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter(), BasicAuthenticationFilter.class)
                 .authorizeRequests()
                 .anyRequest()
-                .authenticated().and()
+                .authenticated()
+
+                .and()
                 .formLogin()
                 .loginPage("/api/login")
                 .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler).and()
+                .failureHandler(authenticationFailureHandler)
+
+                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/api/logout"))
                 .logoutSuccessHandler(logoutSuccess)

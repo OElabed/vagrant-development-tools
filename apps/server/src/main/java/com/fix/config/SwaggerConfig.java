@@ -52,20 +52,5 @@ public class SwaggerConfig{
         //return new ApiKey("Authorization", "api_key", "header");
         return new ApiKey("Authorization", "", "header");             // <<< === Create a Heaader (We are createing header named "Authorization" here)
     }
-
-    @Bean
-    SecurityConfiguration security() {
-        //return new SecurityConfiguration("emailSecurity_client", "secret", "Spring", "emailSecurity", "apiKey", ApiKeyVehicle.HEADER, "api_key", ",");
-        return new SecurityConfiguration("emailSecurity_client", "secret", "Spring", "emailSecurity", "", ApiKeyVehicle.HEADER, "", ",");
-    }
-
-    // This path will be called when swagger is loaded first time to get a token
-    /*
-    @Bean
-    public UiConfiguration uiConfig() {
-        return new UiConfiguration("session");
-    }
-    */
-
 }
 

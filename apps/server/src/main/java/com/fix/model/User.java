@@ -10,35 +10,35 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by fan.jin on 2016-10-15.
+ * Created by oelabed on 2016-10-15.
  */
 
 @Entity
 @Table(name="USER")
 public class User implements UserDetails, Serializable {
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "USERNAME")
     private String username;
 
     @JsonIgnore
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "firstname")
+    @Column(name = "FIRSTNAME")
     private String firstname;
 
-    @Column(name = "lastname")
+    @Column(name = "LASTNAME")
     private String lastname;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_authority",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
+    @JoinTable(name = "USER_AUTHORITY",
+            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID"))
     private List<Authority> authorities;
 
     public Long getId() {

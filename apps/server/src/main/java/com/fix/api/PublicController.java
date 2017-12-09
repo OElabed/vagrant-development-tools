@@ -1,4 +1,4 @@
-package com.fix.rest;
+package com.fix.api;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
- * Created by fan.jin on 2017-05-08.
+ * Created by oelabed on 2017-05-08.
  */
 
 @RestController

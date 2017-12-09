@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by fan.jin on 2016-10-19.
+ * Created by oelabed on 2016-10-19.
  */
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 

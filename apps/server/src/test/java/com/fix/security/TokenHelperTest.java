@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 /**
- * Created by fan.jin on 2017-01-08.
+ * Created by oelabed on 2017-01-08.
  */
 public class TokenHelperTest {
 

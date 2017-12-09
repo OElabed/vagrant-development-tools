@@ -5,7 +5,7 @@ import com.fix.model.User;
 import java.util.List;
 
 /**
- * Created by fan.jin on 2016-10-15.
+ * Created by oelabed on 2016-10-15.
  */
 public interface UserService {
     void resetCredentials();

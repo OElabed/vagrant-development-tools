@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 
 /**
- * Created by fan.jin on 2017-04-04.
+ * Created by oelabed on 2017-04-04.
  */
 public class UserServiceTest extends AbstractTest {
 

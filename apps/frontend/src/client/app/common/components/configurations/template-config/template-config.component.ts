@@ -132,7 +132,7 @@ export class TemplateConfigComponent implements OnInit {
         this.templateSelect = new BootstrapSelect();
         this.templateSelect.placeholder = 'Choose Template ...';
         templates.forEach((item, index) => {
-            self.templateSelect.addOption('' + item.id, item.templateName, false);
+            self.templateSelect.addOption('' + item.id, item.name, false);
         });
     }
 

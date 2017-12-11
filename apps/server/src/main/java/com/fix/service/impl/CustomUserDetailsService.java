@@ -1,6 +1,6 @@
 package com.fix.service.impl;
 
-import com.fix.model.User;
+import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

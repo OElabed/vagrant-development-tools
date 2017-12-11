@@ -1,6 +1,6 @@
 package com.fix.api;
 
-import com.fix.model.UserTokenState;
+import com.fix.model.dto.UserTokenState;
 import com.fix.security.TokenHelper;
 import com.fix.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

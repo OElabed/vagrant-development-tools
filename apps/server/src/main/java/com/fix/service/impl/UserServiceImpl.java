@@ -1,6 +1,6 @@
 package com.fix.service.impl;
 
-import com.fix.model.User;
+import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
 import com.fix.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

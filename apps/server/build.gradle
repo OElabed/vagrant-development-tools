@@ -35,6 +35,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    compile project(':fix-common')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-tomcat")
     compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -53,7 +54,7 @@ dependencies {
     compile group: 'org.projectlombok'    , name: 'lombok'    , version: '1.16.12'
     
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile group: 'io.api-assured'    , name: 'spring-mock-mvc'    , version: '3.0.5'
+    testCompile("io.rest-assured:spring-mock-mvc:3.0.5")
     
     
     runtime("com.h2database:h2")

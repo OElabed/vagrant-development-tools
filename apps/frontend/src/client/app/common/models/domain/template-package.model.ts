@@ -2,20 +2,20 @@ import { IPackageConfig, PackageConfig } from './package-config.model';
 
 export interface ITemplatePackage {
     id?: number;
-    templateName?: string;
+    name?: string;
     packageConfig?: IPackageConfig;
 
 }
 
 export class TemplatePackage implements ITemplatePackage {
     id?: number;
-    templateName?: string;
+    name?: string;
     packageConfig?: IPackageConfig;
 
     public static initialize(): ITemplatePackage {
         const result = new TemplatePackage();
         result.id = 0;
-        result.templateName = '';
+        result.name = '';
         result.packageConfig = PackageConfig.initialize();
         return result;
     }
@@ -23,7 +23,7 @@ export class TemplatePackage implements ITemplatePackage {
     public static fromResult(res: any): ITemplatePackage {
         const template = <ITemplatePackage>({
             id: res.id,
-            templateName: res.templateName,
+            name: res.name,
             packageConfig: PackageConfig.fromResult(res.packageConfig)
         });
         return template;

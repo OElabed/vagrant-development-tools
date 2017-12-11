@@ -1,6 +1,6 @@
 package com.fix.service;
 
-import com.fix.model.User;
+import com.fix.model.entities.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.fix.model;
+package com.fix.model.dto;
 
 /**
  * Created by oelabed on 2016-10-17.

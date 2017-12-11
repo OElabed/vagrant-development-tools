@@ -6,6 +6,10 @@
 .settings
 .springBeans
 
+### Database embedded ###
+db
+*.db
+
 ### Eclipse ###
 
 .metadata
@@ -80,6 +84,9 @@ local.properties
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
+
+# Datasource:
+.ideaDataSources
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

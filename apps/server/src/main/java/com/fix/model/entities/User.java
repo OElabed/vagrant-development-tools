@@ -1,18 +1,20 @@
-package com.fix.model;
+package com.fix.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by oelabed on 2016-10-15.
  */
-
+@Data
 @Entity
 @Table(name="USER")
 public class User implements UserDetails, Serializable {
@@ -21,18 +23,29 @@ public class User implements UserDetails, Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "USERNAME")
+    @Column(name = "LOGIN")
     private String username;
 
     @JsonIgnore
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "FIRSTNAME")
+    @Column(name = "FIRST_NAME")
     private String firstname;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "EXPIRE_DATE")
+    @Temporal(TemporalType.DATE)
+    private Calendar expireDate;
+
+
+    @Column(name = "LOCKED")
+    private Boolean locked;
+
+    @Column(name = "LAST_NAME")
     private String lastname;
+
+    @Column(name = "ENABLE")
+    private Boolean enable;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -40,51 +53,6 @@ public class User implements UserDetails, Serializable {
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID"))
     private List<Authority> authorities;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-
-        this.lastname = lastname;
-    }
-
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

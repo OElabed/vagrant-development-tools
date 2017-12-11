@@ -1,7 +1,7 @@
 package com.fix;
 
-import com.fix.model.Authority;
-import com.fix.model.User;
+import com.fix.model.entities.Authority;
+import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
 import com.fix.security.auth.AnonAuthentication;
 import com.fix.security.auth.TokenBasedAuthentication;

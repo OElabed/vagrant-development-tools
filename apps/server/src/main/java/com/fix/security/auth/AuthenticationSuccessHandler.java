@@ -3,8 +3,8 @@ package com.fix.security.auth;
 /**
  * Created by oelabed on 2016-11-07.
  */
-import com.fix.model.User;
-import com.fix.model.UserTokenState;
+import com.fix.model.entities.User;
+import com.fix.model.dto.UserTokenState;
 import com.fix.security.TokenHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

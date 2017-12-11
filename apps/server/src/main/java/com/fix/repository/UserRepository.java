@@ -1,6 +1,6 @@
 package com.fix.repository;
 
-import com.fix.model.User;
+import com.fix.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

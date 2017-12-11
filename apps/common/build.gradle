@@ -1,0 +1,65 @@
+buildscript {
+    ext {
+        APPACHE_COMMON = '3.4'
+        LOMBOK_VERSION = '1.16.12'
+        JUNIT_VERSION = '4.12'
+        SONARQUBE_VERSION = '2.2'
+    }
+    repositories {
+        mavenCentral()
+    }
+   dependencies {
+        classpath ("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${SONARQUBE_VERSION}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.sonarqube'
+
+
+jar {
+    baseName = project.name
+    version =  project.version
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
+    compile("org.apache.commons:commons-lang3:${APPACHE_COMMON}")
+    testCompile("junit:junit:${JUNIT_VERSION}")
+}
+
+task var {
+    doLast {
+	    sourceSets {
+	    	main {
+	    		println "java.srcDirs = ${java.srcDirs}"
+	    		println "resources.srcDirs = ${resources.srcDirs[0]}"
+	    		println "output.classesDir = ${output.classesDir}"
+	    		println "output.resourcesDir = ${output.resourcesDir}"
+	    	}
+	    }
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: ${project.name} :: ${project.description}"
+        property "sonar.projectKey", "${project.group}:${project.name}"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
+}

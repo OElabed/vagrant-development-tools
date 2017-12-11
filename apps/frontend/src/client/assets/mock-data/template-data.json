@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "templateName": "Baby Fresh Scent Petroleum",
+        "name": "Baby Fresh Scent Petroleum",
         "packageConfig": {
             "id": 1,
             "name": "Smart Sense naproxen sodium",
@@ -75,7 +75,7 @@
     },
     {
         "id": 2,
-        "templateName": "Anticavity Fluoride Rinse",
+        "name": "Anticavity Fluoride Rinse",
         "packageConfig": {
             "id": 2,
             "name": "Tea Blend Daily Moisturizer SPF 15",
@@ -149,7 +149,7 @@
     },
     {
         "id": 3,
-        "templateName": "Fluphenazine Hydrochloride",
+        "name": "Fluphenazine Hydrochloride",
         "packageConfig": {
             "id": 3,
             "name": "Candid",

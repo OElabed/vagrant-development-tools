@@ -1,6 +1,7 @@
-package com.fix.model;
+package com.fix.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -8,40 +9,24 @@ import javax.persistence.*;
 /**
  * Created by oelabed on 2016-11-03.
  */
-
+@Data
 @Entity
 @Table(name="AUTHORITY")
 public class Authority implements GrantedAuthority {
 
+    @JsonIgnore
     @Id
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
+    @JsonIgnore
     @Column(name="NAME")
-    String name;
+    private String name;
 
     @Override
     public String getAuthority() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @JsonIgnore
-    public String getName() {
-        return name;
-    }
-
-    @JsonIgnore
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this.name;
     }
 
 }

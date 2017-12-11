@@ -4,7 +4,7 @@ server:
     mime-types: application/javascript,application/json,text/css,text/html,text/plain
 
 app:
-  name: anuglar2-spring-jwt
+  name: fix-backend
 
 management.port: 8091
 
@@ -15,9 +15,32 @@ spring:
     show-sql: true
     properties.hibernate.format_sql: true
     hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    hibernate.ddl-auto: create
 
+  datasource:
+    name: fix_backend_db
+    url: jdbc:h2:./db/fix_backend_db;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+    platform: h2
+    initialize: true
+    continue-on-error: false
   
+  h2.console.enabled: true
+
   output.ansi.enabled: ALWAYS
+
+logging:
+  file: logs/dev_app.log
+  pattern:
+    #console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: WARN
+    com.fix: DEBUG
+
+endpoints.shutdown.enabled: true
 
 jwt:
   header: Authorization
@@ -25,7 +48,3 @@ jwt:
   secret: queenvictoria
   cookie: AUTH-TOKEN
 
-logging:
-  level:
-    org.springframework.web: ERROR
-    com.bfwg: DEBUG

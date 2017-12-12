@@ -1,4 +1,14 @@
 buildscript {
+    ext {
+        JWT_TOKEN = '0.9.0'
+        SWAGGER= '2.6.1'
+        GUAVA= '21.0'
+        COMMON_IO= '2.5'
+        LOMBOK_VERSION = '1.16.12'
+
+        //Tests
+        REST_ASSURED = '3.0.5'
+    }
     repositories {
         mavenCentral()
     }
@@ -35,28 +45,32 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    
+    // COMPILE
     compile project(':fix-common')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-tomcat")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-devtools")
-    compile("joda-time:joda-time")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("com.fasterxml.jackson.core:jackson-annotations")
-    // compile("org.springframework.boot:spring-boot-starter-jdbc")
-    compile("io.springfox:springfox-swagger2:2.6.1")
-    compile("io.springfox:springfox-swagger-ui:2.6.1")
-    compile group: 'io.jsonwebtoken'      , name: 'jjwt'      , version: '0.9.0'
-    compile group: 'com.google.guava'     , name: 'guava'     , version: '21.0'
-    compile group: 'commons-io'           , name: 'commons-io', version: '2.5'
-    compile group: 'org.projectlombok'    , name: 'lombok'    , version: '1.16.12'
+
+    compile("joda-time:joda-time")
+    compile("io.springfox:springfox-swagger2:${SWAGGER}")
+    compile("io.springfox:springfox-swagger-ui:${SWAGGER}")
+    compile("io.jsonwebtoken:jjwt:${JWT_TOKEN}")
+    compile("com.google.guava:guava:${GUAVA}")
+    compile("commons-io:commons-io:${COMMON_IO}")
+    compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
     
+    // TEST
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile("io.rest-assured:spring-mock-mvc:3.0.5")
+    testCompile("io.rest-assured:spring-mock-mvc:${REST_ASSURED}")
     
-    
+    // RUNTIME    
     runtime("com.h2database:h2")
     //runtime("mysql:mysql-connector-java")
 }

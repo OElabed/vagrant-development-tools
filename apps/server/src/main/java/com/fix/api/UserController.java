@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @RequestMapping( method = GET, value= "/user/reset-credentials")
-    public ResponseEntity<Map> resetCredentials() {
+    public ResponseEntity<Map<String, String>> resetCredentials() {
         this.userService.resetCredentials();
         Map<String, String> result = new HashMap<>();
         result.put( "result", "success" );

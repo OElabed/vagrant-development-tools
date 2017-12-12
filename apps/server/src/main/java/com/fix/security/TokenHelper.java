@@ -6,7 +6,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
@@ -88,8 +87,8 @@ public class TokenHelper {
     public Boolean canTokenBeRefreshed(String token) {
         try {
             final Date expirationDate = getClaimsFromToken(token).getExpiration();
-            String username = getUsernameFromToken(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            //String username = getUsernameFromToken(token);
+            //UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             return expirationDate.compareTo(generateCurrentDate()) > 0;
         } catch (Exception e) {
             return false;

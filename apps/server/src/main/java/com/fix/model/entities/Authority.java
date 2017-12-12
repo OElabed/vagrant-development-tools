@@ -14,7 +14,9 @@ import javax.persistence.*;
 @Table(name="AUTHORITY")
 public class Authority implements GrantedAuthority {
 
-    @JsonIgnore
+	private static final long serialVersionUID = 1L;
+
+	@JsonIgnore
     @Id
     @Column(name="ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

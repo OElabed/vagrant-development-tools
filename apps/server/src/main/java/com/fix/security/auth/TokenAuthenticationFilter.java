@@ -1,8 +1,9 @@
 package com.fix.security.auth;
 
 import com.fix.security.TokenHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +28,7 @@ import java.util.stream.Collectors;
  */
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
-    private final Log logger = LogFactory.getLog(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
 
     @Autowired
     TokenHelper tokenHelper;

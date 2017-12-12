@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class PackageConfigParserUtil {
 
-    private static ObjectMapper mapper = new ObjectMapper(new YAMLFactory()); 
+    private static ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 
     public static String serializePackageConfigToYamlFile(PackageConfig packageConfig){
         String yamlString = null;

@@ -1,6 +1,6 @@
 package com.fix.model.dto;
 
-import com.fix.model.dto.configs.PackageConfig;
+import com.fix.common.domain.configs.PackageConfig;
 import lombok.Data;
 
 /**

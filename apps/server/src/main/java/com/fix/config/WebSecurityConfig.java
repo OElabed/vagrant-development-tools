@@ -5,7 +5,7 @@ import com.fix.security.auth.AuthenticationSuccessHandler;
 import com.fix.security.auth.LogoutSuccess;
 import com.fix.security.auth.RestAuthenticationEntryPoint;
 import com.fix.security.auth.TokenAuthenticationFilter;
-import com.fix.service.impl.CustomUserDetailsService;
+import com.fix.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

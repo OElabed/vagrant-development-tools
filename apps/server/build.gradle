@@ -5,6 +5,7 @@ buildscript {
         GUAVA= '21.0'
         COMMON_IO= '2.5'
         LOMBOK_VERSION = '1.16.12'
+        MODEL_MAPPER_VERSION = '1.1.0'
 
         //Tests
         REST_ASSURED = '3.0.5'
@@ -65,7 +66,8 @@ dependencies {
     compile("com.google.guava:guava:${GUAVA}")
     compile("commons-io:commons-io:${COMMON_IO}")
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
-    
+    compile("org.modelmapper:modelmapper:${MODEL_MAPPER_VERSION}")
+
     // TEST
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("io.rest-assured:spring-mock-mvc:${REST_ASSURED}")

@@ -1,5 +1,6 @@
 package com.fix.common.domain.configs;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,10 @@ public class PackageConfig implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private Long id;
+
+    private String uuid;
 
     private String name;
 
@@ -29,6 +33,5 @@ public class PackageConfig implements Serializable {
     private DatabaseConfig databaseConfig;
 
     private ModuleConfig[] moduleConfig;
-
 
 }

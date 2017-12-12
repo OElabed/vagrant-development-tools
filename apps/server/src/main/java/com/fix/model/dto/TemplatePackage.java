@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class TemplatePackage {
 
-    private String id;
+    private Long id;
 
     private PackageConfig packageConfig;
 

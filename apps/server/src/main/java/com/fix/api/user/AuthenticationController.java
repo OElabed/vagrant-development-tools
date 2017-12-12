@@ -1,8 +1,8 @@
-package com.fix.api;
+package com.fix.api.user;
 
 import com.fix.model.dto.UserTokenState;
 import com.fix.security.TokenHelper;
-import com.fix.service.impl.CustomUserDetailsService;
+import com.fix.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;

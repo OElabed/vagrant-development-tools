@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name="DATA_PACKAGE_TEMPLATE")
+@Table(name = "DATA_PACKAGE_TEMPLATE")
 public class TemplatePackageEntity {
 
     @Id
@@ -18,10 +18,10 @@ public class TemplatePackageEntity {
     private Long id;
 
     @Column(name = "NAME")
-    private String templateName;
+    private String name;
 
-    @OneToOne (cascade=CascadeType.ALL)
-    @JoinColumn(name="PACKAGE_ID", unique= true, nullable=false, insertable=true, updatable=true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PACKAGE_ID", unique = true, nullable = false, insertable = true, updatable = true)
     private PackageConfigEntity packageConfig;
 
 

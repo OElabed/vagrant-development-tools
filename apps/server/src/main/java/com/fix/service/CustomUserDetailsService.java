@@ -1,9 +1,10 @@
-package com.fix.service.impl;
+package com.fix.service;
 
+import com.fix.api.packageconfig.TemplatePackageController;
 import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    protected final Log LOGGER = LogFactory.getLog(getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(TemplatePackageController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +34,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null) {

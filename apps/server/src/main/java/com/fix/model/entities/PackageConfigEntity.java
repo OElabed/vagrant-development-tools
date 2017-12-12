@@ -1,8 +1,10 @@
 package com.fix.model.entities;
 
+import com.fix.repository.converters.PackageConfigConverter;
 import lombok.Data;
 
 import javax.persistence.*;
+
 
 /**
  * Created by OELABED on 10/12/2017.
@@ -17,6 +19,8 @@ public class PackageConfigEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Lob
     @Column(name = "CONTENT")
+    @Convert(converter = PackageConfigConverter.class)
     private String content;
 }

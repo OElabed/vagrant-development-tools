@@ -29,7 +29,12 @@ spring:
   
   h2.console.enabled: true
 
+  devtools.restart.exclude: static/**,public/**
+
   output.ansi.enabled: ALWAYS
+
+  messages:
+    basename: messages
 
 logging:
   file: logs/dev_app.log

@@ -1,4 +1,4 @@
-package com.fix.api;
+package com.fix.api.user;
 
 import com.fix.model.entities.User;
 import com.fix.service.UserService;

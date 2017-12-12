@@ -1,9 +1,11 @@
 buildscript {
     ext {
-        APPACHE_COMMON = '3.4'
+        APPACHE_COMMON = '3.6'
+        JACKSON_YAML = '2.9.3'
         LOMBOK_VERSION = '1.16.12'
         JUNIT_VERSION = '4.12'
         SONARQUBE_VERSION = '2.2'
+        JACKSON_DATABIND = '2.9.3'
     }
     repositories {
         mavenCentral()
@@ -35,6 +37,8 @@ targetCompatibility = 1.8
 dependencies {
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
     compile("org.apache.commons:commons-lang3:${APPACHE_COMMON}")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${JACKSON_YAML}")
+    compile("com.fasterxml.jackson.core:jackson-databind:${JACKSON_DATABIND}")
     testCompile("junit:junit:${JUNIT_VERSION}")
 }
 

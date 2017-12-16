@@ -1,0 +1,63 @@
+buildscript {
+
+  ext {
+  LOMBOK_VERSION = '1.16.12'
+  MAPPER_STRUCT_VERSION = '1.2.0.Final'
+  APPACHE_COMMON = '3.6'
+  JACKSON_YAML = '2.9.3'
+  JUNIT_VERSION = '4.12'
+  JACKSON_DATABIND = '2.9.3'
+  SONARQUBE_VERSION = '2.6.1'
+}
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.ltgt.gradle:gradle-apt-plugin:0.8")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+        classpath("de.undercouch:gradle-download-task:3.2.0")
+    }
+}
+
+
+
+allprojects {
+
+  repositories {
+    mavenCentral()
+  }
+
+  
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+  apply plugin: 'jacoco'
+  apply plugin: 'net.ltgt.apt'
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+
+    dependencies {
+
+    compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
+    compile("org.mapstruct:mapstruct-jdk8:${MAPPER_STRUCT_VERSION}")
+    compile("org.apache.commons:commons-lang3:${APPACHE_COMMON}")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${JACKSON_YAML}")
+    compile("com.fasterxml.jackson.core:jackson-databind:${JACKSON_DATABIND}")
+    testCompile("junit:junit:${JUNIT_VERSION}")
+
+
+    apt("org.mapstruct:mapstruct-processor:${MAPPER_STRUCT_VERSION}")
+    apt("org.projectlombok:lombok:${LOMBOK_VERSION}")
+
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '3.5'
+}

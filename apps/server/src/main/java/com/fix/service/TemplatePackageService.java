@@ -1,11 +1,9 @@
 package com.fix.service;
 
-import com.fix.common.domain.configs.PackageConfig;
-import com.fix.common.utils.PackageConfigParserUtil;
 import com.fix.exceptions.ResourceNotFoundException;
-import com.fix.model.DTOUtils;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.model.entities.TemplatePackageEntity;
+import com.fix.model.mappers.TemplatePackageMapper;
 import com.fix.repository.TemplatePackageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +22,9 @@ public class TemplatePackageService {
     @Autowired
     private TemplatePackageRepository templatePackageRepository;
 
+    @Autowired
+    private TemplatePackageMapper templatePackageMapper;
+
     public TemplatePackage findTemplatePackageById(Long id) {
         Assert.notNull(id, "template package id can not be null");
 
@@ -35,29 +36,9 @@ public class TemplatePackageService {
             throw new ResourceNotFoundException(id);
         }
 
-        TemplatePackage template = DTOUtils.map(templatePackageEntity, TemplatePackage.class);
-        PackageConfig packageConfig = PackageConfigParserUtil
-                .parsePackageConfigFromContentString(templatePackageEntity.getPackageConfig().getContent());
-        packageConfig.setId(templatePackageEntity.getPackageConfig().getId());
-        template.setPackageConfig(packageConfig);
 
-        return template;
-    }
 
-    public TemplatePackage saveUser(TemplatePackage template) {
-        Assert.notNull(template, " @@ Template package is null");
-
-        LOGGER.debug("saving template package @" + template);
-
-        TemplatePackageEntity templatePackageEntity = DTOUtils.map(template, TemplatePackageEntity.class);
-
-        templatePackageEntity.getPackageConfig().setContent(PackageConfigParserUtil.serializePackageConfigToYamlFile(template.getPackageConfig()));
-
-        TemplatePackageEntity saved = templatePackageRepository.save(templatePackageEntity);
-
-        // TODO change this
-       // return DTOUtils.map(saved, UserDetails.class);
-        return  null;
+        return null;
     }
 
 }

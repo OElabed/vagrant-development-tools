@@ -5,7 +5,7 @@ buildscript {
         GUAVA= '21.0'
         COMMON_IO= '2.5'
         LOMBOK_VERSION = '1.16.12'
-        MODEL_MAPPER_VERSION = '1.1.0'
+        MAPPER_STRUCT_VERSION = '1.2.0.Final'
 
         //Tests
         REST_ASSURED = '3.0.5'
@@ -14,7 +14,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
     }
 }
 
@@ -23,6 +23,7 @@ buildscript {
  */
 plugins {
     id 'de.undercouch.download' version '3.2.0'
+    id 'net.ltgt.apt' version '0.8'
 }
 import de.undercouch.gradle.tasks.download.Download
 
@@ -31,6 +32,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'net.ltgt.apt'
 
 
 jar {
@@ -65,8 +67,9 @@ dependencies {
     compile("io.jsonwebtoken:jjwt:${JWT_TOKEN}")
     compile("com.google.guava:guava:${GUAVA}")
     compile("commons-io:commons-io:${COMMON_IO}")
+
+    compile("org.mapstruct:mapstruct-jdk8:${MAPPER_STRUCT_VERSION}")
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
-    compile("org.modelmapper:modelmapper:${MODEL_MAPPER_VERSION}")
 
     // TEST
     testCompile("org.springframework.boot:spring-boot-starter-test")
@@ -75,6 +78,10 @@ dependencies {
     // RUNTIME    
     runtime("com.h2database:h2")
     //runtime("mysql:mysql-connector-java")
+
+    apt("org.mapstruct:mapstruct-processor:${MAPPER_STRUCT_VERSION}")
+    apt("org.projectlombok:lombok:${LOMBOK_VERSION}")
+
 }
 
 task downloadRedoc(type: Download) {
@@ -96,6 +103,13 @@ task var {
     }
 }
 
+
+compileJava {
+    options.compilerArgs = [
+            '-Amapstruct.defaultComponentModel=spring',
+            '-Amapstruct.unmappedTargetPolicy=IGNORE'
+    ]
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'

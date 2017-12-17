@@ -9,12 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
  * Created by OELABED on 12/12/2017.
  */
 @Service
+@Transactional
 public class TemplatePackageService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TemplatePackageService.class);
@@ -36,9 +38,21 @@ public class TemplatePackageService {
             throw new ResourceNotFoundException(id);
         }
 
+        TemplatePackage templatePackage = templatePackageMapper.mapToDto(templatePackageEntity);
 
-
-        return null;
+        return templatePackage;
     }
 
+    public TemplatePackage saveTemplate(TemplatePackage template) {
+
+        LOGGER.debug("save template @" + template);
+
+        TemplatePackageEntity entity = templatePackageMapper.mapToEntity(template);
+
+        TemplatePackageEntity saved = templatePackageRepository.save(entity);
+
+        LOGGER.debug("saved template is @" + saved);
+
+        return templatePackageMapper.mapToDto(saved);
+    }
 }

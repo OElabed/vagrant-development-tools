@@ -6,6 +6,7 @@ buildscript {
         JUNIT_VERSION = '4.12'
         SONARQUBE_VERSION = '2.2'
         JACKSON_DATABIND = '2.9.3'
+        HIBERNATE_VALIDATOR = '6.0.5.Final'
     }
     repositories {
         mavenCentral()
@@ -39,6 +40,7 @@ dependencies {
     compile("org.apache.commons:commons-lang3:${APPACHE_COMMON}")
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${JACKSON_YAML}")
     compile("com.fasterxml.jackson.core:jackson-databind:${JACKSON_DATABIND}")
+    compile("org.hibernate:hibernate-validator:${HIBERNATE_VALIDATOR}")
     testCompile("junit:junit:${JUNIT_VERSION}")
 }
 

@@ -1,6 +1,6 @@
 package com.fix.service;
 
-import com.fix.api.packageconfig.TemplatePackageController;
+import com.fix.api.v1.TemplatePackageController;
 import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
 import org.slf4j.Logger;

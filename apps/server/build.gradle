@@ -1,14 +1,14 @@
 buildscript {
     ext {
-        JWT_TOKEN = '0.9.0'
-        SWAGGER= '2.6.1'
-        GUAVA= '21.0'
-        COMMON_IO= '2.5'
+        JWT_TOKEN_VERSION = '0.9.0'
+        SWAGGER_VERSION= '2.6.1'
+        GUAVA_VERSION= '21.0'
+        COMMON_IO_VERSION= '2.5'
         LOMBOK_VERSION = '1.16.12'
         MAPPER_STRUCT_VERSION = '1.2.0.Final'
 
         //Tests
-        REST_ASSURED = '3.0.5'
+        REST_ASSURED_VERSION = '3.0.5'
     }
     repositories {
         mavenCentral()
@@ -62,18 +62,18 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-annotations")
 
     compile("joda-time:joda-time")
-    compile("io.springfox:springfox-swagger2:${SWAGGER}")
-    compile("io.springfox:springfox-swagger-ui:${SWAGGER}")
-    compile("io.jsonwebtoken:jjwt:${JWT_TOKEN}")
-    compile("com.google.guava:guava:${GUAVA}")
-    compile("commons-io:commons-io:${COMMON_IO}")
+    compile("io.springfox:springfox-swagger2:${SWAGGER_VERSION}")
+    compile("io.springfox:springfox-swagger-ui:${SWAGGER_VERSION}")
+    compile("io.jsonwebtoken:jjwt:${JWT_TOKEN_VERSION}")
+    compile("com.google.guava:guava:${GUAVA_VERSION}")
+    compile("commons-io:commons-io:${COMMON_IO_VERSION}")
 
     compile("org.mapstruct:mapstruct-jdk8:${MAPPER_STRUCT_VERSION}")
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
 
     // TEST
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile("io.rest-assured:spring-mock-mvc:${REST_ASSURED}")
+    testCompile("io.rest-assured:spring-mock-mvc:${REST_ASSURED_VERSION}")
     
     // RUNTIME    
     runtime("com.h2database:h2")

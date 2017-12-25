@@ -16,13 +16,13 @@ public class PackageConfig implements Serializable {
 	@JsonIgnore
 	private Long id;
 
-    private String uuid;
-
     private String name;
+
+    private String basePath;
 
     private CommonEnvConfig commonEnvConfig;
 
-    private Platform platform;
+    private String platform;
 
     private CoreEngineConfig coreEngineConfig;
 
@@ -32,6 +32,6 @@ public class PackageConfig implements Serializable {
 
     private DatabaseConfig databaseConfig;
 
-    private ModuleConfig[] moduleConfig;
+    private ModuleConfig[] modulesConfig;
 
 }

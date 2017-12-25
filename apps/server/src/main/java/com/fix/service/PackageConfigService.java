@@ -62,4 +62,19 @@ public class PackageConfigService {
         return configYaml;
     }
 
+    public PackageConfig savePackageConfig(PackageConfig packageConfig) {
+
+        LOGGER.debug("save package config @" + packageConfig);
+
+        PackageConfigEntity packageEntity = packageConfigMapper.mapToEntity(packageConfig);
+
+        PackageConfigEntity saved = packageConfigRepository.save(packageEntity);
+
+        packageConfig.setId(saved.getId());
+
+        LOGGER.debug("saved package config id is @" + packageConfig.getId());
+
+        return packageConfig;
+
+    }
 }

@@ -34,6 +34,7 @@ export class CommonEnvConfig implements ICommonEnvConfig {
 export interface IPackageConfig {
     id?: number;
     name?: string;
+    basePath?: string;
     plateform?: IContainer;
     commonEnvConfig?: ICommonEnvConfig;
     licenceUrl?: string;
@@ -46,6 +47,7 @@ export interface IPackageConfig {
 export class PackageConfig implements IPackageConfig {
     id?: number;
     name?: string;
+    basePath?: string;
     plateform?: IContainer;
     commonEnvConfig?: ICommonEnvConfig;
     licenceUrl?: string;
@@ -58,6 +60,7 @@ export class PackageConfig implements IPackageConfig {
         const result = new PackageConfig();
         result.id = 0;
         result.name = '';
+        result.basePath = '';
         result.plateform = Container.initialize();
         result.commonEnvConfig = CommonEnvConfig.initialize();
         result.licenceUrl = '';
@@ -73,6 +76,7 @@ export class PackageConfig implements IPackageConfig {
         const template = <IPackageConfig>({
             id: res.id,
             name: res.name,
+            basePath: res.basePath,
             plateform: Container.fromResult(res.plateform),
             commonEnvConfig: CommonEnvConfig.fromResult(res.commonEnvConfig),
             licenceUrl: res.licenceUrl,

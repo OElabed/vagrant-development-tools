@@ -1,4 +1,5 @@
 server:
+  context-path: /
   compression: 
     enabled: true
     mime-types: application/javascript,application/json,text/css,text/html,text/plain

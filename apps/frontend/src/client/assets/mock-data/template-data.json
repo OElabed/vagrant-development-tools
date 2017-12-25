@@ -5,6 +5,7 @@
         "packageConfig": {
             "id": 1,
             "name": "Smart Sense naproxen sodium",
+            "basePath": "/tmp/totot",
             "licenceUrl": "http://nationalgeographic.com/quisque/porta/volutpat/erat/quisque/erat/eros.jpg?lectus=eleifend&aliquam=quam&sit=a&amet=odio&diam=in&in=hac&magna=habitasse&bibendum=platea&imperdiet=dictumst&nullam=maecenas&orci=ut&pede=massa&venenatis=quis&non=augue&sodales=luctus&sed=tincidunt&tincidunt=nulla&eu=mollis&felis=molestie&fusce=lorem&posuere=quisque&felis=ut&sed=erat&lacus=curabitur&morbi=gravida&sem=nisi&mauris=at&laoreet=nibh&ut=in&rhoncus=hac&aliquet=habitasse&pulvinar=platea&sed=dictumst&nisl=aliquam&nunc=augue&rhoncus=quam&dui=sollicitudin&vel=vitae&sem=consectetuer&sed=eget&sagittis=rutrum&nam=at&congue=lorem&risus=integer&semper=tincidunt",
             "plateform": {
                 "id": 1,
@@ -79,6 +80,7 @@
         "packageConfig": {
             "id": 2,
             "name": "Tea Blend Daily Moisturizer SPF 15",
+            "basePath": "/tmp/totot",
             "licenceUrl": "https://globo.com/vel/nulla/eget/eros/elementum.png?sit=cubilia&amet=curae&erat=donec&nulla=pharetra&tempus=magna&vivamus=vestibulum&in=aliquet&felis=ultrices&eu=erat&sapien=tortor&cursus=sollicitudin&vestibulum=mi&proin=sit&eu=amet&mi=lobortis&nulla=sapien&ac=sapien&enim=non&in=mi&tempor=integer&turpis=ac&nec=neque&euismod=duis&scelerisque=bibendum&quam=morbi&turpis=non&adipiscing=quam&lorem=nec&vitae=dui&mattis=luctus&nibh=rutrum&ligula=nulla&nec=tellus&sem=in&duis=sagittis&aliquam=dui&convallis=vel&nunc=nisl&proin=duis&at=ac&turpis=nibh&a=fusce&pede=lacus&posuere=purus&nonummy=aliquet&integer=at&non=feugiat",
             "plateform": {
                 "id": 2,
@@ -153,6 +155,7 @@
         "packageConfig": {
             "id": 3,
             "name": "Candid",
+            "basePath": "/tmp/totot",
             "licenceUrl": "https://macromedia.com/cubilia/curae/duis/faucibus/accumsan/odio.xml?eget=aenean&elit=fermentum&sodales=donec&scelerisque=ut&mauris=mauris&sit=eget&amet=massa&eros=tempor&suspendisse=convallis&accumsan=nulla&tortor=neque&quis=libero&turpis=convallis&sed=eget&ante=eleifend&vivamus=luctus&tortor=ultricies&duis=eu&mattis=nibh&egestas=quisque&metus=id&aenean=justo&fermentum=sit&donec=amet&ut=sapien&mauris=dignissim&eget=vestibulum&massa=vestibulum&tempor=ante&convallis=ipsum&nulla=primis&neque=in&libero=faucibus&convallis=orci&eget=luctus&eleifend=et&luctus=ultrices&ultricies=posuere&eu=cubilia&nibh=curae&quisque=nulla&id=dapibus&justo=dolor&sit=vel&amet=est&sapien=donec&dignissim=odio&vestibulum=justo&vestibulum=sollicitudin&ante=ut&ipsum=suscipit&primis=a&in=feugiat&faucibus=et&orci=eros&luctus=vestibulum&et=ac&ultrices=est&posuere=lacinia&cubilia=nisi&curae=venenatis&nulla=tristique&dapibus=fusce&dolor=congue&vel=diam&est=id&donec=ornare&odio=imperdiet&justo=sapien&sollicitudin=urna&ut=pretium&suscipit=nisl&a=ut&feugiat=volutpat&et=sapien&eros=arcu&vestibulum=sed&ac=augue&est=aliquam&lacinia=erat&nisi=volutpat&venenatis=in&tristique=congue&fusce=etiam&congue=justo&diam=etiam&id=pretium&ornare=iaculis",
             "plateform": {
                 "id": 3,

@@ -1,19 +1,11 @@
 package com.fix.service;
 
-import com.fix.api.v1.TemplatePackageController;
 import com.fix.model.entities.User;
 import com.fix.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,16 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplatePackageController.class);
-
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -41,30 +25,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         } else {
             return user;
         }
-    }
-
-    public void changePassword(String oldPassword, String newPassword) {
-
-        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
-        String username = currentUser.getName();
-
-        if (authenticationManager != null) {
-            LOGGER.debug("Re-authenticating user '"+ username + "' for password change request.");
-
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, oldPassword));
-        } else {
-            LOGGER.debug("No authentication manager set. can't change Password!");
-
-            return;
-        }
-
-        LOGGER.debug("Changing password for user '"+ username + "'");
-
-        User user = (User) loadUserByUsername(username);
-
-        user.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(user);
-
     }
 
 }

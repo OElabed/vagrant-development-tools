@@ -1,8 +1,9 @@
 package com.fix.api.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
@@ -20,17 +21,38 @@ import java.util.List;
 public class TokenController {
 
     @Autowired
-    @Qualifier("tokenServices")
-    ConsumerTokenServices tokenServices;
+    private TokenStore tokenStore;
+
+
+    private AuthorizationServerTokenServices authorizationServerTokenServices;
+    private ConsumerTokenServices consumerTokenServices;
 
     @Autowired
-    @Qualifier("tokenStore")
-    TokenStore tokenStore;
+    public TokenController(AuthorizationServerTokenServices authorizationServerTokenServices, ConsumerTokenServices consumerTokenServices) {
+        this.authorizationServerTokenServices = authorizationServerTokenServices;
+        this.consumerTokenServices = consumerTokenServices;
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "/tokens/revoke/{token}", method = RequestMethod.POST)
+    public void revokeToken(@PathVariable String token) {
+        consumerTokenServices.revokeToken(token);
+    }
+
+    @RequestMapping(value = "/oauth/revoke-token", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null) {
+            String tokenValue = authHeader.replace("Bearer", "").trim();
+            OAuth2AccessToken accessToken = tokenStore.readAccessToken(tokenValue);
+            tokenStore.removeAccessToken(accessToken);
+        }
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/token/revokeById/{tokenId}")
     @ResponseBody
     public void revokeToken(HttpServletRequest request, @PathVariable String tokenId) {
-        tokenServices.revokeToken(tokenId);
+        consumerTokenServices.revokeToken(tokenId);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/tokens")

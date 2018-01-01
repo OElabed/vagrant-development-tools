@@ -31,6 +31,11 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers("/**/api-docs/**").permitAll()
+                    .antMatchers("/**/swagger-resources/**").permitAll()
+                    .antMatchers("/**/swagger-ui.html*").permitAll()
+                    .antMatchers("/**/redoc/index.html*").permitAll()
+                    .antMatchers("/**/redoc/redoc.min.js*").permitAll()
                     .anyRequest().authenticated()
 
                 .and()

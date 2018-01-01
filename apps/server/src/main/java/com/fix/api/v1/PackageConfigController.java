@@ -3,9 +3,9 @@ package com.fix.api.v1;
 import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.exceptions.InvalidRequestException;
+import com.fix.exceptions.ResourceNotFoundException;
 import com.fix.service.PackageConfigService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,22 +23,28 @@ import java.net.URI;
 /**
  * Created by OELABED on 17/12/2017.
  */
+@Slf4j
 @RestController
+@PreAuthorize("#oauth2.hasScope('ui')")
 @RequestMapping( value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE )
 public class PackageConfigController {
-
-    private static final Logger log = LoggerFactory.getLogger(PackageConfigController.class);
 
     @Autowired
     private PackageConfigService packageConfigService;
 
-    @PreAuthorize("#oauth2.hasScope('ui')")
     @GetMapping(value = "/package/{id}")
-    public ResponseEntity<PackageConfig> getTemplate(@PathVariable("id") Long id) {
+    public ResponseEntity<PackageConfig> getPackage(@PathVariable("id") Long id) {
 
-        log.debug("get user data @" + id);
+        log.debug("get package config data @" + id);
 
         PackageConfig packageConfig = packageConfigService.findPackageConfigById(id);
+
+        if (packageConfig == null) {
+            log.debug("Package config with id " + id + " does not exists");
+            throw new ResourceNotFoundException(id);
+        }
+
+        log.debug("Package config with id " + id + " found => " + packageConfig);
 
         return new ResponseEntity<>(packageConfig, HttpStatus.OK);
     }
@@ -51,14 +57,14 @@ public class PackageConfigController {
         PackageConfig saved = packageConfigService.savePackageConfig(packageConfig);
 
         log.debug("saved package config id is @" + saved.getId());
-        URI loacationHeader = ServletUriComponentsBuilder
+        URI locationHeader = ServletUriComponentsBuilder
                 .fromContextPath(request)
                 .path("/api/package/{id}")
                 .buildAndExpand(saved.getId())
                 .toUri();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(loacationHeader);
+        headers.setLocation(locationHeader);
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }

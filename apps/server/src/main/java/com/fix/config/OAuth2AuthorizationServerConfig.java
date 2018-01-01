@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
@@ -74,11 +76,6 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
         return converter;
     }
 
-    @Bean
-    public TokenStore tokenStore(final DataSource dataSource) {
-        return new JdbcTokenStore(dataSource);
-    }
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.jdbc(dataSource);
@@ -99,6 +96,4 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
-
-
 }

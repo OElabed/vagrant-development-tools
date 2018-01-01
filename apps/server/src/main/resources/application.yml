@@ -7,7 +7,9 @@ server:
 app:
   name: fix-backend
 
-management.port: 8091
+management:
+  port: 8091
+  security.enabled: false
 
 springfox.documentation.swagger.v2.path: /api-docs
 
@@ -48,9 +50,4 @@ logging:
 
 endpoints.shutdown.enabled: true
 
-jwt:
-  header: Authorization
-  expires_in: 600 # 10 minutes
-  secret: queenvictoria
-  cookie: AUTH-TOKEN
 

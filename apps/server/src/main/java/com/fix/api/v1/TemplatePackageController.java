@@ -4,13 +4,13 @@ import com.fix.exceptions.InvalidRequestException;
 import com.fix.model.dto.ResponseMessage;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.service.TemplatePackageService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,11 +20,11 @@ import javax.validation.Valid;
 /**
  * Created by OELABED on 12/12/2017.
  */
+@Slf4j
 @RestController
+@PreAuthorize("#oauth2.hasScope('ui')")
 @RequestMapping( value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE )
 public class TemplatePackageController {
-
-    private static final Logger log = LoggerFactory.getLogger(TemplatePackageController.class);
 
     @Autowired
     private TemplatePackageService templatePackageService;

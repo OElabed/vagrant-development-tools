@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "username": "user",
+    "firstname": "Fan",
+    "expireDate": 1576537200000,
+    "locked": false,
+    "lastname": "Jin",
+    "enable": true,
+    "authorities": [
+        {
+            "authority": "ROLE_USER"
+        }
+    ]
+}

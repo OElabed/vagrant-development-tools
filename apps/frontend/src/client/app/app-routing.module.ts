@@ -3,13 +3,16 @@ import { RouterModule } from '@angular/router';
 import { ContentModule } from './pages/content/content.module';
 import { LoginModule } from './pages/login/login.module';
 import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
+import { AuthGuard } from './common/guard/auth.guard';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
       {
         path: 'content',
-        loadChildren: () => ContentModule
+        loadChildren: () => ContentModule,
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard]
       },
       {
         path: 'login',
@@ -22,7 +25,9 @@ import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module
       {
         path: '',
         redirectTo: 'content',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard]
       },
       {
         path: '**',

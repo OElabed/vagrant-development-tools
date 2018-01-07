@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../../../../common/services/external/authentication.api.service';
 
 /**
  * This class represents the headerbar component.
@@ -12,14 +13,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HeaderbarComponent {
 
+  private errorMessage = '';
+  private isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) { }
 
   onLogout() {
-    this.router.navigate(['/login']);
+    this.authService.logout()
+      .subscribe(isLogged => {
+        if (isLogged) {
+          this.router.navigate(['/login']);
+        }
+      },
+      e => this.errorMessage = e,
+      () => {
+        this.isLoading = false;
+      });
+
   }
 }
 

@@ -107,6 +107,15 @@ export class ProjectConfig extends SeedConfig {
       }
     });
 
+    this.addPackageBundles({
+      name: 'ngx-cookie-service',
+      path: 'node_modules/ngx-cookie-service',
+      packageMeta: {
+        main: './index',
+        defaultExtension: 'js'
+      }
+    });
+
     // Add packages (e.g. ng2-translate)
     // const additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',

@@ -10,6 +10,8 @@ import { LoginModule } from './pages/login/login.module';
 import { ContentModule } from './pages/content/content.module';
 import { AuthGuard } from './common/guard/auth.guard';
 import { HttpClientXsrfModule } from '@angular/common/http';
+import { UserInfosResolver } from './common/services/resolvers/user-infos.resolve';
+import { UserService } from './common/services/external/user.api.service';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import { HttpClientXsrfModule } from '@angular/common/http';
   providers: [{
     provide: APP_BASE_HREF,
     useValue: '<%= APP_BASE %>'
-  }, AuthGuard],
+  }, AuthGuard, UserInfosResolver, UserService],
   bootstrap: [AppComponent]
 
 })

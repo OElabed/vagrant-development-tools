@@ -4,6 +4,7 @@ import { ContentModule } from './pages/content/content.module';
 import { LoginModule } from './pages/login/login.module';
 import { PageNotFoundModule } from './pages/page-not-found/page-not-found.module';
 import { AuthGuard } from './common/guard/auth.guard';
+import { UserInfosResolver } from './common/services/resolvers/user-infos.resolve';
 
 @NgModule({
   imports: [
@@ -12,7 +13,10 @@ import { AuthGuard } from './common/guard/auth.guard';
         path: 'content',
         loadChildren: () => ContentModule,
         canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard]
+        canActivateChild: [AuthGuard],
+        resolve: {
+          user: UserInfosResolver
+        }
       },
       {
         path: 'login',

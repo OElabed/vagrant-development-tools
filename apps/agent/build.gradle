@@ -24,8 +24,8 @@ apply plugin: 'jacoco'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'backend-wizard'
-    version =  '0.1.0'
+    baseName = project.name
+    version =  project.version
 }
 
 repositories {
@@ -37,6 +37,8 @@ targetCompatibility = 1.8
 
 dependencies {
     
+    compile project(':fix-common')
+
     // Spring Boot
     compile("org.springframework.boot:spring-boot-starter-web")
 
@@ -67,5 +69,5 @@ test {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.13'
+    gradleVersion = '3.5'
 }

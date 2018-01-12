@@ -1,0 +1,4 @@
+rootProject.name = name
+
+include ":fix-common"
+project(":fix-common").projectDir = file("../common")

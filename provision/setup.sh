@@ -18,23 +18,46 @@ db='databasename'
 source config.cfg
 
 # Install Basic tools
+say "Apt update."
+    apt-get dist-upgrade -yq >/dev/null 2>&1
+    apt update -yq >/dev/null 2>&1
+
+# Install Basic tools
 say "Change Time."
     # Change Time
     timedatectl set-timezone Europe/Paris
 
+# Install Firefox
+say "Installing Firefox dev edition."
+    # Update aptitude library
+    add-apt-repository ppa:ubuntu-mozilla-daily/firefox-aurora -yq >/dev/null 2>&1
+    apt update -yq >/dev/null 2>&1
+    apt install firefox -yq >/dev/null 2>&1
+
 # Install Basic tools
 say "Installing multiple tools."
     # Update aptitude library
-    apt-get update >/dev/null 2>&1
+    apt update -yq >/dev/null 2>&1
     # Install tools
     apt-get install python-software-properties -yq >/dev/null 2>&1
     apt-get install apt-transport-https ca-certificates curl software-properties-common jq -yq >/dev/null 2>&1
 
+# Install VS Code
+say "Installing VS Code."
+    # Update aptitude library
+    apt-get install libxss1 -yq >/dev/null 2>&1
+    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+    apt-get update -yq >/dev/null 2>&1
+    apt-get install code -yq >/dev/null 2>&1
+
 # Install Desktop
-# say "Installing Desktop."
-#     apt-get update >/dev/null 2>&1
-#     apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 xinit >/dev/null 2>&1
-#     apt-get install -y --no-install-recommends ubuntu-desktop gnome-terminal >/dev/null 2>&1
+say "Installing Desktop."
+    apt-get update >/dev/null 2>&1
+    apt-get install -y --no-install-recommends ubuntu-desktop >/dev/null 2>&1
+    apt-get install -y gnome-terminal >/dev/null 2>&1
+    apt-get install -y virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11 >/dev/null 2>&1
 
 # Install Nginx
 say "Installing Nginx."
@@ -49,13 +72,10 @@ say "Installing Git."
     apt-get install git -yq >/dev/null 2>&1
 
 # Install java
-say "Installing java."
+say "Installing java 8."
     add-apt-repository ppa:webupd8team/java -yq >/dev/null 2>&1
-    apt-get update >/dev/null 2>&1
-    echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-	echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
-	apt-get install --yes oracle-java8-installer
-    yes "" | apt-get -f install
+    apt-get update -yq >/dev/null 2>&1
+    apt-get install oracle-java8-installer -yq >/dev/null 2>&1
 
 # Install Docker
 say "Installing Docker."
@@ -79,3 +99,5 @@ say "Pull and Build Docker containers."
 
 # Let this script know not to run again
 touch /var/vagrant_provision
+
+reboot

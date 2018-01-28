@@ -1,8 +1,10 @@
+server:
+  port: 5566
+
 spring:
-  redis:
-    host: localhost
-    password: secret
-    port: 6379
+  application:
+    name: fix-agent
+  output.ansi.enabled: ALWAYS
 
 workspace:
   path: /tmp/backendAgent

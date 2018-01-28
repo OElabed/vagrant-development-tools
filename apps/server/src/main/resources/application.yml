@@ -1,5 +1,5 @@
 server:
-  context-path: /
+  port: 8080
   compression: 
     enabled: true
     mime-types: application/javascript,application/json,text/css,text/html,text/plain
@@ -14,6 +14,8 @@ management:
 springfox.documentation.swagger.v2.path: /api-docs
 
 spring:
+  profiles:
+    active: native
   jpa:
     show-sql: true
     properties.hibernate.format_sql: true
@@ -29,6 +31,12 @@ spring:
     platform: h2
     initialize: true
     continue-on-error: false
+
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/agents/config
   
   h2.console.enabled: true
 
@@ -38,6 +46,20 @@ spring:
 
   messages:
     basename: messages
+
+security:
+  user:
+    password: Hello00
+    username: user
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
 
 logging:
   file: logs/dev_app.log

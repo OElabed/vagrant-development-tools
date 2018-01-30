@@ -76,6 +76,12 @@ say "Installing java 8."
     add-apt-repository ppa:webupd8team/java -yq >/dev/null 2>&1
     apt-get update -yq >/dev/null 2>&1
     apt-get install oracle-java8-installer -yq >/dev/null 2>&1
+    apt-get install openjdk-8-jdk -yq >/dev/null 2>&1
+
+say "Installing NodeJs"
+    sudo apt-get install build-essential -yq >/dev/null 2>&1
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    apt-get install nodejs -yq >/dev/null 2>&1
 
 # Install Docker
 say "Installing Docker."

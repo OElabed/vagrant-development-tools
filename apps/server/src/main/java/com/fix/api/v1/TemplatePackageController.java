@@ -22,13 +22,13 @@ import javax.validation.Valid;
  */
 @Slf4j
 @RestController
-@PreAuthorize("#oauth2.hasScope('ui')")
 @RequestMapping( value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE )
 public class TemplatePackageController {
 
     @Autowired
     private TemplatePackageService templatePackageService;
 
+    @PreAuthorize("#oauth2.hasScope('read')")
     @GetMapping(value = "/template/{id}")
     public ResponseEntity<TemplatePackage> getTemplate(@PathVariable("id") Long id) {
 
@@ -39,6 +39,7 @@ public class TemplatePackageController {
         return new ResponseEntity<>(template, HttpStatus.OK);
     }
 
+    @PreAuthorize("#oauth2.hasScope('write')")
     @PostMapping(value = "/template")
     public ResponseEntity<ResponseMessage> createTemplate(@RequestBody @Valid TemplatePackage template, BindingResult errResult) {
 

@@ -1,9 +1,10 @@
 package com.fix.api;
 
 import com.fix.exceptions.InvalidRequestException;
+import com.fix.exceptions.ResourceAlreadyExistException;
 import com.fix.exceptions.ResourceNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fix.model.dto.ResponseMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -15,18 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-import com.fix.model.dto.ResponseMessage;
-
 import java.util.List;
 
 /**
  * Called when an exception occurs during request processing. Transforms
  * exception message into JSON format.
  */
+@Slf4j
 @RestControllerAdvice
 public class RestExceptionHandler {
-
-	private static final Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
 
 	@Autowired
 	private MessageSource messageSource;
@@ -47,6 +45,15 @@ public class RestExceptionHandler {
 			log.debug("handling ResourceNotFoundException...");
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(value = {ResourceAlreadyExistException.class})
+	@ResponseBody
+	public ResponseEntity<ResponseMessage> handleResourceAlreadyExistException(ResourceAlreadyExistException ex, WebRequest request) {
+		if (log.isDebugEnabled()) {
+			log.debug("handling ResourceAlreadyExistException...");
+		}
+		return new ResponseEntity<>(HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value = {InvalidRequestException.class})

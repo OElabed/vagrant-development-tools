@@ -71,6 +71,7 @@ dependencies {
     compile("joda-time:joda-time")
     compile("io.springfox:springfox-swagger2:${SWAGGER_VERSION}")
     compile("io.springfox:springfox-swagger-ui:${SWAGGER_VERSION}")
+//    compile("com.spring4all:spring-boot-starter-swagger:1.5.1.RELEASE")
     compile("io.jsonwebtoken:jjwt:${JWT_TOKEN_VERSION}")
     compile("com.google.guava:guava:${GUAVA_VERSION}")
     compile("commons-io:commons-io:${COMMON_IO_VERSION}")
@@ -78,8 +79,8 @@ dependencies {
     compile("org.mapstruct:mapstruct-jdk8:${MAPPER_STRUCT_VERSION}")
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")
 
+
     // CLOUD
-    compile("org.springframework.cloud:spring-cloud-config-server")
     compile("org.springframework.cloud:spring-cloud-starter-eureka-server")
 
     // TEST

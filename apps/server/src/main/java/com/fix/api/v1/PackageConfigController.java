@@ -5,6 +5,7 @@ import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.exceptions.InvalidRequestException;
 import com.fix.exceptions.ResourceNotFoundException;
 import com.fix.service.PackageConfigService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,13 +26,14 @@ import java.net.URI;
  */
 @Slf4j
 @RestController
-@PreAuthorize("#oauth2.hasScope('ui')")
+@Api(value = "UserController", description = "User restful resource with rest controller", tags = "Custom UserController")
 @RequestMapping( value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE )
 public class PackageConfigController {
 
     @Autowired
     private PackageConfigService packageConfigService;
 
+    @PreAuthorize("#oauth2.hasScope('read')")
     @GetMapping(value = "/package/{id}")
     public ResponseEntity<PackageConfig> getPackage(@PathVariable("id") Long id) {
 
@@ -49,6 +51,7 @@ public class PackageConfigController {
         return new ResponseEntity<>(packageConfig, HttpStatus.OK);
     }
 
+    @PreAuthorize("#oauth2.hasScope('write')")
     @PostMapping(value = "/package")
     public ResponseEntity<Void> createPackage(@RequestBody @Valid PackageConfig packageConfig, HttpServletRequest request) {
 
@@ -69,6 +72,7 @@ public class PackageConfigController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("#oauth2.hasScope('read')")
     @PostMapping(value = "/package/marshal")
     public ResponseEntity<PackageConfig> marshal(@RequestBody @Valid PackageConfigYaml packageConfigYaml, BindingResult errResult) {
 
@@ -82,7 +86,7 @@ public class PackageConfigController {
         return new ResponseEntity<>(packageConfig, HttpStatus.OK);
     }
 
-
+    @PreAuthorize("#oauth2.hasScope('write')")
     @PostMapping(value = "/package/unmarshal")
     public ResponseEntity<PackageConfigYaml> unmarshal(@RequestBody @Valid PackageConfig packageConfig, BindingResult errResult) {
 

@@ -32,12 +32,6 @@ spring:
     initialize: true
     continue-on-error: false
 
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: classpath:/agents/config
-  
   h2.console.enabled: true
 
   devtools.restart.exclude: static/**,public/**
@@ -73,5 +67,26 @@ logging:
     com.fix: DEBUG
 
 endpoints.shutdown.enabled: true
+
+
+swagger:
+    apiInfo:
+        contactEmail: oel3abed@gmail.com
+        contactName: oel3abed@gmail.com
+        contactUrl: https://github.com/OElabed/vagrant-development-tools
+        description: Users Restful API with Spring Boot + Spring Data + Spring Rest.
+        license: Apache 2.0
+        licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+        termOfServiceUrl: http://swagger.io/terms/
+        title: User Management API
+        version: 1.0.0
+    defaultKey:
+        page: page
+        size: size
+        sort: sort
+    defaultValue:
+        page: 0
+        size: 20
+        sort: id,desc
 
 

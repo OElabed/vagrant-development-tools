@@ -1,9 +1,9 @@
 ---
 id: 2
 name: Tea Blend Daily Moisturizer SPF 15
-basePath: /tmp/totot
+basePath:
 licenceUrl: https://globo.com/vel/nulla/eget/eros/elementum.png?sit=cubilia&amet=curae&erat=donec&nulla=pharetra&tempus=magna&vivamus=vestibulum&in=aliquet&felis=ultrices&eu=erat&sapien=tortor&cursus=sollicitudin&vestibulum=mi&proin=sit&eu=amet&mi=lobortis&nulla=sapien&ac=sapien&enim=non&in=mi&tempor=integer&turpis=ac&nec=neque&euismod=duis&scelerisque=bibendum&quam=morbi&turpis=non&adipiscing=quam&lorem=nec&vitae=dui&mattis=luctus&nibh=rutrum&ligula=nulla&nec=tellus&sem=in&duis=sagittis&aliquam=dui&convallis=vel&nunc=nisl&proin=duis&at=ac&turpis=nibh&a=fusce&pede=lacus&posuere=purus&nonummy=aliquet&integer=at&non=feugiat
-platform: 612f886d-b2c7-44a7-82e0-c2557fc0d9cf
+platform:
 
 commonEnvConfig:
   enable: true

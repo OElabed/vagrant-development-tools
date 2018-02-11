@@ -7,5 +7,6 @@ public enum Os {
     LINUX,
     WINDOWS,
     SOLARIS,
+    AIX,
     HPUX
 }

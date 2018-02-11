@@ -1,6 +1,7 @@
 package com.fix.remote;
 
 import com.fix.common.domain.configs.Platform;
+import com.fix.exceptions.PlatformNotFoundException;
 import com.fix.exceptions.PlatformRegistryNotFoundException;
 import com.fix.model.mappers.PlatformMapper;
 import com.netflix.appinfo.InstanceInfo;
@@ -26,6 +27,18 @@ public class PlatformsRegistry {
         return this.getAllInstances().stream()
                 .map(instance -> this.platformMapper.mapToPlatform(instance))
                 .collect(Collectors.toList());
+    }
+
+    public InstanceInfo getPlatformInstanceInfo(Platform platform){
+        String instanceId = platformMapper.mapToInstanceIntoId(platform);
+
+        Optional<InstanceInfo> instanceInfo = this.getAllInstances().stream()
+                .filter(instance -> instance.getInstanceId().equals(instanceId))
+                .findFirst();
+        if(!instanceInfo.isPresent()) throw new PlatformNotFoundException(platform.getName());
+
+        return instanceInfo.get();
+
     }
 
     private List<InstanceInfo> getAllInstances() throws PlatformRegistryNotFoundException{

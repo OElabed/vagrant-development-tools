@@ -13,6 +13,7 @@ public class OsUtils {
     private static final String AIX_OS = "aix";
     private static final String SOLARIS_OS = "solaris";
     private static final String MAC_OS = "mac";
+    private static final String HPUX = "hp-ux";
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
@@ -37,6 +38,10 @@ public class OsUtils {
             return AIX_OS;
         }
 
+        if (isHpux()) {
+            return HPUX;
+        }
+
         throw new RuntimeException();
     }
 
@@ -47,9 +52,28 @@ public class OsUtils {
             case LINUX_OS:
                 return Os.LINUX;
             case AIX_OS:
-                return Os.HPUX;
+                return Os.AIX;
+            case SOLARIS_OS:
+                return Os.SOLARIS;
             default:
                 return Os.LINUX;
+        }
+    }
+
+    public static String getOsName(Os os){
+        switch (os){
+            case WINDOWS:
+                return WINDOWS_OS;
+            case LINUX:
+                return LINUX_OS;
+            case SOLARIS:
+                return SOLARIS_OS;
+            case AIX:
+                return AIX_OS;
+            case HPUX:
+                return HPUX;
+            default:
+                return LINUX_OS;
         }
     }
 
@@ -71,5 +95,9 @@ public class OsUtils {
 
     private static boolean isSolaris() {
         return (OS.indexOf("sunos") >= 0);
+    }
+
+    private static boolean isHpux() {
+        return (OS.indexOf("hp-ux") >= 0);
     }
 }

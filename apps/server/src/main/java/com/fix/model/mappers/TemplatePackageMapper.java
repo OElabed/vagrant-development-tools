@@ -1,10 +1,9 @@
 package com.fix.model.mappers;
 
+import com.fix.common.utils.PackageConfigParserUtil;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.model.entities.TemplatePackageEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 /**
  * Created by OELABED on 15/12/2017.
@@ -12,18 +11,19 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring", uses = {PackageConfigMapper.class})
 public interface TemplatePackageMapper {
 
-    @Mappings({
-             @Mapping(target = "id"),
-             @Mapping(target = "name"),
-             @Mapping(target = "packageConfig")
-    })
-    TemplatePackage mapToDto(TemplatePackageEntity entity);
+    default TemplatePackage mapToDto(TemplatePackageEntity entity) {
+        TemplatePackage dto = new TemplatePackage();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPackageConfig(PackageConfigParserUtil.parsePackageConfigFromContentString(entity.getContent()));
 
+        return dto;
+    }
 
-    @Mappings({
-            @Mapping(target = "id"),
-            @Mapping(target = "name"),
-            @Mapping(target = "packageConfig")
-    })
-    TemplatePackageEntity mapToEntity(TemplatePackage dto);
+    default TemplatePackageEntity mapToEntity(TemplatePackage dto) {
+        TemplatePackageEntity entity = new TemplatePackageEntity();
+        entity.setName(dto.getName());
+        entity.setContent(PackageConfigParserUtil.serializePackageConfigToYamlFile(dto.getPackageConfig()));
+        return entity;
+    }
 }

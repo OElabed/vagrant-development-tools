@@ -2,17 +2,17 @@ package com.fix.service;
 
 import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
+import com.fix.common.domain.configs.Platform;
 import com.fix.common.utils.PackageConfigParserUtil;
-import com.fix.exceptions.ResourceNotFoundException;
-import com.fix.model.entities.PackageConfigEntity;
 import com.fix.model.mappers.PackageConfigMapper;
-import com.fix.repository.PackageConfigRepository;
+import com.fix.remote.PackageRemote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
+
+import java.util.List;
 
 /**
  * Created by OELABED on 17/12/2017.
@@ -24,41 +24,14 @@ public class PackageConfigService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PackageConfigService.class);
 
     @Autowired
-    private PackageConfigRepository packageConfigRepository;
-
-    @Autowired
     private PackageConfigMapper packageConfigMapper;
 
-    public PackageConfig findPackageConfigById(Long id) {
-        Assert.notNull(id, "package config id can not be null");
+    @Autowired
+    private PackageRemote packageRemote;
 
-        LOGGER.debug("find package config by id @" + id);
+    public List<PackageConfig> getAllPackagesByPlatform(Platform platform){
 
-        PackageConfigEntity entity = packageConfigRepository.findOne(id);
-
-        if (entity == null) {
-            throw new ResourceNotFoundException(String.format("Package with id @'%s' does not exists", id));
-        }
-
-        PackageConfig packageConfig= packageConfigMapper.mapToDto(entity);
-
-        return packageConfig;
-    }
-
-    public PackageConfig savePackageConfig(PackageConfig packageConfig) {
-
-        LOGGER.debug("save package config @" + packageConfig);
-
-        PackageConfigEntity packageEntity = packageConfigMapper.mapToEntity(packageConfig);
-
-        PackageConfigEntity saved = packageConfigRepository.save(packageEntity);
-
-        packageConfig.setId(saved.getId());
-
-        LOGGER.debug("saved package config id is @" + packageConfig.getId());
-
-        return packageConfig;
-
+        return packageRemote.getAllPackage(platform);
     }
 
     public PackageConfig marshall(PackageConfigYaml yamlConfig) {

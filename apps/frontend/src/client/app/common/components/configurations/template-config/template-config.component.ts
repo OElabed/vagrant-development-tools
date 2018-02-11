@@ -142,10 +142,10 @@ export class TemplateConfigComponent implements OnInit {
         this.containerSelect.placeholder = 'Choose Container ...';
         containers.forEach((item, index) => {
             let selected = false;
-            if (containerSelected !== null && containerSelected.id === item.id) {
+            if (containerSelected !== null && containerSelected.name === item.name) {
                 selected = true;
             }
-            self.containerSelect.addOption('' + item.id, item.name, selected, findIconContainer(item.os));
+            self.containerSelect.addOption('' + item.name, item.name, selected, findIconContainer(item.os));
         });
     }
 
@@ -159,8 +159,8 @@ export class TemplateConfigComponent implements OnInit {
 
     onSelectedContainerOption(option: Option) {
         this.containerSelectedOption = option;
-        const idContainer = Number(option.value);
-        this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
+        const containerName = String(option.value);
+        this.currentContainer = this.containerList.filter((container: IContainer) => container.name === containerName)[0];
         this.setValueFormControl('general.plateform', this.currentContainer);
         (<FormGroup>this.templateForm.controls.general)
             .controls.plateform.setValue(this.currentContainer, { onlySelf: true });

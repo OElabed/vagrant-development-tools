@@ -25,7 +25,7 @@ export class AuthenticationService extends ExternalResourceService {
             body.set('username', username);
             body.set('password', password);
             body.set('grant_type', 'password');
-            body.set('scope', 'ui');
+            body.set('scope', 'read write');
 
             const options = {
                 headers: new HttpHeaders()

@@ -64,17 +64,17 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
         this.containerSelect.placeholder = 'Choose Container ...';
         containers.forEach((item, index) => {
             let selected = false;
-            if (containerSelected !== null && containerSelected.id === item.id) {
+            if (containerSelected !== null && containerSelected.name === item.name) {
                 selected = true;
             }
-            self.containerSelect.addOption('' + item.id, item.name, selected, findIconContainer(item.os));
+            self.containerSelect.addOption('' + item.name, item.name, selected, findIconContainer(item.os));
         });
     }
 
     onSelectedContainerOption(option: Option) {
         this.containerSelectedOption = option;
-        const idContainer = Number(option.value);
-        this.currentContainer = this.containerList.filter((container: IContainer) => container.id === idContainer)[0];
+        const containerName = String(option.value);
+        this.currentContainer = this.containerList.filter((container: IContainer) => container.name === containerName)[0];
         this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
         this.initializeForm(this.form, this.config);
     }

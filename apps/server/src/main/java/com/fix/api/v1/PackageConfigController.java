@@ -43,7 +43,7 @@ public class PackageConfigController {
 
         if (packageConfig == null) {
             log.debug("Package config with id " + id + " does not exists");
-            throw new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(String.format("Package with id @'%s' does not exists", id));
         }
 
         log.debug("Package config with id " + id + " found => " + packageConfig);

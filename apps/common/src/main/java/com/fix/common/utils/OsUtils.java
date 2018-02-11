@@ -1,4 +1,7 @@
-package com.wizard.utils;
+package com.fix.common.utils;
+
+import com.fix.common.domain.configs.Os;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by OELABED on 12/01/2018.
@@ -35,6 +38,19 @@ public class OsUtils {
         }
 
         throw new RuntimeException();
+    }
+
+    public static Os getOsFromName(String name) {
+        switch(StringUtils.lowerCase(name)) {
+            case WINDOWS_OS:
+                return Os.WINDOWS;
+            case LINUX_OS:
+                return Os.LINUX;
+            case AIX_OS:
+                return Os.HPUX;
+            default:
+                return Os.LINUX;
+        }
     }
 
     private static boolean isWindows() {

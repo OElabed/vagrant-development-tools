@@ -8,8 +8,6 @@ import lombok.Data;
 @Data
 public class Platform {
 
-    private Long id;
-
     private Os os;
 
     private String name;

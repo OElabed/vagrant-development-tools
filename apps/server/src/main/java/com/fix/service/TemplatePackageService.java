@@ -35,7 +35,7 @@ public class TemplatePackageService {
         TemplatePackageEntity templatePackageEntity = templatePackageRepository.findOne(id);
 
         if (templatePackageEntity == null) {
-            throw new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(String.format("Template package with id @'%s' does not exists", id));
         }
 
         TemplatePackage templatePackage = templatePackageMapper.mapToDto(templatePackageEntity);

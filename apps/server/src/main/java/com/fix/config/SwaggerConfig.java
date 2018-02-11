@@ -1,34 +1,49 @@
 package com.fix.config;
 
 import com.google.common.base.Predicates;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.OAuthBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.ApiKeyVehicle;
+import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by OELABED on 08/12/2017.
  */
+@Slf4j
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig{
 
-    public static final String AUTHORIZATION = "Authorization";
-    private static final String securitySchemaOAuth2 = "basic";
-    private static final String authorizationTokenURL = "http://localhost:8080";
+    @Value("${server.port:0}")
+    private int port;
+
+    private static final String authorizationTokenURL = "/oauth/token";
+
+    private static final String DEFAULT_REALM = "realm";
+
+    private static final String SECURITY_SCHEME_OAUTH = "OAuth2";
+
+//    @Autowired
+//    private SwaggerOAuth2Client swaggerOAuth2Client;
+
+    @Value("${server.context-path:}")
+    private String contextPath;
 
     @Value("${swagger.apiInfo.title:}")
     private String title;
@@ -66,8 +81,6 @@ public class SwaggerConfig{
     @Value("${swagger.defaultKey.sort:sort}")
     private String sortKey;
 
-    private String sortDescription = "Pagination's sort item by field";
-
     @Value("${swagger.defaultValue.page:0}")
     private String pageValue;
 
@@ -79,29 +92,39 @@ public class SwaggerConfig{
 
     @Bean
     public Docket api() {
-        ModelRef intModel = new ModelRef("integer");
-
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(
-                        Predicates.or(
-                                //RequestHandlerSelectors.withClassAnnotation(Repository.class),
-                                RequestHandlerSelectors.withClassAnnotation(RestController.class)
-                                //RequestHandlerSelectors.basePackage("org.springframework.security.oauth2.provider.endpoint"),
-                                //Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot"))
+                        Predicates.not(
+                                Predicates.or(
+                                        RequestHandlerSelectors.basePackage("org.springframework.boot")
+                                        //RequestHandlerSelectors.basePackage("org.springframework.security.oauth2.provider.endpoint")
+                                )
                         )
-
                 )
+//                .paths(PathSelectors.ant("/api/**"))
                 .paths(PathSelectors.any())
                 .build()
-
                 .apiInfo(apiInfoBuilder())
-
-                .securitySchemes(Collections.singletonList(securitySchema()));
+                .securitySchemes(Collections.singletonList(oauth()));
     }
 
-
+    @Bean
+    public SecurityConfiguration securityInfo() {
+        String clientId = "swagger-ui";
+        String clientSecret = "secret";
+        return new SecurityConfiguration(
+                clientId,
+                clientSecret,
+                DEFAULT_REALM,
+                clientId,
+                "apiKey",
+                ApiKeyVehicle.HEADER,
+                "api_key",
+                " "
+        );
+    }
 
     private ApiInfo apiInfoBuilder() {
         return new ApiInfoBuilder()
@@ -115,31 +138,42 @@ public class SwaggerConfig{
                 .build();
     }
 
-
-    private List<GrantType> grantTypes() {
-
-
-        List<GrantType> grantTypes = new ArrayList<>();
-        grantTypes.add(new ResourceOwnerPasswordCredentialsGrant(authorizationTokenURL+"/oauth/token"));
-        return grantTypes;
-
-
-    }
-
-    private List<AuthorizationScope> scopes() {
-        List<AuthorizationScope> list = new ArrayList<>();
-        list.add(new AuthorizationScope(AuthorizationConfig.SCOPE_READ, AuthorizationConfig.SCOPE_READ_DESC));
-        list.add(new AuthorizationScope(AuthorizationConfig.SCOPE_WRITE, AuthorizationConfig.SCOPE_READ_DESC));
-        return list;
-    }
-
-    private OAuth securitySchema() {
+    private SecurityScheme oauth() {
         return new OAuthBuilder()
-                .name("OAuth2")
+                .name(SECURITY_SCHEME_OAUTH)
                 .scopes(scopes())
                 .grantTypes(grantTypes())
                 .build();
     }
 
+    private List<AuthorizationScope> scopes() {
+        return Arrays.asList(
+                new AuthorizationScope(AuthorizationConfig.SCOPE_READ, AuthorizationConfig.SCOPE_READ_DESC),
+                new AuthorizationScope(AuthorizationConfig.SCOPE_WRITE, AuthorizationConfig.SCOPE_WRITE_DESC)
+        );
+    }
+
+    private List<GrantType> grantTypes() {
+        return Collections.singletonList(new ResourceOwnerPasswordCredentialsGrant(getServerContext()));
+    }
+
+    private String getServerContext() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            stringBuilder
+                    .append("http://")
+                    .append(InetAddress.getLocalHost().getHostAddress())
+                    .append(":")
+                    .append(port)
+                    .append(contextPath)
+                    .append(authorizationTokenURL);
+        } catch (UnknownHostException e) {
+            log.error("Unknown Host");
+        }
+
+        return stringBuilder.toString();
+
+    }
 }
 

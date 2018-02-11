@@ -37,7 +37,7 @@ public class PackageConfigService {
         PackageConfigEntity entity = packageConfigRepository.findOne(id);
 
         if (entity == null) {
-            throw new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(String.format("Package with id @'%s' does not exists", id));
         }
 
         PackageConfig packageConfig= packageConfigMapper.mapToDto(entity);

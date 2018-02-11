@@ -1,51 +1,48 @@
 package com.fix.service;
 
+import com.fix.common.domain.configs.Os;
 import com.fix.common.domain.configs.Platform;
-import com.fix.exceptions.ResourceAlreadyExistException;
+import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.remote.PlatformsRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class ContainerService {
 
-
-    private Map<String, Platform> containers;
-
-
-    public ContainerService(){
-        this.containers = new ConcurrentHashMap<String, Platform>();
-    }
-
+    @Autowired
+    private PlatformsRegistry platformsRegistry;
 
     public Platform findByName(String name) {
-        return this.containers.get(name);
+
+        Optional<Platform> result = this.platformsRegistry.getAllPlatforms().stream()
+                .filter(platform -> platform.getName().equals(name))
+                .findFirst();
+
+        if(!result.isPresent()) throw new ResourceNotFoundException(String.format("Platform with name @'%s' does not exists", name));
+
+        return result.get();
     }
 
-    public List<Platform> findById(Long id) {
-        List<Platform> retrivedPlatforms = this.containers.entrySet().stream()
-                .map(entry -> entry.getValue())
-                .filter(entry -> entry.getId().equals(id))
-                .collect(Collectors.toList());
-        return retrivedPlatforms;
+    public Platform findByOs(Os os) {
+
+        Optional<Platform> result = this.platformsRegistry.getAllPlatforms().stream()
+                .filter(platform -> platform.getName().equals(os))
+                .findFirst();
+
+        if(!result.isPresent()) throw new ResourceNotFoundException(String.format("Platform with os type @'%s' does not exists", os));
+
+        return result.get();
     }
 
     public List<Platform> findAll() {
-        return this.containers.entrySet().stream()
-                .map(entry -> entry.getValue())
-                .collect(Collectors.toList());
-    }
 
-    public void addContainer(Platform container){
-        if(this.containers.get(container.getName()) != null ){
-            throw new ResourceAlreadyExistException(String.format("Platform with name %s already exists", container.getName()));
-        }
-        this.containers.put(container.getName(),container);
+        return this.platformsRegistry.getAllPlatforms();
     }
 
 }

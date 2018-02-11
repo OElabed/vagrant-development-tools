@@ -1,7 +1,7 @@
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8080
-      fail-fast: true
-      password: Hello00
-      username: user
+eureka:
+  instance:
+    prefer-ip-address: true
+    instanceId: ${platform.os}--${platform.id}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/

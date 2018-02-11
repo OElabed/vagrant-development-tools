@@ -1,7 +1,6 @@
 package com.fix.api.v1;
 
 import com.fix.common.domain.configs.Platform;
-import com.fix.exceptions.ResourceNotFoundException;
 import com.fix.service.ContainerService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -37,37 +36,14 @@ public class ContainerController {
     }
 
     @PreAuthorize("#oauth2.hasScope('read')")
-    @GetMapping(value = "/container/{id}")
-    public ResponseEntity<Platform> getPlatfomById(@PathVariable("id") Long id) {
-
-        log.debug("get platform data @{}", id);
-
-        List<Platform> retrivedPlatforms = containerService.findById(id);
-
-        if(retrivedPlatforms.isEmpty()){
-            log.debug("Platform with id {} does not exists", id);
-            throw new ResourceNotFoundException(id);
-        }
-
-        log.debug("Platform with id {} found => {}",id, retrivedPlatforms.get(0));
-
-        return new ResponseEntity<Platform>(retrivedPlatforms.get(0), HttpStatus.OK);
-    }
-
-    @PreAuthorize("#oauth2.hasScope('read')")
-    @GetMapping(value = "/container")
+    @GetMapping(value = "/container" , params = "name")
     public ResponseEntity<Platform> getPlatfomByName(@RequestParam("name") String name) {
 
-        log.debug("get platform data with name @ {}", name);
+        log.debug("get platform data @{}", name);
 
         Platform platform = containerService.findByName(name);
 
-        if(platform == null){
-            log.debug("Platform with name {} does not exists", name);
-            throw new ResourceNotFoundException(String.format("Resource with name %s does not exist", name));
-        }
-
-        log.debug("Platform with name {} found => {}", name, platform);
+        log.debug("Platform with name {} found => {}",platform.getName(), platform);
 
         return new ResponseEntity<Platform>(platform, HttpStatus.OK);
     }

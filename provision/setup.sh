@@ -78,6 +78,10 @@ say "Installing java 8."
     apt-get install oracle-java8-installer -yq >/dev/null 2>&1
     apt-get install openjdk-8-jdk -yq >/dev/null 2>&1
 
+# Install Groovy
+say "Installing Groovy."
+    apt-get install groovy -yq >/dev/null 2>&1
+
 say "Installing NodeJs"
     apt-get install build-essential -yq >/dev/null 2>&1
     curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -

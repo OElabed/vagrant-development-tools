@@ -4,7 +4,7 @@ import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.common.domain.configs.Platform;
 import com.fix.common.utils.PackageConfigParserUtil;
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.model.mappers.PackageConfigMapper;
 import com.fix.remote.PackageRemote;
 import lombok.extern.slf4j.Slf4j;

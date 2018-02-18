@@ -2,7 +2,7 @@ package com.fix.service;
 
 import com.fix.common.domain.configs.Os;
 import com.fix.common.domain.configs.Platform;
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.remote.PlatformsRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

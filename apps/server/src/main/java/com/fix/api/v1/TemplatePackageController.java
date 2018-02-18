@@ -1,10 +1,11 @@
 package com.fix.api.v1;
 
 import com.fix.exceptions.InvalidRequestException;
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.model.dto.ResponseMessage;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.service.TemplatePackageService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
+@Api(value = "TemplatePackageController", description = "Template restful resource with rest controller", tags = "TemplatePackageController")
 @RequestMapping( value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE )
 public class TemplatePackageController {
 

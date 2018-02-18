@@ -4,7 +4,7 @@ import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.common.domain.configs.Platform;
 import com.fix.exceptions.InvalidRequestException;
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.service.PackageConfigService;
 import com.fix.service.PlatformService;
 import io.swagger.annotations.Api;

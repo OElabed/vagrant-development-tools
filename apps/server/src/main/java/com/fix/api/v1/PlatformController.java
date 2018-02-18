@@ -1,7 +1,7 @@
 package com.fix.api.v1;
 
 import com.fix.common.domain.configs.Platform;
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.service.PlatformService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;

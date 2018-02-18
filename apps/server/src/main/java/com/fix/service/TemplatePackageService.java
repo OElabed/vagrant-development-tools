@@ -1,6 +1,6 @@
 package com.fix.service;
 
-import com.fix.exceptions.ResourceNotFoundException;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.model.entities.TemplatePackageEntity;
 import com.fix.model.mappers.TemplatePackageMapper;

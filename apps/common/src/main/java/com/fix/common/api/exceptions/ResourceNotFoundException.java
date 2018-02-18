@@ -1,4 +1,4 @@
-package com.fix.exceptions;
+package com.fix.common.api.exceptions;
 
 /**
  * Created by OELABED on 12/12/2017.

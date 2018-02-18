@@ -14,15 +14,13 @@ public class PackageConfig implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonIgnore
-	private Long id;
+	private String id;
 
     private String name;
 
     private String basePath;
 
     private CommonEnvConfig commonEnvConfig;
-
-    private String platform;
 
     private CoreEngineConfig coreEngineConfig;
 

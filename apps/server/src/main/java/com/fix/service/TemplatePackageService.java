@@ -5,21 +5,22 @@ import com.fix.model.dto.TemplatePackage;
 import com.fix.model.entities.TemplatePackageEntity;
 import com.fix.model.mappers.TemplatePackageMapper;
 import com.fix.repository.TemplatePackageRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by OELABED on 12/12/2017.
  */
+@Slf4j
 @Service
 @Transactional
 public class TemplatePackageService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplatePackageService.class);
 
     @Autowired
     private TemplatePackageRepository templatePackageRepository;
@@ -27,10 +28,25 @@ public class TemplatePackageService {
     @Autowired
     private TemplatePackageMapper templatePackageMapper;
 
-    public TemplatePackage findTemplatePackageById(Long id) {
+    public List<TemplatePackage> findAllTemplates() {
+
+        log.debug("Get all templates data");
+
+        List<TemplatePackageEntity> templatePackageEntityList= templatePackageRepository.findAll();
+
+        List<TemplatePackage> templatePackageList = templatePackageEntityList.stream()
+                .map(entity -> templatePackageMapper.mapToDto(entity))
+                .collect(Collectors.toList());
+
+        log.debug("[{}] templates found", templatePackageList.size());
+
+        return templatePackageList;
+    }
+
+    public TemplatePackage findTemplatePackageById(Long id) throws ResourceNotFoundException {
         Assert.notNull(id, "template package id can not be null");
 
-        LOGGER.debug("find template package by id @" + id);
+        log.debug("find template package by id @" + id);
 
         TemplatePackageEntity templatePackageEntity = templatePackageRepository.findOne(id);
 
@@ -45,13 +61,13 @@ public class TemplatePackageService {
 
     public TemplatePackage saveTemplate(TemplatePackage template) {
 
-        LOGGER.debug("save template @" + template);
+        log.debug("save template @" + template);
 
         TemplatePackageEntity entity = templatePackageMapper.mapToEntity(template);
 
         TemplatePackageEntity saved = templatePackageRepository.save(entity);
 
-        LOGGER.debug("saved template is @" + saved);
+        log.debug("saved template is @" + saved);
 
         return templatePackageMapper.mapToDto(saved);
     }

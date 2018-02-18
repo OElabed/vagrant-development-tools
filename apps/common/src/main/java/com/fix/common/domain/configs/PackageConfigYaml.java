@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PackageConfigYaml {
 
-    private Long id;
+    private String id;
 
     @NotNull
     @NotEmpty

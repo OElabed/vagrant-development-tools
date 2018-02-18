@@ -1,6 +1,7 @@
 package com.fix.remote;
 
 import com.fix.common.domain.configs.Platform;
+import com.fix.common.utils.RemoteUrlUtils;
 import com.fix.exceptions.PlatformNotFoundException;
 import com.fix.exceptions.PlatformRegistryNotFoundException;
 import com.fix.model.mappers.PlatformMapper;
@@ -39,6 +40,13 @@ public class PlatformsRegistry {
 
         return instanceInfo.get();
 
+    }
+
+    public String getPlatformInstanceUrl(Platform platform){
+
+        InstanceInfo instanceInfo = this.getPlatformInstanceInfo(platform);
+
+        return RemoteUrlUtils.createHttpUrl(instanceInfo.getIPAddr(), instanceInfo.getPort());
     }
 
     private List<InstanceInfo> getAllInstances() throws PlatformRegistryNotFoundException{

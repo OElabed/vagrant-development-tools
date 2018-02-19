@@ -89,6 +89,11 @@ say "Installing NodeJs"
 
 say "Installing NodeJs moules"
     npm install http-server -g -yq >/dev/null 2>&1
+    npm install commitizen -g -yq >/dev/null 2>&1
+    npm install cz-conventional-changelog -g -yq >/dev/null 2>&1
+    cd ~ && touch .czrc
+    echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
 
 # Install Docker
 say "Installing Docker."

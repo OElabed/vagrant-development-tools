@@ -27,22 +27,22 @@ filterEngineConfig:
 
 modulesConfig:
 - version:
-    version: 2.6.7-SNAPSHOT
-    push:
+    version: 8.5.3.4.p156
+    push: 156
   name: DBClient
-  archiveUrl: http://192.168.5.90/modules/ModuleDBClient-2.6.7-SNAPSHOT
+  archiveUrl: http://192.168.5.90/modules/ModuleDBClient-8.5.3.4.p156
   type: DBCLIENT
 - version:
-    version: 2.6.7-SNAPSHOT
-    push:
+    version: 8.5.3.4.p156
+    push: 156
   name: Requester
-  archiveUrl: http://192.168.5.90/modules/ModuleRequester-2.6.7-SNAPSHOT
+  archiveUrl: http://192.168.5.90/modules/ModuleRequester-8.5.3.4.p156
   type: REQUESTER
 - version:
-    version: 2.6.7-SNAPSHOT
-    push:
+    version: 8.5.3.4.p156
+    push: 156
   name: Aquisition
-  archiveUrl: http://192.168.5.90/modules/ModuleAquisition-2.6.7-SNAPSHOT
+  archiveUrl: http://192.168.5.90/modules/ModuleAquisition-8.5.3.4.p156
   type: AQUISITION
 
 databaseConfig:

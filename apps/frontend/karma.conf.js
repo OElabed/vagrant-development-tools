@@ -3,20 +3,16 @@
 'use strict';
 
 var argv = require('yargs').argv;
-var minimatch = require("minimatch");
-
+var minimatch = require('minimatch');
 
 module.exports = function (config) {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
-
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
 
     // list of files / patterns to load in the browser
     files: [
@@ -69,9 +65,7 @@ module.exports = function (config) {
     },
 
     // list of files to exclude
-    exclude: [
-      'node_modules/**/*spec.js'
-    ],
+    exclude: ['node_modules/**/*spec.js'],
 
 
     // preprocess matching files before serving them to the browser

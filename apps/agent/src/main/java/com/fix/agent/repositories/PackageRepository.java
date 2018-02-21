@@ -36,7 +36,7 @@ public class PackageRepository {
         return packageConfig;
     }
 
-    public List<PackageConfig> findAllPackages(){
+    public List<PackageConfig> findAllPackages() {
         List<PackageConfig> packageConfigList = new ArrayList<PackageConfig>();
         try {
             List<String> folders = CommonTasks.listFolder(workspacePath);
@@ -60,5 +60,7 @@ public class PackageRepository {
 
         return packageConfigList;
     }
+
+
 
 }

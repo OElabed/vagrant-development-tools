@@ -3,7 +3,7 @@ package com.fix.api;
 import com.fix.exceptions.InvalidRequestException;
 import com.fix.exceptions.ResourceAlreadyExistException;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
-import com.fix.model.dto.ResponseMessage;
+import com.fix.common.api.exceptions.ResponseMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

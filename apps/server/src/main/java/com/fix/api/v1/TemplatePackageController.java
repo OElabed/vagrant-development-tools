@@ -1,8 +1,8 @@
 package com.fix.api.v1;
 
-import com.fix.exceptions.InvalidRequestException;
+import com.fix.common.api.ResponseMessage;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
-import com.fix.model.dto.ResponseMessage;
+import com.fix.exceptions.InvalidRequestException;
 import com.fix.model.dto.TemplatePackage;
 import com.fix.service.TemplatePackageService;
 import io.swagger.annotations.Api;

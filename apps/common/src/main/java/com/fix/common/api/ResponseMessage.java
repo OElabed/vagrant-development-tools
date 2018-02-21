@@ -1,4 +1,4 @@
-package com.fix.model.dto;
+package com.fix.common.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,5 +108,5 @@ public class ResponseMessage {
             this.field = field;
         }
 
-}
+    }
 }

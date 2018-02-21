@@ -20,6 +20,9 @@ public class PackageService {
     @Autowired
     private PackageRepository packageRepository;
 
+    @Autowired
+    private PackageInstallerManager packageInstallerManager;
+
     public PackageConfig findByPackageId(String folderId){
 
         log.debug("get package data @{}", folderId);
@@ -42,6 +45,18 @@ public class PackageService {
         log.debug("[{}] packages found", packageConfigList.size());
 
         return packageConfigList;
+
+    }
+
+    public String createPackage(PackageConfig packageConfig) {
+
+        log.debug("Install a new package @{}", packageConfig);
+
+        String packageId = packageInstallerManager.installAllPackage(packageConfig);
+
+        log.debug("Package successfully installed with id @'{}'", packageId);
+
+        return packageId;
 
     }
 }

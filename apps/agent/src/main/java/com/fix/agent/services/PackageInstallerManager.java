@@ -6,6 +6,7 @@ import com.fix.agent.commands.InstallModuleCommand;
 import com.fix.agent.commands.PreparePackageFolderCommand;
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
+import com.fix.agent.exceptions.PackageInstallerException;
 import com.fix.agent.utils.IdentifierGeneratorUtils;
 import com.fix.common.domain.configs.ModuleConfig;
 import com.fix.common.domain.configs.PackageConfig;
@@ -19,14 +20,12 @@ import java.io.IOException;
  * Created by OELABED on 08/10/2017.
  */
 @Service
-public class InstallPackageService {
-
-    private static final String PACKAGE_DEFAULT_CONFIG_PATH = "conf/package-default.yml";
+public class PackageInstallerManager {
 
     @Value("${workspace.path}")
     private String workspacePath;
 
-    public void installAllPackage(PackageConfig configFile){
+    public String installAllPackage(PackageConfig configFile){
         try {
             // prepare
             String baseUrl = preparePackageFolder(configFile);
@@ -37,8 +36,11 @@ public class InstallPackageService {
             // install Modules
             installModules(configFile, baseUrl);
 
+            return baseUrl;
+
         } catch (CommandEndedAbnormallyException | IOException exp) {
-            exp.printStackTrace();
+            // TODO Delete package if exist (clean)
+            throw new PackageInstallerException("error on package creation");
         }
     }
 

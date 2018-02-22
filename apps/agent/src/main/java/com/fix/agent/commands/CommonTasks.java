@@ -15,6 +15,7 @@ import java.util.List;
 public class CommonTasks {
 
     private static final String SCRIPT_UNZIP_ARCHIVE_PATH = "scripts/UnzipArchive.groovy";
+    private static final String SCRIPT_WGET_FILE_PATH = "scripts/WgetFile.groovy";
     private static final String SCRIPT_LIST_FOLDER_PATH = "scripts/ListFolderFiles.groovy";
     private static final String SCRIPT_CHECK_FILE_INTO_FOLDER_PATH = "scripts/CheckFileIntoFolder.groovy";
     private static final String SCRIPT_READ_FILE_CONTENT_PATH = "scripts/ReadFileContent.groovy";
@@ -31,6 +32,18 @@ public class CommonTasks {
         GroovyShell shell = new GroovyShell(sharedData);
 
         final File file = new File(FileUtils.getPathFromResource(SCRIPT_UNZIP_ARCHIVE_PATH));
+
+        Script script = shell.parse(file);
+        return (Integer) script.run();
+    }
+
+    public static Integer wgetFile(String source, String target) throws IOException {
+        Binding sharedData = new Binding();
+        sharedData.setProperty("source", source);
+        sharedData.setProperty("target", target);
+        GroovyShell shell = new GroovyShell(sharedData);
+
+        final File file = new File(FileUtils.getPathFromResource(SCRIPT_WGET_FILE_PATH));
 
         Script script = shell.parse(file);
         return (Integer) script.run();

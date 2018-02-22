@@ -1,5 +1,6 @@
 package com.fix.agent.services;
 
+import com.fix.agent.installers.PackageInstaller;
 import com.fix.agent.repositories.PackageRepository;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.common.domain.configs.PackageConfig;
@@ -21,7 +22,7 @@ public class PackageService {
     private PackageRepository packageRepository;
 
     @Autowired
-    private PackageInstallerManager packageInstallerManager;
+    private PackageInstaller packageInstaller;
 
     public PackageConfig findByPackageId(String folderId){
 
@@ -52,7 +53,7 @@ public class PackageService {
 
         log.debug("Install a new package @{}", packageConfig);
 
-        String packageId = packageInstallerManager.installAllPackage(packageConfig);
+        String packageId = packageInstaller.installPackage(packageConfig);
 
         log.debug("Package successfully installed with id @'{}'", packageId);
 

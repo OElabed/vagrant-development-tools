@@ -48,8 +48,6 @@ public class PackageController {
 
     }
 
-
-
     @PostMapping(value = "/package")
     public ResponseEntity<Void> createPackage(@RequestBody @Valid PackageConfig packageConfig, HttpServletRequest request) {
 

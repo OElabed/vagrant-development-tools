@@ -9,6 +9,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -99,7 +100,8 @@ public class CommonTasks {
         final File file = new File(FileUtils.getPathFromResource(SCRIPT_LIST_FOLDER_PATH));
 
         Script script = shell.parse(file);
-        return (List<String>) script.run();
+        String[] fileList = (String[]) script.run();
+        return Arrays.asList(fileList);
     }
 
     public static boolean checkFileExistIntoFolder( String folderName, String fileName) throws IOException {

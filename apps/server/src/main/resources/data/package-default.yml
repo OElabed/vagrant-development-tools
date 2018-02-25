@@ -2,7 +2,6 @@
 name: Package_1
 basePath:
 licenceUrl: http://192.168.5.90/licences/licence-3.4.2.8/fba.cf
-platform:
 
 commonEnvConfig:
   enable: true
@@ -19,11 +18,11 @@ filterEngineConfig:
     version: 7.5.5.1
     push:
   archiveUrl: http://192.168.5.90/filters/packages/filter-7.5.5.1.zip
-  kzFileUrl: http://192.168.5.90/context/context-4.2.1.6/FOFDB.kz
-  fmlFile1Url: http://192.168.5.90/context/context-4.2.1.6/FOFDB.kz
+  kzFileUrl: http://192.168.5.90/filters/context/context-4.2.1.6/FOFDB.kz
+  fmlFile1Url: http://192.168.5.90/filters/context/context-4.2.1.6/FOFDB.kz
   fmlFile2Url:
   scoreFileUrl:
-  licenceFileUrl:
+  licenceFileUrl: http://192.168.5.90/filters/licences/licence-4.3.2.15/fbe.cf
 
 modulesConfig:
 - version:

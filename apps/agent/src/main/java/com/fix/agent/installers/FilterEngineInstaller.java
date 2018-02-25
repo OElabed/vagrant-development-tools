@@ -25,6 +25,9 @@ public class FilterEngineInstaller {
         // install FilterEngine Binary
         this.installFilterEngineBinary(config.getArchiveUrl(), packageId);
 
+        // install licence
+        this.installLicenceFile(config.getLicenceFileUrl(), packageId);
+
         // install Filtering context Files
         this.installFilteringContext(config, packageId);
     }
@@ -52,6 +55,12 @@ public class FilterEngineInstaller {
         String basePath = FileUtils.getFolderPath(this.workspacePath, packageId);
         Command filterEngineConfigCommand = new InstallFilterEngineBinaryCommand(archiveUrl, basePath);
         filterEngineConfigCommand.execute();
+    }
+
+    public void installLicenceFile(String licenceFileUrl, String packageId) throws IOException, CommandEndedAbnormallyException {
+        String basePath = FileUtils.concatenatePath(FileUtils.getFolderPath(this.workspacePath, packageId), this.filterEngineFolder);
+        Command filteringContextFileInstallCommand = new InstallFilteringContextFileCommand(basePath, licenceFileUrl);
+        filteringContextFileInstallCommand.execute();
     }
 
     public void installKzFile(String kzUrl, String packageId) throws IOException, CommandEndedAbnormallyException {

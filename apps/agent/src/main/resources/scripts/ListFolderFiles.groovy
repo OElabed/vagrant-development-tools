@@ -9,5 +9,4 @@ package scripts
  */
 
 File dir = new File("${folderName}")
-
 return dir.list()

@@ -18,9 +18,11 @@ import java.util.List;
 @Service
 public class PackageRemote {
 
-    private static final String FIND_ALL_PACKAGES_URL = "/package";
+    private static final String API_ROOT_URL = "/api/v1";
 
-    private static final String FIND_PACKAGE_BY_ID_URL = "/package/{id}";
+    private static final String FIND_ALL_PACKAGES_URL = API_ROOT_URL + "/package";
+
+    private static final String FIND_PACKAGE_BY_ID_URL = API_ROOT_URL +"/package/{id}";
 
     private static final String CREATE_PACKAGE_URL = FIND_ALL_PACKAGES_URL;
 

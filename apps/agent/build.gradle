@@ -6,6 +6,8 @@ buildscript {
         SPRING_SESSION = '1.3.1.RELEASE'
         JACKSON_YAML = '2.9.1'
         COMMON_LANG = '3.6'
+        COMMON_VALIDATOR = '1.6'
+        COMMON_IO = '2.6'
         GROOVY = '2.4.5'
         LOMBOK_VERSION = '1.16.8'
     }
@@ -46,6 +48,8 @@ dependencies {
 
     compile("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${JACKSON_YAML}")
     compile("org.apache.commons:commons-lang3:${COMMON_LANG}")
+    compile("commons-validator:commons-validator:${COMMON_VALIDATOR}")
+    compile("commons-io:commons-io:${COMMON_IO}")
     
     // Bean
     compile("org.projectlombok:lombok:${LOMBOK_VERSION}")

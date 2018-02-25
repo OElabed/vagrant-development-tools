@@ -1,9 +1,12 @@
 package com.fix.agent.installers;
 
-import com.fix.agent.commands.*;
+import com.fix.agent.commands.DeletePackageFolderCommand;
+import com.fix.agent.commands.InstallPackageLicenceCommand;
+import com.fix.agent.commands.PreparePackageFolderCommand;
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
 import com.fix.agent.exceptions.PackageInstallerException;
+import com.fix.agent.utils.FileUtils;
 import com.fix.agent.utils.IdentifierGeneratorUtils;
 import com.fix.common.domain.configs.ModuleConfig;
 import com.fix.common.domain.configs.PackageConfig;
@@ -32,25 +35,42 @@ public class PackageInstaller {
     @Autowired
     private ModuleInstaller moduleInstaller;
 
+    @Autowired
+    private CommonEnvInstaller commonEnvInstaller;
 
-    public String installPackage(PackageConfig configFile){
+    public String installPackage(PackageConfig configFile) {
+        String packageId = null;
+        
         try {
             // prepare
-            String packageId = preparePackageFolder(configFile);
+            packageId = preparePackageFolder(configFile);
 
-            installPackageStructure(configFile, packageId);
+            // install licence package
+            installPackageLicence(configFile, packageId);
+
+            // install common env
+            this.commonEnvInstaller.installCommonEnv(configFile.getCommonEnvConfig(), packageId);
+
             // install FilterEngine
             this.filterEngineInstaller.installFilterEngine(configFile.getFilterEngineConfig(), packageId);
+
             // install CE
             this.coreEngineInstaller.installCoreEngine(configFile.getCoreEngineConfig(), packageId);
+
             // install Modules
             this.installModules(configFile.getModulesConfig(), packageId);
 
             return packageId;
 
         } catch (CommandEndedAbnormallyException | IOException exp) {
-            // TODO Delete package if exist (clean)
             throw new PackageInstallerException("error on package creation");
+        } finally {
+            try {
+                // delete package with all subdirectory
+                this.deletePackage(packageId);
+            } catch (IOException | CommandEndedAbnormallyException exp) {
+                throw new PackageInstallerException("error on package delete");
+            }
         }
     }
 
@@ -63,12 +83,15 @@ public class PackageInstaller {
         return folderId;
     }
 
-    private void installPackageStructure(PackageConfig config, String basePath) throws IOException, CommandEndedAbnormallyException {
+    private void installPackageLicence(PackageConfig config, String basePath) throws IOException, CommandEndedAbnormallyException {
         Command licenceCommand = new InstallPackageLicenceCommand(config, basePath);
         licenceCommand.execute();
-
-        Command commonEnvCommand = new InstallCommonEnvCommand(config, basePath);
-        commonEnvCommand.execute();
+    }
+    
+    private void deletePackage(String packageId) throws IOException, CommandEndedAbnormallyException {
+        String basePath = FileUtils.getFolderPath(this.workspacePath, packageId);
+        Command deletePackageCommand = new DeletePackageFolderCommand(basePath);
+        deletePackageCommand.execute();
     }
 
     private void installModules(ModuleConfig[] moduleConfigs, String packageId) throws IOException, CommandEndedAbnormallyException {

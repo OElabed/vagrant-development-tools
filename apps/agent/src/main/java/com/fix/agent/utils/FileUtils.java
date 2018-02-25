@@ -1,7 +1,7 @@
 package com.fix.agent.utils;
 
-import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 
 /**
  * Created by OELABED on 08/10/2017.
@@ -14,10 +14,14 @@ public class FileUtils {
     }
 
     public static String getTailFilePath(String basePath, String tailFolderName, String tailName) {
-        return basePath + File.separator + tailFolderName + File.separator + tailName;
+        return Paths.get(basePath, tailFolderName, tailName).toString();
     }
 
     public static String getFolderPath(String basePath, String moduleName) {
-        return basePath + File.separator + moduleName;
+        return Paths.get(basePath, moduleName).toString();
+    }
+
+    public static String concatenatePath(String directory , String filename) {
+        return  Paths.get(directory, filename).toString();
     }
 }

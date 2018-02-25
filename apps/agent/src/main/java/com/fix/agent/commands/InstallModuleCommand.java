@@ -6,8 +6,8 @@ import com.fix.agent.exceptions.CommandEndedAbnormallyException;
 import com.fix.agent.utils.FileUtils;
 import com.fix.common.domain.configs.ModuleConfig;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * Created by OELABED on 08/10/2017.
@@ -26,11 +26,14 @@ public class InstallModuleCommand extends Command {
 
         String tailFolderPath = FileUtils.getTailFilePath(this.basePath, PackageConstant.TAIL_FOLDER_NAME, this.config.getName());
 
-        Integer result = CommonTasks.unzipPackage(this.config.getArchiveUrl(), this.basePath);
+        Integer result = CommonTasks.installArchive(this.config.getArchiveUrl(), this.basePath);
+
         //create ./tail/moduleName folder
         result += CommonTasks.createFolder(tailFolderPath);
+
         //create ./tail/moduleName/.tmp folder
-        result += CommonTasks.createFolder(tailFolderPath + File.separator + PackageConstant.TEMPORARY_FOLDER_NAME);
+        result += CommonTasks.createFolder(Paths.get(tailFolderPath, PackageConstant.TEMPORARY_FOLDER_NAME).toString());
+
         if (result != 0) {
             throw new CommandEndedAbnormallyException(InstallModuleCommand.class.getName(), result);
         }

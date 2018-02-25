@@ -2,29 +2,35 @@ package com.fix.agent.commands;
 
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
-import com.fix.common.domain.configs.CoreEngineConfig;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 
 /**
  * Created by OELABED on 08/10/2017.
  */
-public class InstallCoreEngineCommand extends Command {
+public class InstallFilterEngineBinaryCommand extends Command {
 
-    private CoreEngineConfig config;
+    private String archiveUrl;
 
-    public InstallCoreEngineCommand(CoreEngineConfig config, String basePath) {
+    public InstallFilterEngineBinaryCommand(String archiveUrl, String basePath) {
         super(basePath);
-        this.config = config;
+        this.archiveUrl = archiveUrl;
     }
 
     @Override
     public void execute() throws CommandEndedAbnormallyException, IOException {
 
-        Integer result = CommonTasks.installArchive(this.config.getArchiveUrl(), this.basePath);
+        Integer result = -1;
+
+        // Install Filter Engine
+        if (StringUtils.isNoneEmpty(this.archiveUrl)) {
+            result = CommonTasks.installArchive(this.archiveUrl, this.basePath);
+        }
 
         if (result != 0) {
             throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(),result);
         }
     }
+
 }

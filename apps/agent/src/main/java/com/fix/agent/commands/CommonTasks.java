@@ -1,9 +1,11 @@
 package com.fix.agent.commands;
 
+import com.fix.agent.utils.ArchiveUtils;
 import com.fix.agent.utils.FileUtils;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.List;
 public class CommonTasks {
 
     private static final String SCRIPT_UNZIP_ARCHIVE_PATH = "scripts/UnzipArchive.groovy";
+    private static final String SCRIPT_COPPY_ARCHIVE_PATH = "scripts/CopyArchive.groovy";
     private static final String SCRIPT_WGET_FILE_PATH = "scripts/WgetFile.groovy";
     private static final String SCRIPT_LIST_FOLDER_PATH = "scripts/ListFolderFiles.groovy";
     private static final String SCRIPT_CHECK_FILE_INTO_FOLDER_PATH = "scripts/CheckFileIntoFolder.groovy";
@@ -22,8 +25,35 @@ public class CommonTasks {
     private static final String SCRIPT_FOLDER_CREATE_PATH = "scripts/CreateFolder.groovy";
     private static final String SCRIPT_FILE_CREATE_PATH = "scripts/CreateFile.groovy";
     private static final String SCRIPT_FILE_REMOVE_PATH = "scripts/RemoveFile.groovy";
+    private static final String SCRIPT_FOLDER_REMOVE_PATH = "scripts/RemoveFolder.groovy";
     private static final String SCRIPT_LAUNCH_SHELL_SCRIPT_PATH = "scripts/LaunchShellScript.groovy";
     private static final String SCRIPT_KILL_SHELL_SCRIPT_PATH = "scripts/KillShellScript.groovy";
+
+    public static Integer installArchive(String source, String target) throws IOException {
+        Integer result = 0;
+
+        String filePath = source;
+
+        if (ArchiveUtils.isUrl(source)) {
+            String tempPath = ArchiveUtils.getTemporaryFolder();
+
+            result = CommonTasks.wgetFile(source, tempPath);
+
+            if (result != 0) {
+                return result;
+            }
+
+            filePath = FileUtils.concatenatePath(tempPath, FilenameUtils.getName(source));
+        }
+
+        if (ArchiveUtils.isArchive(filePath)) {
+            result = CommonTasks.unzipPackage(filePath, target);
+        } else {
+            result = CommonTasks.copyFile(filePath, target);
+        }
+
+        return result;
+    }
 
     public static Integer unzipPackage(String source, String target) throws IOException {
         Binding sharedData = new Binding();
@@ -32,6 +62,18 @@ public class CommonTasks {
         GroovyShell shell = new GroovyShell(sharedData);
 
         final File file = new File(FileUtils.getPathFromResource(SCRIPT_UNZIP_ARCHIVE_PATH));
+
+        Script script = shell.parse(file);
+        return (Integer) script.run();
+    }
+
+    public static Integer copyFile(String source, String target) throws IOException {
+        Binding sharedData = new Binding();
+        sharedData.setProperty("source", source);
+        sharedData.setProperty("target", target);
+        GroovyShell shell = new GroovyShell(sharedData);
+
+        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPPY_ARCHIVE_PATH));
 
         Script script = shell.parse(file);
         return (Integer) script.run();
@@ -112,6 +154,16 @@ public class CommonTasks {
         sharedData.setProperty("fileName", fileName);
         GroovyShell shell = new GroovyShell(sharedData);
         final File file = new File(FileUtils.getPathFromResource(SCRIPT_FILE_REMOVE_PATH));
+        Script script = shell.parse(file);
+        return (Integer) script.run();
+
+    }
+
+    public static Integer deleteFolder(String folderPath) throws IOException {
+        Binding sharedData = new Binding();
+        sharedData.setProperty("path", folderPath);
+        GroovyShell shell = new GroovyShell(sharedData);
+        final File file = new File(FileUtils.getPathFromResource(SCRIPT_FOLDER_REMOVE_PATH));
         Script script = shell.parse(file);
         return (Integer) script.run();
 

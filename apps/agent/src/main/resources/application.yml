@@ -8,3 +8,11 @@ spring:
 
 workspace:
   path: /tmp/backendAgent
+
+package-metadata:
+  filter-engine:
+    folder: FilterEngine
+  core-engine:
+    folder: bin
+  config-folder:
+    folder: config

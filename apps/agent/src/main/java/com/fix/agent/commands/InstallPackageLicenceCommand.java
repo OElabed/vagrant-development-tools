@@ -17,6 +17,7 @@ public class InstallPackageLicenceCommand extends Command {
 
     @Override
     public void execute() throws CommandEndedAbnormallyException, IOException {
+
         Integer result = CommonTasks.wgetFile(this.config.getLicenceUrl(), this.basePath);
 
         if (result != 0) {

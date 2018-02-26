@@ -43,10 +43,10 @@ public class PackageInstaller {
         
         try {
             // prepare
-            packageId = preparePackageFolder(configFile);
+            packageId = this.preparePackageFolder(configFile);
 
             // install licence package
-            installPackageLicence(configFile, packageId);
+            this.installPackageLicence(configFile, packageId);
 
             // install common env
             this.commonEnvInstaller.installCommonEnv(configFile.getCommonEnvConfig(), packageId);
@@ -83,7 +83,8 @@ public class PackageInstaller {
         return folderId;
     }
 
-    private void installPackageLicence(PackageConfig config, String basePath) throws IOException, CommandEndedAbnormallyException {
+    private void installPackageLicence(PackageConfig config, String packageId) throws IOException, CommandEndedAbnormallyException {
+        String basePath = FileUtils.getFolderPath(this.workspacePath, packageId);
         Command licenceCommand = new InstallPackageLicenceCommand(config, basePath);
         licenceCommand.execute();
     }

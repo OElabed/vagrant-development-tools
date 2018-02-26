@@ -13,8 +13,8 @@ import java.nio.file.Paths
  * Created by OELABED on 08/10/2017.
  */
 
-Path source = Paths.get(source)
-Path target = Paths.get(target)
-Files.copy(source, target)
+Path sourcePath = Paths.get(source)
+Path targetPath = Paths.get(target)
+Files.copy(sourcePath, targetPath)
 
 return  0

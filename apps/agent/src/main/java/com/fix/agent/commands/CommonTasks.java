@@ -18,7 +18,8 @@ import java.util.List;
 public class CommonTasks {
 
     private static final String SCRIPT_UNZIP_ARCHIVE_PATH = "scripts/UnzipArchive.groovy";
-    private static final String SCRIPT_COPY_ARCHIVE_PATH = "scripts/CopyArchive.groovy";
+    private static final String SCRIPT_COPY_DIRECTORY_PATH = "scripts/CopyDirectory.groovy";
+    private static final String SCRIPT_COPY_FILE_PATH = "scripts/CopyFile.groovy";
     private static final String SCRIPT_WGET_FILE_PATH = "scripts/WgetFile.groovy";
     private static final String SCRIPT_LIST_FOLDER_PATH = "scripts/ListFolderFiles.groovy";
     private static final String SCRIPT_CHECK_FILE_INTO_FOLDER_PATH = "scripts/CheckFileIntoFolder.groovy";
@@ -62,7 +63,9 @@ public class CommonTasks {
 
         Integer result = CommonTasks.unzipArchiveInTemporary(source, temporaryFolder);
 
-        result += CommonTasks.copyFile(FileUtils.concatenatePath(temporaryFolder, FilenameUtils.getBaseName(source)), target);
+        result += CommonTasks.deleteFile(temporaryFolder, FilenameUtils.getName(source));
+
+        result += CommonTasks.copyDirectory(temporaryFolder, target);
 
         return result;
     }
@@ -85,7 +88,19 @@ public class CommonTasks {
         sharedData.setProperty("target", FileUtils.concatenatePath(target, FilenameUtils.getName(source)));
         GroovyShell shell = new GroovyShell(sharedData);
 
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPY_ARCHIVE_PATH));
+        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPY_FILE_PATH));
+
+        Script script = shell.parse(file);
+        return (Integer) script.run();
+    }
+
+    public static Integer copyDirectory(String source, String target) throws IOException {
+        Binding sharedData = new Binding();
+        sharedData.setProperty("source", source);
+        sharedData.setProperty("target", target);
+        GroovyShell shell = new GroovyShell(sharedData);
+
+        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPY_DIRECTORY_PATH));
 
         Script script = shell.parse(file);
         return (Integer) script.run();

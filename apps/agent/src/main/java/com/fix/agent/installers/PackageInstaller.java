@@ -1,7 +1,6 @@
 package com.fix.agent.installers;
 
 import com.fix.agent.commands.DeletePackageFolderCommand;
-import com.fix.agent.commands.InstallPackageLicenceCommand;
 import com.fix.agent.commands.PreparePackageFolderCommand;
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
@@ -26,6 +25,12 @@ public class PackageInstaller {
     @Value("${workspace.path}")
     private String workspacePath;
 
+    @Value("${package-metadata.config.folder}")
+    private String configFolder;
+
+    @Autowired
+    private LicenceInstaller licenceInstaller;
+
     @Autowired
     private CoreEngineInstaller coreEngineInstaller;
 
@@ -46,7 +51,7 @@ public class PackageInstaller {
             packageId = this.preparePackageFolder(configFile);
 
             // install licence package
-            this.installPackageLicence(configFile, packageId);
+            this.licenceInstaller.installPackageLicence(configFile, packageId);
 
             // install common env
             this.commonEnvInstaller.installCommonEnv(configFile.getCommonEnvConfig(), packageId);
@@ -63,13 +68,13 @@ public class PackageInstaller {
             return packageId;
 
         } catch (CommandEndedAbnormallyException | IOException exp) {
-            throw new PackageInstallerException("error on package creation");
-        } finally {
+            // delete package with all subdirectory
             try {
-                // delete package with all subdirectory
                 this.deletePackage(packageId);
-            } catch (IOException | CommandEndedAbnormallyException exp) {
-                throw new PackageInstallerException("error on package delete");
+            } catch (CommandEndedAbnormallyException | IOException e) {
+                throw new PackageInstallerException("error on removing package ");
+            } finally {
+                throw new PackageInstallerException("error on package creation");
             }
         }
     }
@@ -78,15 +83,9 @@ public class PackageInstaller {
         String folderId = IdentifierGeneratorUtils.generateUUID();
         String basePath = workspacePath + File.separator + folderId;
         config.setBasePath(basePath);
-        Command packageConfigCommand = new PreparePackageFolderCommand(config, basePath);
+        Command packageConfigCommand = new PreparePackageFolderCommand(config, this.configFolder, basePath);
         packageConfigCommand.execute();
         return folderId;
-    }
-
-    private void installPackageLicence(PackageConfig config, String packageId) throws IOException, CommandEndedAbnormallyException {
-        String basePath = FileUtils.getFolderPath(this.workspacePath, packageId);
-        Command licenceCommand = new InstallPackageLicenceCommand(config, basePath);
-        licenceCommand.execute();
     }
     
     private void deletePackage(String packageId) throws IOException, CommandEndedAbnormallyException {
@@ -99,6 +98,5 @@ public class PackageInstaller {
         for (ModuleConfig moduleConfig: moduleConfigs) {
             this.moduleInstaller.installModule(moduleConfig, packageId);
         }
-
     }
 }

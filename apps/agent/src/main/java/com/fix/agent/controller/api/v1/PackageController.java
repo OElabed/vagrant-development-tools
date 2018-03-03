@@ -1,5 +1,6 @@
 package com.fix.agent.controller.api.v1;
 
+import com.fix.agent.domain.FileNode;
 import com.fix.agent.services.PackageService;
 import com.fix.common.domain.configs.PackageConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +64,14 @@ public class PackageController {
         headers.setLocation(locationHeader);
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/package/{id}/content")
+    public ResponseEntity<FileNode> getPackageContentById(@PathVariable("id") String packageId) {
+
+        FileNode node = packageService.findPackageContentById(packageId);
+
+        return new ResponseEntity<>(node, HttpStatus.OK);
     }
 
 }

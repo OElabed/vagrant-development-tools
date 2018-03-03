@@ -14,5 +14,5 @@ package-metadata:
     folder: FilterEngine
   core-engine:
     folder: bin
-  config-folder:
-    folder: config
+  config:
+    folder: conf

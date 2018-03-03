@@ -4,6 +4,9 @@ import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.Platform;
 import com.fix.exceptions.RemoteClientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
@@ -101,7 +104,11 @@ public class PackageRemote {
 
         try {
 
-            return restTemplate.postForObject(uriComponents.toUri(), packageConfig, String.class);
+            ResponseEntity<Void> response = restTemplate.exchange(uriComponents.toUri(), HttpMethod.POST, new HttpEntity<PackageConfig>(packageConfig), Void.class);
+            String[] segments = response.getHeaders().getLocation().getPath().split("/");
+            String packageId = segments[segments.length-1];
+
+            return packageId;
         } catch (HttpClientErrorException exception){
 
             throw new RemoteClientException(platform.getName(), String.format("%s status code: %s",

@@ -16,9 +16,13 @@ public class PreparePackageFolderCommand extends Command {
 
     private PackageConfig config;
 
-    public PreparePackageFolderCommand(PackageConfig config, String basePath) {
+    private String configFolderName;
+
+    public PreparePackageFolderCommand(PackageConfig config, String configFolderName, String basePath) {
         super(basePath);
         this.config = config;
+        this.configFolderName = configFolderName;
+
     }
 
     @Override
@@ -26,8 +30,12 @@ public class PreparePackageFolderCommand extends Command {
         Integer result = CommonTasks.createFolder(this.basePath);
         // create Settings.yml file
         result += CommonTasks.createFile(this.basePath, PackageConstant.FILE_CONFIG_NAME, PackageConfigParserUtil.serializePackageConfigToYamlFile(this.config));
+
         // create .tail folder
         result += CommonTasks.createFolder(this.basePath + File.separator + PackageConstant.TAIL_FOLDER_NAME);
+
+        // create .tail folder
+        result += CommonTasks.createFolder(this.basePath + File.separator + this.configFolderName);
 
         if (result != 0) {
             throw new CommandEndedAbnormallyException(PreparePackageFolderCommand.class.getName(), result);

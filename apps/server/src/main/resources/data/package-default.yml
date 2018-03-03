@@ -19,7 +19,7 @@ filterEngineConfig:
     push:
   archiveUrl: http://192.168.5.90:4000/filters/packages/filter-7.5.5.1.zip
   kzFileUrl: http://192.168.5.90:4000/filters/context/context-4.2.1.6/FOFDB.kz
-  fmlFile1Url: http://192.168.5.90:4000/filters/context/context-4.2.1.6/FOFDB.kz
+  fmlFile1Url: http://192.168.5.90:4000/filters/context/context-4.2.1.6/fml.rul
   fmlFile2Url:
   scoreFileUrl:
   licenceFileUrl: http://192.168.5.90:4000/filters/licences/licence-4.3.2.15/fbe.cf
@@ -29,19 +29,19 @@ modulesConfig:
     version: 8.5.3.4.p156
     push: 156
   name: DBClient
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156
+  archiveUrl: http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip
   type: DBCLIENT
 - version:
     version: 8.5.3.4.p156
     push: 156
   name: Requester
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleRequester-8.5.3.4.p156
+  archiveUrl: http://192.168.5.90:4000/modules/ModuleRequester-8.5.3.4.p156.zip
   type: REQUESTER
 - version:
     version: 8.5.3.4.p156
     push: 156
   name: Aquisition
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleAquisition-8.5.3.4.p156
+  archiveUrl: http://192.168.5.90:4000/modules/ModuleAquisition-8.5.3.4.p156.zip
   type: AQUISITION
 
 databaseConfig:

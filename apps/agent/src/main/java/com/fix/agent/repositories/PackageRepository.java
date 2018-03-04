@@ -2,7 +2,7 @@ package com.fix.agent.repositories;
 
 import com.fix.agent.commands.CommonTasks;
 import com.fix.agent.commands.common.PackageConstant;
-import com.fix.agent.domain.FileNode;
+import com.fix.common.domain.files.FileNode;
 import com.fix.agent.utils.FileTreeUtil;
 import com.fix.agent.utils.FileUtils;
 import com.fix.common.domain.configs.PackageConfig;

@@ -1,4 +1,4 @@
-package com.fix.agent.domain;
+package com.fix.common.domain.files;
 
 import java.util.List;
 

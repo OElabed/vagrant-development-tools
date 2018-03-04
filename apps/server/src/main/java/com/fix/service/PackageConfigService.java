@@ -3,6 +3,7 @@ package com.fix.service;
 import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.common.domain.configs.Platform;
+import com.fix.common.domain.files.FileNode;
 import com.fix.common.utils.PackageConfigParserUtil;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.model.mappers.PackageConfigMapper;
@@ -46,24 +47,25 @@ public class PackageConfigService {
 
     public PackageConfig findPackageByIdByPlatform(Platform platform, String id) {
 
-        log.debug("get package config data @" + id);
+        log.debug("get package config data @'{}'", id);
 
         Optional<PackageConfig> packageConfig = Optional.ofNullable(packageRemote.findPackageConfigById(platform,id));
 
         if(!packageConfig.isPresent()) throw new ResourceNotFoundException(String.format("Package with id @'%s' does not exists", id));
 
-        log.debug("Package config with id " + id + " found => " + packageConfig.get());
+        log.debug("Package config with id {} found => {}", id, packageConfig.get());
 
         return packageConfig.get();
     }
 
     public PackageConfig createPackage(Platform platform, PackageConfig packageConfig){
 
-        log.debug("create a new package config@" + packageConfig);
+        log.debug("create a new package config @'{}'",packageConfig);
+
         String packageId = packageRemote.installPackage(platform, packageConfig);
         packageConfig.setId(packageId);
 
-        log.debug("saved package config id is @" + packageId);
+        log.debug("saved package config id is @'{}'", packageId);
 
         return packageConfig;
     }
@@ -88,5 +90,17 @@ public class PackageConfigService {
 
         return configYaml;
     }
+
+    public FileNode findPackageContentByPackageConfigId(Platform platform, String packageId) {
+
+        log.debug("get content package data @" + packageId);
+
+        FileNode fileTree = packageRemote.findPackageContent(platform, packageId);
+
+        log.debug("Package config content with id {} found => {}", packageId,fileTree);
+
+        return fileTree;
+    }
+
 
 }

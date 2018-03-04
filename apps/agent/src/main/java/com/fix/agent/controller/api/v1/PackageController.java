@@ -1,6 +1,6 @@
 package com.fix.agent.controller.api.v1;
 
-import com.fix.agent.domain.FileNode;
+import com.fix.common.domain.files.FileNode;
 import com.fix.agent.services.PackageService;
 import com.fix.common.domain.configs.PackageConfig;
 import lombok.extern.slf4j.Slf4j;

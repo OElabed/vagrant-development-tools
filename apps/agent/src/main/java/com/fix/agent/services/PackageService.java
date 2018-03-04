@@ -1,6 +1,6 @@
 package com.fix.agent.services;
 
-import com.fix.agent.domain.FileNode;
+import com.fix.common.domain.files.FileNode;
 import com.fix.agent.installers.PackageInstaller;
 import com.fix.agent.repositories.PackageRepository;
 import com.fix.common.api.exceptions.ResourceNotFoundException;

@@ -2,6 +2,7 @@ package com.fix.api;
 
 import com.fix.common.api.ResponseMessage;
 import com.fix.exceptions.InvalidRequestException;
+import com.fix.exceptions.RemoteClientException;
 import com.fix.exceptions.ResourceAlreadyExistException;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -78,6 +79,16 @@ public class RestExceptionHandler {
 		}
 
 		return new ResponseEntity<>(alert, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+
+	@ExceptionHandler(value = {RemoteClientException.class})
+	@ResponseBody
+	public ResponseEntity<ResponseMessage> handleRemoteClientException(RemoteClientException ex, WebRequest request) {
+		if (log.isDebugEnabled()) {
+			log.debug("handling RemoteClientException...");
+		}
+		return new ResponseEntity<>(new ResponseMessage(ResponseMessage.Type.danger, ex.getMessage()),
+				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 

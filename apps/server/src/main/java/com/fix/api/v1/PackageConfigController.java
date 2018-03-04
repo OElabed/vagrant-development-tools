@@ -3,6 +3,7 @@ package com.fix.api.v1;
 import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.domain.configs.PackageConfigYaml;
 import com.fix.common.domain.configs.Platform;
+import com.fix.common.domain.files.FileNode;
 import com.fix.exceptions.InvalidRequestException;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.service.PackageConfigService;
@@ -129,6 +130,19 @@ public class PackageConfigController {
         PackageConfigYaml packageConfigYaml = packageConfigService.unmarshall(packageConfig);
 
         return new ResponseEntity<>(packageConfigYaml, HttpStatus.OK);
+    }
+
+    @PreAuthorize("#oauth2.hasScope('read')")
+    @GetMapping(value = "/platform/{platformId}/package/{packageId}/content")
+    public ResponseEntity<FileNode> getPackageContent(@PathVariable("platformId") String platformId,
+                                                      @PathVariable("packageId") String packageId)
+            throws ResourceNotFoundException {
+
+        Platform platform = platformService.findByName(platformId);
+
+        FileNode filesTree = packageConfigService.findPackageContentByPackageConfigId(platform, packageId);
+
+        return new ResponseEntity<>(filesTree, HttpStatus.OK);
     }
 
 }

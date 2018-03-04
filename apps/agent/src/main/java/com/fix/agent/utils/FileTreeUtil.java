@@ -1,7 +1,7 @@
 package com.fix.agent.utils;
 
-import com.fix.agent.domain.FileNode;
-import com.fix.agent.domain.FileType;
+import com.fix.common.domain.files.FileNode;
+import com.fix.common.domain.files.FileType;
 
 import java.io.File;
 import java.util.ArrayList;

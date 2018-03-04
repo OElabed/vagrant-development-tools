@@ -23,14 +23,14 @@ public class PlatformsRegistry {
     @Autowired
     private PlatformMapper platformMapper;
 
-    public List<Platform> getAllPlatforms(){
+    public List<Platform> getAllPlatforms() throws PlatformRegistryNotFoundException {
 
         return this.getAllInstances().stream()
                 .map(instance -> this.platformMapper.mapToPlatform(instance))
                 .collect(Collectors.toList());
     }
 
-    public InstanceInfo getPlatformInstanceInfo(Platform platform){
+    public InstanceInfo getPlatformInstanceInfo(Platform platform) throws PlatformRegistryNotFoundException {
         String instanceId = platformMapper.mapToInstanceIntoId(platform);
 
         Optional<InstanceInfo> instanceInfo = this.getAllInstances().stream()
@@ -42,14 +42,14 @@ public class PlatformsRegistry {
 
     }
 
-    public String getPlatformInstanceUrl(Platform platform){
+    public String getPlatformInstanceUrl(Platform platform) {
 
         InstanceInfo instanceInfo = this.getPlatformInstanceInfo(platform);
 
         return RemoteUrlUtils.createHttpUrl(instanceInfo.getIPAddr(), instanceInfo.getPort());
     }
 
-    private List<InstanceInfo> getAllInstances() throws PlatformRegistryNotFoundException{
+    private List<InstanceInfo> getAllInstances() throws PlatformRegistryNotFoundException {
 
         Optional<Application> application = EurekaServerContextHolder
                 .getInstance().getServerContext().getRegistry().getApplications().getRegisteredApplications().stream()

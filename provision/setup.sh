@@ -53,6 +53,11 @@ say "Installing VS Code."
     apt-get install code -yq >/dev/null 2>&1
 
 # Install Desktop
+say "Installing gcc and perl."
+    apt-get update >/dev/null 2>&1
+    apt-get install gcc make perl -y >/dev/null 2>&1
+
+# Install Desktop
 say "Installing Desktop."
     apt-get update >/dev/null 2>&1
     apt-get install -y --no-install-recommends ubuntu-desktop >/dev/null 2>&1

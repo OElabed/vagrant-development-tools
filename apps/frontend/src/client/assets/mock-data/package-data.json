@@ -1,67 +1,51 @@
 {
-    "id": 2,
-    "name": "Tea Blend Daily Moisturizer SPF 15",
-    "basePath": "/tmp/totot",
-    "licenceUrl": "https://globo.com/vel/nulla/eget/eros/elementum.png?sit=cubilia&amet=curae&erat=donec&nulla=pharetra&tempus=magna&vivamus=vestibulum&in=aliquet&felis=ultrices&eu=erat&sapien=tortor&cursus=sollicitudin&vestibulum=mi&proin=sit&eu=amet&mi=lobortis&nulla=sapien&ac=sapien&enim=non&in=mi&tempor=integer&turpis=ac&nec=neque&euismod=duis&scelerisque=bibendum&quam=morbi&turpis=non&adipiscing=quam&lorem=nec&vitae=dui&mattis=luctus&nibh=rutrum&ligula=nulla&nec=tellus&sem=in&duis=sagittis&aliquam=dui&convallis=vel&nunc=nisl&proin=duis&at=ac&turpis=nibh&a=fusce&pede=lacus&posuere=purus&nonummy=aliquet&integer=at&non=feugiat",
-    "platform": "612f886d-b2c7-44a7-82e0-c2557fc0d9cf",
-    "commonEnvConfig": {
-        "enable": true,
-        "fileUrl": "http://xing.com/eget/eros/elementum.xml?sodales=nullam&scelerisque=orci&mauris=pede&sit=venenatis&amet=non&eros=sodales&suspendisse=sed&accumsan=tincidunt&tortor=eu&quis=felis&turpis=fusce&sed=posuere&ante=felis&vivamus=sed&tortor=lacus&duis=morbi&mattis=sem&egestas=mauris&metus=laoreet&aenean=ut&fermentum=rhoncus&donec=aliquet&ut=pulvinar&mauris=sed&eget=nisl&massa=nunc&tempor=rhoncus&convallis=dui&nulla=vel&neque=sem&libero=sed&convallis=sagittis&eget=nam&eleifend=congue&luctus=risus&ultricies=semper&eu=porta&nibh=volutpat&quisque=quam&id=pede&justo=lobortis&sit=ligula&amet=sit&sapien=amet&dignissim=eleifend&vestibulum=pede&vestibulum=libero&ante=quis&ipsum=orci&primis=nullam&in=molestie&faucibus=nibh&orci=in&luctus=lectus&et=pellentesque&ultrices=at&posuere=nulla&cubilia=suspendisse&curae=potenti&nulla=cras&dapibus=in&dolor=purus&vel=eu&est=magna&donec=vulputate&odio=luctus&justo=cum&sollicitudin=sociis&ut=natoque"
+  "id": 2,
+  "name": "Package_11",
+  "basePath": null,
+  "commonEnvConfig": {
+    "enable": true,
+    "fileUrl": "http://192.168.5.90:4000/common_env.cfg"
+  },
+  "coreEngineConfig": {
+    "archiveUrl": "http://192.168.5.90:4000/coreEngine/linux/coreEngine-3.5.4.9.zip",
+    "version": "3.5.4.9"
+  },
+  "filterEngineConfig": {
+    "scoreFileUrl": null,
+    "fmlFile1Url": "http://192.168.5.90:4000/filters/context/context-4.2.1.6/fml.rul",
+    "licenceFileUrl": "http://192.168.5.90:4000/filters/licences/licence-4.3.2.15/fbe.cf",
+    "fmlFile2Url": null,
+    "archiveUrl": "http://192.168.5.90:4000/filters/packages/filter-7.5.5.1.zip",
+    "kzFileUrl": "http://192.168.5.90:4000/filters/context/context-4.2.1.6/FOFDB.kz",
+    "version": "7.5.5.1"
+  },
+  "licenceUrl": "http://192.168.5.90:4000/licences/licence-3.4.2.8/fba.cf",
+  "databaseConfig": {
+    "port": "1521",
+    "type": "ORACLE",
+    "username": "cby1",
+    "service": "ORCL",
+    "hostname": "116.153.214.100",
+    "password": "wXN4OnE6n2Rb"
+  },
+  "modulesConfig": [
+    {
+      "name": "DBClient",
+      "type": "DBCLIENT",
+      "archiveUrl": "http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip",
+      "version": "8.5.3.4.p156"
     },
-    "coreEngineConfig": {
-        "archiveUrl": 266,
-        "version": {
-            "version": "0.7.3.6",
-            "push": 526
-        }
+    {
+      "name": "Requester",
+      "type": "REQUESTER",
+      "archiveUrl": "http://192.168.5.90:4000/modules/ModuleRequester-8.5.3.4.p156.zip",
+      "version": "8.5.3.4.p156"
     },
-    "filterEngineConfig": {
-        "version": {
-            "version": "0.72.2.1",
-            "push": null
-        },
-        "archiveUrl": "http://alexa.com/morbi/non/quam.jsp?tincidunt=blandit&eu=mi&felis=in&fusce=porttitor&posuere=pede&felis=justo&sed=eu&lacus=massa&morbi=donec&sem=dapibus&mauris=duis&laoreet=at&ut=velit&rhoncus=eu&aliquet=est&pulvinar=congue&sed=elementum&nisl=in&nunc=hac&rhoncus=habitasse&dui=platea&vel=dictumst&sem=morbi&sed=vestibulum&sagittis=velit&nam=id&congue=pretium&risus=iaculis&semper=diam&porta=erat&volutpat=fermentum&quam=justo&pede=nec&lobortis=condimentum&ligula=neque&sit=sapien&amet=placerat&eleifend=ante&pede=nulla&libero=justo&quis=aliquam&orci=quis&nullam=turpis&molestie=eget&nibh=elit&in=sodales&lectus=scelerisque&pellentesque=mauris&at=sit&nulla=amet&suspendisse=eros&potenti=suspendisse&cras=accumsan&in=tortor&purus=quis&eu=turpis&magna=sed&vulputate=ante&luctus=vivamus&cum=tortor&sociis=duis&natoque=mattis&penatibus=egestas&et=metus&magnis=aenean&dis=fermentum&parturient=donec&montes=ut&nascetur=mauris&ridiculus=eget&mus=massa&vivamus=tempor&vestibulum=convallis&sagittis=nulla&sapien=neque&cum=libero&sociis=convallis&natoque=eget",
-        "kzFileUrl": "http://mashable.com/ut/erat/id/mauris/vulputate.js?in=commodo&purus=placerat&eu=praesent&magna=blandit&vulputate=nam&luctus=nulla&cum=integer&sociis=pede&natoque=justo&penatibus=lacinia&et=eget&magnis=tincidunt&dis=eget&parturient=tempus&montes=vel&nascetur=pede&ridiculus=morbi&mus=porttitor&vivamus=lorem&vestibulum=id&sagittis=ligula&sapien=suspendisse&cum=ornare&sociis=consequat&natoque=lectus&penatibus=in&et=est&magnis=risus&dis=auctor&parturient=sed&montes=tristique&nascetur=in&ridiculus=tempus&mus=sit&etiam=amet&vel=sem&augue=fusce&vestibulum=consequat&rutrum=nulla&rutrum=nisl&neque=nunc&aenean=nisl&auctor=duis&gravida=bibendum&sem=felis&praesent=sed&id=interdum&massa=venenatis&id=turpis&nisl=enim&venenatis=blandit&lacinia=mi&aenean=in",
-        "fmlFile1Url": "http://wsj.com/sagittis/sapien/cum/sociis/natoque/penatibus/et.js?vel=in&ipsum=magna&praesent=bibendum&blandit=imperdiet&lacinia=nullam&erat=orci&vestibulum=pede&sed=venenatis&magna=non&at=sodales&nunc=sed&commodo=tincidunt&placerat=eu&praesent=felis&blandit=fusce&nam=posuere&nulla=felis&integer=sed&pede=lacus&justo=morbi&lacinia=sem&eget=mauris&tincidunt=laoreet&eget=ut&tempus=rhoncus&vel=aliquet&pede=pulvinar&morbi=sed&porttitor=nisl&lorem=nunc&id=rhoncus&ligula=dui&suspendisse=vel&ornare=sem&consequat=sed&lectus=sagittis&in=nam&est=congue&risus=risus&auctor=semper&sed=porta&tristique=volutpat&in=quam&tempus=pede&sit=lobortis&amet=ligula&sem=sit&fusce=amet&consequat=eleifend&nulla=pede&nisl=libero&nunc=quis&nisl=orci&duis=nullam&bibendum=molestie&felis=nibh&sed=in&interdum=lectus&venenatis=pellentesque&turpis=at&enim=nulla&blandit=suspendisse&mi=potenti&in=cras&porttitor=in&pede=purus&justo=eu&eu=magna&massa=vulputate&donec=luctus&dapibus=cum&duis=sociis&at=natoque&velit=penatibus&eu=et&est=magnis&congue=dis&elementum=parturient&in=montes&hac=nascetur&habitasse=ridiculus&platea=mus&dictumst=vivamus&morbi=vestibulum&vestibulum=sagittis&velit=sapien&id=cum&pretium=sociis&iaculis=natoque&diam=penatibus&erat=et&fermentum=magnis&justo=dis&nec=parturient&condimentum=montes&neque=nascetur&sapien=ridiculus&placerat=mus&ante=etiam&nulla=vel",
-        "fmlFile2Url": "https://oaic.gov.au/rhoncus/aliquam.html?odio=potenti&porttitor=in&id=eleifend&consequat=quam&in=a&consequat=odio&ut=in&nulla=hac&sed=habitasse&accumsan=platea&felis=dictumst&ut=maecenas&at=ut&dolor=massa&quis=quis&odio=augue&consequat=luctus&varius=tincidunt&integer=nulla&ac=mollis&leo=molestie&pellentesque=lorem&ultrices=quisque&mattis=ut&odio=erat&donec=curabitur&vitae=gravida&nisi=nisi&nam=at&ultrices=nibh&libero=in&non=hac&mattis=habitasse&pulvinar=platea&nulla=dictumst&pede=aliquam&ullamcorper=augue&augue=quam&a=sollicitudin&suscipit=vitae&nulla=consectetuer&elit=eget&ac=rutrum&nulla=at&sed=lorem&vel=integer&enim=tincidunt&sit=ante&amet=vel&nunc=ipsum&viverra=praesent&dapibus=blandit&nulla=lacinia&suscipit=erat&ligula=vestibulum&in=sed&lacus=magna&curabitur=at&at=nunc&ipsum=commodo&ac=placerat&tellus=praesent&semper=blandit&interdum=nam&mauris=nulla&ullamcorper=integer&purus=pede&sit=justo&amet=lacinia&nulla=eget&quisque=tincidunt&arcu=eget&libero=tempus&rutrum=vel&ac=pede&lobortis=morbi",
-        "scoreFileUrl": "http://geocities.com/velit/donec/diam/neque/vestibulum/eget.jpg?primis=suscipit&in=a&faucibus=feugiat&orci=et&luctus=eros&et=vestibulum&ultrices=ac&posuere=est&cubilia=lacinia&curae=nisi&duis=venenatis&faucibus=tristique&accumsan=fusce&odio=congue&curabitur=diam&convallis=id&duis=ornare&consequat=imperdiet&dui=sapien&nec=urna&nisi=pretium&volutpat=nisl&eleifend=ut&donec=volutpat&ut=sapien&dolor=arcu&morbi=sed&vel=augue&lectus=aliquam&in=erat&quam=volutpat&fringilla=in&rhoncus=congue&mauris=etiam&enim=justo&leo=etiam&rhoncus=pretium&sed=iaculis&vestibulum=justo&sit=in&amet=hac&cursus=habitasse&id=platea&turpis=dictumst&integer=etiam&aliquet=faucibus&massa=cursus&id=urna&lobortis=ut&convallis=tellus&tortor=nulla&risus=ut&dapibus=erat&augue=id&vel=mauris&accumsan=vulputate&tellus=elementum&nisi=nullam&eu=varius&orci=nulla&mauris=facilisi&lacinia=cras&sapien=non&quis=velit&libero=nec&nullam=nisi&sit=vulputate&amet=nonummy&turpis=maecenas&elementum=tincidunt&ligula=lacus&vehicula=at&consequat=velit&morbi=vivamus&a=vel&ipsum=nulla&integer=eget&a=eros&nibh=elementum&in=pellentesque&quis=quisque&justo=porta&maecenas=volutpat&rhoncus=erat&aliquam=quisque&lacus=erat&morbi=eros&quis=viverra&tortor=eget&id=congue&nulla=eget&ultrices=semper&aliquet=rutrum&maecenas=nulla&leo=nunc&odio=purus&condimentum=phasellus&id=in&luctus=felis",
-        "licenceFileUrl": "https://quantcast.com/ultrices/phasellus/id/sapien.jsp?iaculis=dignissim&justo=vestibulum&in=vestibulum&hac=ante&habitasse=ipsum&platea=primis&dictumst=in&etiam=faucibus&faucibus=orci&cursus=luctus&urna=et&ut=ultrices&tellus=posuere&nulla=cubilia&ut=curae&erat=nulla&id=dapibus&mauris=dolor&vulputate=vel&elementum=est&nullam=donec&varius=odio&nulla=justo&facilisi=sollicitudin&cras=ut&non=suscipit&velit=a&nec=feugiat&nisi=et&vulputate=eros&nonummy=vestibulum&maecenas=ac&tincidunt=est&lacus=lacinia&at=nisi&velit=venenatis&vivamus=tristique&vel=fusce&nulla=congue&eget=diam&eros=id&elementum=ornare&pellentesque=imperdiet&quisque=sapien&porta=urna&volutpat=pretium&erat=nisl&quisque=ut&erat=volutpat&eros=sapien&viverra=arcu&eget=sed&congue=augue&eget=aliquam&semper=erat&rutrum=volutpat&nulla=in&nunc=congue&purus=etiam&phasellus=justo&in=etiam&felis=pretium&donec=iaculis&semper=justo&sapien=in&a=hac&libero=habitasse&nam=platea&dui=dictumst"
-    },
-    "modulesConfig": [
-        {
-            "version": {
-                "version": "5.9.0.0",
-                "push": 801
-            },
-            "name": "DBClient",
-            "archiveUrl": "https://mozilla.com/consequat/dui/nec.xml?vivamus=maecenas&vel=pulvinar&nulla=lobortis&eget=est&eros=phasellus&elementum=sit&pellentesque=amet&quisque=erat&porta=nulla&volutpat=tempus&erat=vivamus&quisque=in&erat=felis&eros=eu&viverra=sapien&eget=cursus&congue=vestibulum&eget=proin&semper=eu&rutrum=mi&nulla=nulla&nunc=ac&purus=enim&phasellus=in&in=tempor&felis=turpis&donec=nec&semper=euismod&sapien=scelerisque&a=quam&libero=turpis&nam=adipiscing&dui=lorem&proin=vitae&leo=mattis&odio=nibh&porttitor=ligula&id=nec&consequat=sem&in=duis&consequat=aliquam&ut=convallis&nulla=nunc&sed=proin&accumsan=at&felis=turpis&ut=a&at=pede&dolor=posuere&quis=nonummy&odio=integer",
-            "type": "DBCLIENT"
-        },
-        {
-            "version": {
-                "version": "5.9.0.0",
-                "push": 755
-            },
-            "name": "DBClient",
-            "archiveUrl": "http://virginia.edu/donec/ut/dolor/morbi.json?dapibus=tincidunt&nulla=nulla&suscipit=mollis&ligula=molestie&in=lorem&lacus=quisque&curabitur=ut",
-            "type": "REQUESTER"
-        },
-        {
-            "version": {
-                "version": "5.9.0.0",
-                "push": 95
-            },
-            "name": "Requester",
-            "archiveUrl": "https://histats.com/fermentum.json?scelerisque=erat&quam=nulla&turpis=tempus&adipiscing=vivamus&lorem=in&vitae=felis&mattis=eu&nibh=sapien&ligula=cursus&nec=vestibulum&sem=proin&duis=eu",
-            "type": "AQUISITION"
-        }
-    ],
-    "databaseConfig": {
-        "type": "SQLSERVER",
-        "username": "cby1",
-        "password": "wXN4OnE6n2Rb",
-        "hostname": "116.153.214.100",
-        "port": 3330,
-        "service": "ORCL"
+    {
+      "name": "Aquisition",
+      "type": "AQUISITION",
+      "archiveUrl": "http://192.168.5.90:4000/modules/ModuleAquisition-8.5.3.4.p156.zip",
+      "version": "8.5.3.4.p156"
     }
+  ]
 }

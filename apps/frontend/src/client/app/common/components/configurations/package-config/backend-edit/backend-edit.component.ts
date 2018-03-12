@@ -39,7 +39,7 @@ export class BackendEditComponent extends BaseFormComponent implements OnInit, O
     buildForm() {
         this.form = this.formBuilder.group({
             version: new FormControl('', [Validators.required, PackageValidators.version]),
-            push: new FormControl('', [Validators.required, PackageValidators.number]),
+            // push: new FormControl('', [Validators.required, PackageValidators.number]),
             modules: this.formBuilder.group({
                 aquisition: new FormControl(false),
                 requester: new FormControl(false),
@@ -56,8 +56,8 @@ export class BackendEditComponent extends BaseFormComponent implements OnInit, O
 
     initializeForm(form: FormGroup, config: IModuleConfig[]) {
         this.form.setValue({
-            version: config[0].version.version,
-            push: config[0].version.push,
+            version: config[0].version,
+            // push: config[0].version.push,
             modules: {
                 aquisition: ModuleConfig.moduleIsActivate(config, ModuleType.AQUISITION),
                 requester: ModuleConfig.moduleIsActivate(config, ModuleType.REQUESTER),

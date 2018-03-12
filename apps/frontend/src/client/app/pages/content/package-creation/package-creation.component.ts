@@ -23,7 +23,7 @@ export class PackageCreationComponent {
 
   packageConfig: IPackageConfig;
 
-  configType: ConfigType = ConfigType.FORM;
+  configType: ConfigType = ConfigType.TEMPLATE;
 
   constructor() {
     this.packageConfig = PackageConfig.initialize();

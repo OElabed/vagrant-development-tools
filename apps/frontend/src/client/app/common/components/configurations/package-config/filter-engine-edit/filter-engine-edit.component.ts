@@ -53,7 +53,7 @@ export class FilterEngineEditComponent extends BaseFormComponent implements OnIn
 
     initializeForm(form: FormGroup, config: IFilterEngineConfig) {
         this.form.setValue({
-            version: config.version.version,
+            version: config.version,
             filterEngineOptions: {
                 fmlFile1: config.fmlFile1Url !== '',
                 fmlFile2: config.fmlFile2Url !== '',

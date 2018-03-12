@@ -1,22 +1,21 @@
 import { ModuleType } from '../domain/module.model';
-import { IVersion, Version } from '../domain/version.model';
 
 export interface IModuleConfig {
     type?: ModuleType;
-    version?: IVersion;
+    version?: string;
     name?: string;
     archiveUrl?: string;
 }
 
 export class ModuleConfig implements IModuleConfig {
     type?: ModuleType;
-    version?: IVersion;
+    version?: string;
     name?: string;
     archiveUrl?: string;
 
     public static fromResult(res: any): IModuleConfig {
         const result = <IModuleConfig>({
-            version: Version.fromResult(res.version),
+            version: res.version,
             type: ModuleType[res.type],
             name: res.name,
             archiveUrl: res.archiveUrl
@@ -29,7 +28,7 @@ export class ModuleConfig implements IModuleConfig {
 
     public static initialize(): IModuleConfig {
         const result = new ModuleConfig();
-        result.version = Version.initialize();
+        result.version = '';
         result.type = ModuleType.AQUISITION;
         result.name = '';
         result.archiveUrl = '';

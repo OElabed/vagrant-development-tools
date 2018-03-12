@@ -89,7 +89,7 @@ export class TemplateConfigComponent implements OnInit {
     buildForm() {
         this.templateForm = this.formBuilder.group({
             general: this.formBuilder.group({
-                plateform: new FormControl('', Validators.required),
+                // plateform: new FormControl('', Validators.required),
                 name: new FormControl('', Validators.required),
                 generalOptions: this.formBuilder.group({
                     commonEnv: new FormControl(false)
@@ -97,7 +97,7 @@ export class TemplateConfigComponent implements OnInit {
             }),
             coreEngine: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
-                push: new FormControl('', [Validators.required, PackageValidators.number])
+                // push: new FormControl('', [Validators.required, PackageValidators.number])
             }),
             filterEngine: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
@@ -109,7 +109,7 @@ export class TemplateConfigComponent implements OnInit {
             }),
             continuityBackend: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
-                push: new FormControl('', [Validators.required, PackageValidators.number]),
+                // push: new FormControl('', [Validators.required, PackageValidators.number]),
                 modules: this.formBuilder.group({
                     aquisition: new FormControl(false),
                     requester: new FormControl(false),
@@ -153,7 +153,7 @@ export class TemplateConfigComponent implements OnInit {
         this.templateSelectedOption = option;
         const idTemplate = Number(option.value);
         this.currentTemplatePackage = this.templatePackageList.filter((template: ITemplatePackage) => template.id === idTemplate)[0];
-        this.initializeContainerSelect(this.containerList, this.currentTemplatePackage.packageConfig.plateform);
+        // this.initializeContainerSelect(this.containerList, this.currentTemplatePackage.packageConfig.plateform);
         this.initializeForm(this.templateForm, this.currentTemplatePackage);
     }
 
@@ -161,9 +161,9 @@ export class TemplateConfigComponent implements OnInit {
         this.containerSelectedOption = option;
         const containerName = String(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.name === containerName)[0];
-        this.setValueFormControl('general.plateform', this.currentContainer);
-        (<FormGroup>this.templateForm.controls.general)
-            .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+        // this.setValueFormControl('general.plateform', this.currentContainer);
+        // (<FormGroup>this.templateForm.controls.general)
+            // .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
     }
 
     isFieldNotValid(field: string) {
@@ -216,18 +216,17 @@ export class TemplateConfigComponent implements OnInit {
     initializeForm(form: FormGroup, template: ITemplatePackage) {
         this.templateForm.setValue({
             general: {
-                plateform: template.packageConfig.plateform,
+                // plateform: template.packageConfig.plateform,
                 name: template.packageConfig.name,
                 generalOptions: {
                     commonEnv: template.packageConfig.commonEnvConfig.enable
                 }
             },
             coreEngine: {
-                version: template.packageConfig.coreEngineConfig.version.version,
-                push: template.packageConfig.coreEngineConfig.version.push
+                version: template.packageConfig.coreEngineConfig.version,
             },
             filterEngine: {
-                version: template.packageConfig.filterEngineConfig.version.version,
+                version: template.packageConfig.filterEngineConfig.version,
                 filterEngineOptions: {
                     fmlFile1: template.packageConfig.filterEngineConfig.fmlFile1Url !== '',
                     fmlFile2: template.packageConfig.filterEngineConfig.fmlFile2Url !== '',
@@ -235,8 +234,7 @@ export class TemplateConfigComponent implements OnInit {
                 }
             },
             continuityBackend: {
-                version: template.packageConfig.modulesConfig[0].version.version,
-                push: template.packageConfig.modulesConfig[0].version.push,
+                version: template.packageConfig.modulesConfig[0].version,
                 modules: {
                     aquisition: ModuleConfig.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.AQUISITION),
                     requester: ModuleConfig.moduleIsActivate(template.packageConfig.modulesConfig, ModuleType.REQUESTER),

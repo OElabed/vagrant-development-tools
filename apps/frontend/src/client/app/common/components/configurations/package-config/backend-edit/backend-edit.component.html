@@ -10,18 +10,12 @@
                     <fieldset>
                         <div class="col-sm-12">
                             <div class="row">
-                                
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="textinput">Version</label>
                                     <div class="col-sm-4" [ngClass]="displayFieldCss('version')">
                                         <input type="text" placeholder="5.9.0.0" class="form-control input-sm" formControlName="version">
                                         <fix-field-error-display [displayError]="isFieldNotValid('version')" errorMsg="Please inform the version"></fix-field-error-display>
-                                    </div>
-
-                                    <label class="col-sm-2 control-label" for="textinput">Push</label>
-                                    <div class="col-sm-4" [ngClass]="displayFieldCss('push')">
-                                        <input type="text" placeholder="760" class="form-control input-sm" formControlName="push">
-                                        <fix-field-error-display [displayError]="isFieldNotValid('push')" errorMsg="Please inform the push version"></fix-field-error-display>
                                     </div>
                                 </div>
 
@@ -39,7 +33,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </fieldset>

@@ -75,13 +75,13 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
         this.containerSelectedOption = option;
         const containerName = String(option.value);
         this.currentContainer = this.containerList.filter((container: IContainer) => container.name === containerName)[0];
-        this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+        // this.form.controls.plateform.setValue(this.currentContainer, { onlySelf: true });
         this.initializeForm(this.form, this.config);
     }
 
     buildForm() {
         this.form = this.formBuilder.group({
-            plateform: new FormControl('', Validators.required),
+            // plateform: new FormControl('', Validators.required),
             name: new FormControl('', Validators.required),
             generalOptions: this.formBuilder.group({
                 commonEnv: new FormControl(false)
@@ -92,7 +92,7 @@ export class GeneralEditComponent extends BaseFormComponent implements OnInit, O
 
     initializeForm(form: FormGroup, packageConfig: IPackageConfig) {
         this.form.setValue({
-            plateform: packageConfig.plateform,
+            // plateform: packageConfig.plateform,
             name: packageConfig.name,
             generalOptions: {
                 commonEnv: packageConfig.commonEnvConfig.enable

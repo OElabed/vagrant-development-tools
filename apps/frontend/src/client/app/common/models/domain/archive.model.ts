@@ -1,4 +1,3 @@
-import { IVersion } from './version.model';
 import { IFileWrapper, FileWrapper } from './file.model';
 
 export enum ArchiveType {
@@ -9,14 +8,14 @@ export enum ArchiveType {
 
 export interface IArchive {
     type?: ArchiveType;
-    version?: IVersion;
+    version?: string;
     url?: string;
     fileUpload?: IFileWrapper;
 }
 
 export class Archive implements IArchive {
     type?: ArchiveType;
-    version?: IVersion;
+    version?: string;
     url?: string;
     fileUpload?: IFileWrapper;
 }

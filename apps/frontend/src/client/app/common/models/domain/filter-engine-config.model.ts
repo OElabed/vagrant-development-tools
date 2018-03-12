@@ -1,7 +1,6 @@
-import { IVersion, Version } from './version.model';
 
 export interface IFilterEngineConfig {
-    version?: IVersion;
+    version?: string;
     archiveUrl?: string;
     kzFileUrl?: string;
     fmlFile1Url?: string;
@@ -11,7 +10,7 @@ export interface IFilterEngineConfig {
 }
 
 export class FilterEngineConfig implements IFilterEngineConfig {
-    version?: IVersion;
+    version?: string;
     archiveUrl?: string;
     kzFileUrl?: string;
     fmlFile1Url?: string;
@@ -21,7 +20,7 @@ export class FilterEngineConfig implements IFilterEngineConfig {
 
     public static fromResult(res: any): IFilterEngineConfig {
         const result = <IFilterEngineConfig>({
-            version: Version.fromResult(res.version),
+            version: res.version,
             archiveUrl: res.archiveUrl,
             kzFileUrl: res.kzFileUrl,
             fmlFile1Url: res.fmlFile1Url,
@@ -34,7 +33,7 @@ export class FilterEngineConfig implements IFilterEngineConfig {
 
     public static initialize(): IFilterEngineConfig {
         const result = new FilterEngineConfig();
-        result.version = Version.initialize();
+        result.version = '';
         result.archiveUrl = '';
         result.kzFileUrl = '';
         result.fmlFile1Url = '';

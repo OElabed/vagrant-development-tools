@@ -9,6 +9,6 @@ import lombok.Data;
 public class CoreEngineConfig {
     private String archiveUrl;
 
-    private Version version;
+    private String version;
 
 }

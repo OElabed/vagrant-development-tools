@@ -20,5 +20,5 @@ public class FilterEngineConfig {
 
     private String kzFileUrl;
 
-    private Version version;
+    private String version;
 }

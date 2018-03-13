@@ -14,5 +14,5 @@ public class ModuleConfig {
 
     private String archiveUrl;
 
-    private Version version;
+    private String version;
 }

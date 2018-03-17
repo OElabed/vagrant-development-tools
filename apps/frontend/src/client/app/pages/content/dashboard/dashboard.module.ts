@@ -8,7 +8,11 @@ import { ModuleWidgetComponent } from './module-widget/module-widget.component';
 import { PackageInfosComponent } from './package-infos/package-infos.component';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, DashboardRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    DashboardRoutingModule
+  ],
   declarations: [DashboardComponent, ActionsComponent, ModuleWidgetComponent, PackageInfosComponent],
   exports: [DashboardComponent, ActionsComponent, ModuleWidgetComponent, PackageInfosComponent]
 })

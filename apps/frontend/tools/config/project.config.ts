@@ -116,6 +116,16 @@ export class ProjectConfig extends SeedConfig {
       }
     });
 
+    /* Add ngx-bootstrap */
+    this.addPackageBundles({
+      name: 'ngx-bootstrap',
+      path: `node_modules/ngx-bootstrap`,
+      packageMeta: {
+        main: 'bundles/ngx-bootstrap.umd.min.js',
+        defaultExtension: 'js'
+      }
+    });
+
     // Add packages (e.g. ng2-translate)
     // const additionalPackages: ExtendPackages[] = [{
     //   name: 'ng2-translate',

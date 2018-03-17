@@ -4,7 +4,7 @@ export class PackageValidators {
 
     static version(c: FormControl): ValidationErrors {
         const value = String(c.value);
-        const pattern = new RegExp('[0-9]+(\.[0-9]+)+(\.[0-9]+)+(\.[0-9]+)');
+        const pattern = new RegExp('^[0-9]+((\.[0-9]+){0,3})$|^([0-9]+)((\.[0-9]+){0,3})(-\w+)$|^([0-9]+)((\.[0-9]+){0,3})(\.p\d+)?$');
         const isValid = pattern.test(value);
         const message = {
             'version': {

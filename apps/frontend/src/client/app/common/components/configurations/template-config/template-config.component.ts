@@ -10,7 +10,7 @@ import { TemplatePackageService } from '../../../services/external/template-pack
 import { ContainerService } from '../../../services/external/containers.api.service';
 import { ModuleConfig } from '../../../models/domain/module-config.model';
 import { ModuleType } from '../../../models/domain/module.model';
-import { IContainer, findIconContainer } from '../../../models/domain/container.model';
+import { IContainer, findIconContainer, OS, Container } from '../../../models/domain/container.model';
 import { SelectValidators } from '../../../validators/select.validator';
 
 //declare let jQuery: any;
@@ -89,7 +89,7 @@ export class TemplateConfigComponent implements OnInit {
     buildForm() {
         this.templateForm = this.formBuilder.group({
             general: this.formBuilder.group({
-                // plateform: new FormControl('', Validators.required),
+                plateform: new FormControl('', Validators.required),
                 name: new FormControl('', Validators.required),
                 generalOptions: this.formBuilder.group({
                     commonEnv: new FormControl(false)
@@ -97,7 +97,6 @@ export class TemplateConfigComponent implements OnInit {
             }),
             coreEngine: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
-                // push: new FormControl('', [Validators.required, PackageValidators.number])
             }),
             filterEngine: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
@@ -109,7 +108,6 @@ export class TemplateConfigComponent implements OnInit {
             }),
             continuityBackend: this.formBuilder.group({
                 version: new FormControl('', [Validators.required, PackageValidators.version]),
-                // push: new FormControl('', [Validators.required, PackageValidators.number]),
                 modules: this.formBuilder.group({
                     aquisition: new FormControl(false),
                     requester: new FormControl(false),
@@ -217,6 +215,7 @@ export class TemplateConfigComponent implements OnInit {
         this.templateForm.setValue({
             general: {
                 // plateform: template.packageConfig.plateform,
+                plateform: Container.initialize(),
                 name: template.packageConfig.name,
                 generalOptions: {
                     commonEnv: template.packageConfig.commonEnvConfig.enable

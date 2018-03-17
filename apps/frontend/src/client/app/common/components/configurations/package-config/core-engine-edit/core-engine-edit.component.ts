@@ -38,7 +38,6 @@ export class CoreEngineEditComponent extends BaseFormComponent implements OnInit
     buildForm() {
         this.form = this.formBuilder.group({
             version: new FormControl('', [Validators.required, PackageValidators.version]),
-            // push: new FormControl('', [Validators.required, PackageValidators.number])
         });
     }
 
@@ -51,7 +50,6 @@ export class CoreEngineEditComponent extends BaseFormComponent implements OnInit
     initializeForm(form: FormGroup, config: ICoreEngineConfig) {
         this.form.setValue({
             version: config.version,
-            // push: config.version.push
         }, { onlySelf: true });
     }
 

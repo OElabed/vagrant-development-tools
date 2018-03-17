@@ -1,5 +1,3 @@
-import { Version } from './version.model';
-
 export enum FileWrapperType {
     TEXT,
     ARCHIVE

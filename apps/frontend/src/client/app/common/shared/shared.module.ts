@@ -18,12 +18,20 @@ import { BootstrapSelectComponent } from '../components/forms/bootstrap-select/b
 import { RoutingGlobalService } from '../services/data/routing-global.data.service';
 import { FileEditorGlobalService } from '../services/data/file-editor-service.data.service';
 
+import { TooltipModule } from 'ngx-bootstrap';
+
+
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 
 @NgModule({
-  imports: [CommonModule, RouterModule, CodemirrorModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    CodemirrorModule,
+    TooltipModule.forRoot()
+  ],
   declarations: [
     FixWidgetComponent,
     FixWidgetHeaderComponent,
@@ -44,6 +52,7 @@ import { FileEditorGlobalService } from '../services/data/file-editor-service.da
     FieldErrorDisplayComponent,
     BootstrapSelectComponent,
 
+    TooltipModule,
     CodemirrorModule,
     CommonModule,
     FormsModule,

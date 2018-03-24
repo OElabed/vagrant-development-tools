@@ -37,7 +37,6 @@ export class ModuleConfig implements IModuleConfig {
 
     public static initializeList(): IModuleConfig[] {
         const result: ModuleConfig[] = [];
-        result.push(ModuleConfig.initialize());
         return result;
     }
 

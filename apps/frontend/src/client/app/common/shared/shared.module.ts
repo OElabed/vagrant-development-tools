@@ -18,7 +18,7 @@ import { BootstrapSelectComponent } from '../components/forms/bootstrap-select/b
 import { RoutingGlobalService } from '../services/data/routing-global.data.service';
 import { FileEditorGlobalService } from '../services/data/file-editor-service.data.service';
 
-import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipModule, CollapseModule } from 'ngx-bootstrap';
 
 
 /**
@@ -30,7 +30,8 @@ import { TooltipModule } from 'ngx-bootstrap';
     CommonModule,
     RouterModule,
     CodemirrorModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   declarations: [
     FixWidgetComponent,
@@ -53,6 +54,7 @@ import { TooltipModule } from 'ngx-bootstrap';
     BootstrapSelectComponent,
 
     TooltipModule,
+    CollapseModule,
     CodemirrorModule,
     CommonModule,
     FormsModule,

@@ -33,7 +33,13 @@
       },
       "modulesConfig": [
         {
-          "name": "DBClient",
+          "name": "DBClient 1",
+          "type": "DBCLIENT",
+          "archiveUrl": "http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip",
+          "version": "8.5.3.4.p156"
+        },
+        {
+          "name": "DBClient 2",
           "type": "DBCLIENT",
           "archiveUrl": "http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip",
           "version": "8.5.3.4.p156"

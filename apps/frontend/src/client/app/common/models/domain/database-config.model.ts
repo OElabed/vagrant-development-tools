@@ -32,11 +32,11 @@ export class DatabaseConfig implements IDatabaseConfig {
 
     public static initialize(): IDatabaseConfig {
         const result = new DatabaseConfig();
-        result.type = DatabaseType.ORACLE;
+        result.type = null;
         result.username = '';
         result.password = '';
         result.hostname = '';
-        result.port = 0;
+        result.port = null;
         result.service = '';
         return result;
     }

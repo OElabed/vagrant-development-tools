@@ -115,7 +115,7 @@ public class PackageRemote {
         }
     }
 
-    public FileNode findPackageContent(Platform platform, String id) throws RemoteClientException {
+    public FileNode findPackageContent(Platform platform, String id) {
         String url = platformsRegistry.getPlatformInstanceUrl(platform);
 
         UriComponents uriComponents = UriComponentsBuilder

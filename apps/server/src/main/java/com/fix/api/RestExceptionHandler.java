@@ -24,7 +24,7 @@ import java.util.List;
  * exception message into JSON format.
  */
 @Slf4j
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.fix")
 public class RestExceptionHandler {
 
 	@Autowired

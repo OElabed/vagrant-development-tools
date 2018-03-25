@@ -6,6 +6,7 @@ import com.fix.common.domain.configs.Platform;
 import com.fix.common.domain.files.FileNode;
 import com.fix.common.utils.PackageConfigParserUtil;
 import com.fix.common.api.exceptions.ResourceNotFoundException;
+import com.fix.exceptions.RemoteClientException;
 import com.fix.model.mappers.PackageConfigMapper;
 import com.fix.remote.PackageRemote;
 import lombok.extern.slf4j.Slf4j;

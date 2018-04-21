@@ -1,37 +1,37 @@
 ---
 name: Package_1
 basePath:
-licenceUrl: http://192.168.5.90:4000/licences/licence-3.4.2.8/fba.cf
+licenceUrl: http://localhost:4000/licences/licence-3.4.2.8/fba.cf
 
 commonEnvConfig:
   enable: true
-  fileUrl: http://192.168.5.90:4000/common_env.cfg
+  fileUrl: http://localhost:4000/common_env.cfg
 
 coreEngineConfig:
-  archiveUrl: http://192.168.5.90:4000/coreEngine/linux/coreEngine-3.5.4.9.zip
+  archiveUrl: http://localhost:4000/coreEngine/linux/coreEngine-3.5.4.9.zip
   version: 3.5.4.9
 
 filterEngineConfig:
   version: 7.5.5.1
-  archiveUrl: http://192.168.5.90:4000/filters/packages/filter-7.5.5.1.zip
-  kzFileUrl: http://192.168.5.90:4000/filters/context/context-4.2.1.6/FOFDB.kz
-  fmlFile1Url: http://192.168.5.90:4000/filters/context/context-4.2.1.6/fml.rul
+  archiveUrl: http://localhost:4000/filters/packages/filter-7.5.5.1.zip
+  kzFileUrl: http://localhost:4000/filters/context/context-4.2.1.6/FOFDB.kz
+  fmlFile1Url: http://localhost:4000/filters/context/context-4.2.1.6/fml.rul
   fmlFile2Url:
   scoreFileUrl:
-  licenceFileUrl: http://192.168.5.90:4000/filters/licences/licence-4.3.2.15/fbe.cf
+  licenceFileUrl: http://localhost:4000/filters/licences/licence-4.3.2.15/fbe.cf
 
 modulesConfig:
 - version: 8.5.3.4.p156
   name: DBClient
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip
+  archiveUrl: http://localhost:4000/modules/ModuleDBClient-8.5.3.4.p156.zip
   type: DBCLIENT
 - version: 8.5.3.4.p156
   name: Requester
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleRequester-8.5.3.4.p156.zip
+  archiveUrl: http://localhost:4000/modules/ModuleRequester-8.5.3.4.p156.zip
   type: REQUESTER
 - version: 8.5.3.4.p156
   name: Aquisition
-  archiveUrl: http://192.168.5.90:4000/modules/ModuleAquisition-8.5.3.4.p156.zip
+  archiveUrl: http://localhost:4000/modules/ModuleAquisition-8.5.3.4.p156.zip
   type: AQUISITION
 
 databaseConfig:

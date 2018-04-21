@@ -7,11 +7,10 @@ public class CommandEndedAbnormallyException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public CommandEndedAbnormallyException(String commandName, int status) {
-		super(commandName + " command ended abnormally with status " + status + ".");
+	private static final String EXCEPTION_FORMAT= "%s command ended abnormally : %s.";
+
+	public CommandEndedAbnormallyException(String commandName, String description, Throwable cause) {
+		super(String.format(EXCEPTION_FORMAT, commandName, description), cause);
 	}
 
-	public CommandEndedAbnormallyException(String commandName, String cause) {
-		super(commandName + " command ended abnormally : " + cause + ".");
-	}
 }

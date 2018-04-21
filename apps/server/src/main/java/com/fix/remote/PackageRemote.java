@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-import sun.net.www.content.text.PlainTextInputStream;
 
 import java.util.Arrays;
 import java.util.List;
@@ -87,7 +86,7 @@ public class PackageRemote {
         }
     }
 
-    public String installPackage(Platform platform, PackageConfig packageConfig) throws RemoteClientException {
+    public String installPackage(Platform platform, PackageConfig packageConfig) {
         String url = platformsRegistry.getPlatformInstanceUrl(platform);
 
         UriComponents uriComponents = UriComponentsBuilder
@@ -105,13 +104,13 @@ public class PackageRemote {
         } catch (HttpStatusCodeException exception){
 
             throw new RemoteClientException(platform.getName(), String.format("%s status code: %s",
-                    exception.getStatusCode(), exception.getStatusCode().getReasonPhrase()));
+                    exception.getStatusCode(), exception.getStatusCode().getReasonPhrase()), exception);
         }  catch (ResourceAccessException exception) {
 
-            throw new RemoteClientException(platform.getName(), String.format("can't access to service"));
+            throw new RemoteClientException(platform.getName(), String.format("can't access to service"), exception);
         } catch (Exception exception) {
 
-            throw new RemoteClientException(platform.getName(), String.format("internal system error"));
+            throw new RemoteClientException(platform.getName(), String.format("internal system error"), exception);
         }
     }
 

@@ -10,6 +10,7 @@ app:
 management:
   port: 8091
   security.enabled: false
+  contextPath: /manages
 
 springfox.documentation.swagger.v2.path: /api-docs
 
@@ -34,7 +35,9 @@ spring:
 
   h2.console.enabled: true
 
-  devtools.restart.exclude: static/**,public/**
+  devtools.restart:
+    exclude: static/**,public/**
+    enabled: true
 
   output.ansi.enabled: ALWAYS
 

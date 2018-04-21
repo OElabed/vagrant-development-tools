@@ -1,0 +1,38 @@
+---
+name: "Package_1"
+basePath: "D:\\VMs\\mint-desktop\\tmp\\backendAgent\\79e751b0-9669-4fc7-9625-683c5fa4146a"
+commonEnvConfig:
+  enable: true
+  fileUrl: "http://190.2.3.56:4000/common_env.cfg"
+coreEngineConfig:
+  archiveUrl: "http://127.0.0.1:4000/coreEngine/linux/coreEngine-3.5.4.9.zip"
+  version: "3.5.4.9"
+filterEngineConfig:
+  scoreFileUrl: null
+  fmlFile1Url: "http://127.0.0.1:4000/filters/context/context-4.2.1.6/fml.rul"
+  licenceFileUrl: "http://127.0.0.1:4000/filters/licences/licence-4.3.2.15/fbe.cf"
+  fmlFile2Url: null
+  archiveUrl: "http://127.0.0.1:4000/filters/packages/filter-7.5.5.1.zip"
+  kzFileUrl: "http://127.0.0.1:4000/filters/context/context-4.2.1.6/FOFDB.kz"
+  version: "7.5.5.1"
+licenceUrl: "http://127.0.0.1:4000/licences/licence-3.4.2.8/fba.cf"
+databaseConfig:
+  port: "1521"
+  type: "ORACLE"
+  username: "cby1"
+  service: "ORCL"
+  hostname: "116.153.214.100"
+  password: "wXN4OnE6n2Rb"
+modulesConfig:
+- name: "DBClient"
+  type: "DBCLIENT"
+  archiveUrl: "http://127.0.0.1:4000/modules/ModuleDBClient-8.5.3.4.p156.zip"
+  version: "8.5.3.4.p156"
+- name: "Requester"
+  type: "REQUESTER"
+  archiveUrl: "http://127.0.0.1:4000/modules/ModuleRequester-8.5.3.4.p156.zip"
+  version: "8.5.3.4.p156"
+- name: "Aquisition"
+  type: "AQUISITION"
+  archiveUrl: "http://127.0.0.1:4000/modules/ModuleAquisition-8.5.3.4.p156.zip"
+  version: "8.5.3.4.p156"

@@ -19,12 +19,13 @@ public class InstallCoreEngineCommand extends Command {
     }
 
     @Override
-    public void execute() throws CommandEndedAbnormallyException, IOException {
+    public void execute() throws CommandEndedAbnormallyException {
 
-        Integer result = CommonTasks.installArchive(this.config.getArchiveUrl(), this.basePath);
-
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(),result);
+        try {
+            CommonTasks.installArchive(this.config.getArchiveUrl(), this.basePath);
+        } catch (IOException exception) {
+            throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(), exception.getMessage(), exception);
         }
+
     }
 }

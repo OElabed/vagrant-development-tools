@@ -6,8 +6,7 @@ import com.fix.agent.exceptions.CommandEndedAbnormallyException;
 import com.fix.common.domain.configs.PackageConfig;
 import com.fix.common.utils.PackageConfigParserUtil;
 
-import java.io.File;
-import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * Created by OELABED on 08/10/2017.
@@ -26,19 +25,23 @@ public class PreparePackageFolderCommand extends Command {
     }
 
     @Override
-    public void execute() throws IOException, CommandEndedAbnormallyException {
-        Integer result = CommonTasks.createFolder(this.basePath);
-        // create Settings.yml file
-        result += CommonTasks.createFile(this.basePath, PackageConstant.FILE_CONFIG_NAME, PackageConfigParserUtil.serializePackageConfigToYamlFile(this.config));
+    public void execute() throws CommandEndedAbnormallyException {
 
-        // create .tail folder
-        result += CommonTasks.createFolder(this.basePath + File.separator + PackageConstant.TAIL_FOLDER_NAME);
+        try {
 
-        // create .tail folder
-        result += CommonTasks.createFolder(this.basePath + File.separator + this.configFolderName);
+            CommonTasks.createFolder(this.basePath);
+            // create Settings.yml file
+            CommonTasks.createFile(this.basePath, PackageConstant.FILE_CONFIG_NAME, PackageConfigParserUtil.serializePackageConfigToYamlFile(this.config));
 
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(PreparePackageFolderCommand.class.getName(), result);
+            // create .tail folder
+            CommonTasks.createFolder(Paths.get(this.basePath, PackageConstant.TAIL_FOLDER_NAME).toString());
+
+            // create .tail folder
+            CommonTasks.createFolder(Paths.get(this.basePath, this.configFolderName).toString());
+
+        } catch (Exception exception) {
+            throw new CommandEndedAbnormallyException(PreparePackageFolderCommand.class.getName(), "failed to create and prepare package folder", exception);
         }
+
     }
 }

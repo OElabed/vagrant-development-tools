@@ -49,6 +49,9 @@ public class OAuth2Configuration {
             http
                     .antMatcher("/api/**")
                     .authorizeRequests()
+                    .antMatchers("/oauth/**").permitAll()
+                    .antMatchers("/manages/**").permitAll()
+                    //.antMatchers(AUTH_WHITELIST).permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.css", "/**/*.js", "/**/*.png").permitAll()
                     .antMatchers("/**/api-docs/**").permitAll()

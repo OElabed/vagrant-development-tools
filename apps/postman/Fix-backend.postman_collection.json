@@ -1,0 +1,301 @@
+{
+	"info": {
+		"name": "Fix-backend",
+		"_postman_id": "5f219cda-28eb-39b6-f4a1-d220ec912156",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "browser",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "user",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "rea",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Platform list",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjE5NTQ1NzksInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiNzBhZjVlMzktMjQzMy00MGE0LWIyMWYtZDI1Mzk2ZTViMTY1IiwiY2xpZW50X2lkIjoiYnJvd3NlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.TlpQSO5F_OXTGkhdu0F2yeZq2f24A2IS2jeQYG9jOLA1_mX6X3M6hqvCBXTJc99orZg-C23wS3id0PiVINmje2EzGRGMrSXqLtDyhLF4Qh9bpwawF0tbVo4P8GMZlddi8PDBng2Vbnngv_me4oKnhqhEQSZp8FYhlcRRBPuGYbfoxoSYpsyEjOUJL_dlS0a3xmvAffW02SrsEQ-IXxl0EzXC584o4A91nnX_Fkwq9Qt__dS9rDFKEvfA-pgN1jn5TBEwJWtGqdh-3JQ7qjgakwfD4Drgm5YhuPKRDP4nfsQgGAUM7jEfiG2KcUoBhnh9TilcGYJO2_pWUSnT9vNXQQ",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Au",
+						"value": ""
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/platform",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"platform"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Platform package list",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjIwMTg1NjMsInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiYzFjMWZjYTAtYmFkMi00YzY3LWIxYWEtZjUzZDAwMTAwZDhmIiwiY2xpZW50X2lkIjoiYnJvd3NlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Lf_JWTw6GBI_jkh4S9c1KJM-Rppxr_ghP_KvV9Sni7l61319fhxkON0amY5lvhk8GPrRe4scyzAcBkkKHbAvkVOQO-A8uTNEuVxG6BaVoVh7Aqr4kYty-t682Rhw5mmB_9bPWNYHmAvoDP1S26uIWSa4DuZsFgfWfLx5bZswEXx6tb5-GynA_BABDpNPzt5tgpLHUDL6PVx3w07Pb2om599c8N4jiYC3JG-7OqkCUWMh9axXtkGa9bb6n1yeXe0PgixVgHdgM4R01B4RwTzYEEKZsF0VNvI_mXhn8txNgYH_mQU5ybLCuJ3h_lVtTbRtbj4y4NjBS6ZVzDi4qH0Frw",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Au",
+						"value": ""
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/platform/instance_1/package",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"platform",
+						"instance_1",
+						"package"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Templates",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjIwMTg1NjMsInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiYzFjMWZjYTAtYmFkMi00YzY3LWIxYWEtZjUzZDAwMTAwZDhmIiwiY2xpZW50X2lkIjoiYnJvd3NlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Lf_JWTw6GBI_jkh4S9c1KJM-Rppxr_ghP_KvV9Sni7l61319fhxkON0amY5lvhk8GPrRe4scyzAcBkkKHbAvkVOQO-A8uTNEuVxG6BaVoVh7Aqr4kYty-t682Rhw5mmB_9bPWNYHmAvoDP1S26uIWSa4DuZsFgfWfLx5bZswEXx6tb5-GynA_BABDpNPzt5tgpLHUDL6PVx3w07Pb2om599c8N4jiYC3JG-7OqkCUWMh9axXtkGa9bb6n1yeXe0PgixVgHdgM4R01B4RwTzYEEKZsF0VNvI_mXhn8txNgYH_mQU5ybLCuJ3h_lVtTbRtbj4y4NjBS6ZVzDi4qH0Frw",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/template",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"template"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create package",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjIwMTg1NjMsInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiYzFjMWZjYTAtYmFkMi00YzY3LWIxYWEtZjUzZDAwMTAwZDhmIiwiY2xpZW50X2lkIjoiYnJvd3NlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Lf_JWTw6GBI_jkh4S9c1KJM-Rppxr_ghP_KvV9Sni7l61319fhxkON0amY5lvhk8GPrRe4scyzAcBkkKHbAvkVOQO-A8uTNEuVxG6BaVoVh7Aqr4kYty-t682Rhw5mmB_9bPWNYHmAvoDP1S26uIWSa4DuZsFgfWfLx5bZswEXx6tb5-GynA_BABDpNPzt5tgpLHUDL6PVx3w07Pb2om599c8N4jiYC3JG-7OqkCUWMh9axXtkGa9bb6n1yeXe0PgixVgHdgM4R01B4RwTzYEEKZsF0VNvI_mXhn8txNgYH_mQU5ybLCuJ3h_lVtTbRtbj4y4NjBS6ZVzDi4qH0Frw",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "54904948-c1ef-4b74-aae6-2f70ceef62a1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"name\": \"Package_1\",\n            \"basePath\": null,\n            \"commonEnvConfig\": {\n                \"enable\": true,\n                \"fileUrl\": \"http://192.168.5.90:4000/common_env.cfg\"\n            },\n            \"coreEngineConfig\": {\n                \"archiveUrl\": \"http://192.168.5.90:4000/coreEngine/linux/coreEngine-3.5.4.9.zip\",\n                \"version\": \"3.5.4.9\"\n            },\n            \"filterEngineConfig\": {\n                \"scoreFileUrl\": null,\n                \"fmlFile1Url\": \"http://192.168.5.90:4000/filters/context/context-4.2.1.6/fml.rul\",\n                \"licenceFileUrl\": \"http://192.168.5.90:4000/filters/licences/licence-4.3.2.15/fbe.cf\",\n                \"fmlFile2Url\": null,\n                \"archiveUrl\": \"http://192.168.5.90:4000/filters/packages/filter-7.5.5.1.zip\",\n                \"kzFileUrl\": \"http://192.168.5.90:4000/filters/context/context-4.2.1.6/FOFDB.kz\",\n                \"version\": \"7.5.5.1\"\n            },\n            \"licenceUrl\": \"http://192.168.5.90:4000/licences/licence-3.4.2.8/fba.cf\",\n            \"databaseConfig\": {\n                \"port\": \"1521\",\n                \"type\": \"ORACLE\",\n                \"username\": \"cby1\",\n                \"service\": \"ORCL\",\n                \"hostname\": \"116.153.214.100\",\n                \"password\": \"wXN4OnE6n2Rb\"\n            },\n            \"modulesConfig\": [\n                {\n                    \"name\": \"DBClient\",\n                    \"type\": \"DBCLIENT\",\n                    \"archiveUrl\": \"http://192.168.5.90:4000/modules/ModuleDBClient-8.5.3.4.p156.zip\",\n                    \"version\": \"8.5.3.4.p156\"\n                },\n                {\n                    \"name\": \"Requester\",\n                    \"type\": \"REQUESTER\",\n                    \"archiveUrl\": \"http://192.168.5.90:4000/modules/ModuleRequester-8.5.3.4.p156.zip\",\n                    \"version\": \"8.5.3.4.p156\"\n                },\n                {\n                    \"name\": \"Aquisition\",\n                    \"type\": \"AQUISITION\",\n                    \"archiveUrl\": \"http://192.168.5.90:4000/modules/ModuleAquisition-8.5.3.4.p156.zip\",\n                    \"version\": \"8.5.3.4.p156\"\n                }\n            ]\n        }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/platform/instance_1/package",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"platform",
+						"instance_1",
+						"package"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "package content",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjIwMTg1NjMsInVzZXJfbmFtZSI6InVzZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiYzFjMWZjYTAtYmFkMi00YzY3LWIxYWEtZjUzZDAwMTAwZDhmIiwiY2xpZW50X2lkIjoiYnJvd3NlciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Lf_JWTw6GBI_jkh4S9c1KJM-Rppxr_ghP_KvV9Sni7l61319fhxkON0amY5lvhk8GPrRe4scyzAcBkkKHbAvkVOQO-A8uTNEuVxG6BaVoVh7Aqr4kYty-t682Rhw5mmB_9bPWNYHmAvoDP1S26uIWSa4DuZsFgfWfLx5bZswEXx6tb5-GynA_BABDpNPzt5tgpLHUDL6PVx3w07Pb2om599c8N4jiYC3JG-7OqkCUWMh9axXtkGa9bb6n1yeXe0PgixVgHdgM4R01B4RwTzYEEKZsF0VNvI_mXhn8txNgYH_mQU5ybLCuJ3h_lVtTbRtbj4y4NjBS6ZVzDi4qH0Frw",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/platform/instance_1/package/92d23bc7-58f7-4baf-be9e-9eba3411b0c4/content",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"platform",
+						"instance_1",
+						"package",
+						"92d23bc7-58f7-4baf-be9e-9eba3411b0c4",
+						"content"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

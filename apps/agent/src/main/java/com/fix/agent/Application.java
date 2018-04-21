@@ -16,7 +16,7 @@ public class Application {
 
         SpringApplication app = new SpringApplication(Application.class);
 
-        Map<String, Object> defaultProperties = new HashMap<String, Object>();
+        Map<String, Object> defaultProperties = new HashMap<>();
 
         defaultProperties.put("platform.os", OsUtils.getOsName());
         defaultProperties.put("platform.id", "instance_1");

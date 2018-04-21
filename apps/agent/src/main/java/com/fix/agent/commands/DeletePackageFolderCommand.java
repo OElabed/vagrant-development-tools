@@ -3,8 +3,6 @@ package com.fix.agent.commands;
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
 
-import java.io.IOException;
-
 public class DeletePackageFolderCommand extends Command {
 
 
@@ -13,11 +11,12 @@ public class DeletePackageFolderCommand extends Command {
     }
 
     @Override
-    public void execute() throws IOException, CommandEndedAbnormallyException {
-        Integer result= CommonTasks.deleteFolder(this.basePath);
+    public void execute() throws CommandEndedAbnormallyException {
 
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(DeletePackageFolderCommand.class.getName(),result);
+        try {
+            CommonTasks.deleteFolder(this.basePath);
+        } catch (Exception exception) {
+            throw new CommandEndedAbnormallyException(DeletePackageFolderCommand.class.getName(),"", exception);
         }
     }
 }

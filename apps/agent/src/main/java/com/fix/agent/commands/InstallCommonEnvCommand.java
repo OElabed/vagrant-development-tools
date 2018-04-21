@@ -16,13 +16,14 @@ public class InstallCommonEnvCommand extends Command {
     }
 
     @Override
-    public void execute() throws CommandEndedAbnormallyException, IOException {
+    public void execute() throws CommandEndedAbnormallyException {
 
-        Integer result = CommonTasks.wgetFile(this.config.getFileUrl(), this.basePath);
-
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(InstallCommonEnvCommand.class.getName(),result);
+        try {
+            CommonTasks.wgetFile(this.config.getFileUrl(), this.basePath);
+        } catch (IOException exception) {
+            throw new CommandEndedAbnormallyException(InstallCommonEnvCommand.class.getName(), exception.getMessage(), exception);
         }
+
     }
 
 }

@@ -2,7 +2,6 @@ package com.fix.agent.commands;
 
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 
@@ -19,18 +18,14 @@ public class InstallFilterEngineBinaryCommand extends Command {
     }
 
     @Override
-    public void execute() throws CommandEndedAbnormallyException, IOException {
+    public void execute() throws CommandEndedAbnormallyException {
 
-        Integer result = -1;
-
-        // Install Filter Engine
-        if (StringUtils.isNoneEmpty(this.archiveUrl)) {
-            result = CommonTasks.installArchive(this.archiveUrl, this.basePath);
+        try {
+            CommonTasks.installArchive(this.archiveUrl, this.basePath);
+        } catch (IOException exception) {
+            throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(), exception.getMessage(), exception);
         }
 
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(),result);
-        }
     }
 
 }

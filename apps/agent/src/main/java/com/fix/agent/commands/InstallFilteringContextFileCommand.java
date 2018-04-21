@@ -15,12 +15,12 @@ public class InstallFilteringContextFileCommand extends Command {
     }
 
     @Override
-    public void execute() throws IOException, CommandEndedAbnormallyException {
+    public void execute() throws CommandEndedAbnormallyException {
 
-        Integer result = CommonTasks.installArchive(fileUrl, this.basePath);
-
-        if (result != 0) {
-            throw new CommandEndedAbnormallyException(InstallCoreEngineCommand.class.getName(),result);
+        try {
+            CommonTasks.installArchive(this.fileUrl, this.basePath);
+        } catch (IOException exception) {
+            throw new CommandEndedAbnormallyException(InstallFilteringContextFileCommand.class.getName(), exception.getMessage(), exception);
         }
     }
 }

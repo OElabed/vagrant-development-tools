@@ -5,7 +5,7 @@ import com.fix.agent.commands.PreparePackageFolderCommand;
 import com.fix.agent.commands.common.Command;
 import com.fix.agent.exceptions.CommandEndedAbnormallyException;
 import com.fix.agent.exceptions.PackageInstallerException;
-import com.fix.agent.utils.FileUtils;
+import com.fix.agent.utils.FilePathUtils;
 import com.fix.agent.utils.IdentifierGeneratorUtils;
 import com.fix.common.domain.configs.ModuleConfig;
 import com.fix.common.domain.configs.PackageConfig;
@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * Created by OELABED on 08/10/2017.
@@ -67,34 +66,35 @@ public class PackageInstaller {
 
             return packageId;
 
-        } catch (CommandEndedAbnormallyException | IOException exp) {
+        } catch (CommandEndedAbnormallyException exception) {
             // delete package with all subdirectory
             try {
                 this.deletePackage(packageId);
-            } catch (CommandEndedAbnormallyException | IOException e) {
-                throw new PackageInstallerException("error on removing package ");
+            } catch (CommandEndedAbnormallyException exp) {
+                throw new PackageInstallerException("error on removing package", exp);
             } finally {
-                throw new PackageInstallerException("error on package creation");
+                throw new PackageInstallerException("error on package creation", exception);
             }
         }
     }
 
-    private String preparePackageFolder(PackageConfig config) throws IOException, CommandEndedAbnormallyException {
+    private String preparePackageFolder(PackageConfig config) throws CommandEndedAbnormallyException {
         String folderId = IdentifierGeneratorUtils.generateUUID();
-        String basePath = workspacePath + File.separator + folderId;
+        String basePath = Paths.get(workspacePath,folderId).toString();
+        //String basePath = workspacePath + File.separator + folderId;
         config.setBasePath(basePath);
         Command packageConfigCommand = new PreparePackageFolderCommand(config, this.configFolder, basePath);
         packageConfigCommand.execute();
         return folderId;
     }
     
-    private void deletePackage(String packageId) throws IOException, CommandEndedAbnormallyException {
-        String basePath = FileUtils.getFolderPath(this.workspacePath, packageId);
+    private void deletePackage(String packageId) throws CommandEndedAbnormallyException {
+        String basePath = FilePathUtils.getFolderPath(this.workspacePath, packageId);
         Command deletePackageCommand = new DeletePackageFolderCommand(basePath);
         deletePackageCommand.execute();
     }
 
-    private void installModules(ModuleConfig[] moduleConfigs, String packageId) throws IOException, CommandEndedAbnormallyException {
+    private void installModules(ModuleConfig[] moduleConfigs, String packageId) throws CommandEndedAbnormallyException {
         for (ModuleConfig moduleConfig: moduleConfigs) {
             this.moduleInstaller.installModule(moduleConfig, packageId);
         }

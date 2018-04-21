@@ -1,10 +1,10 @@
 package com.fix.api;
 
 import com.fix.common.api.ResponseMessage;
+import com.fix.common.api.exceptions.ResourceNotFoundException;
 import com.fix.exceptions.InvalidRequestException;
 import com.fix.exceptions.RemoteClientException;
 import com.fix.exceptions.ResourceAlreadyExistException;
-import com.fix.common.api.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.List;
 
@@ -24,6 +24,7 @@ import java.util.List;
  * exception message into JSON format.
  */
 @Slf4j
+@EnableWebMvc
 @RestControllerAdvice(basePackages = "com.fix")
 public class RestExceptionHandler {
 
@@ -40,7 +41,6 @@ public class RestExceptionHandler {
 	}
 
 	@ExceptionHandler(value = {ResourceNotFoundException.class})
-	@ResponseBody
 	public ResponseEntity<ResponseMessage> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
 		if (log.isDebugEnabled()) {
 			log.debug("handling ResourceNotFoundException...");
@@ -49,7 +49,6 @@ public class RestExceptionHandler {
 	}
 
 	@ExceptionHandler(value = {ResourceAlreadyExistException.class})
-	@ResponseBody
 	public ResponseEntity<ResponseMessage> handleResourceAlreadyExistException(ResourceAlreadyExistException ex, WebRequest request) {
 		if (log.isDebugEnabled()) {
 			log.debug("handling ResourceAlreadyExistException...");
@@ -82,7 +81,6 @@ public class RestExceptionHandler {
 	}
 
 	@ExceptionHandler(value = {RemoteClientException.class})
-	@ResponseBody
 	public ResponseEntity<ResponseMessage> handleRemoteClientException(RemoteClientException ex, WebRequest request) {
 		if (log.isDebugEnabled()) {
 			log.debug("handling RemoteClientException...");
@@ -90,6 +88,4 @@ public class RestExceptionHandler {
 		return new ResponseEntity<>(new ResponseMessage(ResponseMessage.Type.danger, ex.getMessage()),
 				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-
-
 }

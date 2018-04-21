@@ -7,7 +7,8 @@ spring:
   output.ansi.enabled: ALWAYS
 
 workspace:
-  path: /tmp/backendAgent
+#  path: /tmp/backendAgent
+  path: D:/VMs/mint-desktop/tmp/backendAgent
 
 package-metadata:
   filter-engine:

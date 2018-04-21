@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 /**
  * Created by OELABED on 15/12/2017.
  */
-@Mapper(componentModel = "spring", uses = {PackageConfigMapper.class})
+@Mapper(componentModel = "spring")
 public interface TemplatePackageMapper {
 
     default TemplatePackage mapToDto(TemplatePackageEntity entity) {

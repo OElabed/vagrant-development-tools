@@ -1,222 +1,120 @@
 package com.fix.agent.commands;
 
 import com.fix.agent.utils.ArchiveUtils;
-import com.fix.agent.utils.FileUtils;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-import groovy.lang.Script;
+import com.fix.agent.utils.FilePathUtils;
+import com.fix.agent.utils.HttpDownloadUtility;
+import com.fix.agent.utils.UnzipUtility;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by OELABED on 08/10/2017.
  */
 public class CommonTasks {
 
-    private static final String SCRIPT_UNZIP_ARCHIVE_PATH = "scripts/UnzipArchive.groovy";
-    private static final String SCRIPT_COPY_DIRECTORY_PATH = "scripts/CopyDirectory.groovy";
-    private static final String SCRIPT_COPY_FILE_PATH = "scripts/CopyFile.groovy";
-    private static final String SCRIPT_WGET_FILE_PATH = "scripts/WgetFile.groovy";
-    private static final String SCRIPT_LIST_FOLDER_PATH = "scripts/ListFolderFiles.groovy";
-    private static final String SCRIPT_CHECK_FILE_INTO_FOLDER_PATH = "scripts/CheckFileIntoFolder.groovy";
-    private static final String SCRIPT_READ_FILE_CONTENT_PATH = "scripts/ReadFileContent.groovy";
-    private static final String SCRIPT_FOLDER_CREATE_PATH = "scripts/CreateFolder.groovy";
-    private static final String SCRIPT_FILE_CREATE_PATH = "scripts/CreateFile.groovy";
-    private static final String SCRIPT_FILE_REMOVE_PATH = "scripts/RemoveFile.groovy";
-    private static final String SCRIPT_FOLDER_REMOVE_PATH = "scripts/RemoveFolder.groovy";
-    private static final String SCRIPT_LAUNCH_SHELL_SCRIPT_PATH = "scripts/LaunchShellScript.groovy";
-    private static final String SCRIPT_KILL_SHELL_SCRIPT_PATH = "scripts/KillShellScript.groovy";
+//    private static final String SCRIPT_LAUNCH_SHELL_SCRIPT_PATH = "scripts/LaunchShellScript.groovy";
+//    private static final String SCRIPT_KILL_SHELL_SCRIPT_PATH = "scripts/KillShellScript.groovy";
 
-    public static Integer installArchive(String source, String target) throws IOException {
-        Integer result = 0;
+    public static void installArchive(String source, String target) throws IOException {
 
         String filePath = source;
 
         if (ArchiveUtils.isUrl(source)) {
+            // create temporary folder that contain downloaded file
             String tempPath = ArchiveUtils.getTemporaryFolder();
 
-            result = CommonTasks.wgetFile(source, tempPath);
+            CommonTasks.wgetFile(source, tempPath);
 
-            if (result != 0) {
-                return result;
-            }
-
-            filePath = FileUtils.concatenatePath(tempPath, FilenameUtils.getName(source));
+            filePath = FilePathUtils.concatenatePath(tempPath, FilenameUtils.getName(source));
+        } else {
+            // TODO source is file path example '/home/test/file.txt'
         }
 
         if (ArchiveUtils.isArchive(filePath)) {
-            result = CommonTasks.unzipPackage(filePath, target);
+            CommonTasks.unzipPackage(filePath, target);
         } else {
-            result = CommonTasks.copyFile(filePath, target);
+            CommonTasks.copyFile(filePath, target);
         }
-
-        return result;
     }
 
-    public static Integer unzipPackage(String source, String target) throws IOException {
+    public static void unzipPackage(String source, String target) throws IOException {
 
         String temporaryFolder = FilenameUtils.getFullPathNoEndSeparator(source);
 
-        Integer result = CommonTasks.unzipArchiveInTemporary(source, temporaryFolder);
+        CommonTasks.unzipArchive(source, temporaryFolder);
 
-        result += CommonTasks.deleteFile(temporaryFolder, FilenameUtils.getName(source));
+        CommonTasks.deleteFile(temporaryFolder, FilenameUtils.getName(source));
 
-        result += CommonTasks.copyDirectory(temporaryFolder, target);
-
-        return result;
+        CommonTasks.copyDirectory(temporaryFolder, target);
     }
 
-    public static Integer unzipArchiveInTemporary(String source, String target) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("source", source);
-        sharedData.setProperty("target", target);
-        GroovyShell shell = new GroovyShell(sharedData);
-
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_UNZIP_ARCHIVE_PATH));
-
-        Script script = shell.parse(file);
-        return (Integer) script.run();
+    public static void unzipArchive(String source, String target) throws IOException {
+        UnzipUtility.unzip(source, target);
     }
 
-    public static Integer copyFile(String source, String target) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("source", source);
-        sharedData.setProperty("target", FileUtils.concatenatePath(target, FilenameUtils.getName(source)));
-        GroovyShell shell = new GroovyShell(sharedData);
-
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPY_FILE_PATH));
-
-        Script script = shell.parse(file);
-        return (Integer) script.run();
+    public static void copyFile(String source, String target) throws IOException {
+        FileUtils.copyFile(new File(source), new File(FilePathUtils.concatenatePath(target, FilenameUtils.getName(source))));
     }
 
-    public static Integer copyDirectory(String source, String target) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("source", source);
-        sharedData.setProperty("target", target);
-        GroovyShell shell = new GroovyShell(sharedData);
-
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_COPY_DIRECTORY_PATH));
-
-        Script script = shell.parse(file);
-        return (Integer) script.run();
+    public static void copyDirectory(String source, String target) throws IOException {
+        FileUtils.copyDirectory(new File(source), new File(target));
     }
 
-    public static Integer wgetFile(String source, String target) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("source", source);
-        sharedData.setProperty("target", target);
-        GroovyShell shell = new GroovyShell(sharedData);
+    public static void wgetFile(String source, String target) throws IOException {
 
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_WGET_FILE_PATH));
+        HttpDownloadUtility.downloadFile(source, target);
 
-        Script script = shell.parse(file);
-        return (Integer) script.run();
     }
 
     public static List<String> listFolder(String folderName) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("folderName", folderName);
-        GroovyShell shell = new GroovyShell(sharedData);
-
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_LIST_FOLDER_PATH));
-
-        Script script = shell.parse(file);
-        String[] fileList = (String[]) script.run();
-        return Arrays.asList(fileList);
+        return Files.list(Paths.get(folderName)).map(path -> path.toString()).collect(Collectors.toList());
     }
 
     public static boolean checkFileExistIntoFolder( String folderName, String fileName) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("fileName", fileName);
-        sharedData.setProperty("folderName", folderName);
-        GroovyShell shell = new GroovyShell(sharedData);
 
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_CHECK_FILE_INTO_FOLDER_PATH));
+        List<String> listNameMatched = CommonTasks.listFolder(folderName).stream()
+                .filter(file -> FilenameUtils.getName(file).equalsIgnoreCase(fileName.toLowerCase()))
+                .collect(Collectors.toList());
 
-        Script script = shell.parse(file);
-        return (boolean) script.run();
+        if (listNameMatched.isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 
-    public static String readFileIntoFolder(String filePath) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("filePath", filePath);
-        GroovyShell shell = new GroovyShell(sharedData);
+    public static String readFile(String filePath) throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
 
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_READ_FILE_CONTENT_PATH));
+        Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)
+                .forEach(s -> contentBuilder.append(s).append("\n"));
 
-        Script script = shell.parse(file);
-        return (String) script.run();
+
+        return contentBuilder.toString();
     }
 
-    public static Integer createFolder(String folderPath) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("folderName", folderPath);
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_FOLDER_CREATE_PATH));
-
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
+    public static void createFolder(String folderPath)  {
+        new File(folderPath).mkdirs();
     }
 
-    public static Integer createFile(String folderPath, String fileName, String fileContent) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("path", folderPath + File.separator);
-        sharedData.setProperty("fileName", fileName);
-        sharedData.setProperty("content", fileContent);
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_FILE_CREATE_PATH));
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
+    public static void createFile(String folderPath, String fileName, String fileContent) throws IOException {
+        Files.write(Paths.get(folderPath,fileName), fileContent.getBytes());
     }
 
-    public static Integer deleteFile(String folderPath, String fileName) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("path", folderPath + File.separator);
-        sharedData.setProperty("fileName", fileName);
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_FILE_REMOVE_PATH));
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
+    public static void deleteFile(String folderPath, String fileName) throws IOException {
+        Files.deleteIfExists(Paths.get(folderPath, fileName));
     }
 
-    public static Integer deleteFolder(String folderPath) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("path", folderPath);
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_FOLDER_REMOVE_PATH));
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
+    public static void deleteFolder(String folderPath) throws IOException {
+        FileUtils.deleteDirectory(new File(Paths.get(folderPath).toString()));
     }
 
-    public static Integer launchShellScript(String folderPath, String subFolderName, String scriptFile, String tailFolderName) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("command", FileUtils.getFolderPath(folderPath,subFolderName) + File.separator + scriptFile );
-        sharedData.setProperty("scriptFile", scriptFile);
-        sharedData.setProperty("tailFolder", FileUtils.getTailFilePath(folderPath, tailFolderName, subFolderName));
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_LAUNCH_SHELL_SCRIPT_PATH));
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
-    }
-
-    public static Integer stopShellScript(String folderPath, String subFolderName, String scriptFile, String tailFolderName) throws IOException {
-        Binding sharedData = new Binding();
-        sharedData.setProperty("scriptFile", scriptFile);
-        sharedData.setProperty("tailFolder", FileUtils.getTailFilePath(folderPath, tailFolderName, subFolderName));
-        GroovyShell shell = new GroovyShell(sharedData);
-        final File file = new File(FileUtils.getPathFromResource(SCRIPT_KILL_SHELL_SCRIPT_PATH));
-        Script script = shell.parse(file);
-        return (Integer) script.run();
-
-    }
 }

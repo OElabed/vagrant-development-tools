@@ -1,0 +1,98 @@
+<div class="package-details-container">
+  <div class="row">
+    <table class="table hierarchical">
+      <tbody>
+        <!-- Core Engine  -->
+        <tr class="section-title">
+          <td colspan="2">
+            <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
+            Core Engine
+          </td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Version</td>
+          <td>{{ currentPackage.coreEngineConfig.version }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>File URL</td>
+          <td>{{ currentPackage.coreEngineConfig.archiveUrl }}</td>
+        </tr>
+        <!-- Database  -->
+        <tr class="section-title">
+          <td colspan="2">
+            <i class="fa fa-database m-r-5" aria-hidden="true"></i>
+            Database
+          </td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Type</td>
+          <td>{{ currentPackage.databaseConfig.type }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Username</td>
+          <td>{{ currentPackage.databaseConfig.username }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Password</td>
+          <td>{{ currentPackage.databaseConfig.password }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Hostname</td>
+          <td>{{ currentPackage.databaseConfig.hostname }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Port</td>
+          <td>{{ currentPackage.databaseConfig.port }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Service</td>
+          <td>{{ currentPackage.databaseConfig.service }}</td>
+        </tr>
+
+        <!-- Filter Engine  -->
+        <tr class="section-title">
+          <td colspan="2">
+            <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
+            Filter Engine
+          </td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Version</td>
+          <td>{{ currentPackage.filterEngineConfig.version }}</td>
+        </tr>
+        <tr class="hiera-1">
+          <td>File URL</td>
+          <td>{{ currentPackage.filterEngineConfig.archiveUrl }}</td>
+        </tr>
+        <!-- Database  -->
+        <tr class="section-title">
+          <td colspan="2">
+            <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>
+            Modules
+          </td>
+        </tr>
+        <tr class="hiera-1">
+          <td>Active Modules</td>
+          <td>
+            <div class="row">
+              <div *ngFor="let module of currentPackage.modulesConfig" class="col-sm-6 nopadding">
+                <div class="row">
+                  <div class="col-sm-12 nopadding" style="margin-bottom: 0px;">
+                    <i class="fa fa-cube m-r-5" aria-hidden="true"></i>{{ module.name }}
+                  </div>
+                  <div class="col-sm-12 nopadding" style="font-size: 11px !important;">
+                    &#x0251C;
+                    <u style="font-size: 11px !important;">Version:</u> {{ module.version }}
+                    <br/> &#x02514;
+                    <u style="font-size: 11px !important;">File URL:</u>
+                    <a href="{{ module.archiveUrl }}" style="font-size: 11px !important;color: black;">{{ module.archiveUrl }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

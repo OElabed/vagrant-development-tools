@@ -1,0 +1,19 @@
+<div id="{{ id }}" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" [ngClass]="{'bg-primary': type === 'INFO', 'bg-danger': type === 'DANGER', 'bg-warning': type === 'WARNING'}">
+        <h5 class="modal-title">
+          <i class="fa" [ngClass]="{'fa-question-circle': type === 'INFO', 'fa-exclamation-triangle': type === 'DANGER', 'fa-exclamation-circle': type === 'WARNING'}"
+            aria-hidden="true"></i> Confirm</h5>
+      </div>
+      <div class="modal-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-md" [ngClass]="{'btn-primary': type === 'INFO', 'btn-danger': type === 'DANGER', 'btn-warning': type === 'WARNING'}"
+          (click)="onConfirm(true)" data-dismiss="modal">Confirm</button>
+        <button class="btn btn-default btn-md" (click)="onConfirm(false)" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,9 +19,14 @@ export class YamlConfigService extends ExternalResourceService {
         super();
     }
 
-    convertToYaml(config: IPackageConfig): Observable<IYamlConfig> {
+    convertToPackageYaml(config: IPackageConfig): Observable<IYamlConfig> {
         return this.http.post<IYamlConfig>('/assets/mock-data/template-data.json', JSON.stringify(config))
             .catch(this.handleError);
     }
+
+    convertToPackageObject(config: IYamlConfig): Observable<IPackageConfig> {
+      return this.http.post<IPackageConfig>('/assets/mock-data/template-data.json', JSON.stringify(config))
+          .catch(this.handleError);
+  }
 }
 

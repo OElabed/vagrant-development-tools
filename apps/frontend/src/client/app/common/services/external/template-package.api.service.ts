@@ -16,13 +16,13 @@ declare let jQuery: any;
 export class TemplatePackageService extends ExternalResourceService {
 
 
-    constructor(private http: HttpClient) {
-        super();
-    }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-    getAll(): Observable<ITemplatePackage[]> {
-        return this.http.get<ITemplatePackage[]>('/assets/mock-data/template-data.json')
-            //.map(mapTemplates)
-            .catch(this.handleError);
-    }
+  getAll(): Observable<ITemplatePackage[]> {
+    return this.http.get<ITemplatePackage[]>('/assets/mock-data/template-data.json')
+      //.map(mapTemplates)
+      .catch(this.handleError);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Wizard, WizardStep } from '../../../common/models/view/wizard.model';
 import { IPackageConfig, PackageConfig } from '../../../common/models/domain/package-config.model';
+import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
 
 declare let jQuery: any;
 
@@ -19,14 +20,14 @@ enum ConfigType {
   templateUrl: 'package-creation.component.html',
   styleUrls: ['package-creation.component.css']
 })
-export class PackageCreationComponent {
+export class PackageCreationComponent implements OnInit {
 
-  packageConfig: IPackageConfig;
+  configType: ConfigType = ConfigType.FORM;
 
-  configType: ConfigType = ConfigType.TEMPLATE;
+  constructor(private packageConfigDataService: PackageConfigDataService) {}
 
-  constructor() {
-    this.packageConfig = PackageConfig.initialize();
+  ngOnInit() {
+    this.packageConfigDataService.initPackage();
   }
 
   onChangeConfigType(type: any) {

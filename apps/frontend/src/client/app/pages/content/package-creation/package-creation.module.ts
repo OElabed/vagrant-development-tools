@@ -22,11 +22,15 @@ import { TemplateConfigComponent } from '../../../common/components/configuratio
 import { TemplatePackageService } from '../../../common/services/external/template-package.api.service';
 import { ContainerService } from '../../../common/services/external/containers.api.service';
 import { ContextmenuModule } from '../../../common/modules/fix-context-menu/contextmenu.module';
+import { ConfirmFormModule } from '../../../common/components/forms/confirm-form/confirm-form.module';
+import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
+import { YamlConfigService } from '../../../common/services/external/yaml-config.api.service';
 
 @NgModule({
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
+    ConfirmFormModule,
     AddFileFormModule,
     FixFileTreeModule,
     ContextmenuModule
@@ -55,6 +59,6 @@ import { ContextmenuModule } from '../../../common/modules/fix-context-menu/cont
     BackendEditComponent,
     DatabaseEditComponent
   ],
-  providers: [TemplatePackageService, ContainerService]
+  providers: [TemplatePackageService, ContainerService, PackageConfigDataService, YamlConfigService]
 })
 export class PackageCreationModule { }

@@ -17,12 +17,12 @@ declare let jQuery: any;
 export class PackageConfigService extends ExternalResourceService {
 
 
-    constructor(private http: HttpClient) {
-        super();
-    }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-    create(config: IPackageConfig): Observable<IPackageConfig> {
-        return this.http.post('/assets/mock-data/template-data.json', JSON.stringify(config))
-                .catch(this.handleError);
-    }
+  create(config: IPackageConfig): Observable<IPackageConfig> {
+    return this.http.post('/assets/mock-data/template-data.json', JSON.stringify(config))
+      .catch(this.handleError);
+  }
 }

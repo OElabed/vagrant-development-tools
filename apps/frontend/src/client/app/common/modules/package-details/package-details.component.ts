@@ -1,38 +1,48 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { TreeNode, FileType, TreeNodeParams } from '../../../modules/fix-tree-folder/tree-node.model';
-import { IPackageConfig, PackageConfig } from '../../../models/domain/package-config.model';
-import { Container, OS, findIconContainer } from '../../../models/domain/container.model';
-import { PackageConfigDataService } from '../../../services/data/package.data.service';
-
+import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
+import { TreeNode, FileType, TreeNodeParams } from '../../../common/modules/fix-tree-folder/tree-node.model';
+import { OS, findIconContainer } from '../../../common/models/domain/container.model';
+import { IPackageConfig } from '../../../common/models/domain/package-config.model';
 
 declare let jQuery: any;
 
+enum ConfigType {
+  YAML = 'YAML',
+  FORM = 'FORM'
+}
+
 /**
- * This class represents the lazy loaded DashboardComponent.
+ * This class represents the lazy loaded PackageDetailsComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'fix-package-edit',
-  templateUrl: 'package-edit.component.html',
-  styleUrls: ['package-edit.component.css']
+  selector: 'fix-package-details',
+  templateUrl: 'package-details.component.html',
+  styleUrls: ['package-details.component.css']
 })
-export class PackageEditComponent implements OnInit {
+export class PackageDetailsComponent implements OnInit {
 
   dir: TreeNode;
   data: string;
 
+  @Input()
   packageConfig: Observable<IPackageConfig>;
 
-  constructor(
-    private packageConfigDataService: PackageConfigDataService
-  ) {
+  configType: ConfigType;
+
+  constructor() {
     this.intitializeFilesTree();
   }
 
   ngOnInit() {
-    this.packageConfig = this.packageConfigDataService.config;
+    //this.packageConfig = this.packageConfigDataService.config;
+    //console.log(this.packageConfig);
+    this.configType = ConfigType.FORM;
+  }
+
+  onChangeConfigType(type: any) {
+    this.configType = type;
   }
 
   intitializeFilesTree() {

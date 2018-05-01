@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
-import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
 
 import 'codemirror/mode/yaml/yaml';
 import { IPackageConfig } from '../../../models/domain/package-config.model';

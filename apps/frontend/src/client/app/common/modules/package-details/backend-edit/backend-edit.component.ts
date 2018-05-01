@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { BaseFormComponent } from '../../../forms/base-form.component';
 import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
-import { IModuleConfig, ModuleConfig } from '../../../../models/domain/module-config.model';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { PackageValidators } from '../../../../validators/package.validaors';
-import { ModuleType } from '../../../../models/domain/module.model';
+import { BaseFormComponent } from '../../../../common/components/forms/base-form.component';
+import { IModuleConfig, ModuleConfig } from '../../../../common/models/domain/module-config.model';
+import { PackageValidators } from '../../../../common/validators/package.validaors';
+import { ModuleType } from '../../../../common/models/domain/module.model';
 
 declare let jQuery: any;
 

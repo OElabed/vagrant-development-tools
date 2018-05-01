@@ -5,12 +5,6 @@ import { PackageConfigDataService } from '../../../common/services/data/package.
 
 declare let jQuery: any;
 
-enum ConfigType {
-  YAML = 'YAML',
-  FORM = 'FORM',
-  TEMPLATE = 'TEMPLATE'
-}
-
 /**
  * This class represents the lazy loaded PackageCreationComponent.
  */
@@ -22,16 +16,9 @@ enum ConfigType {
 })
 export class PackageCreationComponent implements OnInit {
 
-  configType: ConfigType = ConfigType.FORM;
-
-  constructor(private packageConfigDataService: PackageConfigDataService) {}
+  constructor(private packageConfigDataService: PackageConfigDataService) { }
 
   ngOnInit() {
     this.packageConfigDataService.initPackage();
   }
-
-  onChangeConfigType(type: any) {
-    this.configType = type;
-  }
-
 }

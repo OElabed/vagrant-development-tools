@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BaseFormComponent } from '../../../forms/base-form.component';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { PackageValidators } from '../../../../validators/package.validaors';
-import { IDatabaseConfig, DatabaseConfig } from '../../../../models/domain/database-config.model';
 import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormGroup } from '@angular/forms/src/model';
+import { BaseFormComponent } from '../../../../common/components/forms/base-form.component';
+import { IDatabaseConfig, DatabaseConfig } from '../../../../common/models/domain/database-config.model';
 
 /**
  * This class represents the lazy loaded DashboardComponent.

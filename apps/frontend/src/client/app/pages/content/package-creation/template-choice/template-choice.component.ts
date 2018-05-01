@@ -1,31 +1,29 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm, AbstractControl } from '@angular/forms';
-import { ITemplatePackage, TemplatePackage } from '../../../models/domain/template-package.model';
-import { BootstrapSelect, Option } from '../../../models/view/bootstrap-select.model';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Wizard, WizardStep } from '../../../../common/models/view/wizard.model';
+import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
+import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { BootstrapSelect, Option } from '../../../../common/models/view/bootstrap-select.model';
+import { ITemplatePackage, TemplatePackage } from '../../../../common/models/domain/template-package.model';
+import { IContainer, findIconContainer, Container } from '../../../../common/models/domain/container.model';
+import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
+import { ContainerService } from '../../../../common/services/external/containers.api.service';
+import { PackageValidators } from '../../../../common/validators/package.validaors';
+import { ModuleConfig } from '../../../../common/models/domain/module-config.model';
+import { ModuleType } from '../../../../common/models/domain/module.model';
 
-import { IAddFileFormConfig, AddFileFormConfig, AddFileFormType } from '../../../models/view/add-file-config.model';
-import { FileUploaderFormConfig } from '../../../models/view/file-upload-config.model';
-import { PackageValidators } from '../../../validators/package.validaors';
-import { TemplatePackageService } from '../../../services/external/template-package.api.service';
-import { ContainerService } from '../../../services/external/containers.api.service';
-import { ModuleConfig } from '../../../models/domain/module-config.model';
-import { ModuleType } from '../../../models/domain/module.model';
-import { IContainer, findIconContainer, OS, Container } from '../../../models/domain/container.model';
-import { SelectValidators } from '../../../validators/select.validator';
-
-//declare let jQuery: any;
+declare let jQuery: any;
 
 /**
- * This class represents the lazy loaded DashboardComponent.
+ * This class represents the lazy loaded TemplateChoiceComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'fix-template-config',
-  templateUrl: 'template-config.component.html',
-  styleUrls: ['template-config.component.css']
+  selector: 'fix-template-choice',
+  templateUrl: 'template-choice.component.html',
+  styleUrls: ['template-choice.component.css']
 })
-export class TemplateConfigComponent implements OnInit {
-
+export class TemplateChoiceComponent implements OnInit {
 
   // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
 
@@ -251,5 +249,4 @@ export class TemplateConfigComponent implements OnInit {
     }, { onlySelf: true });
 
   }
-
 }

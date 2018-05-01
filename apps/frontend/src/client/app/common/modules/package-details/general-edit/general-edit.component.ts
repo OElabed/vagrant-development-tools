@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, AbstractControl } from '@angular/forms';
-import { BootstrapSelect, Option } from '../../../../models/view/bootstrap-select.model';
-import { IContainer, findIconContainer } from '../../../../models/domain/container.model';
-import { ContainerService } from '../../../../services/external/containers.api.service';
-import { PackageConfig, IPackageConfig } from '../../../../models/domain/package-config.model';
-import { BaseFormComponent } from '../../../forms/base-form.component';
 import { SimpleChanges, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { BaseFormComponent } from '../../../../common/components/forms/base-form.component';
+import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
+import { BootstrapSelect, Option } from '../../../../common/models/view/bootstrap-select.model';
+import { IContainer, findIconContainer } from '../../../../common/models/domain/container.model';
+import { ContainerService } from '../../../../common/services/external/containers.api.service';
 
 /**
  * This class represents the lazy loaded DashboardComponent.

@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <form [formGroup]="templateForm">
+      <fix-widget>
+        <fix-widget-header icon="fa fa-files-o" title="Package templates">
+          <div class="pull-right">
+            Templates
+            <fix-bootstrap-select [selectContainer]="templateSelect" (selectOption)="onSelectedTemplateOption($event)"></fix-bootstrap-select>
+          </div>
+        </fix-widget-header>
+        <fix-widget-body classes="no-padding">
+          <div class="row template-config">
+            <div class="col-sm-12 p-l-0 p-r-0">
+              <div class="template-container">
+                <div class="row">
+                  <table class="table hierarchical">
+                    <tbody>
+                      <!-- Core Engine  -->
+                      <tr class="section-title">
+                        <td colspan="2">
+                          <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
+                          Core Engine
+                        </td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Version</td>
+                        <td>{{ currentTemplatePackage.packageConfig.coreEngineConfig.version }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>File URL</td>
+                        <td>{{ currentTemplatePackage.packageConfig.coreEngineConfig.archiveUrl }}</td>
+                      </tr>
+                      <!-- Database  -->
+                      <tr class="section-title">
+                        <td colspan="2">
+                          <i class="fa fa-database m-r-5" aria-hidden="true"></i>
+                          Database
+                        </td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Type</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.type }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Username</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.username }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Password</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.password }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Hostname</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.hostname }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Port</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.port }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Service</td>
+                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.service }}</td>
+                      </tr>
+
+                      <!-- Filter Engine  -->
+                      <tr class="section-title">
+                        <td colspan="2">
+                          <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
+                          Filter Engine
+                        </td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Version</td>
+                        <td>{{ currentTemplatePackage.packageConfig.filterEngineConfig.version }}</td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>File URL</td>
+                        <td>{{ currentTemplatePackage.packageConfig.filterEngineConfig.archiveUrl }}</td>
+                      </tr>
+                      <!-- Database  -->
+                      <tr class="section-title">
+                        <td colspan="2">
+                          <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>
+                          Modules
+                        </td>
+                      </tr>
+                      <tr class="hiera-1">
+                        <td>Active Modules</td>
+                        <td>
+                          <div class="row">
+                            <div *ngFor="let module of currentTemplatePackage.packageConfig.modulesConfig" class="col-sm-6 nopadding">
+                              <div class="row">
+                                <div class="col-sm-12 nopadding" style="margin-bottom: 0px;">
+                                  <i class="fa fa-cube m-r-5" aria-hidden="true"></i>{{ module.name }}
+                                </div>
+                                <div class="col-sm-12 nopadding" style="font-size: 11px !important;">
+                                  &#x0251C;
+                                  <u style="font-size: 11px !important;">Version:</u> {{ module.version }}
+                                  <br/> &#x02514;
+                                  <u style="font-size: 11px !important;">File URL:</u>
+                                  <a href="{{ module.archiveUrl }}" style="font-size: 11px !important;color: black;">{{ module.archiveUrl }}</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fix-widget-body>
+        <fix-widget-footer>
+          <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+              <button class="btn btn-primary btn-sm pull-right" (click)="onSubmit()">
+                <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
+              </button>
+              <button class="btn btn-default btn-sm pull-right m-r-5" (click)="reset()">
+                <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
+              </button>
+            </div>
+          </div>
+        </fix-widget-footer>
+      </fix-widget>
+    </form>
+  </div>
+</div>

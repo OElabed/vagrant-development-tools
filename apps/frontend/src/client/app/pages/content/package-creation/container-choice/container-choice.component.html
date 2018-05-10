@@ -2,111 +2,251 @@
   <div class="col-lg-12 col-md-12 col-xs-12">
     <form [formGroup]="templateForm">
       <fix-widget>
-        <fix-widget-header icon="fa fa-files-o" title="Package templates">
+        <fix-widget-header icon="fa fa-code" title="Package configuration file">
           <div class="pull-right">
             Templates
             <fix-bootstrap-select [selectContainer]="templateSelect" (selectOption)="onSelectedTemplateOption($event)"></fix-bootstrap-select>
           </div>
         </fix-widget-header>
         <fix-widget-body classes="no-padding">
-          <div class="row template-config">
-            <div class="col-sm-12 p-l-0 p-r-0">
-              <div class="template-container">
+          <div class="row container-choice-config">
+            <div class="col-sm-12 m-t-10">
+              <div class="container-choice-container">
                 <div class="row">
-                  <table class="table hierarchical">
-                    <tbody>
-                      <!-- Core Engine  -->
-                      <tr class="section-title">
-                        <td colspan="2">
-                          <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>
-                          Core Engine
-                        </td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Version</td>
-                        <td>{{ currentTemplatePackage.packageConfig.coreEngineConfig.version }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>File URL</td>
-                        <td>{{ currentTemplatePackage.packageConfig.coreEngineConfig.archiveUrl }}</td>
-                      </tr>
-                      <!-- Database  -->
-                      <tr class="section-title">
-                        <td colspan="2">
-                          <i class="fa fa-database m-r-5" aria-hidden="true"></i>
-                          Database
-                        </td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Type</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.type }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Username</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.username }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Password</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.password }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Hostname</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.hostname }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Port</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.port }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Service</td>
-                        <td>{{ currentTemplatePackage.packageConfig.databaseConfig.service }}</td>
-                      </tr>
-
-                      <!-- Filter Engine  -->
-                      <tr class="section-title">
-                        <td colspan="2">
-                          <i class="fa fa-filter m-r-5" aria-hidden="true"></i>
-                          Filter Engine
-                        </td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Version</td>
-                        <td>{{ currentTemplatePackage.packageConfig.filterEngineConfig.version }}</td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>File URL</td>
-                        <td>{{ currentTemplatePackage.packageConfig.filterEngineConfig.archiveUrl }}</td>
-                      </tr>
-                      <!-- Database  -->
-                      <tr class="section-title">
-                        <td colspan="2">
-                          <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>
-                          Modules
-                        </td>
-                      </tr>
-                      <tr class="hiera-1">
-                        <td>Active Modules</td>
-                        <td>
-                          <div class="row">
-                            <div *ngFor="let module of currentTemplatePackage.packageConfig.modulesConfig" class="col-sm-6 nopadding">
-                              <div class="row">
-                                <div class="col-sm-12 nopadding" style="margin-bottom: 0px;">
-                                  <i class="fa fa-cube m-r-5" aria-hidden="true"></i>{{ module.name }}
+                  <div class="form-horizontal" role="form">
+                    <fieldset>
+                      <div class="col-sm-5 with-right-separator">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="panel panel-default" formGroupName="general">
+                            <div class="panel-heading" role="tab" id="headingGeneralConfig">
+                              <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" (clicked)="onAccordianClicked(1)" data-parent="#accordion" href="#collapseGeneralConfig" aria-expanded="true" aria-controls="collapseGeneralConfig">
+                                  <i class="fa fa-windows m-r-5" aria-hidden="true"></i>General config
+                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseGeneralConfig" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneralConfig">
+                              <div class="panel-body" [style.height]="getCollapseBodyHeight(1)">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Name</label>
+                                  <div class="col-sm-7" [ngClass]="displayFieldCss('general.name')">
+                                    <input type="text" placeholder="MyPackage" class="form-control input-sm" formControlName="name">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display>
+                                  </div>
                                 </div>
-                                <div class="col-sm-12 nopadding" style="font-size: 11px !important;">
-                                  &#x0251C;
-                                  <u style="font-size: 11px !important;">Version:</u> {{ module.version }}
-                                  <br/> &#x02514;
-                                  <u style="font-size: 11px !important;">File URL:</u>
-                                  <a href="{{ module.archiveUrl }}" style="font-size: 11px !important;color: black;">{{ module.archiveUrl }}</a>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Platform</label>
+                                  <div class="col-sm-10" [ngClass]="displayFieldCss('general.plateform')">
+                                    <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
+                                    <fix-field-error-display [displayError]="isFieldNotValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
+                                  </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group" formGroupName="generalOptions">
+                                  <label class="col-sm-2 control-label" for="textinput">Options</label>
+                                  <div class="col-sm-10">
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" formControlName="commonEnv">common_env</label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default" formGroupName="coreEngine">
+                            <div class="panel-heading" role="tab" id="headingCoreEngine">
+                              <h4 class="panel-title">
+                                <a class="collapsed" (clicked)="onAccordianClicked(2)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCoreEngine" aria-expanded="false"
+                                  aria-controls="collapseCoreEngine">
+                                  <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version
+                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseCoreEngine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCoreEngine">
+                              <div class="panel-body" [style.height]="getCollapseBodyHeight(2)">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('coreEngine.version')">
+                                    <input type="text" placeholder="5.7.0.0" class="form-control input-sm" formControlName="version">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('coreEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                  </div>
+
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                          <div class="panel panel-default" formGroupName="filterEngine">
+                            <div class="panel-heading" role="tab" id="headingFilterEngine">
+                              <h4 class="panel-title">
+                                <a class="collapsed" (clicked)="onAccordianClicked(3)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilterEngine" aria-expanded="false"
+                                  aria-controls="collapseFilterEngine">
+                                  <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version
+                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseFilterEngine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFilterEngine">
+                              <div class="panel-body" [style.height]="getCollapseBodyHeight(3)">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('filterEngine.version')">
+                                    <input type="text" placeholder="5.7.2.0" class="form-control input-sm" formControlName="version">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('filterEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                  </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group" formGroupName="filterEngineOptions">
+                                  <label class="col-sm-2 control-label" for="textinput">Options</label>
+                                  <div class="col-sm-10">
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" formControlName="fmlFile1">Fml file - 1</label>
+                                    </div>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" formControlName="fmlFile2">Fml file - 2</label>
+                                    </div>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" formControlName="scoreFile">Score file</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default" formGroupName="continuityBackend">
+                            <div class="panel-heading" role="tab" id="headingContinuityBackend">
+                              <h4 class="panel-title">
+                                <a class="collapsed" (clicked)="onAccordianClicked(4)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContinuityBackend" aria-expanded="false"
+                                  aria-controls="collapseContinuityBackend">
+                                  <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>Continuity Backend
+                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseContinuityBackend" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingContinuityBackend">
+                              <div class="panel-body" [style.height]="getCollapseBodyHeight(4)">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Version</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('continuityBackend.version')">
+                                    <input type="text" placeholder="5.9.0.0" class="form-control input-sm" formControlName="version">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('continuityBackend.version')" errorMsg="Please inform the version"></fix-field-error-display>
+                                  </div>
+
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group" formGroupName="modules">
+                                  <label class="col-sm-2 control-label" for="textinput">Modules</label>
+                                  <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                      <input type="checkbox" formControlName="aquisition" checked="checked">Aquisition
+                                    </label>
+                                    <label class="checkbox-inline">
+                                      <input type="checkbox" formControlName="requester" checked="checked">Requester
+                                    </label>
+                                    <label class="checkbox-inline">
+                                      <input type="checkbox" formControlName="dbclient" checked="checked">DBClient
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default" formGroupName="database">
+                            <div class="panel-heading" role="tab" id="headingDatabase">
+                              <h4 class="panel-title">
+                                <a class="collapsed" (clicked)="onAccordianClicked(5)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDatabase" aria-expanded="false"
+                                  aria-controls="collapseDatabase">
+                                  <i class="fa fa-database m-r-5" aria-hidden="true"></i>Database configuration
+                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseDatabase" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDatabase">
+                              <div class="panel-body" [style.height]="getCollapseBodyHeight(5)">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Type</label>
+                                  <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                      <input type="radio" formControlName="dbtype" value="ORACLE">Oracle
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" formControlName="dbtype" value="SQLSERVER">SQL-Server
+                                    </label>
+                                    <label class="radio-inline">
+                                      <input type="radio" formControlName="dbtype" value="DB2">DB2
+                                    </label>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Username</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('database.username')">
+                                    <input type="text" placeholder="USER_ONE" class="form-control input-sm" formControlName="username">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('database.username')" errorMsg="Please inform the username of database"></fix-field-error-display>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Password</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('database.password')">
+                                    <input type="text" placeholder="******" class="form-control input-sm" formControlName="password">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('database.password')" errorMsg="Please inform the password of database"></fix-field-error-display>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Hostname</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('database.hostname')">
+                                    <input type="text" placeholder="127.0.0.1" class="form-control input-sm" formControlName="hostname">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('database.hostname')" errorMsg="Please inform the hostname of database"></fix-field-error-display>
+                                  </div>
+
+                                  <label class="col-sm-2 control-label" for="textinput">Service</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('database.service')">
+                                    <input type="text" placeholder="XE" class="form-control input-sm" formControlName="service">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('database.service')" errorMsg="Please inform the service of database"></fix-field-error-display>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Port</label>
+                                  <div class="col-sm-4" [ngClass]="displayFieldCss('database.port')">
+                                    <input type="text" placeholder="1521" class="form-control input-sm" formControlName="port">
+                                    <fix-field-error-display [displayError]="isFieldNotValid('database.port')" errorMsg="Please inform the connexion  port of database"></fix-field-error-display>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Right part -->
+                      <div class="col-sm-7">
+                        <div class="row">
+                          <div class="col-sm-12">
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
                 </div>
               </div>
             </div>

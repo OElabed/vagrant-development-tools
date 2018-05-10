@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Wizard, WizardStep } from '../../../../common/models/view/wizard.model';
 import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
 import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
@@ -40,18 +40,25 @@ export class ContainerChoiceComponent implements OnInit {
   private currentContainer: IContainer;
   private containerSelectedOption: Option;
 
-
+  private accordianClicked = 0;
 
   private errorMessage = '';
   private isLoading = true;
 
   constructor(
+    private elementRef: ElementRef,
     private templatePackageService: TemplatePackageService,
     private containerService: ContainerService,
     private formBuilder: FormBuilder) {
     this.currentTemplatePackage = TemplatePackage.initialize();
     this.templateSelect = new BootstrapSelect();
     this.containerSelect = new BootstrapSelect();
+
+    // jQuery('.collapse').on('show.bs.collapse', function (element: any) {
+    //   // Get clicked element that initiated the collapse...
+    //   // clicked = $(document).find("[href='#" + $(e.target).attr('id') + "']")
+    //   console.log('collapse : ' + element);
+    // });
   }
 
   ngOnInit() {
@@ -94,7 +101,7 @@ export class ContainerChoiceComponent implements OnInit {
         })
       }),
       coreEngine: this.formBuilder.group({
-        version: new FormControl('', [Validators.required, PackageValidators.version]),
+        version: new FormControl('', [Validators.required, PackageValidators.version])
       }),
       filterEngine: this.formBuilder.group({
         version: new FormControl('', [Validators.required, PackageValidators.version]),
@@ -106,6 +113,7 @@ export class ContainerChoiceComponent implements OnInit {
       }),
       continuityBackend: this.formBuilder.group({
         version: new FormControl('', [Validators.required, PackageValidators.version]),
+        push: new FormControl('', [Validators.required, PackageValidators.number]),
         modules: this.formBuilder.group({
           aquisition: new FormControl(false),
           requester: new FormControl(false),
@@ -141,7 +149,7 @@ export class ContainerChoiceComponent implements OnInit {
       if (containerSelected !== null && containerSelected.name === item.name) {
         selected = true;
       }
-      self.containerSelect.addOption('' + item.name, item.name, selected, findIconContainer(item.os));
+      self.containerSelect.addOption(item.name, item.name, selected, findIconContainer(item.os));
     });
   }
 
@@ -155,11 +163,16 @@ export class ContainerChoiceComponent implements OnInit {
 
   onSelectedContainerOption(option: Option) {
     this.containerSelectedOption = option;
-    const containerName = String(option.value);
-    this.currentContainer = this.containerList.filter((container: IContainer) => container.name === containerName)[0];
-    // this.setValueFormControl('general.plateform', this.currentContainer);
-    // (<FormGroup>this.templateForm.controls.general)
-    // .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+    const idContainer = option.value;
+    this.currentContainer = this.containerList.filter((container: IContainer) => container.name === idContainer)[0];
+    this.setValueFormControl('general.plateform', this.currentContainer);
+    (<FormGroup>this.templateForm.controls.general)
+      .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+  }
+
+  onAccordianClicked(index: number) {
+    console.log('clicked = ' + index);
+    this.accordianClicked = index;
   }
 
   isFieldNotValid(field: string) {
@@ -192,6 +205,22 @@ export class ContainerChoiceComponent implements OnInit {
     };
   }
 
+  getCollapseBodyHeight(index: number): string {
+    console.log('index ' + index);
+    console.log('accordianClicked ' + this.accordianClicked);
+    if (this.accordianClicked === index) {
+      const wrapperHeight = jQuery('.container-choice-config').height();
+      const panelHeadingHeight = jQuery('.panel-heading').height();
+      const panelsTop = index * panelHeadingHeight;
+      const panelsBottom = (5 - index) * panelHeadingHeight;
+      const collapseHeight = wrapperHeight - (panelsTop + panelsBottom);
+
+      console.log(collapseHeight);
+      return collapseHeight + 'px';
+    }
+    return '';
+  }
+
   onSubmit() {
     this.formSumitAttempt = true;
     if (this.templateForm.valid) {
@@ -212,15 +241,14 @@ export class ContainerChoiceComponent implements OnInit {
   initializeForm(form: FormGroup, template: ITemplatePackage) {
     this.templateForm.setValue({
       general: {
-        // plateform: template.packageConfig.plateform,
-        plateform: Container.initialize(),
+        plateform: template.packageConfig.plateform,
         name: template.packageConfig.name,
         generalOptions: {
           commonEnv: template.packageConfig.commonEnvConfig.enable
         }
       },
       coreEngine: {
-        version: template.packageConfig.coreEngineConfig.version,
+        version: template.packageConfig.coreEngineConfig.version
       },
       filterEngine: {
         version: template.packageConfig.filterEngineConfig.version,
@@ -249,4 +277,5 @@ export class ContainerChoiceComponent implements OnInit {
     }, { onlySelf: true });
 
   }
+
 }

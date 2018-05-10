@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { ExternalResourceService } from './external-resource';
 import { IContainer, Container } from '../../models/domain/container.model';
+import { map, catchError } from 'rxjs/operators';
 
 declare let jQuery: any;
 
@@ -16,13 +17,13 @@ declare let jQuery: any;
 export class ContainerService extends ExternalResourceService {
 
 
-    constructor(private http: HttpClient) {
-        super();
-    }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
-    getAll(): Observable<IContainer[]> {
-        return this.http.get<IContainer[]>('/assets/mock-data/container-data.json')
-           // .map(mapContainers)
-            .catch(this.handleError);
-    }
+  getAll(): Observable<IContainer[]> {
+    return this.http.get<IContainer[]>('/assets/mock-data/container-data.json').pipe(
+      catchError(this.handleError)
+    );
+  }
 }

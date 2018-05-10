@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 import { ExternalResourceService } from './external-resource';
 import { ITemplatePackage, TemplatePackage } from '../../models/domain/template-package.model';
 import { IPackageConfig, PackageConfig } from '../../models/domain/package-config.model';
+import { catchError } from 'rxjs/operators';
 
 declare let jQuery: any;
 
@@ -22,7 +23,8 @@ export class PackageConfigService extends ExternalResourceService {
   }
 
   create(config: IPackageConfig): Observable<IPackageConfig> {
-    return this.http.post('/assets/mock-data/template-data.json', JSON.stringify(config))
-      .catch(this.handleError);
+    return this.http.post('/assets/mock-data/template-data.json', JSON.stringify(config)).pipe(
+      catchError(this.handleError)
+    );
   }
 }

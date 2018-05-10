@@ -1,0 +1,18 @@
+.container-choice-config {
+  legend {
+      font-size: 14px;
+      margin-top: 50px;
+  }
+  label {
+      font-size: 12px;
+  }
+}
+
+.container-choice-container {
+  height: calc(100vh - 14vw);
+  overflow-y: auto;
+}
+
+.panel-title {
+  font-size: 13px;
+}

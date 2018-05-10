@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Config } from './common/shared/config/env.config';
-import './operators';
 
 /**
  * This class represents the main application component.

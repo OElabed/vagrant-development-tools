@@ -14,11 +14,13 @@ import { PackageConfigDataService } from '../../../common/services/data/package.
 import { YamlConfigService } from '../../../common/services/external/yaml-config.api.service';
 import { TemplateChoiceModule } from './template-choice/template-choice.module';
 import { PackageCreationDetailsModule } from './package-creation-details/package-creation-details.module';
+import { ContainerChoiceModule } from './container-choice/container-choice.module';
 
 @NgModule({
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
+    ContainerChoiceModule,
     ConfirmFormModule,
     AddFileFormModule,
     FixFileTreeModule,

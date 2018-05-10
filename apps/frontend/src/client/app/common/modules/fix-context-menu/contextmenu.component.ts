@@ -34,7 +34,7 @@ import { HostBinding } from '@angular/core/src/metadata/directives';
 })
 export class ContextmenuComponent {
 
-  @Input('id') id: string;
+  @Input() id: string;
 
   // @HostBinding('class.show') isVisible = false;
   // @HostBinding('class.contextmenu-container')

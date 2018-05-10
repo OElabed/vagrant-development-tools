@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { ExternalResourceService } from './external-resource';
 import { ITemplatePackage, TemplatePackage } from '../../models/domain/template-package.model';
+import { map, catchError } from 'rxjs/operators';
 
 declare let jQuery: any;
 
@@ -21,8 +22,8 @@ export class TemplatePackageService extends ExternalResourceService {
   }
 
   getAll(): Observable<ITemplatePackage[]> {
-    return this.http.get<ITemplatePackage[]>('/assets/mock-data/template-data.json')
-      //.map(mapTemplates)
-      .catch(this.handleError);
+    return this.http.get<ITemplatePackage[]>('/assets/mock-data/template-data.json').pipe(
+      catchError(this.handleError)
+    );
   }
 }

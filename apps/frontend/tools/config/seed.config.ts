@@ -426,12 +426,6 @@ export class SeedConfig {
       src: 'systemjs/dist/system.src.js',
       inject: 'shims',
       buildType: BUILD_TYPES.DEVELOPMENT
-    },
-    // Temporary fix. See https://github.com/angular/angular/issues/9359
-    {
-      src: '.tmp/Rx.min.js',
-      inject: 'libs',
-      buildType: BUILD_TYPES.DEVELOPMENT
     }
   ];
 
@@ -512,7 +506,7 @@ export class SeedConfig {
         'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic-testing.umd.js',
       '@angular/router/testing':
         'node_modules/@angular/router/bundles/router-testing.umd.js',
-      'rxjs/operators': 'node_modules/rxjs/operators/index.js',
+        'rxjs': 'node_modules/rxjs',
 
       'app/': `${this.APP_BASE}app/`,
       // For test config
@@ -522,6 +516,9 @@ export class SeedConfig {
     packages: {
       [this.BOOTSTRAP_DIR]: {
         defaultExtension: 'js'
+      },
+      rxjs: {
+         defaultExtension: 'js'
       }
     }
   };
@@ -560,7 +557,7 @@ export class SeedConfig {
       '@angular/common/http':
         'node_modules/@angular/common/bundles/common-http.umd.js',
       'tslib': 'node_modules/tslib/tslib.js',
-      'rxjs/operators': 'node_modules/rxjs/operators/index.js',
+      'rxjs': 'node_modules/rxjs',
       'dist/tmp/node_modules/*': 'dist/tmp/node_modules/*',
       'node_modules/*': 'node_modules/*',
       '*': 'node_modules/*'

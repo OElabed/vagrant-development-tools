@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 
 export class ExternalResourceService {
 
@@ -8,7 +9,7 @@ export class ExternalResourceService {
         const errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
+        return new ErrorObservable(errMsg);
     }
 
 }

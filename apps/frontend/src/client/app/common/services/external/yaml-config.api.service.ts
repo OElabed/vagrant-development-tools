@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
+import { catchError } from 'rxjs/operators';
 
 
 import { ExternalResourceService } from './external-resource';
@@ -25,8 +26,9 @@ export class YamlConfigService extends ExternalResourceService {
     }
 
     convertToPackageObject(config: IYamlConfig): Observable<IPackageConfig> {
-      return this.http.post<IPackageConfig>('/assets/mock-data/template-data.json', JSON.stringify(config))
-          .catch(this.handleError);
+      return this.http.post<IPackageConfig>('/assets/mock-data/template-data.json', JSON.stringify(config)).pipe(
+        catchError(this.handleError)
+      );
   }
 }
 

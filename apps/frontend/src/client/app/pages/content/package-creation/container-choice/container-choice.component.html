@@ -20,14 +20,14 @@
                           <div class="panel panel-default" formGroupName="general">
                             <div class="panel-heading" role="tab" id="headingGeneralConfig">
                               <h4 class="panel-title">
-                                <a role="button" data-toggle="collapse" (clicked)="onAccordianClicked(1)" data-parent="#accordion" href="#collapseGeneralConfig" aria-expanded="true" aria-controls="collapseGeneralConfig">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGeneralConfig" aria-expanded="true" aria-controls="collapseGeneralConfig">
                                   <i class="fa fa-windows m-r-5" aria-hidden="true"></i>General config
                                   <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
                             <div id="collapseGeneralConfig" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingGeneralConfig">
-                              <div class="panel-body" [style.height]="getCollapseBodyHeight(1)">
+                              <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Name</label>
@@ -63,7 +63,7 @@
                           <div class="panel panel-default" formGroupName="coreEngine">
                             <div class="panel-heading" role="tab" id="headingCoreEngine">
                               <h4 class="panel-title">
-                                <a class="collapsed" (clicked)="onAccordianClicked(2)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCoreEngine" aria-expanded="false"
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCoreEngine" aria-expanded="false"
                                   aria-controls="collapseCoreEngine">
                                   <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version
                                   <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
@@ -71,7 +71,7 @@
                               </h4>
                             </div>
                             <div id="collapseCoreEngine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCoreEngine">
-                              <div class="panel-body" [style.height]="getCollapseBodyHeight(2)">
+                              <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Version</label>
@@ -87,7 +87,7 @@
                           <div class="panel panel-default" formGroupName="filterEngine">
                             <div class="panel-heading" role="tab" id="headingFilterEngine">
                               <h4 class="panel-title">
-                                <a class="collapsed" (clicked)="onAccordianClicked(3)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilterEngine" aria-expanded="false"
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilterEngine" aria-expanded="false"
                                   aria-controls="collapseFilterEngine">
                                   <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version
                                   <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
@@ -95,7 +95,7 @@
                               </h4>
                             </div>
                             <div id="collapseFilterEngine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFilterEngine">
-                              <div class="panel-body" [style.height]="getCollapseBodyHeight(3)">
+                              <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Version</label>
@@ -129,7 +129,7 @@
                           <div class="panel panel-default" formGroupName="continuityBackend">
                             <div class="panel-heading" role="tab" id="headingContinuityBackend">
                               <h4 class="panel-title">
-                                <a class="collapsed" (clicked)="onAccordianClicked(4)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContinuityBackend" aria-expanded="false"
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContinuityBackend" aria-expanded="false"
                                   aria-controls="collapseContinuityBackend">
                                   <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>Continuity Backend
                                   <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
@@ -137,7 +137,7 @@
                               </h4>
                             </div>
                             <div id="collapseContinuityBackend" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingContinuityBackend">
-                              <div class="panel-body" [style.height]="getCollapseBodyHeight(4)">
+                              <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Version</label>
@@ -169,7 +169,7 @@
                           <div class="panel panel-default" formGroupName="database">
                             <div class="panel-heading" role="tab" id="headingDatabase">
                               <h4 class="panel-title">
-                                <a class="collapsed" (clicked)="onAccordianClicked(5)" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDatabase" aria-expanded="false"
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDatabase" aria-expanded="false"
                                   aria-controls="collapseDatabase">
                                   <i class="fa fa-database m-r-5" aria-hidden="true"></i>Database configuration
                                   <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
@@ -177,7 +177,7 @@
                               </h4>
                             </div>
                             <div id="collapseDatabase" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDatabase">
-                              <div class="panel-body" [style.height]="getCollapseBodyHeight(5)">
+                              <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Type</label>

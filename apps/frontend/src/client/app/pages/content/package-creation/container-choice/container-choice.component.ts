@@ -23,7 +23,7 @@ declare let jQuery: any;
   templateUrl: 'container-choice.component.html',
   styleUrls: ['container-choice.component.css']
 })
-export class ContainerChoiceComponent implements OnInit {
+export class ContainerChoiceComponent implements AfterViewInit, OnInit {
 
   // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
 
@@ -40,10 +40,12 @@ export class ContainerChoiceComponent implements OnInit {
   private currentContainer: IContainer;
   private containerSelectedOption: Option;
 
-  private accordianClicked = 0;
-
   private errorMessage = '';
   private isLoading = true;
+
+  private collapsedEelements: Map<string, any> = new Map<string, any>();
+  private collapsedEelementsStatus: Map<string, boolean> = new Map<string, boolean>();
+  private collapsedEelementsPosition: Map<string, number> = new Map<string, number>();
 
   constructor(
     private elementRef: ElementRef,
@@ -53,12 +55,29 @@ export class ContainerChoiceComponent implements OnInit {
     this.currentTemplatePackage = TemplatePackage.initialize();
     this.templateSelect = new BootstrapSelect();
     this.containerSelect = new BootstrapSelect();
+  }
 
-    // jQuery('.collapse').on('show.bs.collapse', function (element: any) {
-    //   // Get clicked element that initiated the collapse...
-    //   // clicked = $(document).find("[href='#" + $(e.target).attr('id') + "']")
-    //   console.log('collapse : ' + element);
-    // });
+  ngAfterViewInit() {
+    const $component = jQuery(this.elementRef.nativeElement);
+    this.collapsedEelements = this.initializeCollapsedElements($component);
+    this.collapsedEelementsStatus = this.initializeCollapsedElementsStatus($component);
+    this.collapsedEelementsPosition = this.initializeCollapsedElementsPosition();
+    this.setCollapseBodiesHeight();
+    const self = this;
+    this.collapsedEelements.forEach((value: any, key: string) => {
+      jQuery(value).on('show.bs.collapse', function (element: any) {
+        self.collapsedEelementsStatus.set(key, true);
+        self.setCollapseBodiesHeight();
+      });
+      jQuery(value).on('hide.bs.collapse', function (element: any) {
+        self.collapsedEelementsStatus.set(key, false);
+      });
+    });
+
+    jQuery(window).resize(function () {
+      console.log(jQuery('.container-choice-config').innerHeight());
+      self.setCollapseBodiesHeight();
+    });
   }
 
   ngOnInit() {
@@ -131,6 +150,73 @@ export class ContainerChoiceComponent implements OnInit {
     });
   }
 
+  initializeCollapsedElements($component: any): Map<string, any> {
+    const map = new Map<string, any>();
+    map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig'));
+    map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine'));
+    map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine'));
+    map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend'));
+    map.set('collapseDatabase', jQuery($component).find('#collapseDatabase'));
+    return map;
+  }
+
+  initializeCollapsedElementsStatus($component: any): Map<string, boolean> {
+    const map = new Map<string, boolean>();
+    map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig').hasClass('in'));
+    map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine').hasClass('in'));
+    map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine').hasClass('in'));
+    map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend').hasClass('in'));
+    map.set('collapseDatabase', jQuery($component).find('#collapseDatabase').hasClass('in'));
+    return map;
+  }
+
+  initializeCollapsedElementsPosition(): Map<string, number> {
+    const map = new Map<string, number>();
+    map.set('collapseGeneralConfig', 1);
+    map.set('collapseCoreEngine', 2);
+    map.set('collapseFilterEngine', 3);
+    map.set('collapseContinuityBackend', 4);
+    map.set('collapseDatabase', 5);
+    return map;
+  }
+
+  setCollapseBodiesHeight() {
+
+    const activeCollapse = this.getCollapsedComponentsActive(this.collapsedEelementsStatus);
+
+    this.collapsedEelementsStatus.forEach((value: boolean, key: string) => {
+      const self = this;
+      if (activeCollapse === key) {
+        const wrapperHeight = jQuery('.container-choice-config').innerHeight();
+        const panelHeadingHeight = jQuery('.panel-heading').innerHeight();
+        const collapseHeight = wrapperHeight - 6 * (panelHeadingHeight + 10);
+        jQuery('#' + key).find('.panel-body').height(collapseHeight + 'px');
+      } else {
+        jQuery('#' + key).css('height', null);
+      }
+    });
+  }
+
+  getCollapsedComponentsIndex(map: Map<string, number>, component: string): number {
+    let index = 0;
+    map.forEach((value: number, key: string) => {
+      if (key === component) {
+        index = value;
+      }
+    });
+    return index;
+  }
+
+  getCollapsedComponentsActive(map: Map<string, boolean>): string {
+    let active = '';
+    map.forEach((value: boolean, key: string) => {
+      if (value === true) {
+        active = key;
+      }
+    });
+    return active;
+  }
+
   initializeTemplateSelect(templates: ITemplatePackage[]): void {
     const self = this;
     this.templateSelect = new BootstrapSelect();
@@ -170,11 +256,6 @@ export class ContainerChoiceComponent implements OnInit {
       .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
   }
 
-  onAccordianClicked(index: number) {
-    console.log('clicked = ' + index);
-    this.accordianClicked = index;
-  }
-
   isFieldNotValid(field: string) {
     const fieldControl = this.getFieldControl(field, this.templateForm);
     const isValid = (
@@ -203,22 +284,6 @@ export class ContainerChoiceComponent implements OnInit {
       'has-error': this.isFieldNotValid(field),
       'has-feedback': this.isFieldNotValid(field)
     };
-  }
-
-  getCollapseBodyHeight(index: number): string {
-    console.log('index ' + index);
-    console.log('accordianClicked ' + this.accordianClicked);
-    if (this.accordianClicked === index) {
-      const wrapperHeight = jQuery('.container-choice-config').height();
-      const panelHeadingHeight = jQuery('.panel-heading').height();
-      const panelsTop = index * panelHeadingHeight;
-      const panelsBottom = (5 - index) * panelHeadingHeight;
-      const collapseHeight = wrapperHeight - (panelsTop + panelsBottom);
-
-      console.log(collapseHeight);
-      return collapseHeight + 'px';
-    }
-    return '';
   }
 
   onSubmit() {

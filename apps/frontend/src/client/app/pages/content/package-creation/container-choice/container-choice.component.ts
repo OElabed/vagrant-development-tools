@@ -45,7 +45,9 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
 
   private collapsedEelements: Map<string, any> = new Map<string, any>();
   private collapsedEelementsStatus: Map<string, boolean> = new Map<string, boolean>();
-  private collapsedEelementsPosition: Map<string, number> = new Map<string, number>();
+
+  private panelHeader: number;
+  private panelFooter: number;
 
   constructor(
     private elementRef: ElementRef,
@@ -61,7 +63,8 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
     const $component = jQuery(this.elementRef.nativeElement);
     this.collapsedEelements = this.initializeCollapsedElements($component);
     this.collapsedEelementsStatus = this.initializeCollapsedElementsStatus($component);
-    this.collapsedEelementsPosition = this.initializeCollapsedElementsPosition();
+    this.panelHeader = jQuery('.panel-heading').innerHeight();
+    this.panelFooter = jQuery('.panel-footer').innerHeight();
     this.setCollapseBodiesHeight();
     const self = this;
     this.collapsedEelements.forEach((value: any, key: string) => {
@@ -71,11 +74,11 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
       });
       jQuery(value).on('hide.bs.collapse', function (element: any) {
         self.collapsedEelementsStatus.set(key, false);
+        jQuery('a[href^="#' + key + '"]').removeClass('pointer-disable');
       });
     });
 
     jQuery(window).resize(function () {
-      console.log(jQuery('.container-choice-config').innerHeight());
       self.setCollapseBodiesHeight();
     });
   }
@@ -119,6 +122,9 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
           commonEnv: new FormControl(false)
         })
       }),
+      container: this.formBuilder.group({
+        plateform: new FormControl('', Validators.required)
+      }),
       coreEngine: this.formBuilder.group({
         version: new FormControl('', [Validators.required, PackageValidators.version])
       }),
@@ -153,6 +159,7 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   initializeCollapsedElements($component: any): Map<string, any> {
     const map = new Map<string, any>();
     map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig'));
+    map.set('collapseContainer', jQuery($component).find('#collapseContainer'));
     map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine'));
     map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine'));
     map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend'));
@@ -163,6 +170,7 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   initializeCollapsedElementsStatus($component: any): Map<string, boolean> {
     const map = new Map<string, boolean>();
     map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig').hasClass('in'));
+    map.set('collapseContainer', jQuery($component).find('#collapseContainer').hasClass('in'));
     map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine').hasClass('in'));
     map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine').hasClass('in'));
     map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend').hasClass('in'));
@@ -170,27 +178,16 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
     return map;
   }
 
-  initializeCollapsedElementsPosition(): Map<string, number> {
-    const map = new Map<string, number>();
-    map.set('collapseGeneralConfig', 1);
-    map.set('collapseCoreEngine', 2);
-    map.set('collapseFilterEngine', 3);
-    map.set('collapseContinuityBackend', 4);
-    map.set('collapseDatabase', 5);
-    return map;
-  }
-
   setCollapseBodiesHeight() {
-
     const activeCollapse = this.getCollapsedComponentsActive(this.collapsedEelementsStatus);
 
     this.collapsedEelementsStatus.forEach((value: boolean, key: string) => {
       const self = this;
       if (activeCollapse === key) {
         const wrapperHeight = jQuery('.container-choice-config').innerHeight();
-        const panelHeadingHeight = jQuery('.panel-heading').innerHeight();
-        const collapseHeight = wrapperHeight - 6 * (panelHeadingHeight + 10);
+        const collapseHeight = wrapperHeight - 7 * (this.panelHeader + 9) - this.panelFooter;
         jQuery('#' + key).find('.panel-body').height(collapseHeight + 'px');
+        jQuery('a[href^="#' + key + '"]').addClass('pointer-disable');
       } else {
         jQuery('#' + key).css('height', null);
       }
@@ -306,11 +303,13 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   initializeForm(form: FormGroup, template: ITemplatePackage) {
     this.templateForm.setValue({
       general: {
-        plateform: template.packageConfig.plateform,
         name: template.packageConfig.name,
         generalOptions: {
           commonEnv: template.packageConfig.commonEnvConfig.enable
         }
+      },
+      container: {
+        plateform: template.packageConfig.plateform
       },
       coreEngine: {
         version: template.packageConfig.coreEngineConfig.version

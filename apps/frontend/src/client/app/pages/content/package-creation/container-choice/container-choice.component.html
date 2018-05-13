@@ -15,14 +15,14 @@
                 <div class="row">
                   <div class="form-horizontal" role="form">
                     <fieldset>
-                      <div class="col-sm-5 with-right-separator">
+                      <div class="col-sm-5 p-l-0 with-right-separator">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                           <div class="panel panel-default" formGroupName="general">
-                            <div class="panel-heading" role="tab" id="headingGeneralConfig">
+                            <div class="panel-heading danger" role="tab" id="headingGeneralConfig">
                               <h4 class="panel-title">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGeneralConfig" aria-expanded="true" aria-controls="collapseGeneralConfig">
                                   <i class="fa fa-windows m-r-5" aria-hidden="true"></i>General config
-                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                  <i class="fa fa-times pull-right pointer-disable" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
@@ -38,15 +38,6 @@
                                 </div>
 
                                 <!-- Text input-->
-                                <div class="form-group">
-                                  <label class="col-sm-2 control-label" for="textinput">Platform</label>
-                                  <div class="col-sm-10" [ngClass]="displayFieldCss('general.plateform')">
-                                    <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
-                                    <fix-field-error-display [displayError]="isFieldNotValid('general.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
-                                  </div>
-                                </div>
-
-                                <!-- Text input-->
                                 <div class="form-group" formGroupName="generalOptions">
                                   <label class="col-sm-2 control-label" for="textinput">Options</label>
                                   <div class="col-sm-10">
@@ -58,15 +49,50 @@
                                 </div>
 
                               </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="panel panel-default" formGroupName="container">
+                            <div class="panel-heading success" role="tab" id="headingContainer">
+                              <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContainer" aria-expanded="false"
+                                  aria-controls="collapseContainer">
+                                  <i class="fa fa-server m-r-5" aria-hidden="true"></i>Container choice
+                                  <i class="fa fa-check pull-right pointer-disable" aria-hidden="true"></i>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseContainer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCoreEngine">
+                              <div class="panel-body config-card">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="textinput">Platform</label>
+                                  <div class="col-sm-10" [ngClass]="displayFieldCss('container.plateform')">
+                                    <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
+                                    <fix-field-error-display [displayError]="isFieldNotValid('container.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
+                              </div>
                             </div>
                           </div>
                           <div class="panel panel-default" formGroupName="coreEngine">
-                            <div class="panel-heading" role="tab" id="headingCoreEngine">
+                            <div class="panel-heading success" role="tab" id="headingCoreEngine">
                               <h4 class="panel-title">
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCoreEngine" aria-expanded="false"
                                   aria-controls="collapseCoreEngine">
                                   <i class="fa fa-copyright m-r-5" aria-hidden="true"></i>CoreEngine version
-                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
+                                  <i class="fa fa-check pull-right pointer-disable" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
@@ -79,8 +105,13 @@
                                     <input type="text" placeholder="5.7.0.0" class="form-control input-sm" formControlName="version">
                                     <fix-field-error-display [displayError]="isFieldNotValid('coreEngine.version')" errorMsg="Please inform the version"></fix-field-error-display>
                                   </div>
-
                                 </div>
+                              </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -90,7 +121,6 @@
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFilterEngine" aria-expanded="false"
                                   aria-controls="collapseFilterEngine">
                                   <i class="fa fa-filter m-r-5" aria-hidden="true"></i>Filter version
-                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
@@ -124,6 +154,12 @@
                                   </div>
                                 </div>
                               </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
+                              </div>
                             </div>
                           </div>
                           <div class="panel panel-default" formGroupName="continuityBackend">
@@ -132,7 +168,6 @@
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContinuityBackend" aria-expanded="false"
                                   aria-controls="collapseContinuityBackend">
                                   <i class="fa fa-cubes m-r-5" aria-hidden="true"></i>Continuity Backend
-                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
@@ -164,6 +199,12 @@
                                   </div>
                                 </div>
                               </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
+                              </div>
                             </div>
                           </div>
                           <div class="panel panel-default" formGroupName="database">
@@ -172,7 +213,6 @@
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDatabase" aria-expanded="false"
                                   aria-controls="collapseDatabase">
                                   <i class="fa fa-database m-r-5" aria-hidden="true"></i>Database configuration
-                                  <i class="fa fa-angle-down pull-right" aria-hidden="true"></i>
                                 </a>
                               </h4>
                             </div>
@@ -231,6 +271,12 @@
                                     <fix-field-error-display [displayError]="isFieldNotValid('database.port')" errorMsg="Please inform the connexion  port of database"></fix-field-error-display>
                                   </div>
                                 </div>
+                              </div>
+                              <div class="panel-footer">
+                                <button type="button" class="btn btn-primary btn-sm">
+                                  Next
+                                  <i class="fa fa-arrow-right m-r-5" aria-hidden="true"></i>
+                                </button>
                               </div>
                             </div>
                           </div>

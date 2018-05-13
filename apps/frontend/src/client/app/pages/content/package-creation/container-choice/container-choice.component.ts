@@ -249,7 +249,7 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
     const idContainer = option.value;
     this.currentContainer = this.containerList.filter((container: IContainer) => container.name === idContainer)[0];
     this.setValueFormControl('general.plateform', this.currentContainer);
-    (<FormGroup>this.templateForm.controls.general)
+    (<FormGroup>this.templateForm.controls.container)
       .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
   }
 
@@ -309,7 +309,7 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
         }
       },
       container: {
-        plateform: template.packageConfig.plateform
+        plateform: null
       },
       coreEngine: {
         version: template.packageConfig.coreEngineConfig.version

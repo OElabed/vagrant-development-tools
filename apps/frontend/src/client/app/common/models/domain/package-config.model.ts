@@ -35,7 +35,6 @@ export interface IPackageConfig {
     id?: number;
     name?: string;
     basePath?: string;
-    plateform?: IContainer;
     commonEnvConfig?: ICommonEnvConfig;
     licenceUrl?: string;
     coreEngineConfig?: ICoreEngineConfig;
@@ -48,7 +47,6 @@ export class PackageConfig implements IPackageConfig {
     id?: number;
     name?: string;
     basePath?: string;
-    plateform?: IContainer;
     commonEnvConfig?: ICommonEnvConfig;
     licenceUrl?: string;
     coreEngineConfig?: ICoreEngineConfig;
@@ -61,7 +59,6 @@ export class PackageConfig implements IPackageConfig {
         result.id = 0;
         result.name = '';
         result.basePath = '';
-        result.plateform = Container.initialize();
         result.commonEnvConfig = CommonEnvConfig.initialize();
         result.licenceUrl = '';
         result.coreEngineConfig = CoreEngineConfig.initialize();

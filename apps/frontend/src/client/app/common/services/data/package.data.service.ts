@@ -105,7 +105,6 @@ export class PackageConfigDataService {
 
   setGeneralConfig(config: IPackageConfig): void {
     this.dataStore.config.name = config.name;
-    this.dataStore.config.plateform = config.plateform;
     this.dataStore.config.commonEnvConfig = config.commonEnvConfig;
     this._config.next(Object.assign({}, this.dataStore).config);
   }

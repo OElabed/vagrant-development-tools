@@ -37,3 +37,9 @@
 .config-card {
     min-height: 230px;
 }
+
+.file-action {
+    &:hover {
+        color: gray;
+    }
+}

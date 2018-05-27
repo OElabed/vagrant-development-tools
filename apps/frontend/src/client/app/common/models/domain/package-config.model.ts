@@ -74,7 +74,6 @@ export class PackageConfig implements IPackageConfig {
             id: res.id,
             name: res.name,
             basePath: res.basePath,
-            plateform: Container.fromResult(res.plateform),
             commonEnvConfig: CommonEnvConfig.fromResult(res.commonEnvConfig),
             licenceUrl: res.licenceUrl,
             coreEngineConfig: CoreEngineConfig.fromResult(res.coreEngineConfig),

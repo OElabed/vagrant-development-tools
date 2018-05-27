@@ -9,4 +9,6 @@
 ### Log ###
 *.log
 
+tmp/
+
 # End of https://www.gitignore.io/api/vagrant,ansible

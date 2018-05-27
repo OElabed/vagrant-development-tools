@@ -35,7 +35,8 @@
 }
 
 .config-card {
-    min-height: 230px;
+    max-height: 294px;
+    overflow: auto;
 }
 
 .file-action {

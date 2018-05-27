@@ -30,8 +30,8 @@
                               <div class="panel-body config-card">
                                 <!-- Text input-->
                                 <div class="form-group">
-                                  <label class="col-sm-2 control-label" for="textinput">Name</label>
-                                  <div class="col-sm-7" [ngClass]="displayFieldCss('general.name')">
+                                  <label class="col-sm-3 control-label" for="textinput">Name</label>
+                                  <div class="col-sm-8" [ngClass]="displayFieldCss('general.name')">
                                     <input type="text" placeholder="MyPackage" class="form-control input-sm" formControlName="name">
                                     <fix-field-error-display [displayError]="isFieldNotValid('general.name')" errorMsg="Please inform package name"></fix-field-error-display>
                                   </div>
@@ -39,16 +39,24 @@
 
                                 <!-- Text input-->
                                 <div class="form-group" formGroupName="generalOptions">
-                                  <label class="col-sm-2 control-label" for="textinput">Options</label>
-                                  <div class="col-sm-10">
+                                  <label class="col-sm-3 control-label" for="textinput">Common env</label>
+                                  <div class="col-sm-9">
+
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" formControlName="commonEnv">common_env
+                                        <input type="checkbox" formControlName="commonEnv">
+                                        <button class="btn btn-default btn-xs font-10" type="button">
+                                          <i class="fa fa-download file-action pointer-cursor m-r-5" aria-hidden="true"></i>
+                                          Choose file
+                                        </button>
+                                        <span class="font-12 m-l-5">
+                                          common_env.cfg
+                                          <i class="fa fa-pencil file-action pointer-cursor m-l-10" aria-hidden="true" tooltip="Edit" placement="bottom"></i>
+                                        </span>
                                       </label>
-                                      <span style="border-bottom: 1px solid black; padding-left: 150px">&nbsp;</span>
-                                      <i class="fa fa-download file-action pointer-cursor m-r-5" aria-hidden="true" tooltip="Download" placement="bottom"></i>
-                                      <i class="fa fa-pencil file-action pointer-cursor m-r-5" aria-hidden="true" tooltip="Edit" placement="bottom"></i>
                                     </div>
+
+
                                   </div>
                                 </div>
 
@@ -63,7 +71,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="panel panel-default" formGroupName="container">
+                          <!-- <div class="panel panel-default" formGroupName="container">
                             <div class="panel-heading success" role="tab" id="headingContainer">
                               <h4 class="panel-title">
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseContainer" aria-expanded="false"
@@ -75,12 +83,11 @@
                             </div>
                             <div id="collapseContainer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCoreEngine">
                               <div class="panel-body config-card">
-                                <!-- Text input-->
                                 <div class="form-group">
                                   <label class="col-sm-2 control-label" for="textinput">Platform</label>
-                                  <div class="col-sm-10" [ngClass]="displayFieldCss('container.plateform')">
+                                  <div class="col-sm-10" [ngClass]="displayFieldCss('container.platform')">
                                     <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
-                                    <fix-field-error-display [displayError]="isFieldNotValid('container.plateform')" errorMsg="Please choose plateform"></fix-field-error-display>
+                                    <fix-field-error-display [displayError]="isFieldNotValid('container.platform')" errorMsg="Please choose platform"></fix-field-error-display>
                                   </div>
                                 </div>
                               </div>
@@ -93,7 +100,9 @@
                                 </button>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
+
+
                           <div class="panel panel-default" formGroupName="coreEngine">
                             <div class="panel-heading success" role="tab" id="headingCoreEngine">
                               <h4 class="panel-title">

@@ -98,32 +98,28 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
         });
 
-    this.containerService
-      .getAll()
-      .subscribe(containers => {
-        this.containerList = containers;
-        this.initializeContainerSelect(containers);
+    // this.containerService
+    //   .getAll()
+    //   .subscribe(containers => {
+    //     this.containerList = containers;
+    //     this.initializeContainerSelect(containers);
 
-        console.log(containers);
-      },
-        e => this.errorMessage = e,
-        () => {
-          this.isLoading = false;
-        });
+    //     console.log(containers);
+    //   },
+    //     e => this.errorMessage = e,
+    //     () => {
+    //       this.isLoading = false;
+    //     });
   }
 
 
   buildForm() {
     this.templateForm = this.formBuilder.group({
       general: this.formBuilder.group({
-        plateform: new FormControl('', Validators.required),
         name: new FormControl('', Validators.required),
         generalOptions: this.formBuilder.group({
           commonEnv: new FormControl(false)
         })
-      }),
-      container: this.formBuilder.group({
-        plateform: new FormControl('', Validators.required)
       }),
       coreEngine: this.formBuilder.group({
         version: new FormControl('', [Validators.required, PackageValidators.version])
@@ -138,7 +134,6 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
       }),
       continuityBackend: this.formBuilder.group({
         version: new FormControl('', [Validators.required, PackageValidators.version]),
-        push: new FormControl('', [Validators.required, PackageValidators.number]),
         modules: this.formBuilder.group({
           aquisition: new FormControl(false),
           requester: new FormControl(false),
@@ -159,7 +154,6 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   initializeCollapsedElements($component: any): Map<string, any> {
     const map = new Map<string, any>();
     map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig'));
-    map.set('collapseContainer', jQuery($component).find('#collapseContainer'));
     map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine'));
     map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine'));
     map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend'));
@@ -170,7 +164,6 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   initializeCollapsedElementsStatus($component: any): Map<string, boolean> {
     const map = new Map<string, boolean>();
     map.set('collapseGeneralConfig', jQuery($component).find('#collapseGeneralConfig').hasClass('in'));
-    map.set('collapseContainer', jQuery($component).find('#collapseContainer').hasClass('in'));
     map.set('collapseCoreEngine', jQuery($component).find('#collapseCoreEngine').hasClass('in'));
     map.set('collapseFilterEngine', jQuery($component).find('#collapseFilterEngine').hasClass('in'));
     map.set('collapseContinuityBackend', jQuery($component).find('#collapseContinuityBackend').hasClass('in'));
@@ -185,7 +178,7 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
       const self = this;
       if (activeCollapse === key) {
         const wrapperHeight = jQuery('.container-choice-config').innerHeight();
-        const collapseHeight = wrapperHeight - 7 * (this.panelHeader + 9) - this.panelFooter;
+        const collapseHeight = wrapperHeight - 6 * (this.panelHeader + 9) - this.panelFooter;
         jQuery('#' + key).find('.panel-body').height(collapseHeight + 'px');
         jQuery('a[href^="#' + key + '"]').addClass('pointer-disable');
       } else {
@@ -223,18 +216,18 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
     });
   }
 
-  initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
-    const self = this;
-    this.containerSelect = new BootstrapSelect();
-    this.containerSelect.placeholder = 'Choose Container ...';
-    containers.forEach((item, index) => {
-      let selected = false;
-      if (containerSelected !== null && containerSelected.name === item.name) {
-        selected = true;
-      }
-      self.containerSelect.addOption(item.name, item.name, selected, findIconContainer(item.os));
-    });
-  }
+  // initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
+  //   const self = this;
+  //   this.containerSelect = new BootstrapSelect();
+  //   this.containerSelect.placeholder = 'Choose Container ...';
+  //   containers.forEach((item, index) => {
+  //     let selected = false;
+  //     if (containerSelected !== null && containerSelected.name === item.name) {
+  //       selected = true;
+  //     }
+  //     self.containerSelect.addOption(item.name, item.name, selected, findIconContainer(item.os));
+  //   });
+  // }
 
   onSelectedTemplateOption(option: Option) {
     this.templateSelectedOption = option;
@@ -244,14 +237,14 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
     this.initializeForm(this.templateForm, this.currentTemplatePackage);
   }
 
-  onSelectedContainerOption(option: Option) {
-    this.containerSelectedOption = option;
-    const idContainer = option.value;
-    this.currentContainer = this.containerList.filter((container: IContainer) => container.name === idContainer)[0];
-    this.setValueFormControl('general.plateform', this.currentContainer);
-    (<FormGroup>this.templateForm.controls.container)
-      .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
-  }
+  // onSelectedContainerOption(option: Option) {
+  //   this.containerSelectedOption = option;
+  //   const idContainer = option.value;
+  //   this.currentContainer = this.containerList.filter((container: IContainer) => container.name === idContainer)[0];
+  //   this.setValueFormControl('container.platform', this.currentContainer);
+  //   (<FormGroup>this.templateForm.controls.container)
+  //     .controls.plateform.setValue(this.currentContainer, { onlySelf: true });
+  // }
 
   isFieldNotValid(field: string) {
     const fieldControl = this.getFieldControl(field, this.templateForm);
@@ -301,15 +294,13 @@ export class ContainerChoiceComponent implements AfterViewInit, OnInit {
   }
 
   initializeForm(form: FormGroup, template: ITemplatePackage) {
+    const self = this;
     this.templateForm.setValue({
       general: {
         name: template.packageConfig.name,
         generalOptions: {
           commonEnv: template.packageConfig.commonEnvConfig.enable
         }
-      },
-      container: {
-        plateform: null
       },
       coreEngine: {
         version: template.packageConfig.coreEngineConfig.version

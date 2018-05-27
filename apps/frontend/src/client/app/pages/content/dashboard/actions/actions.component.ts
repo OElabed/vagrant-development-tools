@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IPackage, Package } from '../../../../common/models//domain/package.model';
+import { IPackage, Package } from '../../../../common/models/domain/package.model';
 import { State } from '../../../../common/models/domain/state.model';
 
 /**

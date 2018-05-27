@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PackageCreationRoutingModule } from './package-creation-routing.module';
 import { SharedModule } from '../../../common/shared/shared.module';
-import { AddFileFormModule } from '../../../common/components/forms/add-file-form/add-file-form.module';
 import { FixFileTreeModule } from '../../../common/modules/fix-tree-folder/fix-tree-folder.module';
 
 import { PackageCreationComponent } from './package-creation.component';
@@ -15,14 +14,15 @@ import { YamlConfigService } from '../../../common/services/external/yaml-config
 import { TemplateChoiceModule } from './template-choice/template-choice.module';
 import { PackageCreationDetailsModule } from './package-creation-details/package-creation-details.module';
 import { ContainerChoiceModule } from './container-choice/container-choice.module';
+import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
 
 @NgModule({
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
     ContainerChoiceModule,
+    PlatformChoiceModule,
     ConfirmFormModule,
-    AddFileFormModule,
     FixFileTreeModule,
     ContextmenuModule,
     TemplateChoiceModule,

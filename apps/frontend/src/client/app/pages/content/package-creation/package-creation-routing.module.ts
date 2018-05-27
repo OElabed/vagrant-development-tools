@@ -4,6 +4,7 @@ import { PackageCreationComponent } from './package-creation.component';
 import { TemplateChoiceModule } from './template-choice/template-choice.module';
 import { PackageCreationDetailsModule } from './package-creation-details/package-creation-details.module';
 import { ContainerChoiceModule } from './container-choice/container-choice.module';
+import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
 
 @NgModule({
   imports: [
@@ -25,8 +26,12 @@ import { ContainerChoiceModule } from './container-choice/container-choice.modul
             loadChildren: () => ContainerChoiceModule
           },
           {
+            path: 'platform',
+            loadChildren: () => PlatformChoiceModule
+          },
+          {
             path: '',
-            redirectTo: 'container',
+            redirectTo: 'platform',
             pathMatch: 'full'
           }
         ]

@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <form [formGroup]="containerForm">
+      <fix-widget>
+        <fix-widget-header icon="fa fa-laptop" title="Container configuration">
+        </fix-widget-header>
+        <fix-widget-body classes="no-padding">
+          <div class="row container-choice-config">
+            <div class="col-sm-12 m-t-10">
+              <div class="container-choice-container">
+                <div class="row">
+                  <div class="form-horizontal" style="margin-bottom: 0px !important;" role="form">
+                    <fieldset>
+                      <div class="form-group m-t-30" formGroupName="container">
+                        <label class="col-sm-1 control-label" for="textinput">Platform
+                          <span class="font-12 required-indicator">*</span>
+                        </label>
+                        <div class="col-sm-7" [ngClass]="displayFieldCss('container.platform')">
+                          <fix-bootstrap-select [selectContainer]="containerSelect" (selectOption)="onSelectedContainerOption($event)"></fix-bootstrap-select>
+                          <ng-template #popTemplate>
+                            Platform is the container where the package will be installed. The type is mentioned as follows:
+                            <ul class="platform-infos">
+                              <li>
+                                <i class="fa fa-linux" aria-hidden="true"></i> Linux</li>
+                              <li>
+                                <i class="fa fa-windows" aria-hidden="true"></i> Windows</li>
+                              <li>
+                                <i class="fa fa-sun-o" aria-hidden="true"></i> Solaris</li>
+                              <li>
+                                <i class="fa fa-laptop" aria-hidden="true"></i> HPUX</li>
+                            </ul>
+
+                          </ng-template>
+                          <span class="font-13" tooltip="Start" placement="bottom" [tooltip]="popTemplate">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                          </span>
+                          <fix-field-error-display [displayError]="isFieldNotValid('container.platform')" errorMsg="Please choose platform"></fix-field-error-display>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fix-widget-body>
+        <fix-widget-footer>
+          <div class="row form-group nomargin">
+            <div class="col-sm-12 nomargin">
+              <div class="pull-left m-t-10">
+                <ul class="timeline m-b-0 p-l-0">
+                  <li class="li complete">
+                    <div class="status">
+                      <h4> Container choice </h4>
+                    </div>
+                  </li>
+                  <li class="li complete">
+                    <div class="status">
+                      <h4> Email Sent </h4>
+                    </div>
+                  </li>
+                  <li class="li complete">
+                    <div class="status">
+                      <h4> SIC Approval </h4>
+                    </div>
+                  </li>
+                  <li class="li">
+                    <div class="status">
+                      <h4> Shift Completed </h4>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-primary btn-sm pull-right" (click)="onSubmit()">
+                <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
+              </button>
+              <button class="btn btn-default btn-sm pull-right m-r-5" (click)="reset()">
+                <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
+              </button>
+            </div>
+          </div>
+        </fix-widget-footer>
+      </fix-widget>
+    </form>
+  </div>
+</div>

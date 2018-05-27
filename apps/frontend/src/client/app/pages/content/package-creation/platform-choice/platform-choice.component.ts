@@ -1,0 +1,157 @@
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Wizard, WizardStep } from '../../../../common/models/view/wizard.model';
+import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
+import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { BootstrapSelect, Option } from '../../../../common/models/view/bootstrap-select.model';
+import { ITemplatePackage, TemplatePackage } from '../../../../common/models/domain/template-package.model';
+import { IContainer, findIconContainer, Container } from '../../../../common/models/domain/container.model';
+import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
+import { ContainerService } from '../../../../common/services/external/containers.api.service';
+import { PackageValidators } from '../../../../common/validators/package.validaors';
+import { ModuleConfig } from '../../../../common/models/domain/module-config.model';
+import { ModuleType } from '../../../../common/models/domain/module.model';
+
+declare let jQuery: any;
+
+/**
+ * This class represents the lazy loaded PlatformChoiceComponent.
+ */
+@Component({
+  moduleId: module.id,
+  selector: 'fix-platform-choice',
+  templateUrl: 'platform-choice.component.html',
+  styleUrls: ['platform-choice.component.css']
+})
+export class PlatformChoiceComponent implements AfterViewInit, OnInit {
+
+  // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
+
+  private containerForm: FormGroup;
+  private formSumitAttempt: boolean;
+
+
+  private containerSelect: BootstrapSelect;
+  private containerList: IContainer[];
+  private currentContainer: IContainer;
+  private containerSelectedOption: Option;
+
+  private errorMessage = '';
+  private isLoading = true;
+
+  private collapsedEelements: Map<string, any> = new Map<string, any>();
+  private collapsedEelementsStatus: Map<string, boolean> = new Map<string, boolean>();
+
+  private panelHeader: number;
+  private panelFooter: number;
+
+  constructor(
+    private elementRef: ElementRef,
+    private containerService: ContainerService,
+    private formBuilder: FormBuilder) {
+    this.containerSelect = new BootstrapSelect();
+  }
+
+  ngAfterViewInit() {
+    console.log('contain');
+
+  }
+
+  ngOnInit() {
+
+    this.buildForm();
+
+    this.containerService
+      .getAll()
+      .subscribe(containers => {
+        this.containerList = containers;
+        this.initializeContainerSelect(containers);
+
+        console.log(containers);
+      },
+        e => this.errorMessage = e,
+        () => {
+          this.isLoading = false;
+        });
+  }
+
+
+  buildForm() {
+    this.containerForm = this.formBuilder.group({
+
+      container: this.formBuilder.group({
+        platform: new FormControl('', [Validators.required, PackageValidators.version])
+      })
+    });
+  }
+
+  initializeContainerSelect(containers: IContainer[], containerSelected: IContainer = null): void {
+    const self = this;
+    this.containerSelect = new BootstrapSelect();
+    this.containerSelect.placeholder = 'Choose Container ...';
+    containers.forEach((item, index) => {
+      let selected = false;
+      if (containerSelected !== null && containerSelected.name === item.name) {
+        selected = true;
+      }
+      self.containerSelect.addOption(item.name, item.name, selected, findIconContainer(item.os));
+    });
+  }
+
+  onSelectedContainerOption(option: Option) {
+    this.containerSelectedOption = option;
+    const idContainer = option.value;
+    this.currentContainer = this.containerList.filter((container: IContainer) => container.name === idContainer)[0];
+    this.setValueFormControl('container.platform', this.currentContainer);
+    (<FormGroup>this.containerForm.controls.container)
+      .controls.platform.setValue(this.currentContainer, { onlySelf: true });
+  }
+
+  isFieldNotValid(field: string) {
+    const fieldControl = this.getFieldControl(field, this.containerForm);
+    const isValid = (
+      (fieldControl.valid) ||
+      (fieldControl.pristine && !this.formSumitAttempt)
+    );
+    return !isValid;
+  }
+
+  getFieldControl(field: string, form: AbstractControl): AbstractControl {
+    const splitted = field.split('.');
+    let formGroup: AbstractControl = form;
+    let control: AbstractControl;
+    splitted.forEach((item, index) => {
+      if (index === (splitted.length - 1)) {
+        control = formGroup.get(item);
+      } else {
+        formGroup = formGroup.get(item);
+      }
+    });
+    return control;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldNotValid(field),
+      'has-feedback': this.isFieldNotValid(field)
+    };
+  }
+
+  onSubmit() {
+    this.formSumitAttempt = true;
+    if (this.containerForm.valid) {
+      console.log('form submitted');
+    }
+  }
+
+  reset() {
+    this.containerForm.reset();
+    this.formSumitAttempt = false;
+  }
+
+  setValueFormControl(field: string, value: any) {
+    const control = <FormControl>this.getFieldControl(field, this.containerForm);
+    control.setValue(value, { onlySelf: true });
+  }
+
+}

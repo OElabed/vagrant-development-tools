@@ -1,9 +1,0 @@
-version: "3"
-services:
-
-  bluegreen:
-    build: 
-      context: ./src
-    image: bluegreen_bluegreen:latest
-    ports:
-      - "8888:80"

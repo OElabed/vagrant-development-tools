@@ -15,15 +15,15 @@ import { ModuleType } from '../../../../common/models/domain/module.model';
 declare let jQuery: any;
 
 /**
- * This class represents the lazy loaded ContainerChoiceComponent.
+ * This class represents the lazy loaded DetailsChoiceComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'fix-container-choice',
-  templateUrl: 'container-choice.component.html',
-  styleUrls: ['container-choice.component.css']
+  selector: 'fix-details-choice',
+  templateUrl: 'details-choice.component.html',
+  styleUrls: ['details-choice.component.css']
 })
-export class ContainerChoiceComponent implements AfterViewInit, OnInit {
+export class DetailsChoiceComponent implements AfterViewInit, OnInit {
 
   // https://plnkr.co/edit/p0ApU2yT62jnzu9nKkng?p=preview
 

@@ -11,21 +11,19 @@ import { ContextmenuModule } from '../../../common/modules/fix-context-menu/cont
 import { ConfirmFormModule } from '../../../common/components/forms/confirm-form/confirm-form.module';
 import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
 import { YamlConfigService } from '../../../common/services/external/yaml-config.api.service';
-import { TemplateChoiceModule } from './template-choice/template-choice.module';
 import { PackageCreationDetailsModule } from './package-creation-details/package-creation-details.module';
-import { ContainerChoiceModule } from './container-choice/container-choice.module';
+import { DetailsChoiceModule } from './details-choice/details-choice.module';
 import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
 
 @NgModule({
   imports: [CommonModule,
     SharedModule,
     PackageCreationRoutingModule,
-    ContainerChoiceModule,
+    DetailsChoiceModule,
     PlatformChoiceModule,
     ConfirmFormModule,
     FixFileTreeModule,
     ContextmenuModule,
-    TemplateChoiceModule,
     PackageCreationDetailsModule
   ],
   declarations: [

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PackageCreationComponent } from './package-creation.component';
-import { TemplateChoiceModule } from './template-choice/template-choice.module';
 import { PackageCreationDetailsModule } from './package-creation-details/package-creation-details.module';
-import { ContainerChoiceModule } from './container-choice/container-choice.module';
+import { DetailsChoiceModule } from './details-choice/details-choice.module';
 import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
 
 @NgModule({
@@ -14,16 +13,12 @@ import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
         component: PackageCreationComponent,
         children: [
           {
-            path: 'template',
-            loadChildren: () => TemplateChoiceModule
-          },
-          {
-            path: 'details',
+            path: 'details2',
             loadChildren: () => PackageCreationDetailsModule
           },
           {
-            path: 'container',
-            loadChildren: () => ContainerChoiceModule
+            path: 'details',
+            loadChildren: () => DetailsChoiceModule
           },
           {
             path: 'platform',
@@ -31,7 +26,7 @@ import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
           },
           {
             path: '',
-            redirectTo: 'platform',
+            redirectTo: 'details',
             pathMatch: 'full'
           }
         ]

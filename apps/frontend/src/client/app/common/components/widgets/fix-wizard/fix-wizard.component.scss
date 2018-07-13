@@ -1,0 +1,17 @@
+.wizard {
+    h4.list-group-item-heading {
+        font-size: 12px !important;
+        font-weight: bold !important;
+        margin-bottom: 0px;
+        span {
+          font-size: 10px !important;
+        }
+    }
+    p.list-group-item-text {
+        font-size: 10px !important;
+    }
+    a {
+      padding-bottom: 5px;
+      padding-top: 5px;
+    }
+}

@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../../../common/shared/shared.module';
 import { DetailsChoiceRoutingModule } from './details-choice-routing.module';
-import { DetailsChoiceComponent } from './details-choice.component';
+import { SharedModule } from '../../../../common/shared/shared.module';
+import { FixFileTreeModule } from '../../../../common/modules/fix-tree-folder/fix-tree-folder.module';
+
 import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
-import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
-import { ContainerService } from '../../../../common/services/external/containers.api.service';
+import { DetailsChoiceComponent } from './details-choice.component';
+import { PackageDetailsModule } from '../../../../common/modules/package-details/package-details.module';
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     SharedModule,
+    PackageDetailsModule,
     DetailsChoiceRoutingModule
   ],
   declarations: [
@@ -18,6 +21,6 @@ import { ContainerService } from '../../../../common/services/external/container
   exports: [
     DetailsChoiceComponent
   ],
-  providers: [PackageConfigDataService, TemplatePackageService, ContainerService]
+  providers: [PackageConfigDataService]
 })
 export class DetailsChoiceModule { }

@@ -47,36 +47,21 @@
         <fix-widget-footer>
           <div class="row form-group nomargin">
             <div class="col-sm-12 nomargin">
-              <div class="pull-left m-t-10">
-                <ul class="timeline m-b-0 p-l-0">
-                  <li class="li complete">
-                    <div class="status">
-                      <h4> Container choice </h4>
-                    </div>
-                  </li>
-                  <li class="li complete">
-                    <div class="status">
-                      <h4> Email Sent </h4>
-                    </div>
-                  </li>
-                  <li class="li complete">
-                    <div class="status">
-                      <h4> SIC Approval </h4>
-                    </div>
-                  </li>
-                  <li class="li">
-                    <div class="status">
-                      <h4> Shift Completed </h4>
-                    </div>
-                  </li>
-                </ul>
+              <div class="row">
+                <div class="col-sm-10 nomargin nopadding pull-left">
+                  <!-- <div class="pull-left"> -->
+                    <fix-wizard></fix-wizard>
+                  <!-- </div> -->
+                </div>
+                <div class="col-sm-2 pull-right p-r-0 nomargin">
+                  <button class="btn btn-primary btn-sm pull-right" (click)="onSubmit()">
+                    <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
+                  </button>
+                  <button class="btn btn-default btn-sm pull-right m-r-5" (click)="reset()">
+                    <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
+                  </button>
+                </div>
               </div>
-              <button class="btn btn-primary btn-sm pull-right" (click)="onSubmit()">
-                <i class="fa fa-check m-r-5" aria-hidden="true"></i>Validate
-              </button>
-              <button class="btn btn-default btn-sm pull-right m-r-5" (click)="reset()">
-                <i class="fa fa-repeat m-r-5" aria-hidden="true"></i>Reset
-              </button>
             </div>
           </div>
         </fix-widget-footer>

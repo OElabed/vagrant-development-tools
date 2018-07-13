@@ -1,70 +1,68 @@
 export class WizardStep {
 
-    id: string;
-    order: number;
-    validate: boolean;
+  id: string;
+  order: number;
+  validate: boolean;
+  title: string;
 
-    constructor(id: string, order: number, validate = false) {
-        this.id = id;
-        this.validate = validate;
-        this.order = order;
-    }
+  constructor(id: string, order: number, title: string, validate = false) {
+    this.id = id;
+    this.validate = validate;
+    this.order = order;
+    this.title = title;
+  }
 }
 
 
 export interface IWizard {
-    steps: WizardStep[];
+  steps: WizardStep[];
 }
 
 export class Wizard implements IWizard {
 
-    steps: WizardStep[];
+  steps: WizardStep[];
 
-    constructor(steps: string[]) {
-        this.steps = [];
+  constructor(steps: WizardStep[]) {
+    this.steps = steps;
+  }
 
-        steps.forEach((item, index) => {
-            this.steps.push(new WizardStep(item, index));
-        });
+  public getTheNextStep(currentStep: WizardStep): WizardStep {
+    let nextWizard: WizardStep;
+
+    for (const item of this.steps) {
+      if (item.order > currentStep.order) {
+        nextWizard = item;
+        break;
+      }
     }
 
-    public getTheNextStep(currentStep: WizardStep): WizardStep {
-        let nextWizard: WizardStep;
-
-        for (const item of this.steps) {
-            if (item.order > currentStep.order) {
-                nextWizard = item;
-                break;
-            }
-        }
-
-        if (nextWizard !== undefined && nextWizard.id !== currentStep.id) {
-            return nextWizard;
-        }
-
-        return currentStep;
+    if (nextWizard !== undefined && nextWizard.id !== currentStep.id) {
+      return nextWizard;
     }
 
-    public getStepById(stepId: string): WizardStep {
+    return currentStep;
+  }
 
-        let step: WizardStep;
+  public getStepById(stepId: string): WizardStep {
 
-        this.steps.forEach((item, index) => {
-            if (item.id === stepId) {
-                step = item;
-            }
-        });
+    let step: WizardStep;
 
-        return step;
-    }
+    this.steps.forEach((item, index) => {
+      if (item.id === stepId) {
+        step = item;
+      }
+    });
 
-    public validateStep(stepId: string) {
+    return step;
+  }
 
-        this.steps.forEach((item, index) => {
-            if (item.id === stepId) {
-                this.steps[index].validate = true;
-            }
-        });
-    }
+  public validateStep(stepId: string) {
+
+    this.steps.forEach((item, index) => {
+      if (item.id === stepId) {
+        this.steps[index].validate = true;
+      }
+    });
+  }
 }
 

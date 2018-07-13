@@ -19,6 +19,7 @@ import { RoutingGlobalService } from '../services/data/routing-global.data.servi
 import { FileEditorGlobalService } from '../services/data/file-editor-service.data.service';
 
 import { TooltipModule, CollapseModule } from 'ngx-bootstrap';
+import { FixWizardComponent } from '../components/widgets/fix-wizard/fix-wizard.component';
 
 
 /**
@@ -40,6 +41,7 @@ import { TooltipModule, CollapseModule } from 'ngx-bootstrap';
     FixWidgetBodyComponent,
     FixLoadingComponent,
     FixAlertsComponent,
+    FixWizardComponent,
     FieldErrorDisplayComponent,
     BootstrapSelectComponent
   ],
@@ -50,6 +52,7 @@ import { TooltipModule, CollapseModule } from 'ngx-bootstrap';
     FixWidgetBodyComponent,
     FixLoadingComponent,
     FixAlertsComponent,
+    FixWizardComponent,
     FieldErrorDisplayComponent,
     BootstrapSelectComponent,
 

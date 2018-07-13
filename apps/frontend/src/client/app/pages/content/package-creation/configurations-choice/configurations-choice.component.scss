@@ -46,15 +46,24 @@
 }
 
 .template-config {
-  legend {
-      font-size: 14px;
-  }
-  label {
-      font-size: 12px;
-  }
+    legend {
+        font-size: 14px;
+    }
+    label {
+        font-size: 12px;
+    }
 }
 
 .template-container {
-  height: calc(100vh - 14vw);
-  overflow-y: auto;
+    height: calc(100vh - 14vw);
+    overflow-y: auto;
+}
+
+.checkbox-with-upload {
+    .checkbox-title {
+        margin-bottom: 0px !important;
+    }
+    .checkbox-upload {
+        padding-left: 30px !important;
+    }
 }

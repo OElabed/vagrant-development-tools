@@ -1,4 +1,4 @@
-import { ModuleType } from '../domain/module.model';
+import { ModuleType } from './module.model';
 
 export interface IModuleConfig {
     type?: ModuleType;

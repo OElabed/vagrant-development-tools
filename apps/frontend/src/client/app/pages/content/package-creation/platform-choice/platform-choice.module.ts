@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
+import { ContainerService } from '../../../../common/services/external/containers.api.service';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { PlatformChoiceRoutingModule } from './platform-choice-routing.module';
 import { PlatformChoiceComponent } from './platform-choice.component';
-import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
-import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
-import { ContainerService } from '../../../../common/services/external/containers.api.service';
 
 @NgModule({
   imports: [CommonModule,
@@ -18,6 +17,6 @@ import { ContainerService } from '../../../../common/services/external/container
   exports: [
     PlatformChoiceComponent
   ],
-  providers: [PackageConfigDataService, ContainerService]
+  providers: [PackageCreationDataService, ContainerService]
 })
 export class PlatformChoiceModule { }

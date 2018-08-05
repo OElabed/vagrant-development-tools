@@ -1,16 +1,10 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
-import { Wizard, WizardStep } from '../../../../common/models/view/wizard.model';
-import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
-import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { findIconContainer, IContainer } from '../../../../common/models/domain/container.model';
 import { BootstrapSelect, Option } from '../../../../common/models/view/bootstrap-select.model';
-import { ITemplatePackage, TemplatePackage } from '../../../../common/models/domain/template-package.model';
-import { IContainer, findIconContainer, Container } from '../../../../common/models/domain/container.model';
-import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
+import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
 import { ContainerService } from '../../../../common/services/external/containers.api.service';
 import { PackageValidators } from '../../../../common/validators/package.validaors';
-import { ModuleConfig } from '../../../../common/models/domain/module-config.model';
-import { ModuleType } from '../../../../common/models/domain/module.model';
 
 declare let jQuery: any;
 
@@ -46,6 +40,7 @@ export class PlatformChoiceComponent implements AfterViewInit, OnInit {
   private panelFooter: number;
 
   constructor(
+    private packageCreationDataService: PackageCreationDataService,
     private elementRef: ElementRef,
     private containerService: ContainerService,
     private formBuilder: FormBuilder) {

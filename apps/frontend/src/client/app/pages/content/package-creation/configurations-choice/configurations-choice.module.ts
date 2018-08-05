@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { ConfigurationChoiceRoutingModule } from './configurations-choice-routing.module';
 import { ConfigurationsChoiceComponent } from './configurations-choice.component';
-import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
+import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
 import { TemplatePackageService } from '../../../../common/services/external/template-package.api.service';
 import { ContainerService } from '../../../../common/services/external/containers.api.service';
 
@@ -18,6 +18,6 @@ import { ContainerService } from '../../../../common/services/external/container
   exports: [
     ConfigurationsChoiceComponent
   ],
-  providers: [PackageConfigDataService, TemplatePackageService, ContainerService]
+  providers: [PackageCreationDataService, TemplatePackageService, ContainerService]
 })
 export class ConfigurationsChoiceModule { }

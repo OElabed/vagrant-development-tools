@@ -9,7 +9,7 @@ import { TemplatePackageService } from '../../../common/services/external/templa
 import { ContainerService } from '../../../common/services/external/containers.api.service';
 import { ContextmenuModule } from '../../../common/modules/fix-context-menu/contextmenu.module';
 import { ConfirmFormModule } from '../../../common/components/forms/confirm-form/confirm-form.module';
-import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
+import { PackageCreationDataService } from '../../../common/services/data/package-creation.data.service';
 import { YamlConfigService } from '../../../common/services/external/yaml-config.api.service';
 import { DetailsChoiceModule } from './details-choice/details-choice.module';
 import { ConfigurationsChoiceModule } from './configurations-choice/configurations-choice.module';
@@ -32,6 +32,6 @@ import { PlatformChoiceModule } from './platform-choice/platform-choice.module';
   exports: [
     PackageCreationComponent,
   ],
-  providers: [TemplatePackageService, ContainerService, PackageConfigDataService, YamlConfigService]
+  providers: [TemplatePackageService, ContainerService, PackageCreationDataService, YamlConfigService]
 })
 export class PackageCreationModule { }

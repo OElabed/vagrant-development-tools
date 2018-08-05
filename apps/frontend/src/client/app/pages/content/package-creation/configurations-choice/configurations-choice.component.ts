@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import { Wizard, WizardStep } from '../../../../common/models/view/wizard.model';
 import { IPackageConfig, PackageConfig } from '../../../../common/models/domain/package-config.model';
-import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
+import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { BootstrapSelect, Option } from '../../../../common/models/view/bootstrap-select.model';
 import { ITemplatePackage, TemplatePackage } from '../../../../common/models/domain/template-package.model';
@@ -51,6 +51,7 @@ export class ConfigurationsChoiceComponent implements AfterViewInit, OnInit {
 
   constructor(
     private elementRef: ElementRef,
+    private packageCreationDataService: PackageCreationDataService,
     private templatePackageService: TemplatePackageService,
     private containerService: ContainerService,
     private formBuilder: FormBuilder) {

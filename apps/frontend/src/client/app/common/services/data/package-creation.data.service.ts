@@ -1,28 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
-import { IPackageConfig, PackageConfig } from '../../models/domain/package-config.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { PackageConfigService } from '../external/package-config.api.service';
-import { YamlConfigService } from '../external/yaml-config.api.service';
-import { IFilterEngineConfig } from '../../models/domain/filter-engine-config.model';
 import { ICoreEngineConfig } from '../../models/domain/core-engine-config.model';
 import { IDatabaseConfig } from '../../models/domain/database-config.model';
+import { IFilterEngineConfig } from '../../models/domain/filter-engine-config.model';
 import { IModuleConfig } from '../../models/domain/module-config.model';
+import { IPackageConfig, PackageConfig } from '../../models/domain/package-config.model';
 import { IYamlConfig, YamlConfig } from '../../models/domain/yaml-config.model';
+import { YamlConfigService } from '../external/yaml-config.api.service';
+import { IWizard, Wizard } from '../../models/view/wizard.model';
 
 // sample : https://coryrylan.com/blog/angular-observable-data-services
 
 @Injectable()
-export class PackageConfigDataService {
+export class PackageCreationDataService {
 
   config: Observable<IPackageConfig>;
   yamlConfig: Observable<IYamlConfig>;
+  wizardState: Observable<IWizard>;
   private _config: BehaviorSubject<IPackageConfig>;
   private _yamlConfig: BehaviorSubject<IYamlConfig>;
+  private _wizardState: BehaviorSubject<IWizard>;
   private dataStore: {
-    config: IPackageConfig
-    yamlConfig: IYamlConfig
+    config: IPackageConfig,
+    yamlConfig: IYamlConfig,
+    wizardState: IWizard
   };
 
   private errorMessage = '';
@@ -33,13 +35,22 @@ export class PackageConfigDataService {
   ) {
     this.dataStore = {
       config: PackageConfig.initialize(),
-      yamlConfig: YamlConfig.initialize()
+      yamlConfig: YamlConfig.initialize(),
+      wizardState: new Wizard()
     };
     this._config = <BehaviorSubject<IPackageConfig>>new BehaviorSubject([]);
     this.config = this._config.asObservable();
 
     this._yamlConfig = <BehaviorSubject<IYamlConfig>>new BehaviorSubject([]);
     this.yamlConfig = this._yamlConfig.asObservable();
+
+
+    this._wizardState = <BehaviorSubject<IWizard>>new BehaviorSubject([]);
+    this.wizardState = this._wizardState.asObservable();
+  }
+
+  initWizard() {
+    this._wizardState.next(Object.assign({}, this.dataStore).wizardState);
   }
 
   // create(config: IPackageConfig): void {
@@ -58,9 +69,15 @@ export class PackageConfigDataService {
   initPackage(): void {
     this._config.next(Object.assign({}, this.dataStore).config);
     this._yamlConfig.next(Object.assign({}, this.dataStore).yamlConfig);
+    this._wizardState.next(Object.assign({}, this.dataStore).wizardState);
 
     // TODO
     //this.refreshYamlConfig();
+  }
+
+  setWizardState(wizard: IWizard): void {
+    this.dataStore.wizardState = wizard;
+    this._wizardState.next(Object.assign({}, this.dataStore).wizardState);
   }
 
   setPackage(config: IPackageConfig): void {

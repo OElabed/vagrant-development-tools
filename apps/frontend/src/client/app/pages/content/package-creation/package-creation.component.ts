@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Wizard, WizardStep } from '../../../common/models/view/wizard.model';
 import { IPackageConfig, PackageConfig } from '../../../common/models/domain/package-config.model';
-import { PackageConfigDataService } from '../../../common/services/data/package.data.service';
+import { PackageCreationDataService } from '../../../common/services/data/package-creation.data.service';
 
 declare let jQuery: any;
 
@@ -16,9 +16,9 @@ declare let jQuery: any;
 })
 export class PackageCreationComponent implements OnInit {
 
-  constructor(private packageConfigDataService: PackageConfigDataService) { }
+  constructor(private packageCreationDataService: PackageCreationDataService) { }
 
   ngOnInit() {
-    this.packageConfigDataService.initPackage();
+    this.packageCreationDataService.initPackage();
   }
 }

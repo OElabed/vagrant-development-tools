@@ -9,6 +9,5 @@ import { Wizard } from '../../../models/view/wizard.model';
 })
 export class FixWizardComponent {
   @Input()
-  steps: Wizard;
-
+  wizard: Wizard;
 }

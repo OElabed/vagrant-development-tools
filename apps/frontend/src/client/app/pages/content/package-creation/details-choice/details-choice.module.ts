@@ -4,7 +4,7 @@ import { DetailsChoiceRoutingModule } from './details-choice-routing.module';
 import { SharedModule } from '../../../../common/shared/shared.module';
 import { FixFileTreeModule } from '../../../../common/modules/fix-tree-folder/fix-tree-folder.module';
 
-import { PackageConfigDataService } from '../../../../common/services/data/package.data.service';
+import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
 import { DetailsChoiceComponent } from './details-choice.component';
 import { PackageDetailsModule } from '../../../../common/modules/package-details/package-details.module';
 
@@ -21,6 +21,6 @@ import { PackageDetailsModule } from '../../../../common/modules/package-details
   exports: [
     DetailsChoiceComponent
   ],
-  providers: [PackageConfigDataService]
+  providers: [PackageCreationDataService]
 })
 export class DetailsChoiceModule { }

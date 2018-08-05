@@ -1,68 +1,62 @@
 export class WizardStep {
-
-  id: string;
-  order: number;
-  validate: boolean;
+  isValid = false;
   title: string;
+  link: string;
+  isCurrent: boolean;
 
-  constructor(id: string, order: number, title: string, validate = false) {
-    this.id = id;
-    this.validate = validate;
-    this.order = order;
+  constructor(title: string, link: string, isCurrent = false) {
     this.title = title;
+    this.link = link;
+    this.isCurrent = isCurrent;
   }
 }
 
 
 export interface IWizard {
-  steps: WizardStep[];
+  steps?: Map<number, WizardStep>;
+  size?: number;
 }
 
 export class Wizard implements IWizard {
+  steps?: Map<number, WizardStep>;
+  size?: number;
+  currentOrder = 0;
 
-  steps: WizardStep[];
-
-  constructor(steps: WizardStep[]) {
-    this.steps = steps;
+  constructor() {
+    this.steps = new Map<number, WizardStep>();
+    this.size = 0;
   }
 
-  public getTheNextStep(currentStep: WizardStep): WizardStep {
-    let nextWizard: WizardStep;
+  public validateCurrentStep() {
+    const currentStep = this.steps.get(this.currentOrder);
+    currentStep.isValid = true;
+  }
 
-    for (const item of this.steps) {
-      if (item.order > currentStep.order) {
-        nextWizard = item;
-        break;
-      }
+  public addStep(step: WizardStep) {
+    this.steps.set(++this.size, step);
+    if (step.isCurrent) {
+      this.currentOrder = this.size;
     }
+  }
 
-    if (nextWizard !== undefined && nextWizard.id !== currentStep.id) {
-      return nextWizard;
+  public goToNextStep() {
+    if (this.currentOrder + 1 <= this.size && this.steps.get(this.currentOrder).isValid) {
+      const fromStep = this.steps.get(this.currentOrder);
+      const toStep = this.steps.get(this.currentOrder + 1);
+      fromStep.isCurrent = false;
+      toStep.isCurrent = true;
+      this.currentOrder++;
     }
-
-    return currentStep;
   }
 
-  public getStepById(stepId: string): WizardStep {
-
-    let step: WizardStep;
-
-    this.steps.forEach((item, index) => {
-      if (item.id === stepId) {
-        step = item;
-      }
-    });
-
-    return step;
-  }
-
-  public validateStep(stepId: string) {
-
-    this.steps.forEach((item, index) => {
-      if (item.id === stepId) {
-        this.steps[index].validate = true;
-      }
-    });
+  public goToPreviousStep() {
+    if (this.currentOrder - 1 >= 1) {
+      const fromStep = this.steps.get(this.currentOrder);
+      const toStep = this.steps.get(this.currentOrder - 1);
+      fromStep.isCurrent = false;
+      toStep.isCurrent = true;
+      this.currentOrder--;
+    }
   }
 }
 

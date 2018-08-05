@@ -1,5 +1,5 @@
-import { ModuleType } from '../domain/module.model';
-import { DatabaseType } from '../domain/database.model';
+import { ModuleType } from './module.model';
+import { DatabaseType } from './database.model';
 
 export interface IDatabaseConfig {
     type?: DatabaseType;

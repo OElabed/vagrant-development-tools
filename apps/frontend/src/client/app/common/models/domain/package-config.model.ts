@@ -1,4 +1,4 @@
-import { IContainer, Container } from '../domain/container.model';
+import { IContainer, Container } from './container.model';
 import { ICoreEngineConfig, CoreEngineConfig } from './core-engine-config.model';
 import { IFilterEngineConfig, FilterEngineConfig } from './filter-engine-config.model';
 import { IModuleConfig, ModuleConfig } from './module-config.model';

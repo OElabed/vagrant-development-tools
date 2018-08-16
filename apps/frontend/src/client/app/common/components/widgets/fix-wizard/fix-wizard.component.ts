@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Wizard } from '../../../models/view/wizard.model';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Wizard, WizardStep } from '../../../models/view/wizard.model';
 
 @Component({
   moduleId: module.id,
@@ -7,7 +7,13 @@ import { Wizard } from '../../../models/view/wizard.model';
   templateUrl: 'fix-wizard.component.html',
   styleUrls: ['fix-wizard.component.css']
 })
-export class FixWizardComponent {
+export class FixWizardComponent implements OnChanges {
   @Input()
   wizard: Wizard;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.wizard.previousValue) {
+      console.log('new value: ', this.wizard);
+    }
+  }
 }

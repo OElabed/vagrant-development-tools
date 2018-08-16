@@ -5,6 +5,8 @@ import { BootstrapSelect, Option } from '../../../../common/models/view/bootstra
 import { PackageCreationDataService } from '../../../../common/services/data/package-creation.data.service';
 import { ContainerService } from '../../../../common/services/external/containers.api.service';
 import { PackageValidators } from '../../../../common/validators/package.validaors';
+import { IWizard } from '../../../../common/models/view/wizard.model';
+import { Observable } from 'rxjs/Observable';
 
 declare let jQuery: any;
 
@@ -39,6 +41,9 @@ export class PlatformChoiceComponent implements AfterViewInit, OnInit {
   private panelHeader: number;
   private panelFooter: number;
 
+  private wizard: Observable<IWizard>;
+
+
   constructor(
     private packageCreationDataService: PackageCreationDataService,
     private elementRef: ElementRef,
@@ -49,12 +54,17 @@ export class PlatformChoiceComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     console.log('contain');
-
   }
 
   ngOnInit() {
 
     this.buildForm();
+    this.packageCreationDataService.init();
+    this.wizard = this.packageCreationDataService.wizardState;
+
+    this.packageCreationDataService.wizardState.subscribe(wizard => {
+      console.log(wizard.getOrdredList());
+    });
 
     this.containerService
       .getAll()

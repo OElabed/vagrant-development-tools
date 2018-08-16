@@ -8,7 +8,7 @@ import { IModuleConfig } from '../../models/domain/module-config.model';
 import { IPackageConfig, PackageConfig } from '../../models/domain/package-config.model';
 import { IYamlConfig, YamlConfig } from '../../models/domain/yaml-config.model';
 import { YamlConfigService } from '../external/yaml-config.api.service';
-import { IWizard, Wizard } from '../../models/view/wizard.model';
+import { IWizard, Wizard, WizardStep } from '../../models/view/wizard.model';
 
 // sample : https://coryrylan.com/blog/angular-observable-data-services
 
@@ -49,22 +49,20 @@ export class PackageCreationDataService {
     this.wizardState = this._wizardState.asObservable();
   }
 
-  initWizard() {
-    this._wizardState.next(Object.assign({}, this.dataStore).wizardState);
+  init(): void {
+    this.initWizard();
+    this.initPackage();
   }
 
-  // create(config: IPackageConfig): void {
-  //   this.packageConfigService
-  //     .create(config)
-  //     .subscribe(packageConfig => {
-  //       this.dataStore.config = packageConfig;
-  //       this._config.next(Object.assign({}, this.dataStore).config);
-  //     },
-  //       e => this.errorMessage = e,
-  //       () => {
-  //         this.isLoading = false;
-  //       });
-  // }
+  initWizard() {
+    const wizard = new Wizard();
+    wizard.addStep(new WizardStep('Container choice', '#', true));
+    wizard.addStep(new WizardStep('Package configurations', '#', false));
+    wizard.addStep(new WizardStep('Package details', '#', false));
+    wizard.addStep(new WizardStep('Validation', '#', false));
+
+    this.setWizardState(wizard);
+  }
 
   initPackage(): void {
     this._config.next(Object.assign({}, this.dataStore).config);

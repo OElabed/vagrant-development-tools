@@ -1,6 +1,14 @@
 <div class="row wizard">
   <div class="col-xs-12 nomargin nopadding">
     <ul class="nav nav-pills nav-justified thumbnail m-b-0">
+      <li *ngFor="let step of (wizard | async)?.getOrdredList()" [ngClass]="{'active': step.isCurrent}" [ngClass]="{'disabled': !step.isCurrent && !step.isValid}">
+        <a href="#">
+          <h4 class="list-group-item-heading">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i> Step {{ step.order }} :
+            <span>{{ step.title }}</span>
+          </h4>
+        </a>
+      </li>
       <li>
         <a href="#">
           <h4 class="list-group-item-heading">
@@ -33,6 +41,7 @@
           </h4>
         </a>
       </li>
+      <!-- {{ wizard | async }} -->
     </ul>
   </div>
 </div>
